@@ -1,33 +1,13 @@
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { useContext } from 'react';
 
+import { AppContext } from '../components/context/AppContext';
 import { colors } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
 
-export const CART_QUERY = gql`
-  query {
-    localCart @client {
-      open
-      numItems
-    }
-  }
-`;
-
-export const TOGGLE_CART_MUTATION = gql`
-  mutation {
-    toggleCartOpen @client
-  }
-`;
-
 const CartModal = () => {
-  const { data } = useQuery(CART_QUERY);
-  const hidden = !data.localCart.open;
+  const { cartOpen, toggleCartOpen } = useContext(AppContext);
+  const hidden = !cartOpen;
 
-  const [toggleCartOpen] = useMutation(TOGGLE_CART_MUTATION);
-
-  const test = () => {
-    console.log('click');
-  };
   const cartItems = [];
   const cartTotal = 10.0;
   return (

@@ -1,12 +1,11 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useContext } from 'react';
 
+import { AppContext } from '../components/context/AppContext';
 import ProductPrev from './ProductPrev';
 import { colors } from '../styles/theme';
-import { SEL_TAG_QUERY } from './ShopSidebar.js'; // TODO: make query file
 
 const ProductGallery = ({ products }) => {
-  const { data } = useQuery(SEL_TAG_QUERY);
-  const selectedTag = data.selectedTag;
+  const { selectedTag } = useContext(AppContext);
 
   const productHasTag = (productTags, selectedTag) => {
     const result = productTags.filter((tag) => tag.name === selectedTag);

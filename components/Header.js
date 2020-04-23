@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { useContext } from 'react';
 
-import { TOGGLE_CART_MUTATION } from './CartModal.js';
+import { AppContext } from '../components/context/AppContext';
 import { colors, fonts, breakPoints } from '../styles/theme';
 import CartModal from './CartModal';
 import Logo from '../assets/seriousLogo_08.svg';
@@ -23,21 +22,12 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
-const CART_ITEMS_QUERY = gql`
-  {
-    localCart @client {
-      numItems
-    }
-  }
-`;
-
 const Header = () => {
   // Get number of cart items for display in cart icon
-  const { data } = useQuery(CART_ITEMS_QUERY);
-  const itemCount = data.localCart.numItems;
+  const itemCount = 0; // TODO
 
   // Get toggle-cart-open mutation
-  const [toggleCartOpen] = useMutation(TOGGLE_CART_MUTATION);
+  const { toggleCartOpen } = useContext(AppContext);
 
   return (
     <header className="header section">
