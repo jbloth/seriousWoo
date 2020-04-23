@@ -1,0 +1,32 @@
+{
+  "name": "seriouswoo",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "next",
+    "build": "npm run build-fragment && next build",
+    "start": "next start",
+    "build-fragment": "node schemaQuery.js"
+  },
+  "author": "Julia",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.5",
+    "@woocommerce/woocommerce-rest-api": "^1.0.1",
+    "apollo-boost": "^0.4.7",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-link-http": "^1.5.17",
+    "graphql": "^15.0.0",
+    "graphql-tag": "^2.10.3",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.3.5",
+    "next-with-apollo": "^5.0.1",
+    "nprogress": "^0.2.0",
+    "react": "^16.13.1",
+    "react-apollo": "^3.1.5",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^5.3.1"
+  }
+}
