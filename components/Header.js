@@ -23,11 +23,9 @@ Router.onRouteChangeError = () => {
 };
 
 const Header = () => {
-  // Get number of cart items for display in cart icon
-  const itemCount = 0; // TODO
-
-  // Get toggle-cart-open mutation
-  const { toggleCartOpen } = useContext(AppContext);
+  // Get toggle-cart-open mutation and number of cart items (for display in cart icon)
+  const { toggleCartOpen, cart } = useContext(AppContext);
+  const itemCount = cart !== null && Object.keys(cart).length ? cart.totalProductsCount : 0;
 
   return (
     <header className="header section">
@@ -117,7 +115,7 @@ const Header = () => {
             <li className="nav-item">
               <div className="nav-link cartIcon-wrapper" onClick={toggleCartOpen}>
                 <CartIcon />
-                <span className="cart-item-count"> {itemCount} </span>
+                <span className="cart-item-count">{itemCount}</span>
               </div>
             </li>
           </ul>

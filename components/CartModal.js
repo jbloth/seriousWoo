@@ -1,15 +1,17 @@
 import { useContext } from 'react';
+import Link from 'next/link';
 
 import { AppContext } from '../components/context/AppContext';
-import { colors } from '../styles/theme';
+import { fonts, colors } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
+import CartItem from './CartItem';
+import Button from './Button';
 
 const CartModal = () => {
-  const { cartOpen, toggleCartOpen } = useContext(AppContext);
+  const { cart, cartOpen, toggleCartOpen } = useContext(AppContext);
   const hidden = !cartOpen;
 
-  const cartItems = [];
-  const cartTotal = 10.0;
+  const cartItems = cart !== null ? cart.products : [];
   return (
     <div className={`cart-container ${hidden ? '' : 'cart-container--active'}`}>
       <div className="icon-wrapper close-icon">
@@ -19,7 +21,7 @@ const CartModal = () => {
         <h1 className="header">Cart</h1>
         <div className="items">
           {cartItems.length ? (
-            cartItems.map((item) => <CartItem key={item.id} item={item} />)
+            cartItems.map((item) => <CartItem key={item.productId} product={item} />)
           ) : (
             <p className="empty-message">Your cart is empty.</p>
           )}
@@ -28,11 +30,11 @@ const CartModal = () => {
           <div>
             <div className="subtotal">
               <span className="subtotal-text">Subtotal: </span>
-              <span className="subtotal-price">{cartTotal.toFixed(2)} $</span>
+              <span className="subtotal-price">{cart.totalProductsPrice.toFixed(2)} $</span>
             </div>
-            <button onClick={() => {}} className="btn chekout-btn">
-              GO TO CHECKOUT
-            </button>
+            <Link href="/shop/checkout">
+              <button className="btn checkout-btn">GO TO CHECKOUT</button>
+            </Link>
           </div>
         ) : (
           ''
@@ -76,7 +78,7 @@ const CartModal = () => {
 
         .header {
           font-weight: bold;
-          color: ${colors.darkpink}
+          color: ${colors.darkpink};
         }
 
         .empty-message {
@@ -99,10 +101,23 @@ const CartModal = () => {
           margin-left: 2rem;
         }
 
-        .chekout-btn {
-          background-color: ${colors.darkpink}
+        .checkout-btn {
+          font-family: ${fonts.text};
+          color: ${colors.bg};
+          border: 2px solid transparent;
+
+          text-align: center;
+          padding: 0 12px;
+          cursor: pointer;
+          background-color: ${colors.darkpink};
           height: 4rem;
           font-size: 1.8rem;
+        }
+
+        .checkout-btn:hover {
+          background-color: ${colors.bg};
+          color: ${colors.darkpink};
+          border: 2px solid ${colors.darkpink};
         }
       `}</style>
     </div>
