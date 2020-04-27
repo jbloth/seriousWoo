@@ -39,7 +39,7 @@ const CartItem = ({ product }) => {
             onDecrease={() => reduceProductQuantity(product)}
             onIncrease={() => addProductToCart(product)}
           />
-          <span className="price--total">{totalPrice.toFixed(2)} $</span>
+          <span className="price--total">{totalPrice} $</span>
         </div>
       </div>
       <style jsx>{`

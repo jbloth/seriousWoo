@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 
 import GET_CART from '../queries/get-cart';
 import { AppContext } from '../components/context/AppContext';
+import { getFormattedCart } from '../lib/functions';
 import { fonts, colors } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
 import CartItem from './CartItem';
@@ -17,12 +18,12 @@ const CartModal = () => {
     notifyOnNetworkStatusChange: true,
     onCompleted: () => {
       console.log(data);
-      // // Update cart in the localStorage.
-      // const updatedCart = getFormattedCart( data );
-      // localStorage.setItem( 'woo-next-cart', JSON.stringify( updatedCart ) );
+      // Update cart in the localStorage.
+      const updatedCart = getFormattedCart(data);
+      localStorage.setItem('woo-next-cart', JSON.stringify(updatedCart));
 
-      // // Update cart in context
-      // setCart( updatedCart );
+      // Update cart in context
+      setCart(updatedCart);
     },
   });
 
@@ -45,7 +46,7 @@ const CartModal = () => {
           <div>
             <div className="subtotal">
               <span className="subtotal-text">Subtotal: </span>
-              <span className="subtotal-price">{cart.totalProductsPrice.toFixed(2)} $</span>
+              <span className="subtotal-price">{cart.totalProductsPrice} $</span>
             </div>
             <Link href="/shop/checkout">
               <button className="btn checkout-btn">GO TO CHECKOUT</button>

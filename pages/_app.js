@@ -1,6 +1,10 @@
 import React from 'react';
 import App from 'next/app';
-import { ApolloProvider } from '@apollo/react-hooks';
+// import { ApolloProvider } from '@apollo/react-hooks';
+// ---- test ----- //
+import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider as ApolloHooksProvider } from '@apollo/react-hooks';
+// --------------- //
 
 import { AppProvider } from '../components/context/AppContext'; // state (using context)
 // import withApollo from '../lib/withApollo';
@@ -22,13 +26,16 @@ class MyApp extends App {
   render() {
     const { Component, apollo, pageProps } = this.props;
 
+    // TODO: remove ApolloHooksProvider
     return (
       <ApolloProvider client={apollo}>
-        <AppProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </AppProvider>
+        <ApolloHooksProvider client={apollo}>
+          <AppProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </AppProvider>
+        </ApolloHooksProvider>
       </ApolloProvider>
     );
   }
