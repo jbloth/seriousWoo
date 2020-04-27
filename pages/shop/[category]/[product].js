@@ -1,41 +1,11 @@
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
-import ShopHeader from '../../../components/ShopHeader';
 
-const PRODUCT_QUERY = gql`
-  query Product($id: ID!) {
-    product(id: $id, idType: DATABASE_ID) {
-      id
-      name
-      slug
-      description
-      productId
-      type
-      ... on VariableProduct {
-        id
-        price
-      }
-      ... on SimpleProduct {
-        id
-        price
-      }
-      ... on ExternalProduct {
-        id
-        price
-      }
-      image {
-        sourceUrl
-        title
-        srcSet
-        uri
-      }
-    }
-  }
-`;
+import GET_PRODUCT from '../../../queries/get-product';
+import ShopHeader from '../../../components/ShopHeader';
 
 const Product = ({ productSlug, categorySlug }) => {
   const id = parseInt(productSlug.split('-').pop());
-  const { loading, error, data } = useQuery(PRODUCT_QUERY, {
+  const { loading, error, data } = useQuery(GET_PRODUCT, {
     variables: { id: id },
   });
 

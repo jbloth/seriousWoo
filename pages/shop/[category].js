@@ -1,48 +1,10 @@
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
+import GET_CATEGORY from '../../queries/get-category';
 import { breakPoints } from '../../styles/theme';
 import ProductGallery from '../../components/ProductGallery';
 import ShopHeader from '../../components/ShopHeader';
 import ShopSidebar from '../../components/ShopSidebar';
-
-const CATEGORY_QUERY = gql`
-  query ProductCategory($id: ID!) {
-    productCategory(id: $id, idType: SLUG) {
-      name
-      products {
-        nodes {
-          id
-          name
-          productId
-          type
-          slug
-          productTags {
-            nodes {
-              name
-            }
-          }
-          image {
-            sourceUrl
-            title
-          }
-          ... on VariableProduct {
-            id
-            price
-          }
-          ... on ExternalProduct {
-            id
-            price
-          }
-          ... on SimpleProduct {
-            id
-            price
-          }
-        }
-      }
-    }
-  }
-`;
 
 // Get an array of all product tags in this category
 const getTags = (products) => {
@@ -58,7 +20,7 @@ const getTags = (products) => {
 };
 
 const Category = ({ categorySlug }) => {
-  const { loading, error, data } = useQuery(CATEGORY_QUERY, {
+  const { loading, error, data } = useQuery(GET_CATEGORY, {
     variables: { id: categorySlug },
   });
 

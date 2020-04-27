@@ -1,15 +1,30 @@
 import { useContext } from 'react';
 import Link from 'next/link';
+import { useQuery } from '@apollo/react-hooks';
 
+import GET_CART from '../queries/get-cart';
 import { AppContext } from '../components/context/AppContext';
 import { fonts, colors } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
 import CartItem from './CartItem';
-import Button from './Button';
 
 const CartModal = () => {
-  const { cart, cartOpen, toggleCartOpen } = useContext(AppContext);
+  const { cart, setCart, cartOpen, toggleCartOpen } = useContext(AppContext);
   const hidden = !cartOpen;
+
+  // Get Cart Data.
+  const { loading, error, data, refetch } = useQuery(GET_CART, {
+    notifyOnNetworkStatusChange: true,
+    onCompleted: () => {
+      console.log(data);
+      // // Update cart in the localStorage.
+      // const updatedCart = getFormattedCart( data );
+      // localStorage.setItem( 'woo-next-cart', JSON.stringify( updatedCart ) );
+
+      // // Update cart in context
+      // setCart( updatedCart );
+    },
+  });
 
   const cartItems = cart !== null ? cart.products : [];
   return (
