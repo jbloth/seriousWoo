@@ -6,6 +6,8 @@ import { AppContext } from './context/AppContext';
 import GET_CART from '../queries/get-cart';
 import ADD_TO_CART from '../mutations/add-to-cart';
 import { getFormattedCart } from '../lib/functions';
+import { colors, fonts } from '../styles/theme';
+
 import Button from './Button';
 
 const AddToCartButton = ({ product, children }) => {
@@ -20,10 +22,11 @@ const AddToCartButton = ({ product, children }) => {
   // Get Cart Data.
   const { loading, error, data, refetch } = useQuery(GET_CART, {
     notifyOnNetworkStatusChange: true,
+    ssr: false,
     onCompleted: () => {
       // Update cart in the localStorage.
       const updatedCart = getFormattedCart(data);
-      localStorage.setItem('woo-next-cart', JSON.stringify(updatedCart));
+      localStorage.setItem('seriousCart', JSON.stringify(updatedCart));
 
       // Update cart data in React Context.
       setCart(updatedCart);
@@ -57,16 +60,25 @@ const AddToCartButton = ({ product, children }) => {
     addToCart();
   };
 
-  // // If we have access to localStorage, add Item to cart
-  // const handleClick = (e) => {
-  //   e.preventDefault(); // Prevent routing if button is nested in a Link component.
-  //   addProductToCart(product);
-  // };
-
   return (
     <React.Fragment>
-      {addToCartLoading && <p>Adding to Cart...</p>}
-      <Button onClick={handleClick}>{children}</Button>
+      {addToCartLoading ? (
+        <div className="loadingMsg">Adding to Cart...</div>
+      ) : (
+        <Button onClick={handleClick}>{children}</Button>
+      )}
+      <style jsx>{`
+        .loadingMsg {
+          font-family: ${fonts.text};
+          height: 3rem;
+          background-color: ${colors.orange};
+          color: ${colors.bg};
+          border: 2px solid transparent;
+
+          text-align: center;
+          padding: 0 12px;
+        }
+      `}</style>
     </React.Fragment>
   );
 };

@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
+import xss from 'xss';
 
 import GET_PRODUCT from '../../../queries/get-product';
 import ShopHeader from '../../../components/ShopHeader';
@@ -18,6 +19,8 @@ const Product = ({ productSlug, categorySlug }) => {
   const { name, price, description, image } = data.product;
   const imgUrl = image.sourceUrl;
 
+  const descriptionPure = xss(description);
+
   return (
     <React.Fragment>
       <ShopHeader selectedCategory={categorySlug} />
@@ -28,7 +31,12 @@ const Product = ({ productSlug, categorySlug }) => {
         <div className="info-container">
           <h1>{name}</h1>
           <h3 className="price">{price}</h3>
-          <div className="description">{description}</div>
+          <div
+            className="description"
+            dangerouslySetInnerHTML={{
+              __html: descriptionPure,
+            }}
+          />
         </div>
         <style jsx>
           {`

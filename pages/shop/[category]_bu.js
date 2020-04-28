@@ -1,4 +1,5 @@
-// import client from '../../components/ApolloClient';
+import { useQuery } from '@apollo/react-hooks';
+
 import GET_CATEGORY from '../../queries/get-category';
 import { breakPoints } from '../../styles/theme';
 import ProductGallery from '../../components/ProductGallery';
@@ -18,12 +19,22 @@ const getTags = (products) => {
   }, []);
 };
 
-const Category = ({ products, categoryName }) => {
+const Category = ({ categorySlug }) => {
+  const { loading, error, data } = useQuery(GET_CATEGORY, {
+    variables: { id: categorySlug },
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) {
+    console.log(error);
+    return <h3>Error</h3>;
+  }
+  const products = data.productCategory.products.nodes;
   const productTags = getTags(products);
 
   return (
     <React.Fragment>
-      <ShopHeader selectedCategory={categoryName} />
+      <ShopHeader selectedCategory={categorySlug} />
 
       <div className="shop-main">
         <div className="sidebar-wrapper">
@@ -77,33 +88,8 @@ const Category = ({ products, categoryName }) => {
   );
 };
 
-Category.getInitialProps = async function (context) {
-  const id = context.query.category;
-  const client = context.apolloClient;
-
-  const res = await client.query({
-    query: GET_CATEGORY,
-    variables: { id },
-  });
-
-  return {
-    categoryName: res.data.productCategory.name,
-    products: res.data.productCategory.products.nodes,
-  };
+Category.getInitialProps = async ({ query }) => {
+  return { categorySlug: query.category };
 };
-
-// Category.getInitialProps = async function ({ query }) {
-//   const id = query.category;
-
-//   const res = await client.query({
-//     query: GET_CATEGORY,
-//     variables: { id },
-//   });
-
-//   return {
-//     categoryName: res.data.productCategory.name,
-//     products: res.data.productCategory.products.nodes,
-//   };
-// };
 
 export default Category;

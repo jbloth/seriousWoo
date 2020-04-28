@@ -11,6 +11,8 @@ export const colors = {
   textred: '#a42e26',
   textgreen: '#2f5f59',
   textblue: '#333957',
+  mdgray: '#666666',
+  lightgray: '#aaaaaa',
 };
 
 export const fonts = {

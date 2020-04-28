@@ -19,7 +19,6 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
  */
 
 export const sendSessionTokenLink = new ApolloLink((operation, forward) => {
-  console.log('middleware');
   /**
    * If session data exist in local storage, set value as session header.
    */
@@ -41,7 +40,6 @@ export const sendSessionTokenLink = new ApolloLink((operation, forward) => {
  */
 
 export const receiveSessionTokenLink = new ApolloLink((operation, forward) => {
-  console.log('afterware');
   return forward(operation).map((response) => {
     /**
      * Check for session header and update session in local storage accordingly.
@@ -51,6 +49,7 @@ export const receiveSessionTokenLink = new ApolloLink((operation, forward) => {
       response: { headers },
     } = context;
     const session = headers.get('woocommerce-session');
+    console.log(session);
     if (session) {
       if (localStorage.getItem('woo-session') !== session) {
         localStorage.setItem('woo-session', headers.get('woocommerce-session'));

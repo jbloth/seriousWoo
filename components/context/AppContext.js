@@ -74,29 +74,29 @@ export const AppProvider = (props) => {
     }
   };
 
-  const removeProductFromCart = (product) => {
-    if (process.browser) {
-      const updatedProducts = removeFromProductArray(cart.products, product, true);
-      const newTotals = getProductsTotals(updatedProducts);
-      const newCart = {
-        ...cart,
-        products: updatedProducts,
-        totalProductsCount: newTotals.totalCount,
-        totalProductsPrice: parseFloat(newTotals.totalPrice.toFixed(2)),
-      };
+  // const removeProductFromCart = (product) => {
+  //   if (process.browser) {
+  //     const updatedProducts = removeFromProductArray(cart.products, product, true);
+  //     const newTotals = getProductsTotals(updatedProducts);
+  //     const newCart = {
+  //       ...cart,
+  //       products: updatedProducts,
+  //       totalProductsCount: newTotals.totalCount,
+  //       totalProductsPrice: parseFloat(newTotals.totalPrice.toFixed(2)),
+  //     };
 
-      setCart(newCart);
+  //     setCart(newCart);
 
-      // Remove cart from localStorage if it's empty
-      if (newCart.products.length === 0) {
-        localStorage.removeItem('seriousCart');
-      } else {
-        localStorage.setItem('seriousCart', JSON.stringify(newCart));
-      }
+  //     // Remove cart from localStorage if it's empty
+  //     if (newCart.products.length === 0) {
+  //       localStorage.removeItem('seriousCart');
+  //     } else {
+  //       localStorage.setItem('seriousCart', JSON.stringify(newCart));
+  //     }
 
-      return newCart;
-    }
-  };
+  //     return newCart;
+  //   }
+  // };
 
   // Get total amount and total price of products in cart
   const getProductsTotals = (products) => {
@@ -129,7 +129,6 @@ export const AppProvider = (props) => {
         setCart,
         addProductToCart,
         reduceProductQuantity,
-        removeProductFromCart,
         selectedTag,
         setSelectedTag,
         cartOpen,
