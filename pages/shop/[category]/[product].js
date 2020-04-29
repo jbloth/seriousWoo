@@ -1,10 +1,36 @@
+import { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import xss from 'xss';
 
+import { colors } from '../../../styles/theme';
 import GET_PRODUCT from '../../../queries/get-product';
 import ShopHeader from '../../../components/ShopHeader';
+import AddToCartButton from '../../../components/AddToCartButton';
+import SizeSelector from '../../../components/SizeSelector';
+
+// Get size variations names and ids from product variations
+const getSizesFromVariations = (variations) => {
+  if (!variations.nodes) return [];
+
+  const sizes = [];
+  variations.nodes.forEach((variationNode) => {
+    if (variationNode.attributes) {
+      variationNode.attributes.nodes.forEach((atrribNode) => {
+        if (atrribNode.name === 'pa_size') {
+          sizes.push({
+            name: atrribNode.value,
+            id: variationNode.variationId,
+          });
+        }
+      });
+    }
+  });
+
+  return sizes;
+};
 
 const Product = ({ productSlug, categorySlug }) => {
+  // Get product from backend
   const id = parseInt(productSlug.split('-').pop());
   const { loading, error, data } = useQuery(GET_PRODUCT, {
     variables: { id: id },
@@ -16,10 +42,19 @@ const Product = ({ productSlug, categorySlug }) => {
     return <h3>Error</h3>;
   }
 
-  const { name, price, description, image } = data.product;
+  // Pull stuff from product
+  const { name, price, description, image, variations } = data.product;
   const imgUrl = image.sourceUrl;
-
   const descriptionPure = xss(description);
+
+  // Pull available sizes from product
+  let sizes = [];
+  if (variations) sizes = getSizesFromVariations(variations);
+
+  const defaultSize = sizes.length ? sizes[0].id : null;
+  const [selectedSize, setSelectedSize] = useState(defaultSize);
+
+  const setSize = (size) => setSelectedSize(size); // will be handed down to SizeSelector
 
   return (
     <React.Fragment>
@@ -37,6 +72,21 @@ const Product = ({ productSlug, categorySlug }) => {
               __html: descriptionPure,
             }}
           />
+          <div className="buttonArea">
+            {sizes.length ? (
+              <div className="size-select-wrapper">
+                <label className="selector-label">Size: </label>
+                <SizeSelector sizes={sizes} onSelect={(size) => setSize(size)} />
+              </div>
+            ) : (
+              <span className="oneSize-msg">One Size</span>
+            )}
+            <div className="button-wrapper">
+              <AddToCartButton product={data.product} selectedVariation={selectedSize}>
+                ADD TO CART
+              </AddToCartButton>
+            </div>
+          </div>
         </div>
         <style jsx>
           {`
@@ -61,6 +111,29 @@ const Product = ({ productSlug, categorySlug }) => {
             .info-container {
               width: 50%;
               padding: 4rem;
+              color: ${colors.textblue};
+            }
+
+            .buttonArea {
+              display: flex;
+              margin-top: 2rem;
+            }
+
+            .size-select-wrapper {
+              display: flex;
+            }
+
+            .selector-label {
+              margin-right: 1rem;
+              color: ${colors.orange};
+            }
+
+            .oneSize-msg {
+              color: ${colors.orange};
+            }
+
+            .button-wrapper {
+              margin-left: 2rem;
             }
           `}
         </style>

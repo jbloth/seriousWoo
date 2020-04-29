@@ -19,7 +19,6 @@ const CartModal = () => {
     notifyOnNetworkStatusChange: true,
     ssr: false,
     onCompleted: () => {
-      console.log(data);
       // Update cart in the localStorage.
       const updatedCart = getFormattedCart(data);
       localStorage.setItem('seriousCart', JSON.stringify(updatedCart));

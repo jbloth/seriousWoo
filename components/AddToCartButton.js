@@ -10,11 +10,14 @@ import { colors, fonts } from '../styles/theme';
 
 import Button from './Button';
 
-const AddToCartButton = ({ product, children }) => {
-  const productQryInput = {
+const AddToCartButton = ({ product, children, selectedVariation }) => {
+  const productQtyInput = {
     clientMutationId: v4(), // Generate a unique id.
+    quantity: 1,
     productId: product.productId,
   };
+
+  if (selectedVariation) productQtyInput.variationId = parseInt(selectedVariation);
 
   const { addProductToCart, cart, setCart } = useContext(AppContext);
   const [requestError, setRequestError] = useState(null);
@@ -39,17 +42,19 @@ const AddToCartButton = ({ product, children }) => {
     { data: addToCartRes, loading: addToCartLoading, error: addToCartError },
   ] = useMutation(ADD_TO_CART, {
     variables: {
-      input: productQryInput,
+      input: productQtyInput,
     },
     onCompleted: () => {
       if (addToCartError) {
         setRequestError(addToCartError.graphQLErrors[0].message);
+        console.log(addToCartError);
       }
       refetch();
     },
     onError: (error) => {
       if (error) {
         setRequestError(error.graphQLErrors[0].message);
+        console.log(error);
       }
     },
   });

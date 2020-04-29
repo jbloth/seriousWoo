@@ -12,6 +12,22 @@ const GET_PRODUCT = gql`
       ... on VariableProduct {
         id
         price
+        name
+        variations {
+          nodes {
+            id
+            variationId
+            name
+            attributes {
+              nodes {
+                attributeId
+                id
+                name
+                value
+              }
+            }
+          }
+        }
       }
       ... on SimpleProduct {
         id

@@ -15,11 +15,7 @@ const ProductPrev = ({ product }) => {
     <div className="productPrev">
       <Link as={`/shop/${categorySlug}/${slug}-${productId}`} href={'/[shop]/[category]/[product]'}>
         <a>
-          <div className="product-img" style={{ backgroundImage: `url('${imgUrl}')` }}>
-            <div className="button-wrapper">
-              <AddToCartButton product={product}>ADD TO CART</AddToCartButton>
-            </div>
-          </div>
+          <div className="product-img" style={{ backgroundImage: `url('${imgUrl}')` }}></div>
         </a>
       </Link>
       <div className="info">
@@ -51,6 +47,10 @@ const ProductPrev = ({ product }) => {
               height: 40rem;
               width: 36rem;
             }
+          }
+
+          .product-img:hover {
+            border: 4px solid ${colors.orange};
           }
 
           .product-img:hover .button-wrapper {

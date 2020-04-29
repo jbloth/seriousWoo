@@ -21,7 +21,7 @@ export default css.global`
 
   a {
     text-decoration: none;
-    color: ${colors.textRed};
+    color: ${colors.textred};
   }
 
   ul {
@@ -41,14 +41,20 @@ export default css.global`
     font-size: 4.8rem;
     font-family: ${fonts.heading};
     font-weight: normal;
-    color: ${colors.darkPink};
+    color: ${colors.darkpink};
+  }
+
+  h2 {
+    font-family: ${fonts.heading};
+    font-weight: normal;
+    color: ${colors.darkpink};
   }
 
   h3 {
     font-size: 2.4rem;
     font-family: ${fonts.heading};
     font-weight: normal;
-    color: ${colors.textRed};
+    color: ${colors.textred};
   }
 
   // ---- wrapper & utility classes ---- //

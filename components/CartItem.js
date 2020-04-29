@@ -13,8 +13,8 @@ const CartItem = ({ product, refetch }) => {
   const { cart } = useContext(AppContext);
   const [requestError, setRequestError] = useState(null);
 
-  const { image, name, price, qty, totalPrice } = product; // TODO: size
-  const size = 'M';
+  const { image, name, price, qty, totalPrice, size } = product; // TODO: size
+
   const imgUrl = image.sourceUrl;
 
   const [
@@ -76,7 +76,7 @@ const CartItem = ({ product, refetch }) => {
           <div className="row">
             <div className="description">
               <p className="name">{name}</p>
-              <p className="size">{size}</p>
+              {size && <p className="size">{size.name}</p>}
             </div>
             <div
               className="remove-icon"
