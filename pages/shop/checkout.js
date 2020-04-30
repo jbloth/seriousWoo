@@ -1,3 +1,4 @@
+import { colors } from '../../styles/theme';
 import CheckoutForm from '../../components/CheckoutForm';
 
 const Checkout = ({ categorySlug }) => {
@@ -8,6 +9,10 @@ const Checkout = ({ categorySlug }) => {
       <style jsx>{`
         .checkout-page {
           flex-direction: column;
+        }
+
+        h1 {
+          color: ${colors.lightblue};
         }
       `}</style>
     </div>

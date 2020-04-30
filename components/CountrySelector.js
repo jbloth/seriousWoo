@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { colors, fonts } from '../styles/theme';
 import countryList from '../assets/countryList';
 
-const CountrySelector = ({ onSelect }) => {
+const CountrySelector = ({ onSelect, label, ...otherProps }) => {
   const [selectedCountry, setSelectedCountry] = useState(countryList[0]);
 
   const handleChange = (e) => {
@@ -13,6 +13,11 @@ const CountrySelector = ({ onSelect }) => {
 
   return (
     <div className="select-wrapper">
+      {label ? (
+        <label className="shrink label">
+          {label + (otherProps && otherProps.required ? ' (required)' : '')}
+        </label>
+      ) : null}
       <select
         className="size-select"
         name="country"
@@ -43,6 +48,19 @@ const CountrySelector = ({ onSelect }) => {
           width: 20rem;
         }
 
+        .label {
+          color: ${colors.darkpink};
+          position: absolute;
+          left: 5px;
+          top: 2px;
+          pointer-events: none;
+        }
+
+        .label.shrink {
+          top: -18px;
+          font-size: 1.2rem;
+        }
+
         select {
           -moz-appearance: none;
           -webkit-appearance: none;
@@ -51,10 +69,10 @@ const CountrySelector = ({ onSelect }) => {
           height: 4rem;
           font-family: ${fonts.text};
           font-size: 1.4rem;
-          color: ${colors.orange};
+          color: ${colors.textblue};
           padding: 0 5px;
           background-color: ${colors.bg};
-          border: 2px solid ${colors.orange};
+          border: 2px solid ${colors.violet};
           width: 20rem;
           border-radius: 0;
         }
@@ -73,7 +91,7 @@ const CountrySelector = ({ onSelect }) => {
 
         .icon-wrapper svg {
           width: 1.4rem;
-          fill: ${colors.orange};
+          fill: ${colors.textblue};
         }
       `}</style>
     </div>

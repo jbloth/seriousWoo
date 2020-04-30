@@ -19,11 +19,16 @@ const TextArea = ({ extraClass, label, ...otherProps }) => (
         resize: none;
         font-family: ${fonts.text};
         font-size: 1.4rem;
-        color: ${colors.textred};
+        color: ${colors.textblue};
         width: 100%;
         background-color: ${colors.bg};
-        border: 2px solid ${colors.textred};
+        border: 2px solid ${colors.violet};
         padding-left: 5px;
+      }
+
+      .textInput--dark {
+        color: ${colors.textblue};
+        border: 2px solid ${colors.textblue};
       }
 
       .textInput:focus ~ .label {

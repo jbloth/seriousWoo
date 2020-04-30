@@ -1,31 +1,21 @@
 import { fonts, colors } from '../styles/theme';
+import CheckoutCartItem from './CheckoutCartItem.js';
 
 const CartOverview = ({ cart }) => {
-  const cartItems = cart !== null ? cart.products : [];
+  const cartItems = cart ? cart.products : [];
   return (
-    <div className="cart-container">
-      <div className="cart">
-        <div className="items">
-          {cartItems.length ? (
-            cartItems.map((item) => (
-              <div className="cart-item">
-                <div
-                  className="img"
-                  style={{
-                    backgroundImage: `url('${imgUrl}')`,
-                  }}
-                ></div>
-              </div>
-            ))
-          ) : (
-            <p className="empty-message">Your cart is empty.</p>
-          )}
-        </div>
-        <div>
-          <div className="subtotal">
-            <span className="subtotal-text">Subtotal: </span>
-            <span className="subtotal-price">{cart.totalProductsPrice} $</span>
-          </div>
+    <div className="cart">
+      <div className="items">
+        {cartItems.length ? (
+          cartItems.map((item) => <CheckoutCartItem key={item.productId} product={item} />)
+        ) : (
+          <p className="empty-message">Your cart is empty.</p>
+        )}
+      </div>
+      <div>
+        <div className="subtotal">
+          <span className="subtotal-text">Subtotal: </span>
+          <span className="subtotal-price">{cart.totalProductsPrice} $</span>
         </div>
       </div>
       <style jsx>{`

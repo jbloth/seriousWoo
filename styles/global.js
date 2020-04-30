@@ -45,14 +45,14 @@ export default css.global`
   }
 
   h2 {
-    font-family: ${fonts.heading};
+    font-family: ${fonts.text};
     font-weight: normal;
     color: ${colors.darkpink};
   }
 
   h3 {
     font-size: 2.4rem;
-    font-family: ${fonts.heading};
+    font-family: ${fonts.text};
     font-weight: normal;
     color: ${colors.textred};
   }

@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import GET_CART from '../queries/get-cart';
 // import UPDATE_CART from '../mutations/update-cart';
 import { AppContext } from '../components/context/AppContext';
-import { getFormattedCart, getUpdatedItems } from '../lib/functions';
+import { getFormattedCart } from '../lib/functions';
 import { fonts, colors } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
 import CartItem from './CartItem';
@@ -56,7 +56,9 @@ const CartModal = () => {
               <span className="subtotal-price">{cart.totalProductsPrice} $</span>
             </div>
             <Link href="/shop/checkout">
-              <button className="btn checkout-btn">GO TO CHECKOUT</button>
+              <button className="btn checkout-btn" onClick={toggleCartOpen}>
+                GO TO CHECKOUT
+              </button>
             </Link>
           </div>
         ) : (

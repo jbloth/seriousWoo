@@ -17,13 +17,19 @@ const TextInput = ({ extraClass, label, ...otherProps }) => (
 
       .textInput {
         font-family: ${fonts.text};
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         color: ${colors.textred};
         height: 3rem;
         width: 100%;
         background-color: ${colors.bg};
-        border: 2px solid ${colors.textred};
+        border: 2px solid ${colors.violet};
         padding-left: 5px;
+      }
+
+      .textInput--bottomOnly {
+        color: ${colors.textblue};
+        border: none;
+        border-bottom: 1px solid ${colors.violet};
       }
 
       .textInput::placeholder {

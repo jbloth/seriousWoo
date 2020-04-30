@@ -1,3 +1,4 @@
+import { fonts, colors } from '../styles/theme';
 import TextInput from './TextInput';
 import TextArea from './TextArea';
 import CountrySelector from './CountrySelector';
@@ -6,7 +7,7 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
   return (
     <div className="form-inputs-container">
       <div className="input-row">
-        <div className="textInput-wrap">
+        <div className="textInput-wrap margin-right">
           <TextInput
             name="firstname"
             type="text"
@@ -14,6 +15,7 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
             required={true}
             value={initialValues.firstName}
             onChange={handleChange}
+            extraClass={'textInput--bottomOnly'}
           />
         </div>
 
@@ -25,6 +27,7 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
             required={true}
             value={initialValues.lastName}
             onChange={handleChange}
+            extraClass={'textInput--bottomOnly'}
           />
         </div>
       </div>
@@ -37,6 +40,7 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
           required={true}
           value={initialValues.address1}
           onChange={handleChange}
+          extraClass={'textInput--bottomOnly'}
         />
       </div>
 
@@ -48,11 +52,12 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
           required={false}
           value={initialValues.address2}
           onChange={handleChange}
+          extraClass={'textInput--bottomOnly'}
         />
       </div>
 
       <div className="input-row">
-        <div className="textInput-wrap">
+        <div className="textInput-wrap margin-right">
           <TextInput
             name="postcode"
             type="text"
@@ -60,6 +65,7 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
             required={true}
             value={initialValues.postcode}
             onChange={handleChange}
+            extraClass={'textInput--bottomOnly'}
           />
         </div>
 
@@ -71,16 +77,17 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
             required={true}
             value={initialValues.city}
             onChange={handleChange}
+            extraClass={'textInput--bottomOnly'}
           />
         </div>
       </div>
 
       <div className="countrySelect-wrap">
-        <CountrySelector onSelect={handleChange} />
+        <CountrySelector onSelect={handleChange} label={'Country'} />
       </div>
 
       <div className="input-row">
-        <div className="textInput-wrap">
+        <div className="textInput-wrap margin-right">
           <TextInput
             name="email"
             type="email"
@@ -88,6 +95,7 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
             required={true}
             value={initialValues.email}
             onChange={handleChange}
+            extraClass={'textInput--bottomOnly'}
           />
         </div>
 
@@ -99,6 +107,7 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
             required={false}
             value={initialValues.phone}
             onChange={handleChange}
+            extraClass={'textInput--bottomOnly'}
           />
         </div>
       </div>
@@ -111,6 +120,7 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
           required={false}
           value={initialValues.orderNotes}
           onChange={handleChange}
+          extraClass={'textInput--bottomOnly'}
         />
       </div>
 
@@ -124,10 +134,14 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
           display: flex;
         }
 
+        .margin-right {
+          margin-right: 4rem;
+        }
+
         .textInput-wrap,
         .textArea-wrap {
+          color: ${colors.textblue};
           flex-grow: 1;
-          margin-right: 4rem;
           margin-top: 3rem;
         }
 
