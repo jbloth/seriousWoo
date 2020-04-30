@@ -1,15 +1,16 @@
 import { colors, fonts } from '../styles/theme';
 
-const TextInput = ({ extraClass, label, ...otherProps }) => (
+const TextInput = ({ extraClass, label, error, ...otherProps }) => (
   <div className="group">
     <input className={`textInput ${extraClass}`} {...otherProps} />
 
-    {label ? (
+    {label && (
       <label className={`${otherProps.value && otherProps.value.length ? 'shrink' : ''} label`}>
         {label + (otherProps.required ? ' (required)' : '')}
       </label>
-    ) : null}
+    )}
 
+    {error && <div className="error-msg">{error}</div>}
     <style jsx>{`
       .group {
         position: relative;
@@ -53,6 +54,11 @@ const TextInput = ({ extraClass, label, ...otherProps }) => (
       .label.shrink {
         top: -18px;
         font-size: 1.2rem;
+      }
+
+      .error-msg {
+        color: ${colors.textred};
+        font-size: 1.4rem;
       }
     `}</style>
   </div>

@@ -1,13 +1,14 @@
 import { colors, fonts } from '../styles/theme';
 
 const Button = ({ className, children, ...otherProps }) => (
-  <button className={`btn ${className}`} {...otherProps}>
+  <button className={`btn ${className ? className : ''}`} {...otherProps}>
     {children}
 
     <style jsx>
       {`
         .btn {
           font-family: ${fonts.text};
+          font-size: 1.4rem;
           height: 3rem;
           background-color: ${colors.orange};
           color: ${colors.bg};
@@ -22,6 +23,12 @@ const Button = ({ className, children, ...otherProps }) => (
           background-color: ${colors.bg};
           color: ${colors.orange};
           border: 2px solid ${colors.orange};
+        }
+
+        .btn--big {
+          font-size: 1.8rem;
+          height: 4rem;
+          width: 100%;
         }
 
         .btn--inverted {

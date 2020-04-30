@@ -15,7 +15,7 @@ const CartOverview = ({ cart }) => {
       <div>
         <div className="subtotal">
           <span className="subtotal-text">Subtotal: </span>
-          <span className="subtotal-price">{cart.totalProductsPrice} $</span>
+          <span className="subtotal-price">{cart.subtotal} $</span>
         </div>
       </div>
       <style jsx>{`

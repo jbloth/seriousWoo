@@ -4,13 +4,13 @@ import { AppContext } from '../components/context/AppContext';
 import ProductPrev from './ProductPrev';
 import { colors } from '../styles/theme';
 
+const productHasTag = (productTags, selectedTag) => {
+  const result = productTags.filter((tag) => tag.name === selectedTag);
+  return result.length > 0;
+};
+
 const ProductGallery = ({ products }) => {
   const { selectedTag } = useContext(AppContext);
-
-  const productHasTag = (productTags, selectedTag) => {
-    const result = productTags.filter((tag) => tag.name === selectedTag);
-    return result.length > 0;
-  };
 
   return (
     <div className="productGallery">

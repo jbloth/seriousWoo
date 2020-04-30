@@ -3,31 +3,33 @@ import TextInput from './TextInput';
 import TextArea from './TextArea';
 import CountrySelector from './CountrySelector';
 
-const CheckoutFormInputs = ({ initialValues, handleChange }) => {
+const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
   return (
     <div className="form-inputs-container">
       <div className="input-row">
         <div className="textInput-wrap margin-right">
           <TextInput
-            name="firstname"
+            name="firstName"
             type="text"
-            label="First name"
+            label="First Name"
             required={true}
-            value={initialValues.firstName}
+            value={inputs.firstName}
             onChange={handleChange}
             extraClass={'textInput--bottomOnly'}
+            error={inputs.errors && inputs.errors.firstName ? inputs.errors.firstName : null}
           />
         </div>
 
         <div className="textInput-wrap">
           <TextInput
-            name="lastname"
+            name="lastName"
             type="text"
-            label="Last name"
+            label="Last Name"
             required={true}
-            value={initialValues.lastName}
+            value={inputs.lastName}
             onChange={handleChange}
             extraClass={'textInput--bottomOnly'}
+            error={inputs.errors && inputs.errors.lastName ? inputs.errors.lastName : null}
           />
         </div>
       </div>
@@ -38,9 +40,10 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
           type="text"
           label="Address 1"
           required={true}
-          value={initialValues.address1}
+          value={inputs.address1}
           onChange={handleChange}
           extraClass={'textInput--bottomOnly'}
+          error={inputs.errors && inputs.errors.address1 ? inputs.errors.address1 : null}
         />
       </div>
 
@@ -50,9 +53,10 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
           type="text"
           label="Address 2"
           required={false}
-          value={initialValues.address2}
+          value={inputs.address2}
           onChange={handleChange}
           extraClass={'textInput--bottomOnly'}
+          error={inputs.errors && inputs.errors.address2 ? inputs.errors.address2 : null}
         />
       </div>
 
@@ -63,9 +67,10 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
             type="text"
             label="Post Code"
             required={true}
-            value={initialValues.postcode}
+            value={inputs.postcode}
             onChange={handleChange}
             extraClass={'textInput--bottomOnly'}
+            error={inputs.errors && inputs.errors.postcode ? inputs.errors.postcode : null}
           />
         </div>
 
@@ -75,9 +80,10 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
             type="text"
             label="City"
             required={true}
-            value={initialValues.city}
+            value={inputs.city}
             onChange={handleChange}
             extraClass={'textInput--bottomOnly'}
+            error={inputs.errors && inputs.errors.city ? inputs.errors.city : null}
           />
         </div>
       </div>
@@ -93,9 +99,10 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
             type="email"
             label="Email Address"
             required={true}
-            value={initialValues.email}
+            value={inputs.email}
             onChange={handleChange}
             extraClass={'textInput--bottomOnly'}
+            error={inputs.errors && inputs.errors.email ? inputs.errors.email : null}
           />
         </div>
 
@@ -105,24 +112,28 @@ const CheckoutFormInputs = ({ initialValues, handleChange }) => {
             type="text"
             label="Phone Number"
             required={false}
-            value={initialValues.phone}
+            value={inputs.phone}
             onChange={handleChange}
             extraClass={'textInput--bottomOnly'}
+            error={inputs.errors && inputs.errors.phone ? inputs.errors.phone : null}
           />
         </div>
       </div>
 
-      <div className="textArea-wrap">
-        <TextArea
-          rows="4"
-          name="orderNotes"
-          label="Notes"
-          required={false}
-          value={initialValues.orderNotes}
-          onChange={handleChange}
-          extraClass={'textInput--bottomOnly'}
-        />
-      </div>
+      {showNotes && (
+        <div className="textArea-wrap">
+          <TextArea
+            rows="4"
+            name="orderNotes"
+            label="Notes"
+            required={false}
+            value={inputs.orderNotes}
+            onChange={handleChange}
+            extraClass={'textInput--bottomOnly'}
+            error={inputs.errors && inputs.errors.orderNotes ? inputs.errors.orderNotes : null}
+          />
+        </div>
+      )}
 
       <style jsx>{`
         .form-inputs-container {

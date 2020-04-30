@@ -53,7 +53,7 @@ const CartModal = () => {
           <div>
             <div className="subtotal">
               <span className="subtotal-text">Subtotal: </span>
-              <span className="subtotal-price">{cart.totalProductsPrice} $</span>
+              <span className="subtotal-price">{cart.subtotal} $</span>
             </div>
             <Link href="/shop/checkout">
               <button className="btn checkout-btn" onClick={toggleCartOpen}>

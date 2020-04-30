@@ -49,16 +49,16 @@ const Header = () => {
                 <a className="nav-link">Shop</a>
               </Link>
               <div className="nav__dropdown-content dropdown-content">
-                <Link href="/shop">
+                <Link href="/shop/kids">
                   <a className="nav-dropdown-link">Kids</a>
                 </Link>
-                <Link href="/shop">
+                <Link href="/shop/womens">
                   <a className="nav-dropdown-link">Womens</a>
                 </Link>
-                <Link href="/shop">
+                <Link href="/shop/mens">
                   <a className="nav-dropdown-link">Mens</a>
                 </Link>
-                <Link href="/shop">
+                <Link href="/shop/accessories">
                   <a className="nav-dropdown-link">Accessories</a>
                 </Link>
               </div>
