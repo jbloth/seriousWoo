@@ -122,7 +122,6 @@ const CartItem = ({ product, refetch }) => {
         .info {
           flex-grow: 1;
           padding-left: 2rem;
-          color: ${colors.textblue};
 
           display: flex;
           flex-direction: column;
@@ -164,7 +163,6 @@ const CartItem = ({ product, refetch }) => {
 
         .loadingMsg {
           padding: 2rem;
-          color: ${colors.textblue};
         }
 
         .errorMsg {

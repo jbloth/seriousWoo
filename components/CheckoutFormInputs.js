@@ -151,7 +151,6 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
 
         .textInput-wrap,
         .textArea-wrap {
-          color: ${colors.textblue};
           flex-grow: 1;
           margin-top: 3rem;
         }

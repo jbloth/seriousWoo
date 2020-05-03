@@ -2,6 +2,61 @@ import css from 'styled-jsx/css';
 import { colors, fonts } from './theme';
 
 export default css.global`
+  /* monda-700 - latin */
+  @font-face {
+    font-family: 'Monda';
+    font-style: bold;
+    font-weight: 700;
+    src: url('/fonts/monda-v9-latin-700.eot'); /* IE9 Compat Modes */
+    src: local('Monda Bold'), local('Monda-Bold'),
+      url('/fonts/monda-v9-latin-700.eot?#iefix') format('embedded-opentype'),
+      /* IE6-IE8 */ url('/fonts/monda-v9-latin-700.woff2') format('woff2'),
+      /* Super Modern Browsers */ url('/fonts/monda-v9-latin-700.woff') format('woff'),
+      /* Modern Browsers */ url('/fonts/monda-v9-latin-700.ttf') format('truetype'),
+      /* Safari, Android, iOS */ url('/fonts/monda-v9-latin-700.svg#Monda') format('svg'); /* Legacy iOS */
+  }
+
+  /* monda-regular - latin */
+  @font-face {
+    font-family: 'Monda';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/monda-v9-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Monda Regular'), local('Monda-Regular'),
+      url('/fonts/monda-v9-latin-regular.eot?#iefix') format('embedded-opentype'),
+      /* IE6-IE8 */ url('/fonts/monda-v9-latin-regular.woff2') format('woff2'),
+      /* Super Modern Browsers */ url('/fonts/monda-v9-latin-regular.woff') format('woff'),
+      /* Modern Browsers */ url('/fonts/monda-v9-latin-regular.ttf') format('truetype'),
+      /* Safari, Android, iOS */ url('/fonts/monda-v9-latin-regular.svg#Monda') format('svg'); /* Legacy iOS */
+  }
+
+  /* mirza-regular - latin */
+  @font-face {
+    font-family: 'Mirza';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/mirza-v7-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Mirza Regular'), local('Mirza-Regular'),
+      url('/fonts/mirza-v7-latin-regular.eot?#iefix') format('embedded-opentype'),
+      /* IE6-IE8 */ url('/fonts/mirza-v7-latin-regular.woff2') format('woff2'),
+      /* Super Modern Browsers */ url('/fonts/mirza-v7-latin-regular.woff') format('woff'),
+      /* Modern Browsers */ url('/fonts/mirza-v7-latin-regular.ttf') format('truetype'),
+      /* Safari, Android, iOS */ url('/fonts/mirza-v7-latin-regular.svg#Mirza') format('svg'); /* Legacy iOS */
+  }
+  /* mirza-700 - latin */
+  @font-face {
+    font-family: 'Mirza';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/fonts/mirza-v7-latin-700.eot'); /* IE9 Compat Modes */
+    src: local('Mirza Bold'), local('Mirza-Bold'),
+      url('/fonts/mirza-v7-latin-700.eot?#iefix') format('embedded-opentype'),
+      /* IE6-IE8 */ url('/fonts/mirza-v7-latin-700.woff2') format('woff2'),
+      /* Super Modern Browsers */ url('/fonts/mirza-v7-latin-700.woff') format('woff'),
+      /* Modern Browsers */ url('/fonts/mirza-v7-latin-700.ttf') format('truetype'),
+      /* Safari, Android, iOS */ url('/fonts/mirza-v7-latin-700.svg#Mirza') format('svg'); /* Legacy iOS */
+  }
+
   *,
   *::after,
   *::before {
@@ -17,6 +72,7 @@ export default css.global`
 
   body {
     box-sizing: border-box;
+    color: ${colors.textblue};
   }
 
   a {

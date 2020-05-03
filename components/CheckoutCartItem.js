@@ -45,7 +45,6 @@ const CheckoutCartItem = ({ product }) => {
         .info {
           flex-grow: 1;
           padding-left: 2rem;
-          color: ${colors.textblue};
 
           display: flex;
           flex-direction: column;

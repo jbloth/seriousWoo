@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { AppContext } from '../components/context/AppContext';
 import { colors, fonts } from '../styles/theme';
-import { getFormattedCart } from '../lib/functions';
+import { getFormattedCart, createCheckoutMutationInput } from '../lib/functions';
 import validateAndSanitizeOrder from '../lib/validateAndSanitizeOrder';
 import GET_CART from '../queries/get-cart';
 import CheckoutFormInputs from './CheckoutFormInputs';
@@ -11,7 +11,7 @@ import CartOverview from './CartOverview';
 import Button from './Button';
 
 const CheckoutForm = () => {
-  const initialState = {
+  const initialBilling = {
     firstName: 'Trudi',
     lastName: 'Flaushball',
     country: 'DE',
@@ -21,29 +21,34 @@ const CheckoutForm = () => {
     postcode: '50899',
     phone: '1234678',
     email: 'trudi@flausch.com',
-    createAccount: false,
     orderNotes: '',
+    errors: null,
+  };
+
+  const initialShipping = {
+    firstName: '',
+    lastName: '',
+    country: '',
+    address1: '',
+    address2: '',
+    city: '',
+    postcode: '',
+    phone: '',
+    email: '',
+    errors: null,
+  };
+
+  const initialOrderSettings = {
+    createAccount: false,
     paymentMethod: '',
     errors: null,
     shipToDifferentAddress: false,
   };
 
-  const initialShipping = {
-    firstName: 'Barnabas',
-    lastName: 'Brock',
-    country: 'DE',
-    address1: 'Horn 3',
-    address2: '',
-    city: 'Köln',
-    postcode: '50899',
-    phone: '1234678',
-    email: 'barn@flausch.com',
-    errors: null,
-  };
-
   const { cart, setCart } = useContext(AppContext);
-  const [input, setInput] = useState(initialState);
+  const [billingAddress, setBillingAddress] = useState(initialBilling);
   const [shippingAddress, setShippingAddress] = useState(initialShipping);
+  const [orderSettings, setOrderSettings] = useState(initialOrderSettings);
 
   // Get Cart Data from backend
   const { loading, error, data, refetch } = useQuery(GET_CART, {
@@ -56,23 +61,56 @@ const CheckoutForm = () => {
 
       // Update cart in context
       setCart(updatedCart);
-      console.log(cart);
     },
   });
 
-  const handleChange = (e) => {
-    const newState = { ...input, [event.target.name]: event.target.value };
-    setInput(newState);
+  const handleChange_billing = (e) => {
+    const newState = { ...billingAddress, [event.target.name]: event.target.value };
+    setBillingAddress(newState);
   };
+
+  const handleChange_shipping = (e) => {
+    const newState = { ...shippingAddress, [event.target.name]: event.target.value };
+    setShippingAddress(newState);
+  };
+
+  // const handleChange_orderSettings = (e) => {
+  //   const newState = { ...orderSettings, [event.target.name]: event.target.value };
+  //   setOrderSettings(newState);
+  // };
 
   const handleSubmit = (e) => {
     event.preventDefault();
-    const valiadtedData = validateAndSanitizeOrder(input);
 
-    if (!valiadtedData.isValid) {
-      setInput({ ...input, errors: valiadtedData.errors });
-      return;
+    // Validate shipping address if it is different from billing address
+    let validatededShippingData = null;
+    if (orderSettings.shipToDifferentAddress) {
+      validatededShippingData = validateAndSanitizeOrder(shippingAddress);
+
+      if (!validatededShippingData.isValid) {
+        setShippingAddress({ ...shippingAddress, errors: validatededShippingData.errors });
+      }
     }
+
+    // Validate billing address
+    let validatededBillingData = validateAndSanitizeOrder(billingAddress);
+    if (!validatededBillingData.isValid) {
+      setBillingAddress({ ...billingAddress, errors: validatededBillingData.errors });
+    }
+
+    // Return if the billing- or the shipping-address contains invalid data.
+    if (
+      !validatededBillingData.isValid ||
+      (validatededShippingData && !validatededBillingData.isValid)
+    )
+      return;
+
+    const checkoutData = createCheckoutMutationInput(
+      billingAddress,
+      orderSettings,
+      shippingAddress
+    );
+    console.log(checkoutData);
   };
 
   return (
@@ -81,24 +119,30 @@ const CheckoutForm = () => {
         <form className="checkout-form" onSubmit={handleSubmit}>
           <div className="billing-adress">
             <h2>Billing Adress</h2>
-            <CheckoutFormInputs inputs={input} handleChange={handleChange} />
+            <CheckoutFormInputs inputs={billingAddress} handleChange={handleChange_billing} />
             <label className="checkbox-label">
               <input
                 className="checkbox"
                 type="checkbox"
                 name="shipToDifferentAddress"
-                value={input.shipToDifferentAddress}
-                onChange={(e) => setInput({ ...input, shipToDifferentAddress: e.target.checked })}
+                checked={orderSettings.shipToDifferentAddress}
+                onChange={(e) =>
+                  setOrderSettings({ ...orderSettings, shipToDifferentAddress: e.target.checked })
+                }
               />
               Ship to a different address
             </label>
 
-            {input.shipToDifferentAddress && (
+            {orderSettings.shipToDifferentAddress && (
               <>
                 <br />
                 <br />
                 <h2>Shipping Adress</h2>
-                <CheckoutFormInputs inputs={input} showNotes={false} onChange={handleChange} />
+                <CheckoutFormInputs
+                  inputs={shippingAddress}
+                  showNotes={false}
+                  handleChange={handleChange_shipping}
+                />
               </>
             )}
           </div>

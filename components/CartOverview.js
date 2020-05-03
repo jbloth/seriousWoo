@@ -59,10 +59,6 @@ const CartOverview = ({ cart }) => {
           color: ${colors.darkpink};
         }
 
-        .empty-message {
-          color: ${colors.textblue};
-        }
-
         .subtotal {
           align-self: flex-end;
           margin: 2rem 0;
