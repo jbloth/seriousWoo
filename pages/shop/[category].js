@@ -7,15 +7,18 @@ import ShopSidebar from '../../components/ShopSidebar';
 
 // Get an array of all product tags in this category
 const getTags = (products) => {
-  return products.reduce((tags, product) => {
-    const productTags = product.productTags.nodes;
-    productTags.forEach((tag) => {
-      if (!tags.includes(tag.name)) {
-        tags.push(tag.name);
-      }
-    });
-    return tags;
-  }, []);
+  return products.reduce(
+    (tags, product) => {
+      const productTags = product.productTags.nodes;
+      productTags.forEach((tag) => {
+        if (!tags.includes(tag.name)) {
+          tags.push(tag.name);
+        }
+      });
+      return tags;
+    },
+    ['All']
+  );
 };
 
 const Category = ({ products, categoryName }) => {

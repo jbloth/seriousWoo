@@ -16,7 +16,11 @@ const ProductGallery = ({ products }) => {
     <div className="productGallery">
       {products.length ? (
         products.map((product) => {
-          if (!selectedTag || productHasTag(product.productTags.nodes, selectedTag)) {
+          if (
+            !selectedTag ||
+            selectedTag === 'All' ||
+            productHasTag(product.productTags.nodes, selectedTag)
+          ) {
             return <ProductPrev key={product.productId} product={product} />;
           }
         })

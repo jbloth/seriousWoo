@@ -1,14 +1,17 @@
-import { useState, useContext } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useState, useContext, useEffect } from 'react';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import { AppContext } from '../components/context/AppContext';
 import { colors, fonts } from '../styles/theme';
 import { getFormattedCart, createCheckoutMutationInput } from '../lib/functions';
 import validateAndSanitizeOrder from '../lib/validateAndSanitizeOrder';
 import GET_CART from '../queries/get-cart';
+import CHECKOUT_MUTATION from '../mutations/checkout';
 import CheckoutFormInputs from './CheckoutFormInputs';
 import CartOverview from './CartOverview';
+import PaymentSelector from './PaymentSelector';
 import Button from './Button';
+import OrderSuccess from './OrderSuccess';
 
 const CheckoutForm = () => {
   const initialBilling = {
@@ -41,14 +44,40 @@ const CheckoutForm = () => {
   const initialOrderSettings = {
     createAccount: false,
     paymentMethod: '',
-    errors: null,
     shipToDifferentAddress: false,
+    errors: null,
   };
 
   const { cart, setCart } = useContext(AppContext);
   const [billingAddress, setBillingAddress] = useState(initialBilling);
   const [shippingAddress, setShippingAddress] = useState(initialShipping);
   const [orderSettings, setOrderSettings] = useState(initialOrderSettings);
+
+  const handleChange_billing = (e) => {
+    const newState = { ...billingAddress, [event.target.name]: event.target.value };
+    setBillingAddress(newState);
+  };
+
+  const handleChange_shipping = (e) => {
+    const newState = { ...shippingAddress, [event.target.name]: event.target.value };
+    setShippingAddress(newState);
+  };
+
+  const handleChange_orderSettings = (e) => {
+    const newState = { ...orderSettings, [event.target.name]: event.target.value };
+    setOrderSettings(newState);
+  };
+
+  // This is the data that will be sent to woocommerce on checkout
+  const [orderData, setOrderData] = useState(null);
+  const [requestError, setRequestError] = useState(null);
+
+  useEffect(() => {
+    if (null !== orderData) {
+      // Call the checkout mutation when the value for orderData changes/updates.
+      checkout();
+    }
+  }, [orderData]);
 
   // Get Cart Data from backend
   const { loading, error, data, refetch } = useQuery(GET_CART, {
@@ -64,20 +93,23 @@ const CheckoutForm = () => {
     },
   });
 
-  const handleChange_billing = (e) => {
-    const newState = { ...billingAddress, [event.target.name]: event.target.value };
-    setBillingAddress(newState);
-  };
-
-  const handleChange_shipping = (e) => {
-    const newState = { ...shippingAddress, [event.target.name]: event.target.value };
-    setShippingAddress(newState);
-  };
-
-  // const handleChange_orderSettings = (e) => {
-  //   const newState = { ...orderSettings, [event.target.name]: event.target.value };
-  //   setOrderSettings(newState);
-  // };
+  // Checkout Mutation
+  const [
+    checkout,
+    { data: checkoutResponse, loading: checkoutLoading, error: checkoutError },
+  ] = useMutation(CHECKOUT_MUTATION, {
+    variables: {
+      input: orderData,
+    },
+    onCompleted: () => {
+      refetch();
+    },
+    onError: (error) => {
+      if (error) {
+        setRequestError(error.graphQLErrors[0].message);
+      }
+    },
+  });
 
   const handleSubmit = (e) => {
     event.preventDefault();
@@ -110,7 +142,9 @@ const CheckoutForm = () => {
       orderSettings,
       shippingAddress
     );
-    console.log(checkoutData);
+    setOrderData(checkoutData);
+
+    setRequestError(null);
   };
 
   return (
@@ -153,15 +187,29 @@ const CheckoutForm = () => {
             </div>
             <div className="payment-methods">
               <h3>Payment</h3>
+              <PaymentSelector input={orderSettings} handleOnChange={handleChange_orderSettings} />
             </div>
             <div className="submit-wrap">
-              <Button className="btn--big">PLACE ORDER</Button>
+              {checkoutLoading ? (
+                <p>Processing Order...</p>
+              ) : (
+                <Button className="btn--big">PLACE ORDER</Button>
+              )}
             </div>
+            {requestError && (
+              <div className="error-wrap">
+                <p className="error-msg">Order could not be processed. Please try again.</p>
+                <p>Error : {requestError} </p>
+              </div>
+            )}
           </div>
         </form>
       ) : (
         ''
       )}
+
+      <OrderSuccess response={checkoutResponse} />
+
       <style jsx>{`
         .checkout-form {
           display: flex;
@@ -193,6 +241,11 @@ const CheckoutForm = () => {
 
         .submit-wrap {
           align-self: flex-end;
+        }
+
+        .error-msg {
+          margin: 1rem 0;
+          color: ${colors.orange};
         }
       `}</style>
     </>
