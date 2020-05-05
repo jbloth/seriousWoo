@@ -95,18 +95,4 @@ Category.getInitialProps = async function (context) {
   };
 };
 
-// Category.getInitialProps = async function ({ query }) {
-//   const id = query.category;
-
-//   const res = await client.query({
-//     query: GET_CATEGORY,
-//     variables: { id },
-//   });
-
-//   return {
-//     categoryName: res.data.productCategory.name,
-//     products: res.data.productCategory.products.nodes,
-//   };
-// };
-
 export default Category;

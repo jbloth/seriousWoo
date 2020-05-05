@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { colors, fonts } from '../styles/theme';
+import { colors, fonts, breakPoints } from '../styles/theme';
 
 const SizeSelector = ({ sizes, onSelect }) => {
   const [selectedSize, setSelectedSize] = useState(sizes[0].id);
@@ -67,6 +67,23 @@ const SizeSelector = ({ sizes, onSelect }) => {
         .icon-wrapper svg {
           width: 1.4rem;
           fill: ${colors.orange};
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_md}) {
+          .select-wrapper {
+            width: 7rem;
+          }
+
+          select {
+            height: 4rem;
+            font-size: 1.8rem;
+            width: 7rem;
+          }
+
+          .icon-wrapper {
+            top: 13%;
+            right: 8px;
+          }
         }
       `}</style>
     </div>

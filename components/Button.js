@@ -1,7 +1,7 @@
-import { colors, fonts } from '../styles/theme';
+import { colors, fonts, breakPoints } from '../styles/theme';
 
-const Button = ({ className, children, ...otherProps }) => (
-  <button className={`btn ${className ? className : ''}`} {...otherProps}>
+const Button = ({ extraClass, children, ...otherProps }) => (
+  <button className={`btn ${extraClass ? extraClass : ''}`} {...otherProps}>
     {children}
 
     <style jsx>
@@ -51,6 +51,17 @@ const Button = ({ className, children, ...otherProps }) => (
           background-color: ${colors.bg};
           color: ${colors.vibrantblue};
           border: 2px solid ${colors.vibrantblue};
+        }
+
+        .btn-grow {
+          width: 100%;
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_md}) {
+          .btn {
+            height: 4rem;
+            font-size: 1.8rem;
+          }
         }
       `}
     </style>

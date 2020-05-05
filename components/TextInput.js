@@ -1,4 +1,4 @@
-import { colors, fonts } from '../styles/theme';
+import { colors, fonts, breakPoints } from '../styles/theme';
 
 const TextInput = ({ extraClass, label, error, ...otherProps }) => (
   <div className="group">
@@ -33,6 +33,11 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
         border-bottom: 1px solid ${colors.violet};
       }
 
+      .textInput--red {
+        color: ${colors.textblue};
+        border: 1px solid ${colors.textred};
+      }
+
       .textInput::placeholder {
         color: ${colors.darkpink};
       }
@@ -59,6 +64,17 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
       .error-msg {
         color: ${colors.textred};
         font-size: 1.4rem;
+      }
+
+      @media only screen and (max-width: ${breakPoints.bp_md}) {
+        .textInput {
+          height: 4rem;
+          font-size: 1.8rem;
+        }
+
+        .textInput--red {
+          border: 2px solid ${colors.textred};
+        }
       }
     `}</style>
   </div>

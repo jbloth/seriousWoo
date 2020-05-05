@@ -80,7 +80,8 @@ const CartModal = () => {
           right: 0;
           z-index: 500;
           padding: 8rem 4rem 2rem 4rem;
-          display: none;
+          transform: translateX(100%);
+          transition: transform 0.5s ease-in;
         }
 
         .close-icon {
@@ -93,7 +94,7 @@ const CartModal = () => {
         }
 
         .cart-container--active {
-          display: block;
+          transform: translateX(0);
         }
 
         .cart {

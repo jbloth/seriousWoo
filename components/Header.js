@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { AppContext } from '../components/context/AppContext';
 import { colors, fonts, breakPoints } from '../styles/theme';
 import CartModal from './CartModal';
+import MobileMenu from './MobileMenu';
 import Logo from '../assets/seriousLogo_08.svg';
 import CartIcon from '../assets/shopping-cart.svg';
 import SearchIcon from '../assets/forschung.svg';
@@ -25,12 +26,13 @@ Router.onRouteChangeError = () => {
 const Header = () => {
   // Get toggle-cart-open mutation and number of cart items (for display in cart icon)
   const { toggleCartOpen, cart } = useContext(AppContext);
+  const { toggleMenuOpen } = useContext(AppContext);
   const itemCount = cart !== null && Object.keys(cart).length ? cart.totalProductsCount : 0;
 
   return (
     <header className="header section">
       <div className="header-inner">
-        <div className="burger item-mobile">
+        <div className="burger item-mobile" onClick={toggleMenuOpen}>
           <div className="burger__line line-1"></div>
           <div className="burger__line line-2"></div>
           <div className="burger__line line-3"></div>
@@ -121,15 +123,15 @@ const Header = () => {
           </ul>
         </nav>
 
-        <div className="mob-search item-mobile">
-          <Link href="/">
-            <a className="nav-link">
-              <SearchIcon />
-            </a>
-          </Link>
+        <div className="mob-cart item-mobile">
+          <div className="nav-link cartIcon-wrapper" onClick={toggleCartOpen}>
+            <CartIcon id="cart-icon-mobile" />
+            <span className="cart-item-count">{itemCount}</span>
+          </div>
         </div>
 
         <CartModal />
+        <MobileMenu />
       </div>
 
       <style jsx>{`
@@ -220,13 +222,23 @@ const Header = () => {
         // ---- Cart Icon ---- //
         .cartIcon-wrapper {
           position: relative;
+          font-size: 1.6rem;
         }
+
+        div :global(#cart-icon-mobile) {
+          transform: scale(1.3);
+        }
+
         .cart-item-count {
           position: absolute;
           font-size: 1rem;
           left: 50%;
-          top: 13%;
+          top: 15%;
           color: ${colors.bg};
+        }
+
+        .mob-cart .cart-item-count {
+          top: 8%;
         }
 
         // ---- burger ---- //

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import xss from 'xss';
 
-import { colors } from '../../../styles/theme';
+import { colors, breakPoints } from '../../../styles/theme';
 import GET_PRODUCT from '../../../queries/get-product';
 import ShopHeader from '../../../components/ShopHeader';
 import AddToCartButton from '../../../components/AddToCartButton';
@@ -114,6 +114,14 @@ const Product = ({ productSlug, categorySlug }) => {
               color: ${colors.textblue};
             }
 
+            pre {
+              white-space: pre-wrap; /* Since CSS 2.1 */
+              white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+              white-space: -pre-wrap; /* Opera 4-6 */
+              white-space: -o-pre-wrap; /* Opera 7 */
+              word-wrap: break-word; /* Internet Explorer 5.5+ */
+            }
+
             .buttonArea {
               display: flex;
               margin-top: 2rem;
@@ -121,6 +129,7 @@ const Product = ({ productSlug, categorySlug }) => {
 
             .size-select-wrapper {
               display: flex;
+              align-items: center;
             }
 
             .selector-label {
@@ -134,6 +143,25 @@ const Product = ({ productSlug, categorySlug }) => {
 
             .button-wrapper {
               margin-left: 2rem;
+            }
+
+            @media only screen and (max-width: ${breakPoints.bp_md}) {
+              .product {
+                flex-direction: column;
+              }
+
+              .image-container {
+                width: 100%;
+              }
+
+              .info-container {
+                width: 100%;
+                padding: 4rem;
+              }
+
+              .button-wrapper {
+                margin-left: 4rem;
+              }
             }
           `}
         </style>

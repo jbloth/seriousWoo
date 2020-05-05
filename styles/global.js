@@ -1,5 +1,5 @@
 import css from 'styled-jsx/css';
-import { colors, fonts } from './theme';
+import { colors, fonts, breakPoints } from './theme';
 
 export default css.global`
   /* monda-700 - latin */
@@ -136,5 +136,11 @@ export default css.global`
   .dropdown-content {
     display: none;
     position: absolute;
+  }
+
+  @media only screen and (max-width: ${breakPoints.bp_md}) {
+    .hideOnMobile {
+      display: none;
+    }
   }
 `;

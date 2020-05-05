@@ -193,7 +193,7 @@ const CheckoutForm = () => {
               {checkoutLoading ? (
                 <p>Processing Order...</p>
               ) : (
-                <Button className="btn--big">PLACE ORDER</Button>
+                <Button extraClass="btn--big">PLACE ORDER</Button>
               )}
             </div>
             {requestError && (

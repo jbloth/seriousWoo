@@ -1,7 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react';
 // import { createNewProduct, addToProductArray, removeFromProductArray } from '../../lib/functions';
 
-// export const AppContext = createContext([{}, () => {}]);
 export const AppContext = createContext();
 
 export const AppProvider = (props) => {
@@ -49,7 +48,7 @@ export const AppProvider = (props) => {
   //     return newCart;
   //   }
   // };
-
+  //
   // const reduceProductQuantity = (product) => {
   //   if (process.browser) {
   //     const updatedProducts = removeFromProductArray(cart.products, product, false);
@@ -100,24 +99,31 @@ export const AppProvider = (props) => {
 
   // Get total amount and total price of products in cart
 
-  const getProductsTotals = (products) => {
-    const initial = { totalCount: 0, totalPrice: 0 };
+  // const getProductsTotals = (products) => {
+  //   const initial = { totalCount: 0, totalPrice: 0 };
 
-    const totalReducer = (acc, product) => {
-      return {
-        totalCount: acc.totalCount + product.qty,
-        totalPrice: acc.totalPrice + product.totalPrice,
-      };
-    };
+  //   const totalReducer = (acc, product) => {
+  //     return {
+  //       totalCount: acc.totalCount + product.qty,
+  //       totalPrice: acc.totalPrice + product.totalPrice,
+  //     };
+  //   };
 
-    return products.reduce(totalReducer, initial);
-  };
+  //   return products.reduce(totalReducer, initial);
+  // };
 
   // ------- Cart Modal Open State ------- //
   const [cartOpen, setCartOpen] = useState(false);
 
   const toggleCartOpen = () => {
     setCartOpen(!cartOpen);
+  };
+
+  // ------- Mobile Menu Open State ------- //
+  const [mobMenuOpen, setMobMenuOpen] = useState(false);
+
+  const toggleMenuOpen = () => {
+    setMobMenuOpen(!mobMenuOpen);
   };
 
   // ------- Selected Tag ------- //
@@ -130,6 +136,8 @@ export const AppProvider = (props) => {
         setCart,
         selectedTag,
         setSelectedTag,
+        mobMenuOpen,
+        toggleMenuOpen,
         cartOpen,
         toggleCartOpen,
       }}
@@ -137,21 +145,4 @@ export const AppProvider = (props) => {
       {props.children}
     </AppContext.Provider>
   );
-
-  // return (
-  //   <AppContext.Provider
-  //     value={{
-  //       cart,
-  //       setCart,
-  //       addProductToCart,
-  //       reduceProductQuantity,
-  //       selectedTag,
-  //       setSelectedTag,
-  //       cartOpen,
-  //       toggleCartOpen,
-  //     }}
-  //   >
-  //     {props.children}
-  //   </AppContext.Provider>
-  // );
 };
