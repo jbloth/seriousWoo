@@ -72,6 +72,12 @@ const AddToCartButton = ({ product, children, selectedVariation }) => {
       ) : (
         <Button onClick={handleClick}>{children}</Button>
       )}
+      {requestError && (
+        <div className="error-msg">
+          <p>Could not add to cart</p>
+          <p>Error : {requestError} </p>
+        </div>
+      )}
       <style jsx>{`
         .loadingMsg {
           font-family: ${fonts.text};
@@ -82,6 +88,10 @@ const AddToCartButton = ({ product, children, selectedVariation }) => {
 
           text-align: center;
           padding: 0 12px;
+        }
+
+        .error-msg {
+          font-size: 1.2rem;
         }
       `}</style>
     </React.Fragment>

@@ -1,6 +1,6 @@
 import { colors, fonts } from '../styles/theme';
 
-const TextArea = ({ extraClass, label, ...otherProps }) => (
+const TextArea = ({ extraClass, label, error, ...otherProps }) => (
   <div className="group">
     <textarea className={`textInput ${extraClass}`} {...otherProps} />
 
@@ -9,6 +9,8 @@ const TextArea = ({ extraClass, label, ...otherProps }) => (
         {label + (otherProps.required ? ' (required)' : '')}
       </label>
     ) : null}
+
+    {error && <div className="error-msg">{error}</div>}
 
     <style jsx>{`
       .group {
@@ -48,6 +50,11 @@ const TextArea = ({ extraClass, label, ...otherProps }) => (
       .label.shrink {
         top: -18px;
         font-size: 1.2rem;
+      }
+
+      .error-msg {
+        color: ${colors.textred};
+        font-size: 1.4rem;
       }
     `}</style>
   </div>

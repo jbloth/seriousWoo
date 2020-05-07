@@ -1,4 +1,4 @@
-import { colors, fonts, breakPoints } from '../styles/theme';
+import { colors, breakPoints } from '../styles/theme';
 
 import GET_NEWEST_PRODUCTS from '../queries/get-newest-products';
 import BgShape from '../components/BgShape';

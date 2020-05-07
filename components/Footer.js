@@ -20,7 +20,7 @@ const Footer = () => {
           </li>
 
           <li>
-            <Link href="/">
+            <Link href="/contact">
               <a>contact</a>
             </Link>
           </li>
@@ -78,7 +78,7 @@ const Footer = () => {
           </ConnectAreaItem>
 
           <ConnectAreaItem title="Say Hi">
-            <Link href="/">
+            <Link href="/contact">
               <a>Contact Form</a>
             </Link>
           </ConnectAreaItem>

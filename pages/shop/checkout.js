@@ -3,7 +3,7 @@ import CheckoutForm from '../../components/CheckoutForm';
 
 const Checkout = ({ categorySlug }) => {
   return (
-    <div className="section checkout-page">
+    <section className="section checkout-page">
       <h1>Checkout</h1>
       <CheckoutForm />
       <style jsx>{`
@@ -15,7 +15,7 @@ const Checkout = ({ categorySlug }) => {
           color: ${colors.lightblue};
         }
       `}</style>
-    </div>
+    </section>
   );
 };
 

@@ -11,6 +11,7 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
     )}
 
     {error && <div className="error-msg">{error}</div>}
+
     <style jsx>{`
       .group {
         position: relative;
