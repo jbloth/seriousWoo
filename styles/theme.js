@@ -1,4 +1,4 @@
-export const colors = {
+/* export const colors = {
   bg: '#f7f5f5',
   lightpink: '#ffcabe',
   darkpink: '#e48787',
@@ -15,6 +15,24 @@ export const colors = {
   textblue: '#333957',
   mdgray: '#666666',
   lightgray: '#aaaaaa',
+}; */
+
+export const colors = {
+  bg: '247, 245, 245',
+  lightpink: '255, 202, 190',
+  darkpink: '228, 135, 135',
+  yellow: '239, 223, 160',
+  orange: '223, 103, 56',
+  violet: '213, 182, 228',
+  lightviolet: '238, 217, 250',
+  lightblue: '135,195,228',
+  vibrantblue: '90, 174, 220',
+  lighterblue: '207, 236, 253',
+  textred: '164, 46, 38',
+  textgreen: '47, 95, 89',
+  textblue: '51, 57, 87',
+  mdgray: '102, 102, 102',
+  lightgray: '170, 170, 170',
 };
 
 export const fonts = {

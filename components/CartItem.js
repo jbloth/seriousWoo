@@ -113,7 +113,7 @@ const CartItem = ({ product, refetch }) => {
         .cart-item {
           width: 100%;
           display: flex;
-          border-bottom: 1px solid ${colors.darkpink};
+          border-bottom: 1px solid rgb(${colors.darkpink});
           padding: 1.5rem 0;
         }
 
@@ -151,7 +151,7 @@ const CartItem = ({ product, refetch }) => {
 
         .remove-icon {
           width: 2.7rem;
-          fill: ${colors.textblue};
+          fill: rgb(${colors.textblue});
           align-self: flex-start;
           cursor: pointer;
         }
@@ -184,7 +184,7 @@ const CartItem = ({ product, refetch }) => {
 
         .errorMsg {
           padding-top: 1rem;
-          color: ${colors.orange};
+          color: rgb(${colors.orange});
         }
 
         @media only screen and (max-width: ${breakPoints.bp_md}) {

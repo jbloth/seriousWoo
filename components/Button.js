@@ -10,8 +10,8 @@ const Button = ({ extraClass, children, ...otherProps }) => (
           font-family: ${fonts.text};
           font-size: 1.4rem;
           height: 3rem;
-          background-color: ${colors.orange};
-          color: ${colors.bg};
+          background-color: rgb(${colors.orange});
+          color: rgb(${colors.bg});
           border: 2px solid transparent;
 
           text-align: center;
@@ -20,9 +20,9 @@ const Button = ({ extraClass, children, ...otherProps }) => (
         }
 
         .btn:hover {
-          background-color: ${colors.bg};
-          color: ${colors.orange};
-          border: 2px solid ${colors.orange};
+          background-color: rgb(${colors.bg});
+          color: rgb(${colors.orange});
+          border: 2px solid rgb(${colors.orange});
         }
 
         .btn--big {
@@ -32,25 +32,25 @@ const Button = ({ extraClass, children, ...otherProps }) => (
         }
 
         .btn--inverted {
-          background-color: ${colors.bg};
-          color: ${colors.orange};
-          border: 2px solid ${colors.orange};
+          background-color: rgb(${colors.bg});
+          color: rgb(${colors.orange});
+          border: 2px solid rgb(${colors.orange});
         }
 
         .btn--inverted:hover {
-          background-color: ${colors.orange};
-          color: ${colors.bg};
+          background-color: rgb(${colors.orange});
+          color: rgb(${colors.bg});
           border: 2px solid transparent;
         }
 
         .btn--blue {
-          background-color: ${colors.vibrantblue};
+          background-color: rgb(${colors.vibrantblue});
         }
 
         .btn--blue:hover {
-          background-color: ${colors.bg};
-          color: ${colors.vibrantblue};
-          border: 2px solid ${colors.vibrantblue};
+          background-color: rgb(${colors.bg});
+          color: rgb(${colors.vibrantblue});
+          border: 2px solid rgb(${colors.vibrantblue});
         }
 
         .btn-grow {

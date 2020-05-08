@@ -67,7 +67,7 @@ const Header = () => {
             </li>
 
             <li className="nav-item">
-              <Link href="/">
+              <Link href="/about">
                 <a className="nav-link">About</a>
               </Link>
             </li>
@@ -180,7 +180,7 @@ const Header = () => {
         }
 
         .nav .item-mobile a i {
-          color: ${colors.orange};
+          color: rgb(${colors.orange});
         }
 
         .nav__list--right {
@@ -204,19 +204,19 @@ const Header = () => {
         }
 
         .nav-link {
-          color: ${colors.orange};
+          color: rgb(${colors.orange});
           font-size: 2.4rem;
           cursor: pointer;
-          fill: ${colors.orange};
+          fill: rgb(${colors.orange});
         }
 
         .nav-dropdown-link {
-          color: ${colors.orange};
+          color: rgb(${colors.orange});
           font-family: ${fonts.text};
         }
 
         .nav-dropdown-link &:hover {
-          color: ${colors.lightBlue};
+          color: rgb(${colors.lightBlue});
         }
 
         // ---- Cart Icon ---- //
@@ -234,7 +234,7 @@ const Header = () => {
           font-size: 1rem;
           left: 50%;
           top: 15%;
-          color: ${colors.bg};
+          color: rgb(${colors.bg});
         }
 
         .mob-cart .cart-item-count {
@@ -251,7 +251,7 @@ const Header = () => {
           width: 30px;
           height: 4px;
           margin: 6px;
-          background-color: ${colors.orange};
+          background-color: rgb(${colors.orange});
           // transition: all 0.5s ease;
         }
 

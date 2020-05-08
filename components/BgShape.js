@@ -8,7 +8,7 @@ const BgShape = ({ version, fillColor, extraClass }) => {
             width="665"
             height="523"
             viewBox="0 0 665 523"
-            fill={fillColor ? fillColor : 'none'}
+            fill={fillColor ? `rgb(${fillColor})` : 'none'}
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -31,7 +31,7 @@ const BgShape = ({ version, fillColor, extraClass }) => {
             width="741"
             height="741"
             viewBox="0 0 741 741"
-            fill={fillColor ? fillColor : 'none'}
+            fill={fillColor ? `rgb(${fillColor})` : 'none'}
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -54,7 +54,7 @@ const BgShape = ({ version, fillColor, extraClass }) => {
             width="740"
             height="762"
             viewBox="0 0 540 562"
-            fill={fillColor ? fillColor : 'none'}
+            fill={fillColor ? `rgb(${fillColor})` : 'none'}
             xmlns="http://www.w3.org/2000/svg"
           >
             <path

@@ -45,9 +45,9 @@ const SizeSelector = ({ sizes, onSelect }) => {
           height: 3rem;
           font-family: ${fonts.text};
           padding: 0 5px;
-          background-color: ${colors.bg};
-          color: ${colors.orange};
-          border: 2px solid ${colors.orange};
+          background-color: rgb(${colors.bg});
+          color: rgb(${colors.orange});
+          border: 2px solid rgb(${colors.orange});
           width: 6rem;
           border-radius: 0;
         }
@@ -66,7 +66,7 @@ const SizeSelector = ({ sizes, onSelect }) => {
 
         .icon-wrapper svg {
           width: 1.4rem;
-          fill: ${colors.orange};
+          fill: rgb(${colors.orange});
         }
 
         @media only screen and (max-width: ${breakPoints.bp_md}) {

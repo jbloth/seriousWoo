@@ -222,7 +222,7 @@ const CheckoutForm = () => {
 
         h2,
         h3 {
-          color: ${colors.darkpink};
+          color: rgb(${colors.darkpink});
           margin-bottom: 2rem;
         }
 
@@ -238,7 +238,7 @@ const CheckoutForm = () => {
           width: 15px;
           height: 15px;
           border-radius: 0;
-          border: 1px solid ${colors.violet};
+          border: 1px solid rgb(${colors.violet});
         }
 
         .submit-wrap {
@@ -248,7 +248,7 @@ const CheckoutForm = () => {
 
         .error-msg {
           margin: 1rem 0;
-          color: ${colors.orange};
+          color: rgb(${colors.orange});
         }
 
         @media only screen and (max-width: ${breakPoints.bp_large}) {

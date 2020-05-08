@@ -9,7 +9,7 @@ const ArrowIcon = ({ color, open, width }) => {
 
       <style jsx>{`
         .arrow-icon {
-          fill: ${color};
+          fill: rgb(${color});
         }
 
         .arrow-icon svg {

@@ -64,7 +64,7 @@ const CategoryGallery = () => {
 
           font-family: ${fonts.heading};
           font-size: 6rem;
-          color: ${colors.bg};
+          color: rgb(${colors.bg});
         }
 
         .catImg-container {
@@ -76,7 +76,7 @@ const CategoryGallery = () => {
 
         .catImg:hover {
           cursor: pointer;
-          color: ${colors.violet};
+          color: rgb(${colors.violet});
         }
 
         @media only screen and (max-width: ${breakPoints.bp_md}) {

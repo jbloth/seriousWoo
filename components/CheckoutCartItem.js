@@ -31,7 +31,7 @@ const CheckoutCartItem = ({ product }) => {
         .cart-item {
           width: 100%;
           display: flex;
-          border-bottom: 1px solid ${colors.violet};
+          border-bottom: 1px solid rgb(${colors.violet});
           padding: 1.5rem 0;
         }
 

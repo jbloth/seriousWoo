@@ -21,16 +21,16 @@ const TextArea = ({ extraClass, label, error, ...otherProps }) => (
         resize: none;
         font-family: ${fonts.text};
         font-size: 1.4rem;
-        color: ${colors.textblue};
+        color: rgb(${colors.textblue});
         width: 100%;
-        background-color: ${colors.bg};
-        border: 2px solid ${colors.violet};
+        background-color: rgb(${colors.bg});
+        border: 2px solid rgb(${colors.violet});
         padding-left: 5px;
       }
 
       .textInput--dark {
-        color: ${colors.textblue};
-        border: 2px solid ${colors.textblue};
+        color: rgb(${colors.textblue});
+        border: 2px solid rgb(${colors.textblue});
       }
 
       .textInput:focus ~ .label {
@@ -39,7 +39,7 @@ const TextArea = ({ extraClass, label, error, ...otherProps }) => (
       }
 
       .label {
-        color: ${colors.darkpink};
+        color: rgb(${colors.darkpink});
         position: absolute;
         left: 5px;
         top: 2px;
@@ -53,7 +53,7 @@ const TextArea = ({ extraClass, label, error, ...otherProps }) => (
       }
 
       .error-msg {
-        color: ${colors.textred};
+        color: rgb(${colors.textred});
         font-size: 1.4rem;
       }
     `}</style>

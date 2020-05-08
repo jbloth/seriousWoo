@@ -73,7 +73,7 @@ export default css.global`
 
   body {
     box-sizing: border-box;
-    color: ${colors.textblue};
+    color: rgb(${colors.textblue});
     overflow-x: hidden;
     position: relative;
 
@@ -81,12 +81,12 @@ export default css.global`
     font-weight: 400;
     font-size: 16px;
     line-height: 1.7;
-    background-color: ${colors.bg};
+    background-color: rgb(${colors.bg});
   }
 
   a {
     text-decoration: none;
-    color: ${colors.textred};
+    color: rgb(${colors.textred});
   }
 
   ul {
@@ -97,20 +97,20 @@ export default css.global`
     font-size: 4.8rem;
     font-family: ${fonts.heading};
     font-weight: normal;
-    color: ${colors.darkpink};
+    color: rgb(${colors.darkpink});
   }
 
   h2 {
     font-family: ${fonts.text};
     font-weight: normal;
-    color: ${colors.darkpink};
+    color: rgb(${colors.darkpink});
   }
 
   h3 {
     font-size: 2.4rem;
     font-family: ${fonts.text};
     font-weight: normal;
-    color: ${colors.textred};
+    color: rgb(${colors.textred});
   }
 
   // ---- wrapper & utility classes ---- //
@@ -119,7 +119,6 @@ export default css.global`
     justify-content: center;
     align-items: center;
     padding: 6rem;
-    overflow: hidden;
   }
 
   @media only screen and (max-width: ${breakPoints.bp_smallest}) {

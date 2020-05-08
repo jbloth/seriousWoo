@@ -68,7 +68,7 @@ const PaymentSelector = ({ input, handleOnChange }) => {
           width: 15px;
           height: 15px;
           border-radius: 0;
-          border: 1px solid ${colors.violet};
+          border: 1px solid rgb(${colors.violet});
         }
       `}</style>
     </div>

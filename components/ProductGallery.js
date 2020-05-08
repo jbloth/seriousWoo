@@ -37,7 +37,7 @@ const ProductGallery = ({ products }) => {
           }
 
           .productGallery__empty-message {
-            color: ${colors.text_Blue};
+            color: rgb(${colors.textblue});
           }
         `}
       </style>

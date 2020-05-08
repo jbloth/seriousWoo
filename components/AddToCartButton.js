@@ -82,8 +82,8 @@ const AddToCartButton = ({ product, children, selectedVariation }) => {
         .loadingMsg {
           font-family: ${fonts.text};
           height: 3rem;
-          background-color: ${colors.orange};
-          color: ${colors.bg};
+          background-color: rgb(${colors.orange});
+          color: rgb(${colors.bg});
           border: 2px solid transparent;
 
           text-align: center;

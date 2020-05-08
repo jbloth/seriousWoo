@@ -60,7 +60,7 @@ const MobileMenu = () => {
           width: 70vw;
           min-width: 500px;
           overflow-y: auto;
-          background-color: ${colors.lighterblue}; // TODO: blur background
+          background-color: rgb(${colors.lighterblue});
           z-index: 1400;
           padding: 10rem 6rem;
           transform: translateX(-100%);
@@ -79,7 +79,7 @@ const MobileMenu = () => {
           position: absolute;
           top: 5rem;
           left: 5rem;
-          fill: ${colors.darkpink};
+          fill: rgb(${colors.darkpink});
           cursor: pointer;
         }
 

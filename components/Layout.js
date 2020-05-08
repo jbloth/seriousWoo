@@ -6,7 +6,7 @@ import globalStyles from '../styles/global.js';
 
 const Layout = (props) => {
   return (
-    <div>
+    <div className="site-container">
       <Meta />
       <Header />
       {props.children}

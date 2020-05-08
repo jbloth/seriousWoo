@@ -49,7 +49,7 @@ const CountrySelector = ({ onSelect, label, ...otherProps }) => {
         }
 
         .label {
-          color: ${colors.darkpink};
+          color: rgb(${colors.darkpink});
           position: absolute;
           left: 5px;
           top: 2px;
@@ -69,10 +69,10 @@ const CountrySelector = ({ onSelect, label, ...otherProps }) => {
           height: 4rem;
           font-family: ${fonts.text};
           font-size: 1.4rem;
-          color: ${colors.textblue};
+          color: rgb(${colors.textblue});
           padding: 0 5px;
-          background-color: ${colors.bg};
-          border: 2px solid ${colors.violet};
+          background-color: rgb(${colors.bg});
+          border: 2px solid rgb(${colors.violet});
           width: 20rem;
           border-radius: 0;
         }
@@ -91,7 +91,7 @@ const CountrySelector = ({ onSelect, label, ...otherProps }) => {
 
         .icon-wrapper svg {
           width: 1.4rem;
-          fill: ${colors.textblue};
+          fill: rgb(${colors.textblue});
         }
       `}</style>
     </div>

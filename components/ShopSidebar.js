@@ -38,7 +38,7 @@ const ShopSidebar = ({ productTags }) => {
       </ul>
       <style jsx>{`
         .shopSidebar {
-          color: ${colors.darkpink};
+          color: rgb(${colors.darkpink});
         }
 
         .arrow-wrapper {
@@ -49,13 +49,13 @@ const ShopSidebar = ({ productTags }) => {
           cursor: pointer;
           line-height: 3;
           font-weight: normal;
-          color: ${colors.darkpink};
+          color: rgb(${colors.darkpink});
         }
 
         @media only screen and (max-width: ${breakPoints.bp_md}) {
           .title-container {
             width: 100%;
-            border-bottom: 2px solid ${colors.darkpink};
+            border-bottom: 2px solid rgb(${colors.darkpink});
             display: flex;
             padding: 0 1rem;
           }

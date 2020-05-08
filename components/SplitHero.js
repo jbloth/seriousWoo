@@ -26,20 +26,20 @@ const SplitHero = ({ imgUrl, children }) => {
           background-size: cover;
           background-position: center;
           height: auto;
-          background-color: ${colors.violet};
+          background-color: rgb(${colors.violet});
         }
 
         .hero__text {
           padding: 10rem 6rem;
           font-size: 6rem;
           display: none;
-          background-color: ${colors.lightyellow};
+          background-color: rgb(${colors.lightyellow});
           border-radius: 50%;
           line-height: 1;
           font-family: ${fonts.text};
 
           font-weight: normal;
-          color: ${colors.orange};
+          color: rgb(${colors.orange});
           flex-direction: column;
           align-items: center;
           justify-content: center;
@@ -63,8 +63,8 @@ const SplitHero = ({ imgUrl, children }) => {
           align-items: center;
           justify-content: center;
 
-          background-color: ${colors.lightpink};
-          color: ${colors.textred};
+          background-color: rgb(${colors.lightpink});
+          color: rgb(${colors.textred});
         }
 
         @media only screen and (max-width: ${breakPoints.bp_largest}) {

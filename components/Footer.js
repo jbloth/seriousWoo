@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="footer-wrapper l-wrapper">
         <FooterMenu title="Find" isConnectArea={false}>
           <li>
-            <Link href="/">
+            <Link href="/about">
               <a>about</a>
             </Link>
           </li>
@@ -93,7 +93,7 @@ const Footer = () => {
 
       <style jsx>{`
         .footer {
-          background-color: ${colors.lightviolet};
+          background-color: rgb(${colors.lightviolet});
           padding: 7rem 6rem 1rem 6rem;
           flex-direction: column;
         }
@@ -103,7 +103,7 @@ const Footer = () => {
           display: flex;
           align-items: center;
           justify-content: space-around;
-          color: ${colors.textred};
+          color: rgb(${colors.textred});
         }
 
         .connect-input-wrap {
@@ -118,7 +118,7 @@ const Footer = () => {
 
         .connect-icon {
           margin: 0 20px 0 0;
-          fill: ${colors.textred};
+          fill: rgb(${colors.textred});
           display: flex;
           align-items: center;
           font-size: 3rem;
@@ -126,11 +126,10 @@ const Footer = () => {
 
         .newsletter-signup {
           display: flex;
-          width: 100%;
         }
 
         .copyright {
-          color: ${colors.textred};
+          color: rgb(${colors.textred});
           font-size: 1.2rem;
           margin-top: 3rem;
         }

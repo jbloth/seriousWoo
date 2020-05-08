@@ -60,7 +60,7 @@ const FooterMenu = ({ title, children, isConnectArea }) => {
 
           .title-container {
             width: 100%;
-            border-bottom: 1px solid ${colors.textred};
+            border-bottom: 1px solid rgb(${colors.textred});
             display: flex;
           }
 

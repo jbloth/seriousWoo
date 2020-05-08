@@ -40,7 +40,9 @@ const Category = ({ products, categoryName }) => {
       <style jsx>{`
         .shop-main {
           display: flex;
+          width: 100%;
           max-width: 1500px;
+          min-height: 500px;
           margin: 0 auto;
         }
 
@@ -54,7 +56,7 @@ const Category = ({ products, categoryName }) => {
           padding: 8rem 8rem 6rem 4rem;
           display: flex;
           justify-content: center;
-          align-items: center;
+          align-items: flex-start;
           overflow: hidden;
         }
 

@@ -10,8 +10,8 @@ const Index = ({ newestProducts }) => {
   return (
     <main>
       <section className="home-hero section">
-        <BgShape version={1} fillColor={colors.lightyellow} extraClass="bg-shape-01" />
-        <BgShape version={2} fillColor={colors.lightyellow} extraClass="bg-shape-02" />
+        <BgShape version={1} extraClass="bg-shape-01" />
+        <BgShape version={2} extraClass="bg-shape-02" />
         <SplitHero imgUrl={'/images/tarutoa-QIymolbz7G0-unsplash 1.png'}>
           <p>This is</p>
           <p>serious!</p>
@@ -28,7 +28,7 @@ const Index = ({ newestProducts }) => {
 
       <section className="categories section">
         <CategoryGallery />
-        <BgShape version={3} fillColor={colors.lightyellow} extraClass="bg-shape-03" />
+        <BgShape version={3} extraClass="bg-shape-03" />
       </section>
 
       <section className="quote section">
@@ -59,7 +59,7 @@ const Index = ({ newestProducts }) => {
 
         .about {
           height: 400px;
-          background-color: ${colors.lightviolet};
+          background-color: rgba(${colors.violet}, 0.6);
         }
 
         .banner {
@@ -69,18 +69,15 @@ const Index = ({ newestProducts }) => {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-           {
-            /* width: 100%; */
-          }
         }
 
         .banner--about {
-          color: ${colors.textgreen};
+          color: rgb(${colors.textgreen});
           text-align: center;
         }
 
         .banner--quote {
-          color: ${colors.orange};
+          color: rgb(${colors.orange});
         }
 
         .banner--quote__text {
@@ -100,7 +97,7 @@ const Index = ({ newestProducts }) => {
 
         .quote {
           height: 300px;
-          background-color: ${colors.lightyellow};
+          background-color: rgb(${colors.lightyellow});
         }
 
         .productGallery-container {
@@ -110,7 +107,7 @@ const Index = ({ newestProducts }) => {
         }
 
         .galleryTitle {
-          color: ${colors.lightblue};
+          color: rgb(${colors.lightblue});
         }
 
         :global(.bg-shape-01) {
@@ -119,6 +116,7 @@ const Index = ({ newestProducts }) => {
           width: 60vw;
           z-index: -3;
           max-width: 600px;
+          fill: rgba(${colors.yellow}, 0.6);
         }
 
         :global(.bg-shape-02) {
@@ -127,6 +125,7 @@ const Index = ({ newestProducts }) => {
           width: 60vw;
           max-width: 570px;
           z-index: -3;
+          fill: rgba(${colors.yellow}, 0.6);
         }
 
         :global(.bg-shape-03) {
@@ -134,6 +133,7 @@ const Index = ({ newestProducts }) => {
           top: -32%;
           width: 80%;
           z-index: -3;
+          fill: rgba(${colors.yellow}, 0.6);
         }
 
         @media only screen and (max-width: ${breakPoints.bp_large}) {

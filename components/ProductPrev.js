@@ -43,7 +43,7 @@ const ProductPrev = ({ product }) => {
           }
 
           .product-img:hover {
-            border: 4px solid ${colors.orange};
+            border: 4px solid rgb(${colors.orange});
           }
 
           .product-img:hover .button-wrapper {
@@ -51,7 +51,7 @@ const ProductPrev = ({ product }) => {
           }
 
           .button-wrapper {
-            background-color: rgba(${colors.orange};, 0.8);
+            background-color: rgba(rgb(${colors.orange}) ;, 0.8);
             font-size: 1.4rem;
             display: none;
           }
@@ -65,7 +65,7 @@ const ProductPrev = ({ product }) => {
             margin: 1rem 0;
 
             font-size: 1.6rem;
-            color: ${colors.orange};
+            color: rgb(${colors.orange});
           }
 
           .title {

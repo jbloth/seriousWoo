@@ -48,7 +48,7 @@ const ShopHeader = ({ selectedCategory }) => {
           .shopHeader {
             width: 100%;
             min-height: 5rem;
-            background-color: ${colors.lightpink};
+            background-color: rgb(${colors.lightpink});
             font-size: 1.8rem;
             font-weight: normal;
 
@@ -68,12 +68,12 @@ const ShopHeader = ({ selectedCategory }) => {
 
           .item {
             cursor: pointer;
-            color: ${colors.orange};
+            color: rgb(${colors.orange});
             padding: 1rem;
           }
 
           .item--active {
-            color: ${colors.lightblue};
+            color: rgb(${colors.lightblue});
           }
 
           @media only screen and (max-width: ${breakPoints.bp_md}) {

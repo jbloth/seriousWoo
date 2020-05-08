@@ -20,27 +20,27 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
       .textInput {
         font-family: ${fonts.text};
         font-size: 1.6rem;
-        color: ${colors.textred};
+        color: rgb(${colors.textred});
         height: 3rem;
         width: 100%;
-        background-color: ${colors.bg};
-        border: 2px solid ${colors.violet};
+        background-color: rgb(${colors.bg});
+        border: 2px solid rgb(${colors.violet});
         padding-left: 5px;
       }
 
       .textInput--bottomOnly {
-        color: ${colors.textblue};
+        color: rgb(${colors.textblue});
         border: none;
-        border-bottom: 1px solid ${colors.violet};
+        border-bottom: 1px solid rgb(${colors.violet});
       }
 
       .textInput--red {
-        color: ${colors.textblue};
-        border: 1px solid ${colors.textred};
+        color: rgb(${colors.textblue});
+        border: 1px solid rgb(${colors.textred});
       }
 
       .textInput::placeholder {
-        color: ${colors.darkpink};
+        color: rgb(${colors.darkpink});
       }
 
       .textInput:focus ~ .label {
@@ -49,7 +49,7 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
       }
 
       .label {
-        color: ${colors.darkpink};
+        color: rgb(${colors.darkpink});
         position: absolute;
         left: 5px;
         top: 2px;
@@ -63,7 +63,7 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
       }
 
       .error-msg {
-        color: ${colors.textred};
+        color: rgb(${colors.textred});
         font-size: 1.4rem;
       }
 
@@ -74,7 +74,7 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
         }
 
         .textInput--red {
-          border: 2px solid ${colors.textred};
+          border: 2px solid rgb(${colors.textred});
         }
       }
     `}</style>
