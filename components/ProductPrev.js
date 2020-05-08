@@ -42,13 +42,6 @@ const ProductPrev = ({ product }) => {
             justify-content: center;
           }
 
-          @media only screen and (max-width: ${breakPoints.bp_small}) {
-            .product-img {
-              height: 40rem;
-              width: 36rem;
-            }
-          }
-
           .product-img:hover {
             border: 4px solid ${colors.orange};
           }
@@ -77,6 +70,20 @@ const ProductPrev = ({ product }) => {
 
           .title {
             font-weight: bold;
+          }
+
+          @media only screen and (max-width: ${breakPoints.bp_small}) {
+            .product-img {
+              height: 40rem;
+              width: 36rem;
+            }
+          }
+
+          @media only screen and (max-width: ${breakPoints.bp_tiny}) {
+            .product-img {
+              height: 30rem;
+              width: 26rem;
+            }
           }
         `}
       </style>

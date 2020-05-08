@@ -1,4 +1,4 @@
-import { fonts, colors } from '../styles/theme';
+import { fonts, colors, breakPoints } from '../styles/theme';
 import CheckoutCartItem from './CheckoutCartItem.js';
 
 const CartOverview = ({ cart }) => {
@@ -12,11 +12,9 @@ const CartOverview = ({ cart }) => {
           <p className="empty-message">Your cart is empty.</p>
         )}
       </div>
-      <div>
-        <div className="subtotal">
-          <span className="subtotal-text">Subtotal: </span>
-          <span className="subtotal-price">{cart.subtotal} $</span>
-        </div>
+      <div className="subtotal">
+        <span className="subtotal-text">Subtotal: </span>
+        <span className="subtotal-price">{cart.subtotal}</span>
       </div>
       <style jsx>{`
         .cart-container {
@@ -92,6 +90,12 @@ const CartOverview = ({ cart }) => {
           background-color: ${colors.bg};
           color: ${colors.darkpink};
           border: 2px solid ${colors.darkpink};
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          .subtotal {
+            font-size: 2rem;
+          }
         }
       `}</style>
     </div>

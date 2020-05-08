@@ -52,14 +52,16 @@ const Footer = () => {
 
         <FooterMenu title="Connect" isConnectArea={true}>
           <ConnectAreaItem title="Suscribe">
-            <div className="connect-input-wrap">
-              <TextInput extraClass="textInput--red" type="email" placeholder="email" />
-            </div>
+            <div className="newsletter-signup">
+              <div className="connect-input-wrap">
+                <TextInput extraClass="textInput--red" type="email" placeholder="email" />
+              </div>
 
-            <div className="connect-btn-wrap">
-              <Button extraClass="btn-grow" type="submit">
-                Sign Up
-              </Button>
+              <div className="connect-btn-wrap">
+                <Button extraClass="btn-grow" type="submit">
+                  Sign Up
+                </Button>
+              </div>
             </div>
           </ConnectAreaItem>
 
@@ -122,6 +124,11 @@ const Footer = () => {
           font-size: 3rem;
         }
 
+        .newsletter-signup {
+          display: flex;
+          width: 100%;
+        }
+
         .copyright {
           color: ${colors.textred};
           font-size: 1.2rem;
@@ -146,6 +153,24 @@ const Footer = () => {
         @media only screen and (max-width: ${breakPoints.bp_smallest}) {
           .footer-wrapper {
             padding: 0 2rem;
+          }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiny}) {
+          .newsletter-signup {
+            width: 100%;
+            flex-direction: column;
+            line-height: 3;
+          }
+
+          .connect-input-wrap {
+            flex-grow: 1;
+          }
+
+          .connect-btn-wrap {
+            margin: 0;
+            flex-grow: 1;
+            align-self: unset;
           }
         }
       `}</style>

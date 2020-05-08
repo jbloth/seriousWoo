@@ -24,7 +24,13 @@ const ShopSidebar = ({ productTags }) => {
       <ul className={`categoryList collapsible ${open ? '' : 'hideOnMobile'}`}>
         {productTags.map((tag) => (
           <li key={tag} className="item">
-            <div className="link" onClick={() => setSelectedTag(tag)}>
+            <div
+              className="link"
+              onClick={() => {
+                setOpen(false);
+                setSelectedTag(tag);
+              }}
+            >
               {tag}
             </div>
           </li>

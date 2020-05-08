@@ -47,8 +47,10 @@ const Index = ({ newestProducts }) => {
 
       <style jsx>{`
         main {
-          overflow-x: hidden;
-          position: relative;
+           {
+            /* overflow-x: hidden;
+          position: relative; */
+          }
         }
 
         .home-hero {
@@ -112,16 +114,18 @@ const Index = ({ newestProducts }) => {
         }
 
         :global(.bg-shape-01) {
-          right: -19%;
-          top: 6%;
-          width: 60%;
+          right: -14vw;
+          top: 30px;
+          width: 60vw;
           z-index: -3;
+          max-width: 600px;
         }
 
         :global(.bg-shape-02) {
-          left: -14%;
-          top: 32%;
-          width: 60%;
+          left: -12vw;
+          top: 240px;
+          width: 60vw;
+          max-width: 570px;
           z-index: -3;
         }
 
@@ -143,8 +147,12 @@ const Index = ({ newestProducts }) => {
         }
 
         @media only screen and (max-width: ${breakPoints.bp_md}) {
+          .home-hero {
+            padding: 4rem 6rem 8rem 6rem;
+          }
+
           :global(.bg-shape-02) {
-            top: 23%;
+            top: 4%;
           }
 
           :global(.bg-shape-03) {
@@ -156,18 +164,16 @@ const Index = ({ newestProducts }) => {
           .banner {
             font-size: 3rem;
           }
+
+          .banner--quote__source {
+            font-size: 2.5rem;
+          }
         }
 
         @media only screen and (max-width: ${breakPoints.bp_small}) {
-           {
-            /* .home-hero {
-            padding: 6%;
-          } */
-          }
-
           :global(.bg-shape-01) {
-            top: 12%;
-            width: 100%;
+            top: 85px;
+            width: 150vw;
           }
 
           .categories {
@@ -175,14 +181,7 @@ const Index = ({ newestProducts }) => {
           }
 
           :global(.bg-shape-02) {
-             {
-              /* width: 80%;
-            top: 56%; */
-            }
             display: none;
-             {
-              /* z-index: 0; */
-            }
           }
 
           :global(.bg-shape-03) {
@@ -192,11 +191,27 @@ const Index = ({ newestProducts }) => {
 
         @media only screen and (max-width: ${breakPoints.bp_smallest}) {
           :global(.bg-shape-01) {
-            top: 6%;
+            width: 100vw;
+          }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiny}) {
+          .home-hero {
+            padding: 2rem 4rem 8rem 4rem;
+          }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          :global(.bg-shape-01) {
+            top: -25px;
           }
 
-          :global(.bg-shape-02) {
-            width: 100%;
+          .banner {
+            font-size: 2.5rem;
+          }
+
+          .banner--quote__source {
+            font-size: 2rem;
           }
         }
       `}</style>

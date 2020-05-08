@@ -1,10 +1,6 @@
 require('dotenv').config();
 
 module.exports = {
-  env: {
-    MAIL_ADDRESS: process.env.MAIL_ADDRESS,
-    MAIL_PW: process.env.MAIL_PW,
-  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

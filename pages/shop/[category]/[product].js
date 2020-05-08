@@ -163,6 +163,29 @@ const Product = ({ productSlug, categorySlug }) => {
                 margin-left: 4rem;
               }
             }
+
+            @media only screen and (max-width: ${breakPoints.bp_tiny}) {
+              h1 {
+                line-height: 1;
+              }
+
+              .product {
+                padding: 3rem;
+              }
+
+              .info-container {
+                padding: 3rem;
+              }
+
+              .buttonArea {
+                flex-direction: column;
+                align-items: flex-end;
+              }
+
+              .size-select-wrapper {
+                margin-bottom: 3rem;
+              }
+            }
           `}
         </style>
       </div>

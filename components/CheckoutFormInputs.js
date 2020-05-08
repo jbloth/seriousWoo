@@ -1,4 +1,4 @@
-import { fonts, colors } from '../styles/theme';
+import { breakPoints } from '../styles/theme';
 import TextInput from './TextInput';
 import TextArea from './TextArea';
 import CountrySelector from './CountrySelector';
@@ -97,7 +97,7 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
           <TextInput
             name="email"
             type="email"
-            label="Email Address"
+            label="Email"
             required={true}
             value={inputs.email}
             onChange={handleChange}
@@ -157,6 +157,15 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
 
         .countrySelect-wrap {
           margin-top: 3rem;
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_large}) {
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_md}) {
+          .input-row {
+            flex-direction: column;
+          }
         }
       `}</style>
     </div>

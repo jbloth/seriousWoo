@@ -64,12 +64,20 @@ const CartItem = ({ product, refetch }) => {
 
   return (
     <div className="cart-item">
-      <div
-        className="img"
-        style={{
-          backgroundImage: `url('${imgUrl}')`,
-        }}
-      ></div>
+      <div className="img-row">
+        <div
+          className="img"
+          style={{
+            backgroundImage: `url('${imgUrl}')`,
+          }}
+        ></div>
+        <div
+          className="remove-icon tiny-only"
+          onClick={(e) => handleRemoveProductClick(e, product.cartKey, cart.products)}
+        >
+          <CloseIcon />
+        </div>
+      </div>
 
       {!updateCartProcessing ? (
         <div className="info">
@@ -79,7 +87,7 @@ const CartItem = ({ product, refetch }) => {
               {size && <p className="size">{size.name}</p>}
             </div>
             <div
-              className="remove-icon"
+              className="remove-icon non-tiny"
               onClick={(e) => handleRemoveProductClick(e, product.cartKey, cart.products)}
             >
               <CloseIcon />
@@ -104,19 +112,27 @@ const CartItem = ({ product, refetch }) => {
       <style jsx>{`
         .cart-item {
           width: 100%;
-           {
-            /* height: 140px; */
-          }
           display: flex;
           border-bottom: 1px solid ${colors.darkpink};
           padding: 1.5rem 0;
         }
 
-        .img {
+        .img-row {
           width: 24%;
+          height: 120px;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .img {
+          width: 100%;
           height: 120px;
           background-size: cover;
           background-position: center;
+        }
+
+        .tiny-only {
+          display: none;
         }
 
         .info {
@@ -134,6 +150,7 @@ const CartItem = ({ product, refetch }) => {
         }
 
         .remove-icon {
+          width: 2.7rem;
           fill: ${colors.textblue};
           align-self: flex-start;
           cursor: pointer;
@@ -168,6 +185,48 @@ const CartItem = ({ product, refetch }) => {
         .errorMsg {
           padding-top: 1rem;
           color: ${colors.orange};
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_md}) {
+          .cart-item {
+            padding: 2.5rem 0;
+          }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiny}) {
+          .cart-item {
+            flex-direction: column;
+          }
+
+          .img-row {
+            width: 100%;
+            height: 220px;
+          }
+
+          .img {
+            width: 50%;
+            height: 220px;
+          }
+
+          .tiny-only {
+            display: block;
+          }
+
+          .non-tiny {
+            display: none;
+          }
+
+          .remove-icon {
+            width: 3.4rem;
+          }
+
+          .row {
+            margin: 1rem 0;
+          }
+
+          .info {
+            padding-left: 0;
+          }
         }
       `}</style>
     </div>

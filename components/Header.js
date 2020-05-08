@@ -272,6 +272,10 @@ const Header = () => {
             width: 70%;
           }
 
+          .logo {
+            width: 70%;
+          }
+
           .nav {
             display: none;
           }
@@ -283,16 +287,26 @@ const Header = () => {
 
         @media only screen and (max-width: ${breakPoints.bp_small}) {
           .header-inner {
-            align-items: flex-end;
             width: 90%;
           }
         }
 
         @media only screen and (max-width: ${breakPoints.bp_smallest}) {
+
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          .header-inner {
+            width: 100%;
+          }
+
           .logo {
-            width: 240px;
+            width: 60%;
           }
         }
+
+        }
+
       `}</style>
     </header>
   );

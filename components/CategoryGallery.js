@@ -8,19 +8,19 @@ const CategoryGallery = () => {
       title: 'KIDS',
       imgUrl: '/images/sharon-garcia-QxLY0sKCDmo-unsplash 1.png',
       id: 1,
-      linkUrl: 'kids',
+      linkUrl: 'shop/kids',
     },
     {
       title: 'WOMENS',
       imgUrl: '/images/sule-makaroglu-iz7PNf7Daoc-unsplash 1.png',
       id: 2,
-      linkUrl: 'womens',
+      linkUrl: 'shop/womens',
     },
     {
       title: 'MENS',
       imgUrl: '/images/dylan-sauerwein-5oog6pFHD_s-unsplash 1.png',
       id: 3,
-      linkUrl: 'mens',
+      linkUrl: 'shop/mens',
     },
   ];
 
@@ -34,7 +34,6 @@ const CategoryGallery = () => {
                 backgroundImage: `url('${category.imgUrl}')`,
               }}
               className="catImg"
-              onClick={() => history.push(`${match.url}${linkUrl}`)}
             >
               <p className="catImg__overlay">{category.title}</p>
             </div>

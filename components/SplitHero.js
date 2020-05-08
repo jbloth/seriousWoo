@@ -31,10 +31,22 @@ const SplitHero = ({ imgUrl, children }) => {
 
         .hero__text {
           padding: 10rem 6rem;
+          font-size: 6rem;
           display: none;
           background-color: ${colors.lightyellow};
           border-radius: 50%;
           line-height: 1;
+          font-family: ${fonts.text};
+
+          font-weight: normal;
+          color: ${colors.orange};
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 55%;
+          left: -40px;
+          z-index: 100;
         }
 
         .hero__greeting {
@@ -65,7 +77,7 @@ const SplitHero = ({ imgUrl, children }) => {
           .hero {
             width: 100%;
             max-height: 700px;
-            height: 700px;
+            height: 100vw;
             flex-direction: column;
             align-items: center;
           }
@@ -73,26 +85,12 @@ const SplitHero = ({ imgUrl, children }) => {
           .hero__img {
             width: 100%;
             max-height: 700px;
-            height: 700px;
+            height: 100vw;
             position: relative;
-             {
-              /* padding-top: 40rem; */
-            }
           }
 
           .hero__text {
-            font-family: ${fonts.text};
-            font-size: 6rem;
-            font-weight: normal;
-            color: ${colors.orange};
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 60%;
-            left: -10%;
-            z-index: 100;
           }
 
           .hero__text p {
@@ -110,17 +108,27 @@ const SplitHero = ({ imgUrl, children }) => {
         @media only screen and (max-width: ${breakPoints.bp_smallest}) {
           .hero {
             width: 100%;
-            height: 500px;
-          }
-
-          .hero__img {
-            max-height: 500px;
-            height: 500px;
           }
 
           .hero__text {
             font-size: 4rem;
-            top: 55%;
+            padding: 8rem 6rem;
+          }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiny}) {
+          .hero__text {
+            font-size: 3rem;
+            left: -30px;
+          }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          .hero__text {
+            font-size: 2.5rem;
+            padding: 6rem 5rem;
+            line-height: 1.3;
+            left: -20px;
           }
         }
       `}</style>

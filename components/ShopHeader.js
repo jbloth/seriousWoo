@@ -47,7 +47,7 @@ const ShopHeader = ({ selectedCategory }) => {
         {`
           .shopHeader {
             width: 100%;
-            height: 5rem;
+            min-height: 5rem;
             background-color: ${colors.lightpink};
             font-size: 1.8rem;
             font-weight: normal;
@@ -63,11 +63,13 @@ const ShopHeader = ({ selectedCategory }) => {
 
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
           }
 
           .item {
             cursor: pointer;
             color: ${colors.orange};
+            padding: 1rem;
           }
 
           .item--active {

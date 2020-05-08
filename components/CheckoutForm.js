@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import { AppContext } from '../components/context/AppContext';
-import { colors, fonts } from '../styles/theme';
+import { colors, breakPoints } from '../styles/theme';
 import { getFormattedCart, createCheckoutMutationInput } from '../lib/functions';
 import validateAndSanitizeOrder from '../lib/validateAndSanitizeOrder';
 import GET_CART from '../queries/get-cart';
@@ -243,11 +243,39 @@ const CheckoutForm = () => {
 
         .submit-wrap {
           align-self: flex-end;
+          margin: 2rem 0;
         }
 
         .error-msg {
           margin: 1rem 0;
           color: ${colors.orange};
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_large}) {
+          .checkout-form {
+            padding: 2rem 2rem;
+          }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_md}) {
+          .checkout-form {
+            padding: 0;
+          }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_small}) {
+          .checkout-form {
+            flex-direction: column;
+          }
+
+          .billing-adress {
+            width: 100%;
+          }
+
+          .cart-and-payment {
+            width: 100%;
+            margin-top: 4rem;
+          }
         }
       `}</style>
     </>

@@ -68,11 +68,20 @@ export default css.global`
   html {
     /* This defines what 1rem is */
     font-size: 62.5%; /*1 rem = 10px; 10px/16px = 62.5% */
+    overflow-x: hidden;
   }
 
   body {
     box-sizing: border-box;
     color: ${colors.textblue};
+    overflow-x: hidden;
+    position: relative;
+
+    font-family: ${fonts.text};
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    background-color: ${colors.bg};
   }
 
   a {
@@ -82,15 +91,6 @@ export default css.global`
 
   ul {
     list-style: none;
-  }
-
-  body {
-    font-family: ${fonts.text};
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.7;
-    background-color: ${colors.bg};
-    overflow-x: hidden;
   }
 
   h1 {
@@ -118,8 +118,14 @@ export default css.global`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 6rem 6rem;
+    padding: 6rem;
     overflow: hidden;
+  }
+
+  @media only screen and (max-width: ${breakPoints.bp_smallest}) {
+    .section {
+      padding: 4rem;
+    }
   }
 
   .l-wrapper {

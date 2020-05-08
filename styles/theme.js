@@ -28,4 +28,6 @@ export const breakPoints = {
   bp_md: '56.25em', // 900px
   bp_small: '44em', // 700px
   bp_smallest: '34.4em', // 550px
+  bp_tiny: '30em', // 480px
+  bp_tiniest: '23.75em', // 380px
 };

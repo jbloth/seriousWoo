@@ -23,7 +23,7 @@ const CheckoutCartItem = ({ product }) => {
         <div className="price-info">
           <span className="price--single">{price.toFixed(2)}</span>
           <span className="quantity">{`qty: ${qty}`}</span>
-          <span className="price--total">{totalPrice} $</span>
+          <span className="price--total">{totalPrice}</span>
         </div>
       </div>
 
@@ -73,6 +73,20 @@ const CheckoutCartItem = ({ product }) => {
         .price--total {
           font-size: 1.8rem;
           font-weight: bold;
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          .info {
+            padding-left: 1rem;
+          }
+
+          .price-info {
+            font-size: 1.4rem;
+          }
+
+          .price--total {
+            font-size: 1.4rem;
+          }
         }
       `}</style>
     </div>

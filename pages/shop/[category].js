@@ -64,15 +64,12 @@ const Category = ({ products, categoryName }) => {
             align-items: center;
           }
 
+          .sidebar-wrapper {
+            padding: 5rem 0 0rem 0;
+            width: unset;
+          }
           .product-gallery-wrapper {
             padding: 2rem;
-          }
-        }
-
-        @media only screen and (max-width: ${breakPoints.bp_small}) {
-          .sidebar-wrapper {
-            padding: 4rem 0 0rem 0;
-            width: unset;
           }
         }
       `}</style>

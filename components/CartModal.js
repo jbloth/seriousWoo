@@ -6,7 +6,7 @@ import GET_CART from '../queries/get-cart';
 // import UPDATE_CART from '../mutations/update-cart';
 import { AppContext } from '../components/context/AppContext';
 import { getFormattedCart } from '../lib/functions';
-import { fonts, colors } from '../styles/theme';
+import { fonts, colors, breakPoints } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
 import CartItem from './CartItem';
 
@@ -144,6 +144,13 @@ const CartModal = () => {
           background-color: ${colors.bg};
           color: ${colors.darkpink};
           border: 2px solid ${colors.darkpink};
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_smallest}) {
+          .cart-container {
+            width: 100%;
+            min-width: unset;
+          }
         }
       `}</style>
     </div>

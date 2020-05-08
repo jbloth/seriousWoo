@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import Link from 'next/link';
 
 import { AppContext } from '../components/context/AppContext';
-import { colors } from '../styles/theme';
+import { colors, breakPoints } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
 
 const MobileMenu = () => {
@@ -93,6 +93,13 @@ const MobileMenu = () => {
           flex-direction: column;
           align-items: center;
           justify-content: space-between;
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_smallest}) {
+          .mobile-menu-container {
+            width: 100%;
+            min-width: unset;
+          }
         }
       `}</style>
     </div>
