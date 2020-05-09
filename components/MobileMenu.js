@@ -1,12 +1,16 @@
 import { useContext } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import Link from 'next/link';
 
 import { AppContext } from '../components/context/AppContext';
-import { colors, breakPoints } from '../styles/theme';
+import GET_CATEGORY_KEYS from '../queries/get-category-keys';
+import { colors, fonts, breakPoints } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
+import MobileMenuItem from '../components/MobileMenuItem';
 
 const MobileMenu = () => {
-  const { mobMenuOpen, toggleMenuOpen } = useContext(AppContext);
+  const { mobMenuOpen, toggleMenuOpen, toggleSearchOpen } = useContext(AppContext);
+  const { loading, error, data } = useQuery(GET_CATEGORY_KEYS);
 
   return (
     <div className={`mobile-menu-container ${mobMenuOpen ? 'mobile-menu--active ' : ''}`}>
@@ -18,7 +22,7 @@ const MobileMenu = () => {
           <li className="nav-item">
             <Link href="/">
               <a onClick={toggleMenuOpen} className="nav-link">
-                <h1>Home</h1>
+                <h1 className="title">Home</h1>
               </a>
             </Link>
           </li>
@@ -26,25 +30,41 @@ const MobileMenu = () => {
           <li className="nav-item">
             <Link href="/about">
               <a onClick={toggleMenuOpen} className="nav-link">
-                <h1>About</h1>
+                <h1 className="title">About</h1>
               </a>
             </Link>
           </li>
 
           <li className="nav-item">
-            <Link href="/shop/all">
-              <a onClick={toggleMenuOpen} className="nav-link">
-                <h1>Shop</h1>
-              </a>
-            </Link>
+            {loading && <p>...</p>}
+            {!loading && !error && (
+              <MobileMenuItem
+                title="Shop"
+                toggleMenuOpen={toggleMenuOpen}
+                items={data.productCategories.nodes}
+              />
+            )}
           </li>
 
           <li className="nav-item">
             <Link href="/">
               <a onClick={toggleMenuOpen} className="nav-link">
-                <h1>Login</h1>
+                <h1 className="title">Login</h1>
               </a>
             </Link>
+          </li>
+
+          <li className="nav-item">
+            <div
+              onClick={() => {
+                console.log('click');
+                toggleMenuOpen();
+                toggleSearchOpen();
+              }}
+              className="nav-link"
+            >
+              <h1 className="title">Search</h1>
+            </div>
           </li>
         </ul>
       </nav>
@@ -84,15 +104,26 @@ const MobileMenu = () => {
         }
 
         .nav-mobile {
+          width: 80%;
           position: fixed;
           top: 20%;
         }
 
         .nav-list {
+          width: 100%;
           display: flex;
           flex-direction: column;
-          align-items: center;
+          align-items: flex-start;
           justify-content: space-between;
+        }
+
+        .nav-item {
+          width: 100%;
+          border-bottom: 1px solid rgb(${colors.darkpink});
+        }
+
+        .title {
+          font-family: ${fonts.text};
         }
 
         @media only screen and (max-width: ${breakPoints.bp_smallest}) {

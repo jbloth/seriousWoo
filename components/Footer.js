@@ -51,7 +51,7 @@ const Footer = () => {
         </FooterMenu>
 
         <FooterMenu title="Connect" isConnectArea={true}>
-          <ConnectAreaItem title="Suscribe">
+          <ConnectAreaItem title="Subscribe">
             <div className="newsletter-signup">
               <div className="connect-input-wrap">
                 <TextInput extraClass="textInput--red" type="email" placeholder="email" />

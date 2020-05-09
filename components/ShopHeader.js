@@ -1,23 +1,11 @@
 import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
+import GET_CATEGORY_KEYS from '../queries/get-category-keys';
 import { colors, breakPoints } from '../styles/theme';
 
-const CATEGORY_KEYS_QUERY = gql`
-  query {
-    productCategories {
-      nodes {
-        name
-        id
-        slug
-      }
-    }
-  }
-`;
-
 const ShopHeader = ({ selectedCategory }) => {
-  const { loading, error, data } = useQuery(CATEGORY_KEYS_QUERY);
+  const { loading, error, data } = useQuery(GET_CATEGORY_KEYS);
 
   if (loading) return <div className="shopHeader">... </div>;
   if (error) {
