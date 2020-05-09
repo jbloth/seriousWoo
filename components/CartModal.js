@@ -84,6 +84,10 @@ const CartModal = () => {
           transition: transform 0.5s ease-in;
         }
 
+        .cart-container--active {
+          transform: translateX(0);
+        }
+
         .close-icon {
           font-size: 3rem;
           position: absolute;
@@ -91,10 +95,6 @@ const CartModal = () => {
           right: 3rem;
           fill: rgb(${colors.darkpink});
           cursor: pointer;
-        }
-
-        .cart-container--active {
-          transform: translateX(0);
         }
 
         .cart {

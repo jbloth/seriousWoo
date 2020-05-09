@@ -15,6 +15,7 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
     <style jsx>{`
       .group {
         position: relative;
+        width: 100%;
       }
 
       .textInput {
@@ -39,6 +40,25 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
         border: 1px solid rgb(${colors.textred});
       }
 
+      .textInput--large {
+        height: 4rem;
+      }
+
+      .textInput--large ~ .label {
+        top: 6px;
+        left: 8px;
+      }
+
+      .textInput--large:focus ~ .label {
+        top: -20px;
+        font-size: 1.4rem;
+      }
+
+      .textInput--large ~ .label.shrink {
+        top: -18px;
+        font-size: 1.2rem;
+      }
+
       .textInput::placeholder {
         color: rgb(${colors.darkpink});
       }
@@ -51,7 +71,7 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
       .label {
         color: rgb(${colors.darkpink});
         position: absolute;
-        left: 5px;
+        left: 6px;
         top: 2px;
         pointer-events: none;
         transition: 300ms ease all;

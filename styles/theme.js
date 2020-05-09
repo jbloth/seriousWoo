@@ -22,6 +22,7 @@ export const colors = {
   lightpink: '255, 202, 190',
   darkpink: '228, 135, 135',
   yellow: '239, 223, 160',
+  lightyellow: '245,245,220',
   orange: '223, 103, 56',
   violet: '213, 182, 228',
   lightviolet: '238, 217, 250',

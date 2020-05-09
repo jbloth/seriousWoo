@@ -4,15 +4,16 @@ import { useRouter } from 'next/router';
 import { colors, breakPoints } from '../styles/theme';
 import AddToCartButton from './AddToCartButton';
 
-const ProductPrev = ({ product }) => {
+const ProductPrev = ({ product, category, className }) => {
   const router = useRouter();
-  const categorySlug = router.query.category;
+  const categorySlug = category ? category : router.query.category;
+  const extraClass = className ? className : '';
 
   const { name, price, image, slug, productId } = product;
   const imgUrl = image.sourceUrl;
 
   return (
-    <div className="productPrev">
+    <div className={`productPrev ${extraClass}`}>
       <Link as={`/shop/${categorySlug}/${slug}-${productId}`} href={'/[shop]/[category]/[product]'}>
         <a>
           <div className="product-img" style={{ backgroundImage: `url('${imgUrl}')` }}></div>
@@ -25,11 +26,17 @@ const ProductPrev = ({ product }) => {
       <style jsx>
         {`
           .productPrev {
+            /* border: 4px solid transparent; */
             margin: 1rem;
+          }
+
+          .productPrev--borders {
+            border: 1px solid rgb(${colors.orange});
           }
 
           .productPrev:hover {
             cursor: pointer;
+            background-color: rgb(${colors.lightyellow});
           }
 
           .product-img {
@@ -43,11 +50,14 @@ const ProductPrev = ({ product }) => {
           }
 
           .product-img:hover {
-            border: 4px solid rgb(${colors.orange});
           }
 
           .product-img:hover .button-wrapper {
             display: flex;
+          }
+
+          .productPrev--borders .product-img {
+            border-bottom: 1px solid rgb(${colors.orange});
           }
 
           .button-wrapper {
@@ -79,10 +89,24 @@ const ProductPrev = ({ product }) => {
             }
           }
 
+          @media only screen and (max-width: ${breakPoints.bp_smallest}) {
+            .product-img {
+              height: 36rem;
+              width: 30rem;
+            }
+          }
+
           @media only screen and (max-width: ${breakPoints.bp_tiny}) {
             .product-img {
               height: 30rem;
               width: 26rem;
+            }
+          }
+
+          @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+            .product-img {
+              height: 26rem;
+              width: 22rem;
             }
           }
         `}

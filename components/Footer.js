@@ -147,6 +147,10 @@ const Footer = () => {
           .connect-icon {
             margin: 0 40px 0 0;
           }
+
+          .newsletter-signup {
+            width: 100%;
+          }
         }
 
         @media only screen and (max-width: ${breakPoints.bp_smallest}) {
@@ -157,7 +161,6 @@ const Footer = () => {
 
         @media only screen and (max-width: ${breakPoints.bp_tiny}) {
           .newsletter-signup {
-            width: 100%;
             flex-direction: column;
             line-height: 3;
           }

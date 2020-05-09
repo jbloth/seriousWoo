@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { AppContext } from '../components/context/AppContext';
 import { colors, fonts, breakPoints } from '../styles/theme';
 import CartModal from './CartModal';
+import SearchModal from './SearchModal';
 import MobileMenu from './MobileMenu';
 import Logo from '../assets/seriousLogo_08.svg';
 import CartIcon from '../assets/shopping-cart.svg';
@@ -25,8 +26,7 @@ Router.onRouteChangeError = () => {
 
 const Header = () => {
   // Get toggle-cart-open mutation and number of cart items (for display in cart icon)
-  const { toggleCartOpen, cart } = useContext(AppContext);
-  const { toggleMenuOpen } = useContext(AppContext);
+  const { toggleCartOpen, cart, toggleMenuOpen, toggleSearchOpen } = useContext(AppContext);
   const itemCount = cart !== null && Object.keys(cart).length ? cart.totalProductsCount : 0;
 
   return (
@@ -108,11 +108,9 @@ const Header = () => {
               {/* )} */}
             </li>
             <li className="nav-item">
-              <Link href="/">
-                <a className="nav-link">
-                  <SearchIcon />
-                </a>
-              </Link>
+              <div className="nav-link searchIcon-wrapper" onClick={toggleSearchOpen}>
+                <SearchIcon />
+              </div>
             </li>
             <li className="nav-item">
               <div className="nav-link cartIcon-wrapper" onClick={toggleCartOpen}>
@@ -130,8 +128,9 @@ const Header = () => {
           </div>
         </div>
 
-        <CartModal />
         <MobileMenu />
+        <SearchModal />
+        <CartModal />
       </div>
 
       <style jsx>{`
@@ -217,6 +216,13 @@ const Header = () => {
 
         .nav-dropdown-link &:hover {
           color: rgb(${colors.lightBlue});
+        }
+
+        // ---- Search Icon ---- //
+        .searchIcon-wrapper {
+          width: 2.5rem;
+          height: auto;
+          padding-top: 0.2rem;
         }
 
         // ---- Cart Icon ---- //

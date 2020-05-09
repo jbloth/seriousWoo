@@ -126,6 +126,13 @@ export const AppProvider = (props) => {
     setMobMenuOpen(!mobMenuOpen);
   };
 
+  // ------- Search Modal Open State ------- //
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  const toggleSearchOpen = () => {
+    setSearchOpen(!searchOpen);
+  };
+
   // ------- Selected Tag ------- //
   const [selectedTag, setSelectedTag] = useState(null);
 
@@ -138,6 +145,8 @@ export const AppProvider = (props) => {
         setSelectedTag,
         mobMenuOpen,
         toggleMenuOpen,
+        searchOpen,
+        toggleSearchOpen,
         cartOpen,
         toggleCartOpen,
       }}
