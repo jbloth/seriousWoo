@@ -25,6 +25,7 @@ export const colors = {
   lightyellow: '245,245,220',
   orange: '223, 103, 56',
   violet: '213, 182, 228',
+  darkviolet: '172, 130, 194',
   lightviolet: '238, 217, 250',
   lightblue: '135,195,228',
   vibrantblue: '90, 174, 220',

@@ -150,7 +150,7 @@ const CheckoutForm = () => {
   return (
     <>
       {cart !== null && cart.products.length > 0 ? (
-        <form className="checkout-form" onSubmit={handleSubmit}>
+        <form className="checkout-form" method="post" onSubmit={handleSubmit}>
           <div className="billing-adress">
             <h2>Billing Adress</h2>
             <CheckoutFormInputs inputs={billingAddress} handleChange={handleChange_billing} />

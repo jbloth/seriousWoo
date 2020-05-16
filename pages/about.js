@@ -47,7 +47,7 @@ const Contact = () => {
           width: 60vw;
           max-width: 570px;
           z-index: -3;
-          fill: rgba(${colors.yellow}, 0.6);
+          fill: rgb(${colors.lightyellow});
         }
 
         :global(.bg-shape-03) {
@@ -55,7 +55,7 @@ const Contact = () => {
           top: -22%;
           width: 70%;
           z-index: -3;
-          fill: rgba(${colors.yellow}, 0.6);
+          fill: rgb(${colors.lightyellow});
         }
 
         .img-frame {

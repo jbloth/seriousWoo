@@ -64,7 +64,7 @@ const ContactForm = () => {
         </div>
       ) : (
         <>
-          <form method="POSR" onSubmit={submitForm}>
+          <form method="post" onSubmit={submitForm}>
             <div className="input-row">
               <div className="textInput-wrap margin-right">
                 <TextInput

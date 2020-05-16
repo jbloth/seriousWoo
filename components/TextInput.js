@@ -21,7 +21,7 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
       .textInput {
         font-family: ${fonts.text};
         font-size: 1.6rem;
-        color: rgb(${colors.textred});
+        color: rgb(${colors.textblue});
         height: 3rem;
         width: 100%;
         background-color: rgb(${colors.bg});

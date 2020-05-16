@@ -13,7 +13,7 @@ const FooterMenu = ({ title, children, isConnectArea }) => {
     <nav className="footer-menu">
       <div className="title-container collapseTrigger" onClick={toggleCollapse}>
         <div className="arrow-wrapper" aria-hidden="true">
-          <ArrowIcon color={colors.textred} width={20} open={open} />
+          <ArrowIcon color={colors.orange} width={20} open={open} />
         </div>
         <h3 className="footer-title">{title}</h3>
       </div>
@@ -35,6 +35,7 @@ const FooterMenu = ({ title, children, isConnectArea }) => {
           font-family: ${fonts.heading};
           font-weight: normal;
           font-size: 2.6rem;
+          color: rgb(${colors.orange});
         }
 
         .footer-items {
@@ -60,7 +61,7 @@ const FooterMenu = ({ title, children, isConnectArea }) => {
 
           .title-container {
             width: 100%;
-            border-bottom: 1px solid rgb(${colors.textred});
+            border-bottom: 1px solid rgb(${colors.orange});
             display: flex;
           }
 

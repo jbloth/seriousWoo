@@ -2,6 +2,8 @@ import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { useContext } from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
 import { AppContext } from '../components/context/AppContext';
 import { colors, fonts, breakPoints } from '../styles/theme';
@@ -24,9 +26,18 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
+const GET_TOKEN = gql`
+  {
+    token @client
+  }
+`;
+
 const Header = () => {
   // Get toggle-cart-open mutation and number of cart items (for display in cart icon)
   const { toggleCartOpen, cart, toggleMenuOpen, toggleSearchOpen } = useContext(AppContext);
+  const { data } = useQuery(GET_TOKEN);
+  const token = data && data.token ? data.token : null;
+
   const itemCount = cart !== null && Object.keys(cart).length ? cart.totalProductsCount : 0;
 
   return (
@@ -86,26 +97,27 @@ const Header = () => {
         <nav className="nav nav--right">
           <ul className="nav__list nav__list--right">
             <li className="nav-item dropdown">
-              {/* {currentUser ? (
-              <div className="nav-link"
-            onClick={() => auth.signOut()}>
-                Logout
-              </div>
-            ) : ( */}
-              <div>
-                <Link href="/login">
-                  <a className="nav-link">Login</a>
-                </Link>
-                <div className="nav__dropdown-content dropdown-content">
-                  <Link href="/login">
-                    <a className="nav-dropdown-link">Login</a>
-                  </Link>
-                  <Link href="/signin">
-                    <a className="nav-dropdown-link">Create Account</a>
+              {token ? (
+                <div className="nav-link">
+                  <Link href="/myAccount">
+                    <a className="nav-link">My Account</a>
                   </Link>
                 </div>
-              </div>
-              {/* )} */}
+              ) : (
+                <div>
+                  <Link href="/login">
+                    <a className="nav-link">Login</a>
+                  </Link>
+                  <div className="nav__dropdown-content dropdown-content">
+                    <Link href="/login">
+                      <a className="nav-dropdown-link">Login</a>
+                    </Link>
+                    <Link href="/createAccount">
+                      <a className="nav-dropdown-link">Create Account</a>
+                    </Link>
+                  </div>
+                </div>
+              )}
             </li>
             <li className="nav-item">
               <div className="nav-link searchIcon-wrapper" onClick={toggleSearchOpen}>

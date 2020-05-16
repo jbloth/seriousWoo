@@ -93,7 +93,7 @@ const Footer = () => {
 
       <style jsx>{`
         .footer {
-          background-color: rgb(${colors.lightviolet});
+          background-color: rgb(${colors.lightyellow});
           padding: 7rem 6rem 1rem 6rem;
           flex-direction: column;
         }
@@ -103,7 +103,7 @@ const Footer = () => {
           display: flex;
           align-items: center;
           justify-content: space-around;
-          color: rgb(${colors.textred});
+          color: rgb(${colors.orange});
         }
 
         .connect-input-wrap {
@@ -116,9 +116,13 @@ const Footer = () => {
           align-self: flex-end;
         }
 
+        a {
+          color: rgb(${colors.orange});
+        }
+
         .connect-icon {
           margin: 0 20px 0 0;
-          fill: rgb(${colors.textred});
+          fill: rgb(${colors.orange});
           display: flex;
           align-items: center;
           font-size: 3rem;
@@ -129,7 +133,7 @@ const Footer = () => {
         }
 
         .copyright {
-          color: rgb(${colors.textred});
+          color: rgb(${colors.orange});
           font-size: 1.2rem;
           margin-top: 3rem;
         }

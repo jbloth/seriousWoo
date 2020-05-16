@@ -116,7 +116,7 @@ const Index = ({ newestProducts }) => {
           width: 60vw;
           z-index: -3;
           max-width: 600px;
-          fill: rgba(${colors.yellow}, 0.6);
+          fill: rgb(${colors.lightyellow});
         }
 
         :global(.bg-shape-02) {
@@ -125,7 +125,7 @@ const Index = ({ newestProducts }) => {
           width: 60vw;
           max-width: 570px;
           z-index: -3;
-          fill: rgba(${colors.yellow}, 0.6);
+          fill: rgb(${colors.lightyellow});
         }
 
         :global(.bg-shape-03) {
@@ -133,7 +133,7 @@ const Index = ({ newestProducts }) => {
           top: -32%;
           width: 80%;
           z-index: -3;
-          fill: rgba(${colors.yellow}, 0.6);
+          fill: rgb(${colors.lightyellow});
         }
 
         @media only screen and (max-width: ${breakPoints.bp_large}) {

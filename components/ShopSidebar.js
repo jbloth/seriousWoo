@@ -41,6 +41,10 @@ const ShopSidebar = ({ productTags }) => {
           color: rgb(${colors.darkpink});
         }
 
+        .selected-tag {
+          color: rgb(${colors.darkpink});
+        }
+
         .arrow-wrapper {
           display: none;
         }

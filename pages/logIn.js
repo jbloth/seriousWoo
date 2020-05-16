@@ -1,14 +1,14 @@
 import { colors } from '../styles/theme';
-import ContactForm from '../components/ContactForm';
+import LoginForm from '../components/LoginForm';
 
-const Contact = () => {
+const Login = () => {
   return (
-    <section className="contact-page section">
-      <h1>Contact</h1>
-      <ContactForm />
+    <section className="login-page section">
+      <h1>Login</h1>
+      <LoginForm />
 
       <style jsx>{`
-        .contact-page {
+        .login-page {
           flex-direction: column;
         }
 
@@ -20,4 +20,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Login;
