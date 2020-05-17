@@ -3,7 +3,9 @@ import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Router from 'next/router';
 
-import { UserContext } from '../components/context/UserContext';
+import Cookies from 'js-cookie';
+import clientConfig from '../clientConfig';
+import { loginUser } from '../lib/auth';
 import { breakPoints } from '../styles/theme';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
@@ -32,15 +34,17 @@ const LOGIN_USER = gql`
   }
 `;
 
-const SET_TOKEN = gql`
-  mutation SetToken($token: String!) {
-    setToken(token: $token) @client
+const LoginForm = ({ authToken }) => {
+  // Get auth token (to decide wether to render link to login or account page)
+  // On server: get token from props (passed down from _app)
+  let token = authToken;
+  // In browser: get token from cookie
+  if (process.browser) {
+    const tokencookie = Cookies.get(clientConfig.authTokenName);
+    token = tokencookie ? tokencookie : null;
   }
-`;
 
-const LoginForm = () => {
-  const { currentUser, loginUser } = useContext(UserContext);
-  if (currentUser) {
+  if (token) {
     Router.push('/myAccount');
   }
 
@@ -51,35 +55,9 @@ const LoginForm = () => {
   const [loginInput, setLoginInput] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // const [setToken, { data: setTokenData }] = useMutation(SET_TOKEN);
-
   // Use login-mutation
   const [login, { data: loginData, loading: loginLoading, error: loginError }] = useMutation(
-    LOGIN_USER,
-    {
-      // onCompleted: async (data) => {
-      //   if (data.login && data.login.user) {
-      //     loginUser(data.login.user);
-      //     console.log('token from login:');
-      //     console.log(data.login.user.jwtAuthToken);
-      //     await setToken({ variables: { token: data.login.user.jwtAuthToken } });
-      //     // Set form field vaues to empty.
-      //     setErrorMessage('');
-      //     setEmail('');
-      //     setPassword('');
-      //     // Send the user to My Account page on successful login.
-      //     Router.push('/myAccount');
-      //   } else {
-      //     setErrorMessage('User not found'); // TODO
-      //   }
-      // },
-      // onError: (error) => {
-      //   if (error) {
-      //     console.log(error);
-      //     setErrorMessage(error.graphQLErrors[0].message);
-      //   }
-      // },
-    }
+    LOGIN_USER
   );
 
   useEffect(() => {
@@ -99,10 +77,6 @@ const LoginForm = () => {
 
         if (ldata.data && ldata.data.login && ldata.data.login.user) {
           loginUser(ldata.data.login.user);
-
-          // const tdata = await setToken({
-          //   variables: { token: ldata.data.login.user.jwtAuthToken },
-          // });
 
           // Set form field vaues to empty.
           setErrorMessage('');

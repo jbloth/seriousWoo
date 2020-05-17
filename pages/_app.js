@@ -6,7 +6,6 @@ import cookies from 'next-cookies';
 // stores token-cookie names
 import clientConfig from '../clientConfig';
 import { AppProvider } from '../components/context/AppContext'; // state (using context)
-import { UserProvider } from '../components/context/UserContext';
 import Layout from '../components/Layout'; // Header and Footer
 import withApollo from '../lib/withApollo_wb'; // Apollo HOC
 
@@ -34,11 +33,9 @@ class MyApp extends App {
     return (
       <ApolloProvider client={apollo}>
         <AppProvider>
-          <UserProvider>
-            <Layout {...pageProps}>
-              <Component {...pageProps} />
-            </Layout>
-          </UserProvider>
+          <Layout {...pageProps}>
+            <Component {...pageProps} />
+          </Layout>
         </AppProvider>
       </ApolloProvider>
     );

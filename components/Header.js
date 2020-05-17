@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { useContext } from 'react';
-import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Cookies from 'js-cookie';
 

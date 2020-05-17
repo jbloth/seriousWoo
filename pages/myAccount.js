@@ -1,31 +1,24 @@
-import { useContext } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
 import cookies from 'next-cookies';
-import gql from 'graphql-tag';
 
-import { UserContext } from '../components/context/UserContext';
+import { logoutUser } from '../lib/auth';
 import GET_USER_DATA from '../queries/get-user-data';
 import { fetchNewAccessToken } from '../lib/auth';
 import clientConfig from '../clientConfig';
 import Button from '../components/Button';
 
-// const LOGOUT = gql`
-//   mutation Logout {
-//     logout @client
-//   }
-// `;
-
 const myAccount = ({ id, token }) => {
-  const { logoutUser } = useContext(UserContext);
-
   // query user data
   const { loading, error, data } = useQuery(GET_USER_DATA, {
     variables: { id },
+    context: {
+      headers: {
+        authorization: token ? `Bearer ${token}` : '',
+      },
+    },
   });
-
-  // const [logout, { data: logoutData }] = useMutation(LOGOUT);
 
   return (
     <div className="account-page section">
@@ -61,7 +54,6 @@ const myAccount = ({ id, token }) => {
       <Button
         onClick={() => {
           logoutUser();
-          /* logout(); */
           Router.push('/login');
         }}
       >
