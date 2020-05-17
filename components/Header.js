@@ -4,9 +4,11 @@ import NProgress from 'nprogress';
 import { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import Cookies from 'js-cookie';
 
 import { AppContext } from '../components/context/AppContext';
 import { colors, fonts, breakPoints } from '../styles/theme';
+import clientConfig from '../clientConfig';
 import CartModal from './CartModal';
 import SearchModal from './SearchModal';
 import MobileMenu from './MobileMenu';
@@ -32,11 +34,18 @@ const GET_TOKEN = gql`
   }
 `;
 
-const Header = () => {
+const Header = ({ authToken }) => {
   // Get toggle-cart-open mutation and number of cart items (for display in cart icon)
   const { toggleCartOpen, cart, toggleMenuOpen, toggleSearchOpen } = useContext(AppContext);
-  const { data } = useQuery(GET_TOKEN);
-  const token = data && data.token ? data.token : null;
+
+  // Get auth token (to decide wether to render link to login or account page)
+  // On server: get token from props (passed down from _app)
+  let token = authToken;
+  // In browser: get token from cookie
+  if (process.browser) {
+    const tokencookie = Cookies.get(clientConfig.authTokenName);
+    token = tokencookie ? tokencookie : null;
+  }
 
   const itemCount = cart !== null && Object.keys(cart).length ? cart.totalProductsCount : 0;
 

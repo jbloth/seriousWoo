@@ -11,27 +11,21 @@ import { fetchNewAccessToken } from '../lib/auth';
 import clientConfig from '../clientConfig';
 import Button from '../components/Button';
 
-const LOGOUT = gql`
-  mutation Logout {
-    logout @client
-  }
-`;
+// const LOGOUT = gql`
+//   mutation Logout {
+//     logout @client
+//   }
+// `;
 
-const myAccount = ({ id, token, refreshToken }) => {
+const myAccount = ({ id, token }) => {
   const { logoutUser } = useContext(UserContext);
-  Cookies.set(clientConfig.authTokenName, token);
 
   // query user data
   const { loading, error, data } = useQuery(GET_USER_DATA, {
     variables: { id },
-    context: {
-      headers: {
-        authorization: token ? `Bearer ${token}` : '',
-      },
-    },
   });
 
-  const [logout, { data: logoutData }] = useMutation(LOGOUT);
+  // const [logout, { data: logoutData }] = useMutation(LOGOUT);
 
   return (
     <div className="account-page section">
@@ -67,7 +61,7 @@ const myAccount = ({ id, token, refreshToken }) => {
       <Button
         onClick={() => {
           logoutUser();
-          logout();
+          /* logout(); */
           Router.push('/login');
         }}
       >
@@ -92,21 +86,28 @@ myAccount.getInitialProps = async (ctx) => {
   } = cookies(ctx);
 
   const id = userId ? userId : null;
+  token = token ? token : null;
 
   // Refresh auth token if it is expired.
   if (token && refreshToken) {
     token = await fetchNewAccessToken(refreshToken, token);
+    // Seems to work on inital page render. Not sure why.
+    Cookies.set(clientConfig.authTokenName, token);
   }
 
   // Redirect to login page id there is no auth token
   if (ctx.req && !token) {
+    console.log('server redirect');
+
     ctx.res.writeHead(302, { Location: '/login' });
     ctx.res.end();
-    return {};
+    return { token: null };
   }
 
   if (!token) {
+    console.log('client redirect');
     Router.push('/login');
+    return { token: null };
   }
 
   return { id, token, refreshToken };

@@ -8,7 +8,7 @@ const Layout = (props) => {
   return (
     <div className="site-container">
       <Meta />
-      <Header />
+      <Header authToken={props.authToken} />
       {props.children}
       <Footer />
       <style jsx global>

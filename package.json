@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "next",
+    "dev": "NODE_OPTIONS='--inspect' next",
     "build": "npm run build-fragment && next build",
     "start": "next start",
     "build-fragment": "node schemaQuery.js"

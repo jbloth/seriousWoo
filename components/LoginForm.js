@@ -51,7 +51,7 @@ const LoginForm = () => {
   const [loginInput, setLoginInput] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const [setToken, { data: setTokenData }] = useMutation(SET_TOKEN);
+  // const [setToken, { data: setTokenData }] = useMutation(SET_TOKEN);
 
   // Use login-mutation
   const [login, { data: loginData, loading: loginLoading, error: loginError }] = useMutation(
@@ -100,9 +100,9 @@ const LoginForm = () => {
         if (ldata.data && ldata.data.login && ldata.data.login.user) {
           loginUser(ldata.data.login.user);
 
-          const tdata = await setToken({
-            variables: { token: ldata.data.login.user.jwtAuthToken },
-          });
+          // const tdata = await setToken({
+          //   variables: { token: ldata.data.login.user.jwtAuthToken },
+          // });
 
           // Set form field vaues to empty.
           setErrorMessage('');
