@@ -2,8 +2,9 @@ import { useState, useEffect, useContext } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Router from 'next/router';
-
 import Cookies from 'js-cookie';
+
+import validateAndSanitizeLoginInput from '../lib/validateAndSanitizeLoginInput';
 import clientConfig from '../clientConfig';
 import { loginUser } from '../lib/auth';
 import { breakPoints } from '../styles/theme';
@@ -47,6 +48,19 @@ const LoginForm = ({ authToken }) => {
   if (token) {
     Router.push('/myAccount');
   }
+
+  const initialState = {
+    email: '',
+    password: '',
+    errors: null,
+    mainError: null,
+  };
+  const [formData, setFormData] = useState(initialState);
+
+  const handleChange = (e) => {
+    const newState = { ...formData, [event.target.name]: event.target.value };
+    setFormData(newState);
+  };
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -95,8 +109,20 @@ const LoginForm = ({ authToken }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // TODO: validate and sanitize
-    setLoginInput({ clientMutationId: 'uniqueId', username: email, password });
+
+    // validate and sanitize
+    const validatededInput = validateAndSanitizeLoginInput(formData);
+    if (!validatededInput.isValid) {
+      setFormData({ ...formData, errors: validatededInput.errors });
+      return;
+    }
+
+    // call mutation
+    setLoginInput({
+      clientMutationId: 'uniqueId',
+      username: validatededInput.sanitizedData.email,
+      password: validatededInput.sanitizedData.password,
+    });
   };
 
   return (
@@ -108,8 +134,9 @@ const LoginForm = ({ authToken }) => {
             type="text"
             label="Email or Username"
             required={true}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={(e) => handleChange(e.target.value)}
+            error={formData.errors && formData.errors.email ? formData.errors.email : null}
           />
         </div>
 
@@ -119,8 +146,9 @@ const LoginForm = ({ authToken }) => {
             type="password"
             label="Password"
             required={true}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={(e) => handleChange(e.target.value)}
+            error={formData.errors && formData.errors.password ? formData.errors.password : null}
           />
         </div>
 

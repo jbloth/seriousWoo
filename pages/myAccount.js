@@ -55,6 +55,9 @@ const myAccount = ({ id, token }) => {
                 <span>{user.lastName ? user.lastName : ''}</span>
               </p>
               <p className="row">
+                <span className="row-name">Username: </span> {user.username ? user.username : ''}
+              </p>
+              <p className="row">
                 <span className="row-name">Email: </span> {user.email ? user.email : ''}
               </p>
             </div>
@@ -197,7 +200,7 @@ const myAccount = ({ id, token }) => {
 
         .data-container {
           width: 100%;
-          margin-bottom: 3rem;
+          margin-bottom: 1rem;
         }
 
         h2 {
@@ -217,6 +220,25 @@ const myAccount = ({ id, token }) => {
           display: inline-block;
           width: 10rem;
           color: rgb(${colors.orange});
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiny}) {
+          .tab {
+            padding: 1rem 1rem;
+          }
+
+          .addresses-container {
+            flex-direction: column;
+          }
+
+          .address-block {
+            width: 100%;
+            padding-bottom: 2rem;
+            font-size: 1.4rem;
+          }
+
+          .row {
+          }
         }
       `}</style>
     </div>

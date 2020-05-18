@@ -33,7 +33,6 @@ const ContactForm = () => {
     // Validate and sanitize input
     const validatededInput = validateAndSanitizeContactFormInput(formData);
     if (!validatededInput.isValid) {
-      console.log(validatededInput.errors);
       setFormData({ ...formData, errors: validatededInput.errors });
       return;
     }

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Router from 'next/router';
+import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import { useContext } from 'react';
 import gql from 'graphql-tag';
@@ -7,6 +8,7 @@ import Cookies from 'js-cookie';
 
 import { AppContext } from '../components/context/AppContext';
 import { colors, fonts, breakPoints } from '../styles/theme';
+import { logoutUser } from '../lib/auth';
 import clientConfig from '../clientConfig';
 import CartModal from './CartModal';
 import SearchModal from './SearchModal';
@@ -14,6 +16,7 @@ import MobileMenu from './MobileMenu';
 import Logo from '../assets/seriousLogo_08.svg';
 import CartIcon from '../assets/shopping-cart.svg';
 import SearchIcon from '../assets/forschung.svg';
+import AccountIcon from '../assets/account.svg';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -34,6 +37,8 @@ const GET_TOKEN = gql`
 `;
 
 const Header = ({ authToken }) => {
+  const router = useRouter();
+
   // Get toggle-cart-open mutation and number of cart items (for display in cart icon)
   const { toggleCartOpen, cart, toggleMenuOpen, toggleSearchOpen } = useContext(AppContext);
 
@@ -106,10 +111,30 @@ const Header = ({ authToken }) => {
           <ul className="nav__list nav__list--right">
             <li className="nav-item dropdown">
               {token ? (
-                <div className="nav-link">
+                <div>
                   <Link href="/myAccount">
-                    <a className="nav-link">My Account</a>
+                    <a className="nav-link">
+                      <div className="account-icon-wrapper">
+                        <AccountIcon />
+                      </div>
+                    </a>
                   </Link>
+                  <div className="nav__dropdown-content dropdown-content">
+                    <Link href="/myAccount">
+                      <a className="nav-dropdown-link">My Account</a>
+                    </Link>
+                    <div
+                      className="nav-dropdown-link"
+                      onClick={() => {
+                        logoutUser();
+                        if (router.pathname === '/myAccount') {
+                          Router.push('/login');
+                        }
+                      }}
+                    >
+                      Logout
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <div>
@@ -232,6 +257,7 @@ const Header = ({ authToken }) => {
         .nav-dropdown-link {
           color: rgb(${colors.orange});
           font-family: ${fonts.text};
+          cursor: pointer;
         }
 
         .nav-dropdown-link &:hover {
@@ -241,6 +267,13 @@ const Header = ({ authToken }) => {
         // ---- Search Icon ---- //
         .searchIcon-wrapper {
           width: 2.5rem;
+          height: auto;
+          padding-top: 0.2rem;
+        }
+
+        // ---- Account Icon ---- //
+        .account-icon-wrapper {
+          width: 2.8rem;
           height: auto;
           padding-top: 0.2rem;
         }

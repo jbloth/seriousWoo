@@ -8,6 +8,7 @@ const GET_USER_DATA = gql`
       name
       firstName
       lastName
+      username
       email
     }
     customer(id: $id) {

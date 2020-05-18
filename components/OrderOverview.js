@@ -4,6 +4,10 @@ import ArrowIcon from './ArrowIcon';
 
 const OrderOverview = ({ order }) => {
   const [open, setOpen] = useState(false);
+  const toggleCollapse = () => {
+    setOpen(!open);
+  };
+
   let date = order.date;
   if (date) {
     date = date.split('T')[0];
@@ -15,19 +19,21 @@ const OrderOverview = ({ order }) => {
 
   return (
     <div className="order-container">
-      <div className="order-heading">
-        <div className="order-heading-item">
-          <span className="row-name">Order Nr: </span>
-          {order.orderNumber}
+      <div className="order-heading" onClick={toggleCollapse}>
+        <div className="order-heading-info">
+          <div className="order-heading-item">
+            <span className="row-name">Order Nr: </span>
+            {order.orderNumber}
+          </div>
+          <div className="order-heading-item">{date}</div>
+          <div className="order-heading-item">{order.total}</div>
         </div>
-        <div className="order-heading-item">{date}</div>
-        <div className="order-heading-item">{order.total}</div>
         <div className="arrow-wrapper">
           <ArrowIcon color={colors.darkpink} width={24} open={open} />
         </div>
       </div>
 
-      <div className="order-details">
+      <div className={`order-details ${open ? 'order-details--active' : ''}`}>
         <div className="status info-section">
           <div className="order-detail">Status: {order.status}</div>
           <div className="order-detail">Payment: {order.paymentMethodTitle}</div>
@@ -74,19 +80,18 @@ const OrderOverview = ({ order }) => {
             <h4 className="address-title">Billing Address</h4>
             {billing && (
               <div className="address-data">
-                <p className="address-row">
+                <p className="address-detail">
                   <span>{billing.firstName ? billing.firstName + ' ' : ''}</span>
                   <span>{billing.lastName ? billing.lastName : ''}</span>
                 </p>
-                {billing.address1 && <p className="row">{billing.address1}</p>}
-                {billing.address2 && <p className="row">{billing.address2}</p>}
-                {billing.postcode && <p className="row">{billing.postcode}</p>}
-                {billing.city && <p className="row">{billing.city}</p>}
-                {billing.state && <p className="row">{billing.state}</p>}
-                {billing.country && <p className="row">{billing.country}</p>}
-                <br />
-                {billing.email && <p className="row">{billing.email}</p>}
-                {billing.phone && <p className="row">{billing.phone}</p>}
+                {billing.address1 && <p className="address-detail">{billing.address1}</p>}
+                {billing.address2 && <p className="address-detail">{billing.address2}</p>}
+                {billing.postcode && <p className="address-detail">{billing.postcode}</p>}
+                {billing.city && <p className="address-detail">{billing.city}</p>}
+                {billing.state && <p className="address-detail">{billing.state}</p>}
+                {billing.country && <p className="address-detail">{billing.country}</p>}
+                {billing.email && <p className="address-detail">{billing.email}</p>}
+                {billing.phone && <p className="address-detail">{billing.phone}</p>}
               </div>
             )}
           </div>
@@ -95,19 +100,18 @@ const OrderOverview = ({ order }) => {
             <h4 className="address-title">Shipping Address</h4>
             {shipping && (
               <div className="address-data">
-                <p className="address-row">
+                <p className="address-detail">
                   <span>{shipping.firstName ? shipping.firstName + ' ' : ''}</span>
                   <span>{shipping.lastName ? shipping.lastName : ''}</span>
                 </p>
-                {shipping.address1 && <p className="row">{shipping.address1}</p>}
-                {shipping.address2 && <p className="row">{shipping.address2}</p>}
-                {shipping.postcode && <p className="row">{shipping.postcode}</p>}
-                {shipping.city && <p className="row">{shipping.city}</p>}
-                {shipping.state && <p className="row">{shipping.state}</p>}
-                {shipping.country && <p className="row">{shipping.country}</p>}
-                <br />
-                {shipping.email && <p className="row">{shipping.email}</p>}
-                {shipping.phone && <p className="row">{shipping.phone}</p>}
+                {shipping.address1 && <p className="address-detail">{shipping.address1}</p>}
+                {shipping.address2 && <p className="address-detail">{shipping.address2}</p>}
+                {shipping.postcode && <p className="address-detail">{shipping.postcode}</p>}
+                {shipping.city && <p className="address-detail">{shipping.city}</p>}
+                {shipping.state && <p className="address-detail">{shipping.state}</p>}
+                {shipping.country && <p className="address-detail">{shipping.country}</p>}
+                {shipping.email && <p className="address-detail">{shipping.email}</p>}
+                {shipping.phone && <p className="address-detail">{shipping.phone}</p>}
               </div>
             )}
           </div>
@@ -118,6 +122,7 @@ const OrderOverview = ({ order }) => {
         th,
         td {
           text-align: start;
+          padding-right: 1rem;
         }
 
         .order-container {
@@ -127,20 +132,42 @@ const OrderOverview = ({ order }) => {
         .order-heading {
           width: 100%;
           display: flex;
+          align-items: center;
           justify-content: space-between;
           padding: 6px 0;
           border-bottom: 2px solid rgb(${colors.violet});
           font-weight: bold;
           color: rgb(${colors.orange});
+          cursor: pointer;
+        }
+
+        .order-heading-info {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          margin-right: 1rem;
         }
 
         .order-heading-item {
+          padding-right: 1rem;
+        }
+
+        .order-details {
+          display: none;
+        }
+
+        .order-details--active {
+          display: block;
         }
 
         .info-section {
           font-size: 1.4rem;
           padding: 1rem 0;
           border-bottom: 1px solid rgb(${colors.violet});
+        }
+
+        .info-section:last-of-type {
+          border-bottom: none;
         }
 
         .section-title {
@@ -158,11 +185,12 @@ const OrderOverview = ({ order }) => {
         }
 
         .product-detail {
-          width: 25%;
+          width: 20%;
           font-size: 1.4rem;
         }
 
         .product-name {
+          width: 40%;
           font-weight: bold;
         }
 
@@ -172,6 +200,49 @@ const OrderOverview = ({ order }) => {
 
         .address-container {
           width: 50%;
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiny}) {
+          .order-heading-item {
+            font-size: 1.4rem;
+          }
+
+          .order-heading-item:last-of-type {
+            border-right: none;
+          }
+
+          .section-title {
+            font-size: 1.4rem;
+          }
+
+          .order-detail,
+          .address-detail,
+          .product-detail {
+            font-size: 1.2rem;
+          }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          .order-heading-info {
+            flex-wrap: wrap;
+          }
+
+          th {
+            font-size: 1.2rem;
+          }
+
+          .address-section {
+            flex-direction: column;
+          }
+
+          .address-container {
+            width: 100%;
+            padding-bottom: 2rem;
+          }
+
+          .address-container:last-of-type {
+            padding-bottom: 0;
+          }
         }
       `}</style>
     </div>

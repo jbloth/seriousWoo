@@ -69,6 +69,12 @@ const Tabs = ({ defaulIdx = 0, children }) => {
           border: 2px solid rgb(${colors.violet});
           padding: 1rem;
         }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          .tab-header {
+            font-size: 1.6rem;
+          }
+        }
       `}</style>
     </div>
   );
