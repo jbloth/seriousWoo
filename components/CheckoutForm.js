@@ -13,22 +13,23 @@ import PaymentSelector from './PaymentSelector';
 import Button from './Button';
 import OrderSuccess from './OrderSuccess';
 
-const CheckoutForm = () => {
-  const initialBilling = {
-    firstName: 'Trudi',
-    lastName: 'Flaushball',
-    country: 'DE',
-    address1: 'Liebigstraße 3',
+const CheckoutForm = ({ userData }) => {
+  // Default form contents
+  let initialBilling = {
+    firstName: '',
+    lastName: '',
+    country: '',
+    address1: '',
     address2: '',
-    city: 'Köln',
-    postcode: '50899',
-    phone: '1234678',
-    email: 'trudi@flausch.com',
+    city: '',
+    postcode: '',
+    phone: '',
+    email: '',
     orderNotes: '',
     errors: null,
   };
 
-  const initialShipping = {
+  let initialShipping = {
     firstName: '',
     lastName: '',
     country: '',
@@ -48,11 +49,48 @@ const CheckoutForm = () => {
     errors: null,
   };
 
+  // If a user is logged in, the checkout-page should have passed down
+  // user data to pre-populate the checkout form
+  if (userData && userData.customer && userData.customer.billing) {
+    const billing = userData.customer.billing;
+    initialBilling = {
+      firstName: billing.firstName ? billing.firstName : '',
+      lastName: billing.lastName ? billing.lastName : '',
+      country: billing.country ? billing.country : '',
+      address1: billing.address1 ? billing.address1 : '',
+      address2: billing.address2 ? billing.address2 : '',
+      city: billing.city ? billing.city : '',
+      postcode: billing.postcode ? billing.postcode : '',
+      phone: billing.phone ? billing.phone : '',
+      email: billing.email ? billing.email : '',
+      orderNotes: billing.orderNotes ? billing.orderNotes : '',
+      errors: null,
+    };
+  }
+
+  if (userData && userData.customer && userData.customer.shipping) {
+    const shipping = userData.customer.shipping;
+    initialShipping = {
+      firstName: shipping.firstName ? shipping.firstName : '',
+      lastName: shipping.lastName ? shipping.lastName : '',
+      country: shipping.country ? shipping.country : '',
+      address1: shipping.address1 ? shipping.address1 : '',
+      address2: shipping.address2 ? shipping.address2 : '',
+      city: shipping.city ? shipping.city : '',
+      postcode: shipping.postcode ? shipping.postcode : '',
+      phone: shipping.phone ? shipping.phone : '',
+      email: shipping.email ? shipping.email : '',
+      orderNotes: shipping.orderNotes ? shipping.orderNotes : '',
+      errors: null,
+    };
+  }
+
   const { cart, setCart } = useContext(AppContext);
   const [billingAddress, setBillingAddress] = useState(initialBilling);
   const [shippingAddress, setShippingAddress] = useState(initialShipping);
   const [orderSettings, setOrderSettings] = useState(initialOrderSettings);
 
+  // Use a different onChange for billing, shipping and other settings
   const handleChange_billing = (e) => {
     const newState = { ...billingAddress, [event.target.name]: event.target.value };
     setBillingAddress(newState);
@@ -72,6 +110,7 @@ const CheckoutForm = () => {
   const [orderData, setOrderData] = useState(null);
   const [requestError, setRequestError] = useState(null);
 
+  // The checkout mutation will be invoked once orderData changes
   useEffect(() => {
     if (null !== orderData) {
       // Call the checkout mutation when the value for orderData changes/updates.
@@ -114,6 +153,16 @@ const CheckoutForm = () => {
   const handleSubmit = (e) => {
     event.preventDefault();
 
+    // Check if a payment method has been selected
+    let orderDataValid = true;
+    if (!orderSettings.paymentMethod) {
+      orderDataValid = false;
+      setOrderSettings({
+        ...orderSettings,
+        errors: { paymentMethod: 'Please select a payment method' },
+      });
+    }
+
     // Validate shipping address if it is different from billing address
     let validatededShippingData = null;
     if (orderSettings.shipToDifferentAddress) {
@@ -126,16 +175,19 @@ const CheckoutForm = () => {
 
     // Validate billing address
     let validatededBillingData = validateAndSanitizeOrder(billingAddress);
+
     if (!validatededBillingData.isValid) {
       setBillingAddress({ ...billingAddress, errors: validatededBillingData.errors });
     }
 
     // Return if the billing- or the shipping-address contains invalid data.
     if (
+      !orderDataValid ||
       !validatededBillingData.isValid ||
       (validatededShippingData && !validatededBillingData.isValid)
-    )
+    ) {
       return;
+    }
 
     const checkoutData = createCheckoutMutationInput(
       billingAddress,
@@ -188,6 +240,9 @@ const CheckoutForm = () => {
             <div className="payment-methods">
               <h3>Payment</h3>
               <PaymentSelector input={orderSettings} handleOnChange={handleChange_orderSettings} />
+              {orderSettings.errors && orderSettings.errors.paymentMethod && (
+                <div className="error-msg-payment">{orderSettings.errors.paymentMethod}</div>
+              )}
             </div>
             <div className="submit-wrap">
               {checkoutLoading ? (
@@ -249,6 +304,11 @@ const CheckoutForm = () => {
         .error-msg {
           margin: 1rem 0;
           color: rgb(${colors.orange});
+        }
+
+        .error-msg-payment {
+          color: rgb(${colors.textred});
+          font-size: 1.4rem;
         }
 
         @media only screen and (max-width: ${breakPoints.bp_large}) {

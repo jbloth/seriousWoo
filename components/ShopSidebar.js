@@ -43,6 +43,7 @@ const ShopSidebar = ({ productTags }) => {
 
         .selected-tag {
           color: rgb(${colors.darkpink});
+          margin-bottom: -8px;
         }
 
         .arrow-wrapper {
@@ -70,6 +71,7 @@ const ShopSidebar = ({ productTags }) => {
 
           .arrow-wrapper {
             display: inline;
+            margin-right: 1rem;
           }
 
           .hideOnMobile {

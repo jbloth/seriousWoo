@@ -9,6 +9,8 @@ const ArrowIcon = ({ color, open, width }) => {
 
       <style jsx>{`
         .arrow-icon {
+          display: flex;
+          align-items: center;
           fill: rgb(${color});
         }
 
@@ -17,7 +19,7 @@ const ArrowIcon = ({ color, open, width }) => {
         }
 
         .arrow-open {
-          transform: rotate(90deg) translate(-4px, 6px);
+          transform: rotate(90deg) translate(0, 6px);
         }
       `}</style>
     </div>

@@ -25,6 +25,20 @@ const GET_USER_DATA = gql`
         postcode
         state
         country
+        email
+        phone
+      }
+      shipping {
+        firstName
+        lastName
+        address1
+        address2
+        postcode
+        city
+        state
+        country
+        email
+        phone
       }
       orders {
         nodes {
@@ -66,13 +80,37 @@ const GET_USER_DATA = gql`
           shippingTotal
           status
           subtotal
+          total
           lineItems {
             nodes {
               itemId
-              productId
               quantity
               subtotal
+              total
+              variationId
+              product {
+                id
+                name
+                productId
+                slug
+                ... on VariableProduct {
+                  id
+                  name
+                  price
+                }
+                ... on SimpleProduct {
+                  id
+                  name
+                  price
+                }
+                ... on ExternalProduct {
+                  id
+                  name
+                  price
+                }
+              }
               variation {
+                id
                 name
                 attributes {
                   nodes {
@@ -82,9 +120,6 @@ const GET_USER_DATA = gql`
                     value
                   }
                 }
-                id
-                price
-                variationId
               }
             }
           }

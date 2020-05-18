@@ -29,6 +29,10 @@ const FooterMenu = ({ title, children, isConnectArea }) => {
           display: none;
         }
 
+        .title-container {
+          padding-bottom: 14px;
+        }
+
         .footer-title {
           cursor: pointer;
           display: inline-block;
@@ -36,6 +40,8 @@ const FooterMenu = ({ title, children, isConnectArea }) => {
           font-weight: normal;
           font-size: 2.6rem;
           color: rgb(${colors.orange});
+          margin-bottom: -13px;
+          margin-top: 2px;
         }
 
         .footer-items {
