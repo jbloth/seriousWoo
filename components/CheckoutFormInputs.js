@@ -1,9 +1,28 @@
-import { breakPoints } from '../styles/theme';
+import { colors, breakPoints } from '../styles/theme';
+import { countryCodeToName } from '../lib/functions';
 import TextInput from './TextInput';
 import TextArea from './TextArea';
 import CountrySelector from './CountrySelector';
 
-const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
+// Passive mode allows component to follow another instance of CheckoutFormInputs,
+// handleChange will be ignored and instead of the countrySelector only the name of the
+// country will be rendered.
+const CheckoutFormInputs = ({
+  inputs,
+  handleChange,
+  showNotes = true,
+  texInputExtraClass,
+  dontRequire = false,
+  passiveMode = false,
+}) => {
+  // For the EditAddressModal component we don't want to require any field, so we set the dontRequire
+  // parameter to true. For convience, we invert the valuer here.
+  const require = !dontRequire;
+
+  if (passiveMode) {
+    handleChange = () => {};
+  }
+
   return (
     <div className="form-inputs-container">
       <div className="input-row">
@@ -12,10 +31,10 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
             name="firstName"
             type="text"
             label="First Name"
-            required={true}
+            required={require}
             value={inputs.firstName}
             onChange={handleChange}
-            extraClass={'textInput--bottomOnly'}
+            extraClass={texInputExtraClass ? texInputExtraClass : null}
             error={inputs.errors && inputs.errors.firstName ? inputs.errors.firstName : null}
           />
         </div>
@@ -25,10 +44,10 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
             name="lastName"
             type="text"
             label="Last Name"
-            required={true}
+            required={require}
             value={inputs.lastName}
             onChange={handleChange}
-            extraClass={'textInput--bottomOnly'}
+            extraClass={texInputExtraClass ? texInputExtraClass : null}
             error={inputs.errors && inputs.errors.lastName ? inputs.errors.lastName : null}
           />
         </div>
@@ -39,10 +58,10 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
           name="address1"
           type="text"
           label="Address 1"
-          required={true}
+          required={require}
           value={inputs.address1}
           onChange={handleChange}
-          extraClass={'textInput--bottomOnly'}
+          extraClass={texInputExtraClass ? texInputExtraClass : null}
           error={inputs.errors && inputs.errors.address1 ? inputs.errors.address1 : null}
         />
       </div>
@@ -55,7 +74,7 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
           required={false}
           value={inputs.address2}
           onChange={handleChange}
-          extraClass={'textInput--bottomOnly'}
+          extraClass={texInputExtraClass ? texInputExtraClass : null}
           error={inputs.errors && inputs.errors.address2 ? inputs.errors.address2 : null}
         />
       </div>
@@ -66,10 +85,10 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
             name="postcode"
             type="text"
             label="Post Code"
-            required={true}
+            required={require}
             value={inputs.postcode}
             onChange={handleChange}
-            extraClass={'textInput--bottomOnly'}
+            extraClass={texInputExtraClass ? texInputExtraClass : null}
             error={inputs.errors && inputs.errors.postcode ? inputs.errors.postcode : null}
           />
         </div>
@@ -79,17 +98,27 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
             name="city"
             type="text"
             label="City"
-            required={true}
+            required={require}
             value={inputs.city}
             onChange={handleChange}
-            extraClass={'textInput--bottomOnly'}
+            extraClass={texInputExtraClass ? texInputExtraClass : null}
             error={inputs.errors && inputs.errors.city ? inputs.errors.city : null}
           />
         </div>
       </div>
 
       <div className="countrySelect-wrap">
-        <CountrySelector onSelect={handleChange} label={'Country'} />
+        {passiveMode ? (
+          <div className="country-display">{countryCodeToName(inputs.country)}</div>
+        ) : (
+          <CountrySelector
+            extraClass={texInputExtraClass ? texInputExtraClass : null}
+            value={inputs.country}
+            onSelect={handleChange}
+            label={'Country'}
+            selected={inputs.country}
+          />
+        )}
       </div>
 
       <div className="input-row">
@@ -98,10 +127,10 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
             name="email"
             type="email"
             label="Email"
-            required={true}
+            required={require}
             value={inputs.email}
             onChange={handleChange}
-            extraClass={'textInput--bottomOnly'}
+            extraClass={texInputExtraClass ? texInputExtraClass : null}
             error={inputs.errors && inputs.errors.email ? inputs.errors.email : null}
           />
         </div>
@@ -114,7 +143,7 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
             required={false}
             value={inputs.phone}
             onChange={handleChange}
-            extraClass={'textInput--bottomOnly'}
+            extraClass={texInputExtraClass ? texInputExtraClass : null}
             error={inputs.errors && inputs.errors.phone ? inputs.errors.phone : null}
           />
         </div>
@@ -129,7 +158,7 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
             required={false}
             value={inputs.orderNotes}
             onChange={handleChange}
-            extraClass={'textInput--bottomOnly'}
+            extraClass={texInputExtraClass ? texInputExtraClass : null}
             error={inputs.errors && inputs.errors.orderNotes ? inputs.errors.orderNotes : null}
           />
         </div>
@@ -157,6 +186,10 @@ const CheckoutFormInputs = ({ inputs, handleChange, showNotes = true }) => {
 
         .countrySelect-wrap {
           margin-top: 3rem;
+        }
+
+        .country-display {
+          color: rgb(${colors.mdgray});
         }
 
         @media only screen and (max-width: ${breakPoints.bp_large}) {

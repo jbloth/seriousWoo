@@ -20,7 +20,7 @@ const ContactForm = () => {
   const [receivedMsg, setReceivedMsg] = useState(null);
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (event) => {
     const newState = { ...formData, [event.target.name]: event.target.value };
     setFormData(newState);
   };

@@ -85,6 +85,7 @@ const CartModal = () => {
         }
 
         .cart-container--active {
+          z-index: 101;
           transform: translateX(0);
         }
 

@@ -3,12 +3,20 @@ import { useState } from 'react';
 import { colors, fonts } from '../styles/theme';
 import countryList from '../assets/countryList';
 
-const CountrySelector = ({ onSelect, label, ...otherProps }) => {
-  const [selectedCountry, setSelectedCountry] = useState(countryList[0]);
+const CountrySelector = ({ extraClass, onSelect, label, selected, ...otherProps }) => {
+  let initialSelected = selected
+    ? countryList.find((country) => country.code === selected)
+    : countryList[0];
+
+  if (!Boolean(initialSelected)) {
+    initialSelected = countryList[0];
+  }
+  const [selectedCountry, setSelectedCountry] = useState(initialSelected);
 
   const handleChange = (e) => {
     setSelectedCountry(e.target.value);
-    onSelect(e.target.value);
+    // onSelect(e.target.value);
+    onSelect(e);
   };
 
   return (
@@ -19,13 +27,13 @@ const CountrySelector = ({ onSelect, label, ...otherProps }) => {
         </label>
       ) : null}
       <select
-        className="size-select"
+        className={`${extraClass ? extraClass : ''}`}
         name="country"
-        value={selectedCountry}
+        value={selectedCountry.code}
         onChange={handleChange}
       >
         {countryList.map((country) => (
-          <option key={country.id} value={country.name}>
+          <option key={country.id} value={country.code}>
             {country.name}
           </option>
         ))}
@@ -75,6 +83,10 @@ const CountrySelector = ({ onSelect, label, ...otherProps }) => {
           border: 2px solid rgb(${colors.violet});
           width: 20rem;
           border-radius: 0;
+        }
+
+        .textInput--inactive {
+          color: rgb(${colors.lightgray});
         }
 
         select::-ms-expand {

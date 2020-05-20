@@ -64,6 +64,7 @@ const SearchModal = () => {
 
         .search-container--active {
           transform: translateY(0);
+          z-index: 104;
         }
 
         .close-icon {

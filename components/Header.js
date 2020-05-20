@@ -173,7 +173,7 @@ const Header = ({ authToken }) => {
           </div>
         </div>
 
-        <MobileMenu />
+        <MobileMenu token={token} />
         <SearchModal />
         <CartModal />
       </div>

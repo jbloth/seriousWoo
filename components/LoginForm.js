@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Router from 'next/router';
@@ -57,7 +57,7 @@ const LoginForm = ({ authToken }) => {
   };
   const [formData, setFormData] = useState(initialState);
 
-  const handleChange = (e) => {
+  const handleChange = (event) => {
     const newState = { ...formData, [event.target.name]: event.target.value };
     setFormData(newState);
   };
@@ -135,7 +135,7 @@ const LoginForm = ({ authToken }) => {
             label="Email or Username"
             required={true}
             value={formData.email}
-            onChange={(e) => handleChange(e.target.value)}
+            onChange={handleChange}
             error={formData.errors && formData.errors.email ? formData.errors.email : null}
           />
         </div>
@@ -147,14 +147,14 @@ const LoginForm = ({ authToken }) => {
             label="Password"
             required={true}
             value={formData.password}
-            onChange={(e) => handleChange(e.target.value)}
+            onChange={handleChange}
             error={formData.errors && formData.errors.password ? formData.errors.password : null}
           />
         </div>
 
         <div className="submit-wrap">
           <Button type="submit" extraClass="btn--big" disabled={loginLoading ? 'disabled' : ''}>
-            LOGIN
+            {loginLoading ? 'loading...' : 'LOGIN'}
           </Button>
         </div>
 

@@ -1,18 +1,25 @@
+import { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
 import cookies from 'next-cookies';
 
 import { logoutUser } from '../lib/auth';
-import { colors, fonts, breakPoints } from '../styles/theme';
+import { colors, breakPoints } from '../styles/theme';
 import GET_USER_DATA from '../queries/get-user-data';
+import { countryCodeToName } from '../lib/functions';
 import { fetchNewAccessToken } from '../lib/auth';
 import clientConfig from '../clientConfig';
 import Tabs from '../components/Tabs';
 import Button from '../components/Button';
 import OrderOverview from '../components/OrderOverview';
+import EditUserModal from '../components/EditUserModal';
+import EditAddressModal from '../components/EditAddressModal';
 
 const myAccount = ({ id, token }) => {
+  const [editUserModalActive, setEditUserModalActive] = useState(false);
+  const [editAddressModalActive, setEditAddressModalActive] = useState(true);
+
   // query user data
   const { loading, error, data } = useQuery(GET_USER_DATA, {
     variables: { id },
@@ -60,6 +67,19 @@ const myAccount = ({ id, token }) => {
               <p className="row">
                 <span className="row-name">Email: </span> {user.email ? user.email : ''}
               </p>
+
+              <div className="buttons-container">
+                <div className="button-wrapper">
+                  <Button onClick={() => setEditUserModalActive(true)}>EDIT</Button>
+                </div>
+              </div>
+
+              <EditUserModal
+                id={id}
+                initialData={user}
+                active={editUserModalActive}
+                closeModal={() => setEditUserModalActive(false)}
+              />
             </div>
           ) : (
             <p>No information available</p>
@@ -102,14 +122,29 @@ const myAccount = ({ id, token }) => {
                 )}
                 <p className="row">
                   <span className="row-name">Country: </span>
-                  {billing.country ? billing.country : ''}
+                  {billing.country ? countryCodeToName(billing.country) : ''}
                 </p>
                 <p className="row">
-                  <span className="row-name">Email: </span> {billing.email ? billing.email : ''}
+                  <span className="row-name">Email: </span>
+                  {billing.email ? billing.email : ''}
                 </p>
                 <p className="row">
-                  <span className="row-name">Phone: </span> {billing.phone ? billing.phone : ''}
+                  <span className="row-name">Phone: </span>
+                  {billing.phone ? billing.phone : ''}
                 </p>
+
+                <div className="buttons-container">
+                  <div className="button-wrapper">
+                    <Button onClick={() => setEditAddressModalActive(true)}>EDIT</Button>
+                  </div>
+                </div>
+
+                <EditAddressModal
+                  id={id}
+                  initialData={customer}
+                  active={editAddressModalActive}
+                  closeModal={() => setEditAddressModalActive(false)}
+                />
               </div>
             ) : (
               <p>No information available</p>
@@ -149,7 +184,7 @@ const myAccount = ({ id, token }) => {
                 )}
                 <p className="row">
                   <span className="row-name">Country: </span>
-                  {shipping.country ? shipping.country : ''}
+                  {shipping.country ? countryCodeToName(shipping.country) : ''}
                 </p>
                 <p className="row">
                   <span className="row-name">Email: </span> {shipping.email ? shipping.email : ''}
@@ -180,14 +215,16 @@ const myAccount = ({ id, token }) => {
         </div>
       </Tabs>
 
-      <Button
-        onClick={() => {
-          logoutUser();
-          Router.push('/login');
-        }}
-      >
-        LOG OUT
-      </Button>
+      <div className="logout-wrap">
+        <Button
+          onClick={() => {
+            logoutUser();
+            Router.push('/login');
+          }}
+        >
+          LOG OUT
+        </Button>
+      </div>
 
       <style jsx>{`
         .account-page {
@@ -220,6 +257,18 @@ const myAccount = ({ id, token }) => {
           display: inline-block;
           width: 10rem;
           color: rgb(${colors.orange});
+        }
+
+        .buttons-container {
+          margin-top: 2rem;
+        }
+
+        .button-wrapper {
+          width: 10rem;
+        }
+
+        .logout-wrap {
+          margin-top: 2rem;
         }
 
         @media only screen and (max-width: ${breakPoints.bp_tiny}) {

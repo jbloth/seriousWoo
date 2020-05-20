@@ -8,7 +8,7 @@ import { colors, fonts, breakPoints } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
 import MobileMenuItem from '../components/MobileMenuItem';
 
-const MobileMenu = () => {
+const MobileMenu = ({ token }) => {
   const { mobMenuOpen, toggleMenuOpen, toggleSearchOpen } = useContext(AppContext);
   const { loading, error, data } = useQuery(GET_CATEGORY_KEYS);
 
@@ -47,9 +47,9 @@ const MobileMenu = () => {
           </li>
 
           <li className="nav-item">
-            <Link href="/">
+            <Link href={token ? '/myAccount' : '/login'}>
               <a onClick={toggleMenuOpen} className="nav-link">
-                <h1 className="title">Login</h1>
+                <h1 className="title">{token ? 'Account' : 'Login'}</h1>
               </a>
             </Link>
           </li>
@@ -92,6 +92,7 @@ const MobileMenu = () => {
 
         .mobile-menu--active {
           transform: translateX(0);
+          z-index: 102;
         }
 
         .close-icon {
@@ -124,6 +125,7 @@ const MobileMenu = () => {
 
         .title {
           font-family: ${fonts.text};
+          font-size: 4.2rem;
         }
 
         @media only screen and (max-width: ${breakPoints.bp_smallest}) {

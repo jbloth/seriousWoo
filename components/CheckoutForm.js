@@ -91,17 +91,17 @@ const CheckoutForm = ({ userData }) => {
   const [orderSettings, setOrderSettings] = useState(initialOrderSettings);
 
   // Use a different onChange for billing, shipping and other settings
-  const handleChange_billing = (e) => {
+  const handleChange_billing = (event) => {
     const newState = { ...billingAddress, [event.target.name]: event.target.value };
     setBillingAddress(newState);
   };
 
-  const handleChange_shipping = (e) => {
+  const handleChange_shipping = (event) => {
     const newState = { ...shippingAddress, [event.target.name]: event.target.value };
     setShippingAddress(newState);
   };
 
-  const handleChange_orderSettings = (e) => {
+  const handleChange_orderSettings = (event) => {
     const newState = { ...orderSettings, [event.target.name]: event.target.value };
     setOrderSettings(newState);
   };
@@ -205,7 +205,11 @@ const CheckoutForm = ({ userData }) => {
         <form className="checkout-form" method="post" onSubmit={handleSubmit}>
           <div className="billing-adress">
             <h2>Billing Adress</h2>
-            <CheckoutFormInputs inputs={billingAddress} handleChange={handleChange_billing} />
+            <CheckoutFormInputs
+              inputs={billingAddress}
+              handleChange={handleChange_billing}
+              texInputExtraClass="textInput--bottomOnly"
+            />
             <label className="checkbox-label">
               <input
                 className="checkbox"
@@ -228,6 +232,7 @@ const CheckoutForm = ({ userData }) => {
                   inputs={shippingAddress}
                   showNotes={false}
                   handleChange={handleChange_shipping}
+                  texInputExtraClass="textInput--bottomOnly"
                 />
               </>
             )}

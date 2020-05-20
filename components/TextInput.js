@@ -2,7 +2,7 @@ import { colors, fonts, breakPoints } from '../styles/theme';
 
 const TextInput = ({ extraClass, label, error, ...otherProps }) => (
   <div className="group">
-    <input className={`textInput ${extraClass}`} {...otherProps} />
+    <input className={`textInput ${extraClass ? extraClass : ''}`} {...otherProps} />
 
     {label && (
       <label className={`${otherProps.value && otherProps.value.length ? 'shrink' : ''} label`}>
@@ -38,6 +38,10 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
       .textInput--red {
         color: rgb(${colors.textblue});
         border: 1px solid rgb(${colors.textred});
+      }
+
+      .textInput--inactive {
+        color: rgb(${colors.lightgray});
       }
 
       .textInput--large {
