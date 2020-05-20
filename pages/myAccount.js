@@ -194,7 +194,7 @@ const myAccount = ({ id, token }) => {
                 </p>
               </div>
             ) : (
-              <p>No information available</p>
+              ''
             )}
           </div>
         </div>
