@@ -26,6 +26,9 @@ const CartModal = () => {
       // Update cart in context
       setCart(updatedCart);
     },
+    onError: (error) => {
+      console.log(error);
+    },
   });
 
   const cartItems = cart !== null ? cart.products : [];

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
-import validateAndSanitizeEditUserInput from '../lib/validateAndSanitizeEditUserInput';
-import UPDATE_CUSTOMER from '../mutations/update-user';
+import validateAndSanitizeEditAddressInput from '../lib/validateAndSanitizeEditAddressInput';
+import UPDATE_CUSTOMER from '../mutations/update-customer';
+import GET_USER_DATA from '../queries/get-user-data';
 import CloseIcon from '../assets/icon-close_211652.svg';
 import { colors, breakPoints } from '../styles/theme';
 import CheckoutFormInputs from './CheckoutFormInputs';
@@ -34,13 +36,10 @@ const EditAddressModal = ({ id, initialData, active, closeModal }) => {
     address2: shippingAddress && shippingAddress.address2 ? shippingAddress.address2 : '',
     city: shippingAddress && shippingAddress.city ? shippingAddress.city : '',
     postcode: shippingAddress && shippingAddress.postcode ? shippingAddress.postcode : '',
-    phone: shippingAddress && shippingAddress.phone ? shippingAddress.phone : '',
-    email: shippingAddress && shippingAddress.email ? shippingAddress.email : '',
-    orderNotes: shippingAddress && shippingAddress.orderNotes ? shippingAddress.orderNotes : '',
     errors: null,
   };
 
-  const [separateShipping, setSeparateShipping] = useState(false);
+  const [separateShipping, setSeparateShipping] = useState(true);
   const [billingFormData, setBillingFormData] = useState(initialBilling);
   const [shippingFormData, setShippingFormData] = useState(initialShipping);
 
@@ -55,25 +54,81 @@ const EditAddressModal = ({ id, initialData, active, closeModal }) => {
     setShippingFormData(newState);
   };
 
+  const GET_CUSTOMER = gql`
+    query Customer($id: ID!) {
+      customer(id: $id) {
+        id
+        username
+        firstName
+        lastName
+        email
+        billing {
+          firstName
+          lastName
+          address1
+          address2
+          city
+          postcode
+          state
+          country
+          email
+          phone
+        }
+        shipping {
+          firstName
+          lastName
+          address1
+          address2
+          postcode
+          city
+          state
+          country
+        }
+      }
+    }
+  `;
+
   // Use login-mutation
-  const [updateAddress, { data, loading, error: updateError }] = useMutation(UPDATE_CUSTOMER);
+  const [updateAddress, { data, loading, error: updateError }] = useMutation(UPDATE_CUSTOMER, {
+    // update(cache, { data: { updateCustomer } }) {
+    // try {
+    //   let data = cache.readQuery({ query: GET_CUSTOMER, variables: { id } });
+    //   // data.customer.billing = updateCustomer.billing;
+    //   // data.customer.shipping = updateCustomer.shipping;
+    //   cache.writeQuery({
+    //     query: GET_CUSTOMER,
+    //     variables: { id },
+    //     data,
+    //   });
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    // },
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const validatededInput = validateAndSanitizeEditUserInput(formData);
-    if (!validatededInput.isValid) {
-      setFormData({ ...formData, errors: validatededInput.errors });
-      return;
+    const validatededInput_billing = validateAndSanitizeEditAddressInput(billingFormData);
+    if (!validatededInput_billing.isValid) {
+      setBillingFormData({ ...billingFormData, errors: validatededInput_billing.errors });
     }
+
+    const validatededInput_shipping = validateAndSanitizeEditAddressInput(shippingFormData, true);
+    if (!validatededInput_shipping.isValid) {
+      setShippingFormData({ ...shippingFormData, errors: validatededInput_shipping.errors });
+    }
+
+    if (!validatededInput_billing.isValid || !validatededInput_shipping.isValid) return;
 
     const updateAddressInput = {
       clientMutationId: 'Babbel',
       id,
-      firstName: validatededInput.sanitizedData.firstName,
-      lastName: validatededInput.sanitizedData.lastName,
-      email: validatededInput.sanitizedData.email,
+      billing: validatededInput_billing.sanitizedData,
+      shipping: validatededInput_shipping.sanitizedData,
     };
+
+    console.log(updateAddressInput);
 
     await updateAddress({
       variables: { input: updateAddressInput },
@@ -127,6 +182,7 @@ const EditAddressModal = ({ id, initialData, active, closeModal }) => {
                 dontRequire={true}
                 texInputExtraClass={separateShipping ? '' : 'textInput--inactive'}
                 passiveMode={!separateShipping}
+                isShipping={true}
               />
             </div>
 

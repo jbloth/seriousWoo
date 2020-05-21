@@ -129,13 +129,16 @@ const OrderOverview = ({ order }) => {
           border-top: 2px solid rgb(${colors.violet});
         }
 
+        .order-container:last-of-type {
+          border-bottom: 2px solid rgb(${colors.violet});
+        }
+
         .order-heading {
           width: 100%;
           display: flex;
           align-items: center;
           justify-content: space-between;
           padding: 6px 0;
-          border-bottom: 2px solid rgb(${colors.violet});
           font-weight: bold;
           color: rgb(${colors.orange});
           cursor: pointer;
@@ -158,6 +161,7 @@ const OrderOverview = ({ order }) => {
 
         .order-details--active {
           display: block;
+          border-top: 2px solid rgb(${colors.violet});
         }
 
         .info-section {

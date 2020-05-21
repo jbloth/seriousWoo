@@ -4,13 +4,17 @@ import TextInput from './TextInput';
 import TextArea from './TextArea';
 import CountrySelector from './CountrySelector';
 
-// Passive mode allows component to follow another instance of CheckoutFormInputs,
-// handleChange will be ignored and instead of the countrySelector only the name of the
-// country will be rendered.
+/* Passive mode allows component to follow another instance of CheckoutFormInputs,
+ handleChange will be ignored and instead of the countrySelector only the name of the
+ country will be rendered.
+
+  If isShipping is true, the orderNote, email and phone fields will not be rendered
+*/
 const CheckoutFormInputs = ({
   inputs,
   handleChange,
   showNotes = true,
+  isShipping = false,
   texInputExtraClass,
   dontRequire = false,
   passiveMode = false,
@@ -18,6 +22,8 @@ const CheckoutFormInputs = ({
   // For the EditAddressModal component we don't want to require any field, so we set the dontRequire
   // parameter to true. For convience, we invert the valuer here.
   const require = !dontRequire;
+
+  if (isShipping) showNotes = false;
 
   if (passiveMode) {
     handleChange = () => {};
@@ -121,33 +127,35 @@ const CheckoutFormInputs = ({
         )}
       </div>
 
-      <div className="input-row">
-        <div className="textInput-wrap margin-right">
-          <TextInput
-            name="email"
-            type="email"
-            label="Email"
-            required={require}
-            value={inputs.email}
-            onChange={handleChange}
-            extraClass={texInputExtraClass ? texInputExtraClass : null}
-            error={inputs.errors && inputs.errors.email ? inputs.errors.email : null}
-          />
-        </div>
+      {!isShipping && (
+        <div className="input-row">
+          <div className="textInput-wrap margin-right">
+            <TextInput
+              name="email"
+              type="email"
+              label="Email"
+              required={require}
+              value={inputs.email}
+              onChange={handleChange}
+              extraClass={texInputExtraClass ? texInputExtraClass : null}
+              error={inputs.errors && inputs.errors.email ? inputs.errors.email : null}
+            />
+          </div>
 
-        <div className="textInput-wrap">
-          <TextInput
-            name="phone"
-            type="text"
-            label="Phone Number"
-            required={false}
-            value={inputs.phone}
-            onChange={handleChange}
-            extraClass={texInputExtraClass ? texInputExtraClass : null}
-            error={inputs.errors && inputs.errors.phone ? inputs.errors.phone : null}
-          />
+          <div className="textInput-wrap">
+            <TextInput
+              name="phone"
+              type="text"
+              label="Phone Number"
+              required={false}
+              value={inputs.phone}
+              onChange={handleChange}
+              extraClass={texInputExtraClass ? texInputExtraClass : null}
+              error={inputs.errors && inputs.errors.phone ? inputs.errors.phone : null}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {showNotes && (
         <div className="textArea-wrap">

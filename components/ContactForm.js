@@ -34,6 +34,7 @@ const ContactForm = () => {
     const validatededInput = validateAndSanitizeContactFormInput(formData);
     if (!validatededInput.isValid) {
       setFormData({ ...formData, errors: validatededInput.errors });
+      setButtonDisabled(false);
       return;
     }
 

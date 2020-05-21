@@ -5,6 +5,7 @@ import { AppContext } from '../components/context/AppContext';
 import { colors, breakPoints } from '../styles/theme';
 import { getFormattedCart, createCheckoutMutationInput } from '../lib/functions';
 import validateAndSanitizeOrder from '../lib/validateAndSanitizeOrder';
+import validateAndSanitizeOrderShipping from '../lib/validateAndSanitizeOrderShipping';
 import GET_CART from '../queries/get-cart';
 import CHECKOUT_MUTATION from '../mutations/checkout';
 import CheckoutFormInputs from './CheckoutFormInputs';
@@ -37,8 +38,6 @@ const CheckoutForm = ({ userData }) => {
     address2: '',
     city: '',
     postcode: '',
-    phone: '',
-    email: '',
     errors: null,
   };
 
@@ -78,9 +77,6 @@ const CheckoutForm = ({ userData }) => {
       address2: shipping.address2 ? shipping.address2 : '',
       city: shipping.city ? shipping.city : '',
       postcode: shipping.postcode ? shipping.postcode : '',
-      phone: shipping.phone ? shipping.phone : '',
-      email: shipping.email ? shipping.email : '',
-      orderNotes: shipping.orderNotes ? shipping.orderNotes : '',
       errors: null,
     };
   }
@@ -166,7 +162,7 @@ const CheckoutForm = ({ userData }) => {
     // Validate shipping address if it is different from billing address
     let validatededShippingData = null;
     if (orderSettings.shipToDifferentAddress) {
-      validatededShippingData = validateAndSanitizeOrder(shippingAddress);
+      validatededShippingData = validateAndSanitizeOrderShipping(shippingAddress);
 
       if (!validatededShippingData.isValid) {
         setShippingAddress({ ...shippingAddress, errors: validatededShippingData.errors });
@@ -190,9 +186,9 @@ const CheckoutForm = ({ userData }) => {
     }
 
     const checkoutData = createCheckoutMutationInput(
-      billingAddress,
+      validatededBillingData.sanitizedData,
       orderSettings,
-      shippingAddress
+      validatededShippingData.sanitizedData
     );
     setOrderData(checkoutData);
 
@@ -233,6 +229,7 @@ const CheckoutForm = ({ userData }) => {
                   showNotes={false}
                   handleChange={handleChange_shipping}
                   texInputExtraClass="textInput--bottomOnly"
+                  isShipping={true}
                 />
               </>
             )}

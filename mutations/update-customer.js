@@ -9,6 +9,30 @@ const UPDATE_CUSTOMER = gql`
         firstName
         lastName
         email
+        billing {
+          firstName
+          lastName
+          address1
+          address2
+          city
+          postcode
+          state
+          country
+          email
+          phone
+        }
+        shipping {
+          firstName
+          lastName
+          address1
+          address2
+          postcode
+          city
+          state
+          country
+          email
+          phone
+        }
       }
     }
   }
