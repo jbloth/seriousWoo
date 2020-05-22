@@ -17,6 +17,7 @@ import EditUserModal from '../components/EditUserModal';
 import EditAddressModal from '../components/EditAddressModal';
 
 const myAccount = ({ id, token }) => {
+  // Token comes from getInitialProps. TODO: Move this logic to ApolloLink.
   Cookies.set(clientConfig.authTokenName, token);
 
   const [editUserModalActive, setEditUserModalActive] = useState(false);
@@ -215,6 +216,7 @@ const myAccount = ({ id, token }) => {
         <Button
           onClick={() => {
             logoutUser();
+            client.resetStore();
             Router.push('/login');
           }}
         >
@@ -301,7 +303,7 @@ myAccount.getInitialProps = async (ctx) => {
   const id = userId ? userId : null;
   token = token ? token : null;
 
-  // Refresh auth token if it is expired.
+  // Refresh auth token if it is expired. TODO: Move to ApolloLink
   if (token && refreshToken) {
     token = await fetchNewAccessToken(refreshToken, token);
     Cookies.set(clientConfig.authTokenName, token);

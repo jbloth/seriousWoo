@@ -1,7 +1,7 @@
 import { useState, Children } from 'react';
 import { colors, fonts, breakPoints } from '../styles/theme';
 
-const Tabs = ({ defaulIdx = 1, children }) => {
+const Tabs = ({ defaulIdx = 0, children }) => {
   const [selectedTabIdx, setSelectedTabIdx] = useState(defaulIdx);
   const tabs = Children.toArray(children);
 

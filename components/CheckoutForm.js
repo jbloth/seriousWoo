@@ -19,7 +19,7 @@ const CheckoutForm = ({ userData }) => {
   let initialBilling = {
     firstName: '',
     lastName: '',
-    country: '',
+    country: 'AT',
     address1: '',
     address2: '',
     city: '',
@@ -33,7 +33,7 @@ const CheckoutForm = ({ userData }) => {
   let initialShipping = {
     firstName: '',
     lastName: '',
-    country: '',
+    country: 'AT',
     address1: '',
     address2: '',
     city: '',
@@ -55,7 +55,7 @@ const CheckoutForm = ({ userData }) => {
     initialBilling = {
       firstName: billing.firstName ? billing.firstName : '',
       lastName: billing.lastName ? billing.lastName : '',
-      country: billing.country ? billing.country : '',
+      country: billing.country ? billing.country : 'AT',
       address1: billing.address1 ? billing.address1 : '',
       address2: billing.address2 ? billing.address2 : '',
       city: billing.city ? billing.city : '',
@@ -72,7 +72,7 @@ const CheckoutForm = ({ userData }) => {
     initialShipping = {
       firstName: shipping.firstName ? shipping.firstName : '',
       lastName: shipping.lastName ? shipping.lastName : '',
-      country: shipping.country ? shipping.country : '',
+      country: shipping.country ? shipping.country : 'AT',
       address1: shipping.address1 ? shipping.address1 : '',
       address2: shipping.address2 ? shipping.address2 : '',
       city: shipping.city ? shipping.city : '',
@@ -108,7 +108,10 @@ const CheckoutForm = ({ userData }) => {
 
   // The checkout mutation will be invoked once orderData changes
   useEffect(() => {
+    console.log('useeffect');
     if (null !== orderData) {
+      console.log('orderData is da');
+
       // Call the checkout mutation when the value for orderData changes/updates.
       checkout();
     }
@@ -163,15 +166,16 @@ const CheckoutForm = ({ userData }) => {
     let validatededShippingData = null;
     if (orderSettings.shipToDifferentAddress) {
       validatededShippingData = validateAndSanitizeOrderShipping(shippingAddress);
+    } else {
+      validatededShippingData = validateAndSanitizeOrderShipping(billingAddress);
+    }
 
-      if (!validatededShippingData.isValid) {
-        setShippingAddress({ ...shippingAddress, errors: validatededShippingData.errors });
-      }
+    if (!validatededShippingData.isValid) {
+      setShippingAddress({ ...shippingAddress, errors: validatededShippingData.errors });
     }
 
     // Validate billing address
     let validatededBillingData = validateAndSanitizeOrder(billingAddress);
-
     if (!validatededBillingData.isValid) {
       setBillingAddress({ ...billingAddress, errors: validatededBillingData.errors });
     }
