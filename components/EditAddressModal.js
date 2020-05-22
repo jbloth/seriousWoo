@@ -128,8 +128,6 @@ const EditAddressModal = ({ id, initialData, active, closeModal }) => {
       shipping: validatededInput_shipping.sanitizedData,
     };
 
-    console.log(updateAddressInput);
-
     await updateAddress({
       variables: { input: updateAddressInput },
       onError: (error) => {

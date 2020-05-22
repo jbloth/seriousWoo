@@ -17,8 +17,10 @@ import EditUserModal from '../components/EditUserModal';
 import EditAddressModal from '../components/EditAddressModal';
 
 const myAccount = ({ id, token }) => {
+  Cookies.set(clientConfig.authTokenName, token);
+
   const [editUserModalActive, setEditUserModalActive] = useState(false);
-  const [editAddressModalActive, setEditAddressModalActive] = useState(true);
+  const [editAddressModalActive, setEditAddressModalActive] = useState(false);
 
   // query user data
   const { loading, error, data } = useQuery(GET_USER_DATA, {
@@ -186,12 +188,6 @@ const myAccount = ({ id, token }) => {
                   <span className="row-name">Country: </span>
                   {shipping.country ? countryCodeToName(shipping.country) : ''}
                 </p>
-                <p className="row">
-                  <span className="row-name">Email: </span> {shipping.email ? shipping.email : ''}
-                </p>
-                <p className="row">
-                  <span className="row-name">Phone: </span> {shipping.phone ? shipping.phone : ''}
-                </p>
               </div>
             ) : (
               ''
@@ -308,7 +304,6 @@ myAccount.getInitialProps = async (ctx) => {
   // Refresh auth token if it is expired.
   if (token && refreshToken) {
     token = await fetchNewAccessToken(refreshToken, token);
-    // Seems to work on inital page render. Not sure why.
     Cookies.set(clientConfig.authTokenName, token);
   }
 
@@ -327,7 +322,7 @@ myAccount.getInitialProps = async (ctx) => {
     return { token: null };
   }
 
-  return { id, token, refreshToken };
+  return { id, token };
 };
 
 export default myAccount;
