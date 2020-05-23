@@ -121,6 +121,7 @@ const EditAddressModal = ({ id, initialData, active, closeModal }) => {
 
     if (!validatededInput_billing.isValid || !validatededInput_shipping.isValid) return;
 
+    console.log(validatededInput_billing.sanitizedData);
     const updateAddressInput = {
       clientMutationId: 'Babbel',
       id,

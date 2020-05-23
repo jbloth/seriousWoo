@@ -2,15 +2,15 @@ import { useState } from 'react';
 
 import { colors, fonts } from '../styles/theme';
 import countryList from '../assets/countryList';
+import { isEmpty } from '../lib/functions';
 
 const CountrySelector = ({ extraClass, onSelect, label, selected, ...otherProps }) => {
-  let initialSelected = selected
-    ? countryList.find((country) => country.code === selected)
-    : countryList[0];
-
-  if (!Boolean(initialSelected)) {
-    initialSelected = countryList[0];
+  let initialSelected = countryList[0];
+  if (selected && !isEmpty(selected)) {
+    const countryFromLIst = countryList.find((country) => country.code === selected);
+    initialSelected = countryFromLIst ? countryFromLIst : initialSelected;
   }
+
   const [selectedCountry, setSelectedCountry] = useState(initialSelected);
 
   const handleChange = (e) => {

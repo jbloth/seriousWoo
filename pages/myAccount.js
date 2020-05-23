@@ -4,6 +4,7 @@ import Router from 'next/router';
 import Cookies from 'js-cookie';
 import cookies from 'next-cookies';
 
+import withApollo from '../lib/withApollo_wb';
 import { logoutUser } from '../lib/auth';
 import { colors, breakPoints } from '../styles/theme';
 import GET_USER_DATA from '../queries/get-user-data';
@@ -15,13 +16,19 @@ import Button from '../components/Button';
 import OrderOverview from '../components/OrderOverview';
 import EditUserModal from '../components/EditUserModal';
 import EditAddressModal from '../components/EditAddressModal';
+import DeleteUserModal from '../components/DeleteUserModal';
 
-const myAccount = ({ id, token }) => {
+const myAccount = ({ id, token, apollo }) => {
+  console.log('---- myAccount ------');
+  console.log(token);
+  console.log('---- -------- ------');
+
   // Token comes from getInitialProps. TODO: Move this logic to ApolloLink.
   Cookies.set(clientConfig.authTokenName, token);
 
   const [editUserModalActive, setEditUserModalActive] = useState(false);
   const [editAddressModalActive, setEditAddressModalActive] = useState(false);
+  const [deleteUserModalActive, setDeleteUserModalActive] = useState(false);
 
   // query user data
   const { loading, error, data } = useQuery(GET_USER_DATA, {
@@ -65,10 +72,12 @@ const myAccount = ({ id, token }) => {
                 <span>{user.lastName ? user.lastName : ''}</span>
               </p>
               <p className="row">
-                <span className="row-name">Username: </span> {user.username ? user.username : ''}
+                <span className="row-name">Username: </span>
+                {user.username ? user.username : ''}
               </p>
               <p className="row">
-                <span className="row-name">Email: </span> {user.email ? user.email : ''}
+                <span className="row-name">Email: </span>
+                {user.email ? user.email : ''}
               </p>
 
               <div className="buttons-container">
@@ -135,19 +144,6 @@ const myAccount = ({ id, token }) => {
                   <span className="row-name">Phone: </span>
                   {billing.phone ? billing.phone : ''}
                 </p>
-
-                <div className="buttons-container">
-                  <div className="button-wrapper">
-                    <Button onClick={() => setEditAddressModalActive(true)}>EDIT</Button>
-                  </div>
-                </div>
-
-                <EditAddressModal
-                  id={id}
-                  initialData={customer}
-                  active={editAddressModalActive}
-                  closeModal={() => setEditAddressModalActive(false)}
-                />
               </div>
             ) : (
               <p>No information available</p>
@@ -194,6 +190,19 @@ const myAccount = ({ id, token }) => {
               ''
             )}
           </div>
+
+          <div className="buttons-container">
+            <div className="button-wrapper">
+              <Button onClick={() => setEditAddressModalActive(true)}>EDIT</Button>
+            </div>
+          </div>
+
+          <EditAddressModal
+            id={id}
+            initialData={customer}
+            active={editAddressModalActive}
+            closeModal={() => setEditAddressModalActive(false)}
+          />
         </div>
 
         <div className="tab" name="Orders">
@@ -212,17 +221,37 @@ const myAccount = ({ id, token }) => {
         </div>
       </Tabs>
 
-      <div className="logout-wrap">
-        <Button
-          onClick={() => {
-            logoutUser();
-            client.resetStore();
-            Router.push('/login');
-          }}
-        >
-          LOG OUT
-        </Button>
+      <div className="buttons-container">
+        <div className="button-wrap">
+          <Button
+            extraClass="btn--grow"
+            onClick={() => {
+              logoutUser();
+              apollo.resetStore();
+              Router.push('/login');
+            }}
+          >
+            LOG OUT
+          </Button>
+        </div>
+
+        {/* <div className="button-wrap">
+          <Button
+            extraClass="btn--inverted btn--grow"
+            onClick={() => {
+              setDeleteUserModalActive(true);
+            }}
+          >
+            DELETE ACCOUNT
+          </Button>
+        </div> */}
       </div>
+
+      <DeleteUserModal
+        id={id}
+        active={deleteUserModalActive}
+        closeModal={() => setDeleteUserModalActive(false)}
+      />
 
       <style jsx>{`
         .account-page {
@@ -259,13 +288,15 @@ const myAccount = ({ id, token }) => {
 
         .buttons-container {
           margin-top: 2rem;
+          display: flex;
+          justify-content: space-between;
         }
 
-        .button-wrapper {
-          width: 10rem;
+        .button-wrap {
+          width: 16rem;
         }
 
-        .logout-wrap {
+        .button-wrap {
           margin-top: 2rem;
         }
 
@@ -283,8 +314,11 @@ const myAccount = ({ id, token }) => {
             padding-bottom: 2rem;
             font-size: 1.4rem;
           }
+        }
 
-          .row {
+        @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          .tab {
+            padding: 0;
           }
         }
       `}</style>
@@ -294,14 +328,27 @@ const myAccount = ({ id, token }) => {
 
 myAccount.getInitialProps = async (ctx) => {
   // get auth token and user id from cookies
-  let {
-    [clientConfig.authTokenName]: token,
-    [clientConfig.refreshTokenName]: refreshToken,
-    [clientConfig.userIdName]: userId,
-  } = cookies(ctx);
+  // get the authentication token from cookie
+  let token = null;
+  let refreshToken = null;
+  let id = null;
+  if (ctx) {
+    ({
+      [clientConfig.authTokenName]: token,
+      [clientConfig.refreshTokenName]: refreshToken,
+      [clientConfig.userIdName]: id,
+    } = cookies(ctx));
+  } else {
+    token = Cookies.get(clientConfig.authTokenName);
+    refreshToken = Cookies.get(clientConfig.refreshTokenName);
+    id = Cookies.get(clientConfig.userIdName);
+  }
 
-  const id = userId ? userId : null;
-  token = token ? token : null;
+  // let {
+  //   [clientConfig.authTokenName]: token,
+  //   [clientConfig.refreshTokenName]: refreshToken,
+  //   [clientConfig.userIdName]: userId,
+  // } = cookies(ctx);
 
   // Refresh auth token if it is expired. TODO: Move to ApolloLink
   if (token && refreshToken) {
@@ -327,4 +374,4 @@ myAccount.getInitialProps = async (ctx) => {
   return { id, token };
 };
 
-export default myAccount;
+export default withApollo(myAccount);

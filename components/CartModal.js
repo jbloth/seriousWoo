@@ -44,9 +44,7 @@ const CartModal = () => {
         ) : (
           <div className="items">
             {cartItems.length ? (
-              cartItems.map((item) => (
-                <CartItem key={item.productId} refetch={refetch} product={item} />
-              ))
+              cartItems.map((item, idx) => <CartItem key={idx} refetch={refetch} product={item} />)
             ) : (
               <p className="empty-message">Your cart is empty.</p>
             )}

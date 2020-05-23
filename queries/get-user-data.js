@@ -38,8 +38,6 @@ const GET_USER_DATA = gql`
         city
         state
         country
-        email
-        phone
       }
       orders {
         nodes {

@@ -53,7 +53,7 @@ const Button = ({ extraClass, children, ...otherProps }) => (
           border: 2px solid rgb(${colors.vibrantblue});
         }
 
-        .btn-grow {
+        .btn--grow {
           width: 100%;
         }
 
