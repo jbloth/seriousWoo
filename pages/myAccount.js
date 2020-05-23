@@ -4,7 +4,9 @@ import Router from 'next/router';
 import Cookies from 'js-cookie';
 import cookies from 'next-cookies';
 
-import withApollo from '../lib/withApollo_wb';
+// import withApollo from '../lib/withApollo_wb';
+import { withApollo } from 'react-apollo';
+
 import { logoutUser } from '../lib/auth';
 import { colors, breakPoints } from '../styles/theme';
 import GET_USER_DATA from '../queries/get-user-data';
@@ -16,19 +18,14 @@ import Button from '../components/Button';
 import OrderOverview from '../components/OrderOverview';
 import EditUserModal from '../components/EditUserModal';
 import EditAddressModal from '../components/EditAddressModal';
-import DeleteUserModal from '../components/DeleteUserModal';
 
-const myAccount = ({ id, token, apollo }) => {
-  console.log('---- myAccount ------');
-  console.log(token);
-  console.log('---- -------- ------');
-
+const myAccount = (props) => {
+  const { id, token, client } = props;
   // Token comes from getInitialProps. TODO: Move this logic to ApolloLink.
   Cookies.set(clientConfig.authTokenName, token);
 
   const [editUserModalActive, setEditUserModalActive] = useState(false);
   const [editAddressModalActive, setEditAddressModalActive] = useState(false);
-  const [deleteUserModalActive, setDeleteUserModalActive] = useState(false);
 
   // query user data
   const { loading, error, data } = useQuery(GET_USER_DATA, {
@@ -227,31 +224,14 @@ const myAccount = ({ id, token, apollo }) => {
             extraClass="btn--grow"
             onClick={() => {
               logoutUser();
-              apollo.resetStore();
+              client.resetStore();
               Router.push('/login');
             }}
           >
             LOG OUT
           </Button>
         </div>
-
-        {/* <div className="button-wrap">
-          <Button
-            extraClass="btn--inverted btn--grow"
-            onClick={() => {
-              setDeleteUserModalActive(true);
-            }}
-          >
-            DELETE ACCOUNT
-          </Button>
-        </div> */}
       </div>
-
-      <DeleteUserModal
-        id={id}
-        active={deleteUserModalActive}
-        closeModal={() => setDeleteUserModalActive(false)}
-      />
 
       <style jsx>{`
         .account-page {
