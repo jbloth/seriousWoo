@@ -4,13 +4,13 @@ import Router from 'next/router';
 import Cookies from 'js-cookie';
 import cookies from 'next-cookies';
 
-// import withApollo from '../lib/withApollo_wb';
 import { withApollo } from 'react-apollo';
 
-import { logoutUser } from '../lib/auth';
+// import { logoutUser } from '../lib/auth';
 import { colors, breakPoints } from '../styles/theme';
 import GET_USER_DATA from '../queries/get-user-data';
 import { countryCodeToName } from '../lib/functions';
+import auth from '../lib/auth';
 import { fetchNewAccessToken } from '../lib/auth';
 import clientConfig from '../clientConfig';
 import Tabs from '../components/Tabs';
@@ -35,7 +35,7 @@ const myAccount = (props) => {
 
   // TODO: Useeffect ?
   // console.log('--- myAccount setting cookie to ' + authToken);
-  Cookies.set(clientConfig.authTokenName, authToken);
+  Cookies.set(clientConfig.authTokenName, authToken); // TODO
 
   // query user data
   const { loading, error, data } = useQuery(GET_USER_DATA, {
@@ -235,7 +235,7 @@ const myAccount = (props) => {
           <Button
             extraClass="btn--grow"
             onClick={() => {
-              logoutUser();
+              auth.logoutUser();
               client.resetStore();
               Router.push('/login');
             }}

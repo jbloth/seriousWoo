@@ -6,7 +6,8 @@ import Cookies from 'js-cookie';
 
 import validateAndSanitizeLoginInput from '../lib/validateAndSanitizeLoginInput';
 import clientConfig from '../clientConfig';
-import { loginUser } from '../lib/auth';
+// import { loginUser } from '../lib/auth';
+import auth from '../lib/auth';
 import { breakPoints } from '../styles/theme';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
@@ -90,7 +91,7 @@ const LoginForm = ({ authToken }) => {
         }
 
         if (ldata.data && ldata.data.login && ldata.data.login.user) {
-          loginUser(ldata.data.login.user);
+          auth.loginUser(ldata.data.login.user);
 
           // Set form field vaues to empty.
           setErrorMessage('');

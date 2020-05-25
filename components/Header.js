@@ -8,7 +8,8 @@ import Cookies from 'js-cookie';
 
 import { AppContext } from '../components/context/AppContext';
 import { colors, fonts, breakPoints } from '../styles/theme';
-import { logoutUser } from '../lib/auth';
+import auth from '../lib/auth';
+// import { logoutUser } from '../lib/auth';
 import clientConfig from '../clientConfig';
 import CartModal from './CartModal';
 import SearchModal from './SearchModal';
@@ -126,7 +127,7 @@ const Header = ({ authToken }) => {
                     <div
                       className="nav-dropdown-link"
                       onClick={() => {
-                        logoutUser();
+                        auth.logoutUser();
                         if (router.pathname === '/myAccount') {
                           Router.push('/login');
                         }
