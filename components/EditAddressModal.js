@@ -8,7 +8,7 @@ import { fetchNewAccessToken } from '../lib/auth';
 import UPDATE_CUSTOMER from '../mutations/update-customer';
 import CloseIcon from '../assets/icon-close_211652.svg';
 import clientConfig from '../clientConfig';
-import { isTokenExpired } from './../lib/auth';
+import { isTokenExpiredOrInvalid } from './../lib/auth';
 import { colors, breakPoints } from '../styles/theme';
 import CheckoutFormInputs from './CheckoutFormInputs';
 import Button from './Button';
