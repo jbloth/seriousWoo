@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import Cookies from 'js-cookie';
 
 import validateAndSanitizeEditAddressInput from '../lib/validateAndSanitizeEditAddressInput';
+import { fetchNewAccessToken } from '../lib/auth';
 import UPDATE_CUSTOMER from '../mutations/update-customer';
-import GET_USER_DATA from '../queries/get-user-data';
 import CloseIcon from '../assets/icon-close_211652.svg';
+import clientConfig from '../clientConfig';
+import { isTokenExpired } from './../lib/auth';
 import { colors, breakPoints } from '../styles/theme';
 import CheckoutFormInputs from './CheckoutFormInputs';
 import Button from './Button';
 
-const EditAddressModal = ({ id, initialData, active, closeModal }) => {
+const EditAddressModal = ({ id, initialData, active, closeModal, setAuthToken }) => {
   const billingAddress = initialData && initialData.billing ? initialData.billing : null;
   const shippingAddress = initialData && initialData.shipping ? initialData.shipping : null;
 
@@ -114,14 +117,29 @@ const EditAddressModal = ({ id, initialData, active, closeModal }) => {
       setBillingFormData({ ...billingFormData, errors: validatededInput_billing.errors });
     }
 
-    const validatededInput_shipping = validateAndSanitizeEditAddressInput(shippingFormData, true);
+    const validatededInput_shipping = separateShipping
+      ? validateAndSanitizeEditAddressInput(shippingFormData, true)
+      : validateAndSanitizeEditAddressInput(billingFormData, true);
+
     if (!validatededInput_shipping.isValid) {
       setShippingFormData({ ...shippingFormData, errors: validatededInput_shipping.errors });
     }
 
     if (!validatededInput_billing.isValid || !validatededInput_shipping.isValid) return;
 
-    console.log(validatededInput_billing.sanitizedData);
+    // Update auth token if expired (Doing this here becuase I can't figure out how to access
+    // and set cookies in ApolloLink middleware)
+    // let token = Cookies.get(clientConfig.authTokenName);
+    // const refreshToken = Cookies.get(clientConfig.refreshTokenName);
+
+    // console.log('component token: ' + token);
+    // if (token && refreshToken) {
+    //   token = await fetchNewAccessToken(refreshToken, token);
+    //   setAuthToken(token);
+    //   // Cookies.set(clientConfig.authTokenName, token);
+    //   console.log('component token: ' + token);
+    // }
+
     const updateAddressInput = {
       clientMutationId: 'Babbel',
       id,

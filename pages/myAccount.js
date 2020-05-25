@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
@@ -21,11 +21,21 @@ import EditAddressModal from '../components/EditAddressModal';
 
 const myAccount = (props) => {
   const { id, token, client } = props;
-  // Token comes from getInitialProps. TODO: Move this logic to ApolloLink.
-  Cookies.set(clientConfig.authTokenName, token);
 
   const [editUserModalActive, setEditUserModalActive] = useState(false);
   const [editAddressModalActive, setEditAddressModalActive] = useState(false);
+
+  /* On page load, the token comes from (and is refreshed in ) getInitialProps
+   *  (because I can't figure out how to get and set cookies in ApolloLinks, so
+   *  the token refresh is done on every component that needs a token), but some
+   *  child components may trigger a refresh themselves. In this case we have to
+   *  update the token here, hence the useState.
+   */
+  const [authToken, setAuthToken] = useState(token);
+
+  // TODO: Useeffect ?
+  // console.log('--- myAccount setting cookie to ' + authToken);
+  Cookies.set(clientConfig.authTokenName, authToken);
 
   // query user data
   const { loading, error, data } = useQuery(GET_USER_DATA, {
@@ -84,6 +94,7 @@ const myAccount = (props) => {
               </div>
 
               <EditUserModal
+                setAuthToken={setAuthToken}
                 id={id}
                 initialData={user}
                 active={editUserModalActive}
@@ -195,6 +206,7 @@ const myAccount = (props) => {
           </div>
 
           <EditAddressModal
+            setAuthToken={setAuthToken}
             id={id}
             initialData={customer}
             active={editAddressModalActive}
@@ -331,10 +343,13 @@ myAccount.getInitialProps = async (ctx) => {
   // } = cookies(ctx);
 
   // Refresh auth token if it is expired. TODO: Move to ApolloLink
-  if (token && refreshToken) {
-    token = await fetchNewAccessToken(refreshToken, token);
-    Cookies.set(clientConfig.authTokenName, token);
-  }
+  // if (token && refreshToken) {
+  //   token = await fetchNewAccessToken(refreshToken, token);
+
+  //   if (process.browser) {
+  //     Cookies.set(clientConfig.authTokenName, token);
+  //   }
+  // }
 
   // Redirect to login page if there is no auth token
   if (ctx.req && !token) {

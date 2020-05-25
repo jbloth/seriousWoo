@@ -7,7 +7,9 @@ import cookies from 'next-cookies';
 import clientConfig from '../clientConfig';
 import { AppProvider } from '../components/context/AppContext'; // state (using context)
 import Layout from '../components/Layout'; // Header and Footer
-import withApollo from '../lib/withApollo_wb'; // Apollo HOC
+// import withApollo from '../lib/withApollo_wb'; // Apollo HOC
+// import withApollo from '../lib/withApollo_withInit'; // Apollo HOC
+import withApollo from '../lib/withApollo_globalTokens'; // Apollo HOC
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
