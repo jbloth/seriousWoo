@@ -3,7 +3,9 @@ import { breakPoints } from '../styles/theme';
 const ConnectAreaItem = ({ children, title }) => {
   return (
     <li className="connectArea__item">
-      <span className="connectArea__cta">{title} --></span>
+      <p className="connectArea__cta">
+        <span>{title}</span> <span className="connectArea__arrow">:</span>
+      </p>
       {children}
 
       <style jsx>{`
@@ -22,11 +24,16 @@ const ConnectAreaItem = ({ children, title }) => {
           .connectArea__item {
             margin: 10px 0 18px 0;
             width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
           }
 
           .connectArea__cta {
-            display: none;
+            width: unset;
           }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_small}) {
         }
       `}</style>
     </li>

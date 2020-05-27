@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useState } from 'react';
 
 import { colors, breakPoints } from '../styles/theme';
 import IconPinterest from '../assets/pinterest-square.svg';
@@ -9,6 +10,8 @@ import TextInput from './TextInput';
 import Button from './Button';
 
 const Footer = () => {
+  const [newsletterMsgOpen, setNewsletterMsgOpen] = useState(false);
+
   return (
     <footer className="footer section">
       <div className="footer-wrapper l-wrapper">
@@ -54,34 +57,58 @@ const Footer = () => {
           <ConnectAreaItem title="Subscribe">
             <div className="newsletter-signup">
               <div className="connect-input-wrap">
-                <TextInput extraClass="textInput--red" type="email" placeholder="email" />
+                <TextInput
+                  onFocus={() => setNewsletterMsgOpen(true)}
+                  extraClass="newsletter-input"
+                  type="email"
+                  placeholder="email"
+                />
               </div>
 
               <div className="connect-btn-wrap">
-                <Button extraClass="btn-grow" type="submit">
+                <Button extraClass="btn--grow" type="submit">
                   Sign Up
                 </Button>
               </div>
             </div>
           </ConnectAreaItem>
 
-          <ConnectAreaItem title="Follow">
-            <Link href="/">
-              <a className="connect-icon">
-                <IconInstagram />
-              </a>
-            </Link>
+          <div
+            className={`newsletter-focus-msg ${
+              newsletterMsgOpen ? 'newsletter-focus-msg--active' : ''
+            }`}
+          >
+            Currently this is just a demo site and we don't have a newsletter yet. Entering your
+            email address in this field will have no effect.
+          </div>
 
-            <Link href="/">
-              <a className="connect-icon">
-                <IconPinterest />
-              </a>
-            </Link>
+          <ConnectAreaItem title="Follow">
+            <div className="social-icons-container">
+              <Link href="/">
+                <a className="connect-icon">
+                  <img
+                    className="social-logo"
+                    src="images/IG_Glyph_Fill_50x50.png"
+                    alt="instagram-logo"
+                  />
+                </a>
+              </Link>
+
+              <Link href="/">
+                <a className="connect-icon">
+                  <img
+                    className="social-logo"
+                    src="images/badgeRGB-244px.png"
+                    alt="pinterest-logo"
+                  />
+                </a>
+              </Link>
+            </div>
           </ConnectAreaItem>
 
           <ConnectAreaItem title="Say Hi">
             <Link href="/contact">
-              <a>Contact Form</a>
+              <a>contact form</a>
             </Link>
           </ConnectAreaItem>
         </FooterMenu>
@@ -101,7 +128,7 @@ const Footer = () => {
         .footer-wrapper {
           width: 100%;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           justify-content: space-around;
           color: rgb(${colors.orange});
         }
@@ -114,10 +141,18 @@ const Footer = () => {
           margin: 0 0 0 10px;
           flex-grow: 0.4;
           align-self: flex-end;
+          /*display: flex;
+          align-items: center;
+          justify-content: center; */
         }
 
         a {
           color: rgb(${colors.orange});
+        }
+
+        .social-icons-container {
+          display: flex;
+          padding: 2rem 0;
         }
 
         .connect-icon {
@@ -125,11 +160,34 @@ const Footer = () => {
           fill: rgb(${colors.orange});
           display: flex;
           align-items: center;
-          font-size: 3rem;
+          /* font-size: 3rem; */
+          width: 4rem;
+          height: auto;
+        }
+
+        /* .social-logo-wrapper {
+          display: flex;
+          justify-content: center;
+        }*/
+
+        .social-logo {
+          width: 3rem;
+          height: auto;
         }
 
         .newsletter-signup {
           display: flex;
+        }
+
+        .newsletter-focus-msg {
+          line-height: 1.2;
+          font-size: 1.4rem;
+          display: none;
+          padding-bottom: 2rem;
+        }
+
+        .newsletter-focus-msg--active {
+          display: block;
         }
 
         .copyright {
@@ -144,8 +202,9 @@ const Footer = () => {
             flex-direction: column;
           }
 
-          :global(.connect-icon) {
-            transform: scale(1.4);
+          .social-logo {
+            width: 5rem;
+            height: auto;
           }
 
           .connect-icon {

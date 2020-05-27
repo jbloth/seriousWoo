@@ -10,7 +10,7 @@ const FooterMenu = ({ title, children, isConnectArea }) => {
   };
 
   return (
-    <nav className="footer-menu">
+    <nav className={`footer-menu ${isConnectArea ? 'connect-menu' : ''}`}>
       <div className="title-container collapseTrigger" onClick={toggleCollapse}>
         <div className="arrow-wrapper" aria-hidden="true">
           <ArrowIcon color={colors.orange} width={20} open={open} />
@@ -21,7 +21,12 @@ const FooterMenu = ({ title, children, isConnectArea }) => {
 
       <style jsx>{`
         .footer-menu {
-          height: 200px;
+          min-height: 200px;
+          max-width: 30%;
+        }
+
+        .connect-menu {
+          max-width: 40%;
         }
 
         .arrow-wrapper {
@@ -56,6 +61,8 @@ const FooterMenu = ({ title, children, isConnectArea }) => {
 
           .footer-menu {
             width: 80%;
+            max-width: unset;
+            min-height: unset;
             height: auto;
             margin-bottom: 30px;
           }
@@ -80,6 +87,11 @@ const FooterMenu = ({ title, children, isConnectArea }) => {
         @media only screen and (max-width: ${breakPoints.bp_small}) {
           .footer-menu {
             width: 100%;
+            max-width: 100%;
+          }
+
+          .connect-menu {
+            max-width: 100%;
           }
         }
       `}</style>
