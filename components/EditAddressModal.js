@@ -1,14 +1,10 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import Cookies from 'js-cookie';
 
 import validateAndSanitizeEditAddressInput from '../lib/validateAndSanitizeEditAddressInput';
-import { fetchNewAccessToken } from '../lib/auth';
 import UPDATE_CUSTOMER from '../mutations/update-customer';
 import CloseIcon from '../assets/icon-close_211652.svg';
-import clientConfig from '../clientConfig';
-import { isTokenExpiredOrInvalid } from './../lib/auth';
 import { colors, breakPoints } from '../styles/theme';
 import CheckoutFormInputs from './CheckoutFormInputs';
 import Button from './Button';
@@ -92,22 +88,7 @@ const EditAddressModal = ({ id, initialData, active, closeModal, setAuthToken })
   `;
 
   // Use login-mutation
-  const [updateAddress, { data, loading, error: updateError }] = useMutation(UPDATE_CUSTOMER, {
-    // update(cache, { data: { updateCustomer } }) {
-    // try {
-    //   let data = cache.readQuery({ query: GET_CUSTOMER, variables: { id } });
-    //   // data.customer.billing = updateCustomer.billing;
-    //   // data.customer.shipping = updateCustomer.shipping;
-    //   cache.writeQuery({
-    //     query: GET_CUSTOMER,
-    //     variables: { id },
-    //     data,
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    // }
-    // },
-  });
+  const [updateAddress, { data, loading, error: updateError }] = useMutation(UPDATE_CUSTOMER, {});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -126,19 +107,6 @@ const EditAddressModal = ({ id, initialData, active, closeModal, setAuthToken })
     }
 
     if (!validatededInput_billing.isValid || !validatededInput_shipping.isValid) return;
-
-    // Update auth token if expired (Doing this here becuase I can't figure out how to access
-    // and set cookies in ApolloLink middleware)
-    // let token = Cookies.get(clientConfig.authTokenName);
-    // const refreshToken = Cookies.get(clientConfig.refreshTokenName);
-
-    // console.log('component token: ' + token);
-    // if (token && refreshToken) {
-    //   token = await fetchNewAccessToken(refreshToken, token);
-    //   setAuthToken(token);
-    //   // Cookies.set(clientConfig.authTokenName, token);
-    //   console.log('component token: ' + token);
-    // }
 
     const updateAddressInput = {
       clientMutationId: 'Babbel',

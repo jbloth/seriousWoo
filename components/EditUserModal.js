@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import Cookies from 'js-cookie';
 
 import validateAndSanitizeEditUserInput from '../lib/validateAndSanitizeEditUserInput';
 import UPDATE_USER from '../mutations/update-user';
-import clientConfig from '../clientConfig';
-import { fetchNewAccessToken } from '../lib/auth';
 import CloseIcon from '../assets/icon-close_211652.svg';
 import { colors, breakPoints } from '../styles/theme';
 import TextInput from './TextInput';
@@ -40,18 +37,6 @@ const EditUserModal = ({ id, initialData, active, closeModal, setAuthToken }) =>
       setFormData({ ...formData, errors: validatededInput.errors });
       return;
     }
-
-    // Update auth token if expired (Doing this here becuase I can't figure out how to access
-    // and set cookies in ApolloLink middleware)
-    // let token = Cookies.get(clientConfig.authTokenName);
-    // const refreshToken = Cookies.get(clientConfig.refreshTokenName);
-
-    // console.log('component token: ' + token);
-    // if (token && refreshToken) {
-    //   token = await fetchNewAccessToken(refreshToken, token);
-    //   setAuthToken(token);
-    //   console.log('component token: ' + token);
-    // }
 
     const updateUserInput = {
       clientMutationId: 'Babbel',
