@@ -84,22 +84,22 @@ const Footer = () => {
 
           <ConnectAreaItem title="Follow">
             <div className="social-icons-container">
-              <Link href="/">
+              <Link href="">
                 <a className="connect-icon">
                   <img
                     className="social-logo"
-                    src="images/IG_Glyph_Fill_50x50.png"
-                    alt="instagram-logo"
+                    src="/images/IG_Glyph_Fill_50x50.png"
+                    alt="instagram-icon"
                   />
                 </a>
               </Link>
 
-              <Link href="/">
+              <Link href="">
                 <a className="connect-icon">
                   <img
                     className="social-logo"
-                    src="images/badgeRGB-244px.png"
-                    alt="pinterest-logo"
+                    src="/images/badgeRGB-244px.png"
+                    alt="pinterest-icon"
                   />
                 </a>
               </Link>
