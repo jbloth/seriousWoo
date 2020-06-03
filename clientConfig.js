@@ -4,6 +4,7 @@ const clientConfig = {
   userIdName: 'userId',
   authTokenName: 'authToken',
   refreshTokenName: 'refreshToken',
+  tokenExpiry: 7,
 };
 
 export default clientConfig;

@@ -35,7 +35,7 @@ const myAccount = (props) => {
 
   // TODO: Useeffect ?
   // console.log('--- myAccount setting cookie to ' + authToken);
-  Cookies.set(clientConfig.authTokenName, authToken); // TODO
+  Cookies.set(clientConfig.authTokenName, authToken, { expires: clientConfig.tokenExpiry }); // TODO
 
   // query user data
   const { loading, error, data } = useQuery(GET_USER_DATA, {
@@ -335,21 +335,6 @@ myAccount.getInitialProps = async (ctx) => {
     refreshToken = Cookies.get(clientConfig.refreshTokenName);
     id = Cookies.get(clientConfig.userIdName);
   }
-
-  // let {
-  //   [clientConfig.authTokenName]: token,
-  //   [clientConfig.refreshTokenName]: refreshToken,
-  //   [clientConfig.userIdName]: userId,
-  // } = cookies(ctx);
-
-  // Refresh auth token if it is expired. TODO: Move to ApolloLink
-  // if (token && refreshToken) {
-  //   token = await fetchNewAccessToken(refreshToken, token);
-
-  //   if (process.browser) {
-  //     Cookies.set(clientConfig.authTokenName, token);
-  //   }
-  // }
 
   // Redirect to login page if there is no auth token
   if (ctx.req && !token) {
