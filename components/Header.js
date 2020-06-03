@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import gql from 'graphql-tag';
 import Cookies from 'js-cookie';
 
@@ -31,12 +31,6 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
-const GET_TOKEN = gql`
-  {
-    token @client
-  }
-`;
-
 const Header = ({ authToken }) => {
   const router = useRouter();
 
@@ -45,12 +39,29 @@ const Header = ({ authToken }) => {
 
   // Get auth token (to decide wether to render link to login or account page)
   // On server: get token from props (passed down from _app)
-  let token = authToken;
+  // let token = authToken;
   // In browser: get token from cookie
-  if (process.browser) {
-    const tokencookie = Cookies.get(clientConfig.authTokenName);
-    token = tokencookie ? tokencookie : null;
-  }
+  // if (process.browser) {
+  //   const tokencookie = Cookies.get(clientConfig.authTokenName);
+  //   token = tokencookie ? tokencookie : null;
+  // }
+  let initialToken = auth.getAuthToken();
+  const [token, setToken] = useState(initialToken);
+
+  // Subscribe to auth token observable to show login-link in the header when the
+  // user logs out.
+  useEffect(() => {
+    const tokenSubscription = auth.authTokenObservable.subscribe({
+      next: (newToken) => {
+        console.log('newToken: ' + newToken);
+        setToken(newToken);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+    return () => tokenSubscription.unsubscribe();
+  }, []);
 
   const itemCount = cart !== null && Object.keys(cart).length ? cart.totalProductsCount : 0;
 

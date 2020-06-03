@@ -13,19 +13,16 @@ const Contact = () => {
           </div>
         </div>
         <div className="about-info">
-          <h1>Here's what it's all about</h1>
+          <h1>Enough joking!</h1>
+          <h2>Here's what it's all about...</h2>
           <div className="about-text">
             <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-              invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-              accusam et justo duo dolores et ea rebum.
+              Welcome to this little planet on the interverse. Ever feel like life has mistaken you
+              for a punching ball? Yeah, so do we. Let us warm you weary heart a bit by telling you
+              this: Life is in fact a giant (but cute) young bullmastiff who just wants to play.
             </p>
             <br />
-            <p>
-              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-              invidunt.
-            </p>
+            <p>Yep, that's the whole truth. Look closely an you can see him wag his tail.</p>
           </div>
         </div>
       </div>
@@ -79,7 +76,11 @@ const Contact = () => {
         }
 
         h1 {
-          color: ${colors.orange};
+          color: rgb(${colors.orange});
+        }
+
+        h2 {
+          margin-bottom: 1rem;
         }
 
         @media only screen and (max-width: ${breakPoints.bp_large}) {
