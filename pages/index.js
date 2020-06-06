@@ -12,6 +12,9 @@ const Index = ({ newestProducts }) => {
       <section className="home-hero section">
         <BgShape version={1} extraClass="bg-shape-01" />
         <BgShape version={2} extraClass="bg-shape-02" />
+        <div className="salmon-wrap">
+          <img className="salmon-img" src="/images/salmon.png" alt="salmon" />
+        </div>
         <SplitHero imgUrl={'/images/tarutoa-QIymolbz7G0-unsplash 1.png'}>
           <p>This is</p>
           <p>serious!</p>
@@ -54,7 +57,7 @@ const Index = ({ newestProducts }) => {
         }
 
         .home-hero {
-          padding: 6rem 8rem 8rem 8rem;
+          padding: 6rem 8rem 12rem 8rem;
         }
 
         .about {
@@ -110,6 +113,20 @@ const Index = ({ newestProducts }) => {
           color: rgb(${colors.lightblue});
         }
 
+        .salmon-wrap {
+          position: absolute;
+          z-index: 56;
+          opacity: 0.75;
+          right: -4vw;
+          top: 13%;
+        }
+
+        .salmon-img {
+          width: 36vw;
+          max-width: 48rem;
+          height: auto;
+        }
+
         :global(.bg-shape-01) {
           right: -14vw;
           top: 30px;
@@ -161,6 +178,10 @@ const Index = ({ newestProducts }) => {
             width: 80%;
           }
 
+          .salmon-wrap {
+            top: 6%;
+          }
+
           .banner {
             font-size: 3rem;
           }
@@ -178,6 +199,14 @@ const Index = ({ newestProducts }) => {
 
           .categories {
             padding: 6rem 8rem;
+          }
+
+          .salmon-wrap {
+            top: 9%;
+          }
+
+          .salmon-img {
+            width: 56vw;
           }
 
           :global(.bg-shape-02) {
@@ -198,6 +227,10 @@ const Index = ({ newestProducts }) => {
         @media only screen and (max-width: ${breakPoints.bp_tiny}) {
           .home-hero {
             padding: 2rem 4rem 8rem 4rem;
+          }
+
+          .salmon-wrap {
+            top: 8%;
           }
         }
 

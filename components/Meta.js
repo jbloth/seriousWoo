@@ -6,7 +6,7 @@ const Meta = () => (
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
     {/* <link rel="shortcut icon" href="/static/favicon.png" /> */}
-    <title>Serious Sally</title>
+    <title>Serious Salmon</title>
   </Head>
 );
 

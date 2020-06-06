@@ -115,7 +115,7 @@ const Footer = () => {
       </div>
 
       <div className="copyright">
-        <span>&copy; Serious Sally {new Date().getFullYear()}</span>
+        <span>&copy; Serious Salmon {new Date().getFullYear()}</span>
       </div>
 
       <style jsx>{`

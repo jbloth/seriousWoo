@@ -11,7 +11,7 @@ import { colors, breakPoints } from '../styles/theme';
 import GET_USER_DATA from '../queries/get-user-data';
 import { countryCodeToName } from '../lib/functions';
 import auth from '../lib/auth';
-import { fetchNewAccessToken } from '../lib/auth';
+// import { fetchNewAccessToken } from '../lib/auth';
 import clientConfig from '../clientConfig';
 import Tabs from '../components/Tabs';
 import Button from '../components/Button';
@@ -34,7 +34,6 @@ const myAccount = (props) => {
   const [authToken, setAuthToken] = useState(token);
 
   // TODO: Useeffect ?
-  // console.log('--- myAccount setting cookie to ' + authToken);
   Cookies.set(clientConfig.authTokenName, authToken, { expires: clientConfig.tokenExpiry }); // TODO
 
   // query user data

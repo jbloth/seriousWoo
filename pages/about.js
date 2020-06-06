@@ -25,11 +25,14 @@ const Contact = () => {
             <p>Yep, that's the whole truth. Look closely an you can see him wag his tail.</p>
           </div>
         </div>
+        <div className="dog-wrap">
+          <img className="dog-img" src="/images/bullmastiff.png" alt="salmon" />
+        </div>
       </div>
 
       <style jsx>{`
         .about-page {
-          padding-bottom: 10rem;
+          padding-bottom: 14rem;
         }
 
         .about-content {
@@ -83,6 +86,20 @@ const Contact = () => {
           margin-bottom: 1rem;
         }
 
+        .dog-wrap {
+          position: absolute;
+          z-index: -2;
+          opacity: 0.5;
+          right: 2vw;
+          top: 46%;
+        }
+
+        .dog-img {
+          width: 36vw;
+          max-width: 28rem;
+          height: auto;
+        }
+
         @media only screen and (max-width: ${breakPoints.bp_large}) {
           h1 {
             line-height: 1.2;
@@ -90,6 +107,10 @@ const Contact = () => {
         }
 
         @media only screen and (max-width: ${breakPoints.bp_md}) {
+          .about-page {
+            padding-bottom: 4rem;
+          }
+
           .about-content {
             flex-direction: column;
             align-items: center;
@@ -104,6 +125,11 @@ const Contact = () => {
           .about-info {
             width: 80%;
             align-self: center;
+          }
+
+          .dog-wrap {
+            position: unset;
+            padding-top: 4rem;
           }
         }
       `}</style>
