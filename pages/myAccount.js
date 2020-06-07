@@ -1,17 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
 import cookies from 'next-cookies';
-
 import { withApollo } from 'react-apollo';
 
-// import { logoutUser } from '../lib/auth';
 import { colors, breakPoints } from '../styles/theme';
 import GET_USER_DATA from '../queries/get-user-data';
 import { countryCodeToName } from '../lib/functions';
 import auth from '../lib/auth';
-// import { fetchNewAccessToken } from '../lib/auth';
 import clientConfig from '../clientConfig';
 import Tabs from '../components/Tabs';
 import Button from '../components/Button';
@@ -19,31 +16,15 @@ import OrderOverview from '../components/OrderOverview';
 import EditUserModal from '../components/EditUserModal';
 import EditAddressModal from '../components/EditAddressModal';
 
-const myAccount = (props) => {
-  const { id, token, client } = props;
+const myAccount = ({ client }) => {
+  const id = auth.getUserId();
 
   const [editUserModalActive, setEditUserModalActive] = useState(false);
   const [editAddressModalActive, setEditAddressModalActive] = useState(false);
 
-  /* On page load, the token comes from (and is refreshed in ) getInitialProps
-   *  (because I can't figure out how to get and set cookies in ApolloLinks, so
-   *  the token refresh is done on every component that needs a token), but some
-   *  child components may trigger a refresh themselves. In this case we have to
-   *  update the token here, hence the useState.
-   */
-  const [authToken, setAuthToken] = useState(token);
-
-  // TODO: Useeffect ?
-  Cookies.set(clientConfig.authTokenName, authToken, { expires: clientConfig.tokenExpiry }); // TODO
-
   // query user data
   const { loading, error, data } = useQuery(GET_USER_DATA, {
     variables: { id },
-    context: {
-      headers: {
-        authorization: token ? `Bearer ${token}` : '',
-      },
-    },
   });
 
   let user = null,
@@ -93,7 +74,6 @@ const myAccount = (props) => {
               </div>
 
               <EditUserModal
-                setAuthToken={setAuthToken}
                 id={id}
                 initialData={user}
                 active={editUserModalActive}
@@ -205,7 +185,6 @@ const myAccount = (props) => {
           </div>
 
           <EditAddressModal
-            setAuthToken={setAuthToken}
             id={id}
             initialData={customer}
             active={editAddressModalActive}
@@ -318,21 +297,12 @@ const myAccount = (props) => {
 };
 
 myAccount.getInitialProps = async (ctx) => {
-  // get auth token and user id from cookies
-  // get the authentication token from cookie
+  // Get auth token from cookies and redirect if there is none
   let token = null;
-  let refreshToken = null;
-  let id = null;
   if (ctx) {
-    ({
-      [clientConfig.authTokenName]: token,
-      [clientConfig.refreshTokenName]: refreshToken,
-      [clientConfig.userIdName]: id,
-    } = cookies(ctx));
+    ({ [clientConfig.authTokenName]: token } = cookies(ctx));
   } else {
     token = Cookies.get(clientConfig.authTokenName);
-    refreshToken = Cookies.get(clientConfig.refreshTokenName);
-    id = Cookies.get(clientConfig.userIdName);
   }
 
   // Redirect to login page if there is no auth token
@@ -350,7 +320,7 @@ myAccount.getInitialProps = async (ctx) => {
     return { token: null };
   }
 
-  return { id, token };
+  return { token };
 };
 
 export default withApollo(myAccount);

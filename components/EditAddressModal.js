@@ -9,7 +9,7 @@ import { colors, breakPoints } from '../styles/theme';
 import CheckoutFormInputs from './CheckoutFormInputs';
 import Button from './Button';
 
-const EditAddressModal = ({ id, initialData, active, closeModal, setAuthToken }) => {
+const EditAddressModal = ({ id, initialData, active, closeModal }) => {
   const billingAddress = initialData && initialData.billing ? initialData.billing : null;
   const shippingAddress = initialData && initialData.shipping ? initialData.shipping : null;
 

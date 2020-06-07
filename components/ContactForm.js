@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import Link from 'next/link';
 
 import validateAndSanitizeContactFormInput from '../lib/validateAndSanitizeContactFormInput';
 import { sendContactMail } from './networking/mail-api';
-import { breakPoints } from '../styles/theme';
+import { colors, breakPoints } from '../styles/theme';
 
 import TextInput from './TextInput';
 import TextArea from './TextArea';
@@ -13,6 +14,7 @@ const ContactForm = () => {
     name: '',
     email: '',
     content: '',
+    consent: false,
     errors: null,
     mainError: null,
   };
@@ -28,9 +30,15 @@ const ContactForm = () => {
   const submitForm = async (e) => {
     e.preventDefault();
     setButtonDisabled(true);
-    const { name, email, content } = formData;
+    const { name, email, content, consent } = formData;
 
     // Validate and sanitize input
+    if (!consent) {
+      setFormData({ ...formData, errors: { consent: 'Your consent is required.' } });
+      setButtonDisabled(false);
+      return;
+    }
+
     const validatededInput = validateAndSanitizeContactFormInput(formData);
     if (!validatededInput.isValid) {
       setFormData({ ...formData, errors: validatededInput.errors });
@@ -104,6 +112,32 @@ const ContactForm = () => {
               />
             </div>
 
+            <div className="consent-checkbox-wrap">
+              <input
+                onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
+                checked={formData.consent}
+                className="checkbox"
+                name="consent"
+                type="checkbox"
+              />
+              <div className="consent-text">
+                I consent to having this website store my information so that they can respond to my
+                inquiry.
+              </div>
+            </div>
+
+            {formData.errors && formData.errors.consent && (
+              <div className="error-msg">{formData.errors.consent}</div>
+            )}
+
+            <p className="privacy-msg">
+              Please refer to our{' '}
+              <Link href="/privacy">
+                <a>privacy policy</a>
+              </Link>{' '}
+              to find out how we store your information.
+            </p>
+
             <div className="submit-wrap">
               {buttonDisabled ? (
                 <p>Sending message...</p>
@@ -141,7 +175,29 @@ const ContactForm = () => {
           margin-top: 3rem;
         }
 
+        .consent-checkbox-wrap {
+          display: flex;
+          margin-top: 1rem;
+        }
+
+        .checkbox {
+          margin-top: 4px;
+          margin-right: 10px;
+          width: 20px;
+          height: 20px;
+          border-radius: 0;
+          border: 1px solid rgb(${colors.violet});
+        }
+
+        .privacy-msg {
+          margin-top: 1rem;
+          color: rgb(${colors.mdgray});
+          font-size: 1.4rem;
+        }
+
         .error-msg {
+          color: rgb(${colors.textred});
+          font-size: 1.4rem;
           margin: 1rem 0;
         }
 

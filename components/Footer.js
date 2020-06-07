@@ -37,18 +37,18 @@ const Footer = () => {
 
         <FooterMenu title="Info" isConnectArea={false}>
           <li>
-            <Link href="/">
+            <Link href="/shipping">
               <a>shipping</a>
             </Link>
           </li>
           <li>
             <Link href="/">
-              <a>legal</a>
+              <a>imprint</a>
             </Link>
           </li>
           <li>
-            <Link href="/">
-              <a>privacy</a>
+            <Link href="/privacy">
+              <a>privacy note</a>
             </Link>
           </li>
         </FooterMenu>
@@ -114,9 +114,9 @@ const Footer = () => {
         </FooterMenu>
       </div>
 
-      <div className="copyright">
+      {/* <div className="copyright">
         <span>&copy; Serious Salmon {new Date().getFullYear()}</span>
-      </div>
+      </div> */}
 
       <style jsx>{`
         .footer {

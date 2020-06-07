@@ -108,10 +108,7 @@ const CheckoutForm = ({ userData }) => {
 
   // The checkout mutation will be invoked once orderData changes
   useEffect(() => {
-    console.log('useeffect');
     if (null !== orderData) {
-      console.log('orderData is da');
-
       // Call the checkout mutation when the value for orderData changes/updates.
       checkout();
     }
@@ -141,6 +138,8 @@ const CheckoutForm = ({ userData }) => {
     },
     onCompleted: () => {
       refetch();
+
+      // delete cart
     },
     onError: (error) => {
       if (error) {

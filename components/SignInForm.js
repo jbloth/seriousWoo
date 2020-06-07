@@ -76,13 +76,13 @@ const SigninForm = () => {
   const handleSignin = (e) => {
     e.preventDefault();
 
-    if (password !== repeatPassword) {
-      setErrorMessage('Passwords fo not match');
-      return;
-    }
+    // if (password !== repeatPassword) {
+    //   setErrorMessage('Passwords fo not match');
+    //   return;
+    // }
 
-    // TODO: validate and sanitize
-    setSigninData({ clientMutationId: 'Elmo', username, password, email });
+    // // TODO: validate and sanitize
+    // setSigninData({ clientMutationId: 'Elmo', username, password, email });
   };
 
   return (

@@ -8,7 +8,7 @@ import { colors, breakPoints } from '../styles/theme';
 import TextInput from './TextInput';
 import Button from './Button';
 
-const EditUserModal = ({ id, initialData, active, closeModal, setAuthToken }) => {
+const EditUserModal = ({ id, initialData, active, closeModal }) => {
   const initialState = {
     firstName: initialData.firstName ? initialData.firstName : '',
     lastName: initialData.lastName ? initialData.lastName : '',

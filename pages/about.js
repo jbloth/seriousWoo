@@ -1,7 +1,7 @@
 import { colors, breakPoints } from '../styles/theme';
 import BgShape from '../components/BgShape';
 
-const Contact = () => {
+const About = () => {
   return (
     <section className="about-page section">
       <BgShape version={3} extraClass="bg-shape-03" />
@@ -137,4 +137,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default About;
