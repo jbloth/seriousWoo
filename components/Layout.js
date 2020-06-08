@@ -9,7 +9,7 @@ const Layout = (props) => {
   return (
     <div className="site-container">
       <Meta />
-      <Header authToken={props.authToken} />
+      <Header />
       {props.children}
       <ScrollToTopButton />
       <Footer />
