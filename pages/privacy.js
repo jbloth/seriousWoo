@@ -1,4 +1,4 @@
-import { colors, breakPoints } from '../styles/theme';
+import { colors } from '../styles/theme';
 
 const PrivacyNote = () => {
   return (
@@ -70,6 +70,37 @@ const PrivacyNote = () => {
 
         <h2>How we may share your data</h2>
         <p>We do not share information with third parties.</p>
+
+        <h2>What rights you have over your data</h2>
+        <p>
+          If you have an account on this site, or have left comments, you can request to receive an
+          exported file of the personal data we hold about you, including any data you have provided
+          to us. You can also request that we erase any personal data we hold about you. This does
+          not include any data we are obliged to keep for administrative, legal, or security
+          purposes.
+        </p>
+
+        <p>
+          If you make a request, we have one month to respond to you. If you would like to exercise
+          any of these rights, please contact us at our email:
+        </p>
+        <p>TODO: email here</p>
+
+        <h2>Privacy policies of other websites</h2>
+        <p>
+          This website may contain links to other websites. Our privacy policy applies only to our
+          website, so if you click on a link to another website, you should read their privacy
+          policy.
+        </p>
+
+        <h2>How to contact us</h2>
+        <p>
+          If you have any questions about Our Company’s privacy policy, the data we hold on you, or
+          you would like to exercise one of your data protection rights, please do not hesitate to
+          contact us.
+        </p>
+        <p>TODO: email here</p>
+        <p>TODO: address here</p>
       </div>
 
       <style jsx>{`

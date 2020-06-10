@@ -152,7 +152,8 @@ const OrderOverview = ({ order }) => {
         }
 
         .order-heading-item {
-          padding-right: 1rem;
+          /* padding-right: 1rem; */
+          min-width: 10rem;
         }
 
         .order-details {
@@ -204,6 +205,13 @@ const OrderOverview = ({ order }) => {
 
         .address-container {
           width: 50%;
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_smallest}) {
+          .order-heading-item {
+            padding-right: 1rem;
+            min-width: 5rem;
+          }
         }
 
         @media only screen and (max-width: ${breakPoints.bp_tiny}) {

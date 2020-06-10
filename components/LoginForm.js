@@ -192,6 +192,12 @@ const LoginForm = ({ authToken }) => {
             max-width: 40rem;
           }
         }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          .login-form-container {
+            width: 90%;
+          }
+        }
       `}</style>
     </div>
   );

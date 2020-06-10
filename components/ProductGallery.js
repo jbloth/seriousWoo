@@ -16,6 +16,11 @@ const ProductGallery = ({ products }) => {
     <div className="productGallery">
       {products.length ? (
         products.map((product) => {
+          // ---- debug ----- //
+          if (product.node) {
+            product = product.node;
+          }
+          // ---------------- //
           if (
             !selectedTag ||
             selectedTag === 'All' ||

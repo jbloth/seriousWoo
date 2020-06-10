@@ -42,7 +42,7 @@ const Footer = () => {
             </Link>
           </li>
           <li>
-            <Link href="/">
+            <Link href="/imprint">
               <a>imprint</a>
             </Link>
           </li>
