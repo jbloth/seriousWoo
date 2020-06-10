@@ -94,7 +94,7 @@ const CartItem = ({ product, refetch }) => {
             </div>
           </div>
           <div className="price-info">
-            <span className="price--single">{price.toFixed(2)}</span>
+            <span className="price--single">{price}</span>
             <QuantityControl
               quantity={qty}
               onDecrease={() => decreaseQuantity(product.cartKey, cart.products)}

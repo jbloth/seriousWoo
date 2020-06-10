@@ -21,7 +21,7 @@ const CheckoutCartItem = ({ product }) => {
           </div>
         </div>
         <div className="price-info">
-          <span className="price--single">{price.toFixed(2)}</span>
+          <span className="price--single">{price}</span>
           <span className="quantity">{`qty: ${qty}`}</span>
           <span className="price--total">{totalPrice}</span>
         </div>

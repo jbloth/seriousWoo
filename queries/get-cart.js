@@ -19,6 +19,21 @@ const GET_CART = gql`
               altText
               title
             }
+            ... on VariableProduct {
+              id
+              name
+              price
+            }
+            ... on SimpleProduct {
+              id
+              name
+              price(format: FORMATTED)
+            }
+            ... on ExternalProduct {
+              id
+              name
+              price
+            }
           }
           variation {
             id

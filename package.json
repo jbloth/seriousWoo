@@ -45,30 +45,5 @@
     "babel-jest": "^26.0.1",
     "jest": "^26.0.1",
     "react-test-renderer": "^16.13.1"
-  },
-  "//": "Needed for jest(?), taken from https://github.com/wesbos/advanced-react-rerecord/blob/master/frontend/package.json ",
-  "babel": {
-    "env": {
-      "development": {
-        "presets": [
-          "next/babel"
-        ]
-      },
-      "production": {
-        "presets": [
-          "next/babel"
-        ]
-      },
-      "test": {
-        "presets": [
-          "next/babel",
-          {
-            "preset-env": {
-              "modules": "commonjs"
-            }
-          }
-        ]
-      }
-    }
   }
 }
