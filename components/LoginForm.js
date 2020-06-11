@@ -72,7 +72,30 @@ const LoginForm = ({ authToken }) => {
 
   // Use login-mutation
   const [login, { data: loginData, loading: loginLoading, error: loginError }] = useMutation(
-    LOGIN_USER
+    LOGIN_USER,
+    {
+      onError: (error) => {
+        // Set Error message, if login failed
+        let newErrMsg = error;
+
+        if (
+          error.graphQLErrors[0]?.message &&
+          error.graphQLErrors[0].message === 'incorrect_password'
+        ) {
+          newErrMsg = 'Incorrect password';
+        }
+
+        if (
+          error.graphQLErrors[0]?.message &&
+          error.graphQLErrors[0].message === 'invalid_username'
+        ) {
+          newErrMsg = 'User not found.';
+        }
+
+        setErrorMessage(newErrMsg);
+        return;
+      },
+    }
   );
 
   useEffect(() => {
@@ -84,9 +107,7 @@ const LoginForm = ({ authToken }) => {
           },
         });
 
-        if (loginError) {
-          console.log(loginError);
-          setErrorMessage(loginError);
+        if (!ldata) {
           return;
         }
 
@@ -101,7 +122,7 @@ const LoginForm = ({ authToken }) => {
           // Send the user to My Account page on successful login.
           Router.push('/myAccount');
         } else {
-          setErrorMessage('Login failed. No user data received');
+          setErrorMessage('No user data received');
         }
       }
     }

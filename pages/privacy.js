@@ -6,11 +6,26 @@ const PrivacyNote = () => {
       <h1>Privacy Policy</h1>
       <div className="privacy-content">
         <h2>Who we are</h2>
+        <p>Controller of you personal data on this website is:</p>
+        <p>TODO</p>
         <p>Our website address is: http://seriouswoo.local.</p>
+
+        <h2>Collection of non-personal data</h2>
+        <p>
+          We automatically collect non-personal information, i.e., information that is not
+          associated with a specific individual, from you when you visit the Websites and/or use our
+          Services. This information may include your Internet Protocol ("IP") address (which is the
+          number automatically assigned to your computer whenever you access the Internet), browser
+          type and language, Internet service provider (“ISP”), referring and exit pages, operating
+          system, date and time stamp, and other data. The IP address does not identify your name,
+          email address, or other personal information. We may use your IP address to help diagnose
+          problems with our server, to administer our Websites, understand and analyze trends, learn
+          about user behavior on the site, and to gather demographic information about our user base
+          as a whole.
+        </p>
 
         <h2>What personal data do we collect and how do we collect it?</h2>
         <p>
-          {' '}
           You directly provide Our Company with most of the data we collect. We collect data and
           process data when you:
         </p>
@@ -68,6 +83,12 @@ const PrivacyNote = () => {
           to process your request and deleted afterwards.
         </p>
 
+        <h2>Where do we store your data?</h2>
+        <p>
+          We securely store your data at [TODO: enter the location and describe security precautions
+          taken].
+        </p>
+
         <h2>How we may share your data</h2>
         <p>We do not share information with third parties.</p>
 
@@ -93,6 +114,27 @@ const PrivacyNote = () => {
           policy.
         </p>
 
+        <h2>Cookies</h2>
+        <p>
+          Cookies are text files placed on your computer to collect standard Internet log
+          information and visitor behavior information. When you visit our websites, we may collect
+          information from you automatically through cookies or similar technology
+        </p>
+
+        <h4>How do we use cookies?</h4>
+        <p>
+          We use cookies in a range of ways to improve your experience on our website, including:
+        </p>
+        <ul className="privacy-ul">
+          <li>Keeping you signed in once you have filled out the login form</li>
+          <li>
+            Enhacing your user experience on this website for example by keeping track of items you
+            put in your shopping cart
+          </li>
+        </ul>
+
+        <h4>What type of cookies do we use?</h4>
+        <p></p>
         <h2>How to contact us</h2>
         <p>
           If you have any questions about Our Company’s privacy policy, the data we hold on you, or
