@@ -121,7 +121,6 @@ const CheckoutForm = ({ userData }) => {
     onCompleted: () => {
       // Update cart in the localStorage.
       const updatedCart = getFormattedCart(data);
-      localStorage.setItem('seriousCart', JSON.stringify(updatedCart));
 
       // Update cart in context
       setCart(updatedCart);
