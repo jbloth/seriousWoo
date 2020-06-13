@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
 
 import validateAndSanitizeLoginInput from '../lib/validateAndSanitizeLoginInput';
+import { CookieConsentContext } from '../components/context/CookieConsentContext';
 import clientConfig from '../clientConfig';
 // import { loginUser } from '../lib/auth';
 import auth from '../lib/auth';
@@ -37,6 +38,8 @@ const LOGIN_USER = gql`
 `;
 
 const LoginForm = ({ authToken }) => {
+  const { consentState } = useContext(CookieConsentContext);
+
   // Get auth token (to decide wether to render link to login or account page)
   // On server: get token from props (passed down from _app)
   let token = authToken;
@@ -112,7 +115,9 @@ const LoginForm = ({ authToken }) => {
         }
 
         if (ldata.data && ldata.data.login && ldata.data.login.user) {
-          auth.loginUser(ldata.data.login.user);
+          if (consentState.agreed) {
+            auth.loginUser(ldata.data.login.user);
+          }
 
           // Set form field vaues to empty.
           setErrorMessage('');
@@ -131,6 +136,13 @@ const LoginForm = ({ authToken }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if (!consentState.agreed) {
+      setErrorMessage(
+        'You habe to enable cookies to log in. You can enable cookies from the footer menu (cookie settings).'
+      );
+      return;
+    }
 
     // validate and sanitize
     const validatededInput = validateAndSanitizeLoginInput(formData);

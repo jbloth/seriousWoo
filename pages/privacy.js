@@ -114,27 +114,6 @@ const PrivacyNote = () => {
           policy.
         </p>
 
-        <h2>Cookies</h2>
-        <p>
-          Cookies are text files placed on your computer to collect standard Internet log
-          information and visitor behavior information. When you visit our websites, we may collect
-          information from you automatically through cookies or similar technology
-        </p>
-
-        <h4>How do we use cookies?</h4>
-        <p>
-          We use cookies in a range of ways to improve your experience on our website, including:
-        </p>
-        <ul className="privacy-ul">
-          <li>Keeping you signed in once you have filled out the login form</li>
-          <li>
-            Enhacing your user experience on this website for example by keeping track of items you
-            put in your shopping cart
-          </li>
-        </ul>
-
-        <h4>What type of cookies do we use?</h4>
-        <p></p>
         <h2>How to contact us</h2>
         <p>
           If you have any questions about Our Company’s privacy policy, the data we hold on you, or
@@ -169,8 +148,12 @@ const PrivacyNote = () => {
         }
 
         .privacy-ul {
-          list-style: initial;
-          list-style-position: inside;
+          list-style: disc;
+        }
+
+        .privacy-ul li {
+          list-style-position: outside;
+          margin-left: 1em;
         }
       `}</style>
     </section>

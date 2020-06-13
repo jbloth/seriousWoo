@@ -3,6 +3,8 @@ import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import { AppProvider } from '../components/context/AppContext'; // state (using context)
+import { CookieConsentProvider } from '../components/context/CookieConsentContext'; // cookie consent state
+
 import Layout from '../components/Layout'; // Header and Footer
 // import withApollo from '../lib/withApollo_wb'; // Apollo HOC
 import withApollo from '../lib/withApollo_globalTokens'; // Apollo HOC
@@ -25,9 +27,11 @@ class MyApp extends App {
     return (
       <ApolloProvider client={apollo}>
         <AppProvider>
-          <Layout {...pageProps}>
-            <Component {...pageProps} />
-          </Layout>
+          <CookieConsentProvider>
+            <Layout {...pageProps}>
+              <Component {...pageProps} />
+            </Layout>
+          </CookieConsentProvider>
         </AppProvider>
       </ApolloProvider>
     );

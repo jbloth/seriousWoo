@@ -6,11 +6,19 @@ import { AppContext } from '../components/context/AppContext';
 import GET_CATEGORY_KEYS from '../queries/get-category-keys';
 import { colors, fonts, breakPoints } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
-import MobileMenuItem from '../components/MobileMenuItem';
+import MobileMenuShopCategories from './MobileMenuShopCategories';
+import MobileMenuItem from './MobileMenuItem';
 
 const MobileMenu = ({ token }) => {
   const { mobMenuOpen, toggleMenuOpen, toggleSearchOpen } = useContext(AppContext);
   const { loading, error, data } = useQuery(GET_CATEGORY_KEYS);
+
+  const infoSubMenuContents = [
+    { name: 'shipping', url: '/shipping' },
+    { name: 'privacy note', url: '/privacy' },
+    { name: 'cookie note', url: '/cookies' },
+    { name: 'imprint', url: '/imprint' },
+  ];
 
   return (
     <div className={`mobile-menu-container ${mobMenuOpen ? 'mobile-menu--active ' : ''}`}>
@@ -38,7 +46,7 @@ const MobileMenu = ({ token }) => {
           <li className="nav-item">
             {loading && <p>...</p>}
             {!loading && !error && (
-              <MobileMenuItem
+              <MobileMenuShopCategories
                 title="Shop"
                 toggleMenuOpen={toggleMenuOpen}
                 items={data.productCategories.nodes}
@@ -52,6 +60,14 @@ const MobileMenu = ({ token }) => {
                 <h1 className="title">{token ? 'Account' : 'Login'}</h1>
               </a>
             </Link>
+          </li>
+
+          <li className="nav-item">
+            <MobileMenuItem
+              title="Info"
+              toggleMenuOpen={toggleMenuOpen}
+              items={infoSubMenuContents}
+            />
           </li>
 
           <li className="nav-item">

@@ -8,9 +8,11 @@ import FooterMenu from './FooterMenu';
 import ConnectAreaItem from './ConnectAreaItem';
 import TextInput from './TextInput';
 import Button from './Button';
+import CookieSettingsModal from './CookieSettingsModal';
 
 const Footer = () => {
   const [newsletterMsgOpen, setNewsletterMsgOpen] = useState(false);
+  const [cookieSettingsOpen, setCookieSettingsOpen] = useState(false);
 
   return (
     <footer className="footer section">
@@ -33,6 +35,12 @@ const Footer = () => {
               <a>shop</a>
             </Link>
           </li>
+
+          <li>
+            <span className="clickable" onClick={() => setCookieSettingsOpen(true)}>
+              cookie settings
+            </span>
+          </li>
         </FooterMenu>
 
         <FooterMenu title="Info" isConnectArea={false}>
@@ -49,6 +57,11 @@ const Footer = () => {
           <li>
             <Link href="/privacy">
               <a>privacy note</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/cookies">
+              <a>cookie note</a>
             </Link>
           </li>
         </FooterMenu>
@@ -112,6 +125,13 @@ const Footer = () => {
             </Link>
           </ConnectAreaItem>
         </FooterMenu>
+
+        {cookieSettingsOpen && (
+          <CookieSettingsModal
+            active={cookieSettingsOpen}
+            closeModal={() => setCookieSettingsOpen(false)}
+          />
+        )}
       </div>
 
       {/* <div className="copyright">
@@ -148,6 +168,10 @@ const Footer = () => {
 
         a {
           color: rgb(${colors.orange});
+        }
+
+        .clickable {
+          cursor: pointer;
         }
 
         .social-icons-container {

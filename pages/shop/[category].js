@@ -59,8 +59,6 @@ const Category = ({ query }) => {
   }
 
   const hasMore = () => {
-    console.log('-- hasMore --');
-    console.log(data);
     if (variables.last) {
       return data?.productCategory?.products?.pageInfo?.hasPreviousPage
         ? data.productCategory.products.pageInfo.hasPreviousPage

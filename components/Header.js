@@ -46,7 +46,6 @@ const Header = () => {
   useEffect(() => {
     const tokenSubscription = auth.authTokenObservable.subscribe({
       next: (newToken) => {
-        console.log('newToken: ' + newToken);
         setToken(newToken);
       },
       error: (err) => {

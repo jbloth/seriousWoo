@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
@@ -21,6 +21,26 @@ const myAccount = ({ client }) => {
 
   const [editUserModalActive, setEditUserModalActive] = useState(false);
   const [editAddressModalActive, setEditAddressModalActive] = useState(false);
+
+  /* Subscribe to auth token observable, so we can redirect to login if the user 
+   logs out from another component (E.g. if cookies are disabled, the user gets
+   logged out automatically)
+   */
+  // let initialToken = auth.getAuthToken();
+  // const [token, setToken] = useState(initialToken);
+  useEffect(() => {
+    const tokenSubscription = auth.authTokenObservable.subscribe({
+      next: (newToken) => {
+        if (!newToken) {
+          Router.push('/login');
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+    return () => tokenSubscription.unsubscribe();
+  }, []);
 
   // query user data
   const { loading, error, data } = useQuery(GET_USER_DATA, {
@@ -307,15 +327,12 @@ myAccount.getInitialProps = async (ctx) => {
 
   // Redirect to login page if there is no auth token
   if (ctx.req && !token) {
-    console.log('server redirect');
-
     ctx.res.writeHead(302, { Location: '/login' });
     ctx.res.end();
     return { token: null };
   }
 
   if (!token) {
-    console.log('client redirect');
     Router.push('/login');
     return { token: null };
   }

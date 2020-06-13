@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { colors, fonts } from '../styles/theme';
 
-const MobileMenuItem = ({ title, toggleMenuOpen, items }) => {
+const MobileMenuShopCategories = ({ title, toggleMenuOpen, items }) => {
   const [open, setOpen] = useState(false);
   const toggleCollapse = () => {
     setOpen(!open);
@@ -16,10 +16,10 @@ const MobileMenuItem = ({ title, toggleMenuOpen, items }) => {
         <span>{open ? ' - ' : ' + '}</span>
       </h1>
       <div className={`sub-menu ${open ? 'sub-menu--active' : ''}`}>
-        {items.map((item, index) => {
-          const { name, url } = item;
+        {items.map(({ id, name, slug }) => {
+          if (slug === 'uncategorized') return ''; // Exclude "uncategorized" category
           return (
-            <Link href={url} key={index}>
+            <Link as={`/shop/${slug}`} href={'/[shop]/[category]'} key={id}>
               <a className="item" onClick={toggleMenuOpen}>
                 {name}
               </a>
@@ -54,4 +54,4 @@ const MobileMenuItem = ({ title, toggleMenuOpen, items }) => {
   );
 };
 
-export default MobileMenuItem;
+export default MobileMenuShopCategories;
