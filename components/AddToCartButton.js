@@ -29,7 +29,6 @@ const AddToCartButton = ({ product, children, selectedVariation }) => {
     onCompleted: () => {
       // Update cart in the localStorage.
       const updatedCart = getFormattedCart(data);
-      localStorage.setItem('seriousCart', JSON.stringify(updatedCart));
 
       // Update cart data in React Context.
       setCart(updatedCart);
