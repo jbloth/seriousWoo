@@ -3,8 +3,17 @@ import { colors } from '../styles/theme';
 const CookieNote = () => {
   return (
     <section className="cookie-page section">
-      <h1>Cookie Statement</h1>
+      <h1>Cookies and Local Storage Statement</h1>
       <div className="cookie-content">
+        <h2>What are cookies?</h2>
+        <p>
+          This website uses cookies. Cookies are text files placed on your computer that allow us to
+          recognize and remember you and your interaction with our website. When you visit our
+          website, we may collect information from you automatically through cookies or similar
+          technology
+        </p>
+
+        <h2>What is local storage?</h2>
         <p>
           This website uses cookies. Cookies are text files placed on your computer that allow us to
           recognize and remember you and your interaction with our website. When you visit our

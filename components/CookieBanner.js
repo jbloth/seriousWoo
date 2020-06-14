@@ -8,7 +8,6 @@ const CookieBanner = ({ dispatch }) => {
     <div className="cookie-banner">
       <div className="cookie-consent-container">
         <div className="banner-text">
-          {/* <h4 className="cookie-claim">This website uses cookies.</h4> */}
           <p className="cookie-statement-msg">
             This website uses cookies to improve your user experience and to analyze how our site is
             used. Please read our{' '}
