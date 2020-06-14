@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useReducer, createContext } from 'react';
 import Cookies from 'js-cookie';
-import cookies from 'next-cookies';
+// import cookies from 'next-cookies';
 
-import CookieBanner from '../CookieBanner'; // Cookie Consent banner
+// import CookieBanner from '../CookieBanner'; // Cookie Consent banner
 
 const COOKIE_NAME = 'consent';
 
