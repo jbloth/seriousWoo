@@ -38,8 +38,9 @@ const Header = () => {
   const { toggleCartOpen, cart, toggleMenuOpen, toggleSearchOpen } = useContext(AppContext);
 
   // Get auth token (to decide wether to render link to login or account page)
-  let initialToken = auth.getAuthToken();
-  const [token, setToken] = useState(initialToken);
+  // let initialToken = auth.getAuthToken();
+  // Use null as initial state so that inital render has the same content on server and client
+  const [token, setToken] = useState(null);
 
   // Subscribe to auth token observable to show login-link in the header when the
   // user logs out.
@@ -53,7 +54,7 @@ const Header = () => {
       },
     });
     return () => tokenSubscription.unsubscribe();
-  }, []);
+  });
 
   const itemCount = cart !== null && Object.keys(cart).length ? cart.totalProductsCount : 0;
 

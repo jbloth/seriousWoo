@@ -15,11 +15,13 @@ const Layout = (props) => {
   const { cookieBannerOpen, dispatchCookieConsent } = useContext(CookieConsentContext);
   const [bannerOpen, setBannerOpen] = useState(false);
 
+  // Only set banner open after inital render to prevent client and server discrepancy
+  // on initial render.
   useEffect(() => {
     if (process.browser) {
       setBannerOpen(cookieBannerOpen);
     }
-  }, []);
+  }, [cookieBannerOpen]);
 
   return (
     <div className="site-container">
