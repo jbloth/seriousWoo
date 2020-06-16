@@ -52,7 +52,9 @@ const AddToCartButton = ({ product, children, selectedVariation }) => {
     },
     onError: (error) => {
       if (error) {
-        setRequestError(error.graphQLErrors[0].message);
+        if (error.graphQLErrors[0]) {
+          setRequestError(error.graphQLErrors[0].message);
+        }
         console.log(error);
       }
     },

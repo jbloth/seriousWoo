@@ -58,6 +58,7 @@ const CookieBanner = ({ dispatch }) => {
 
         .cookie-statement-msg {
           font-size: 1.4rem;
+          text-align: justify;
         }
 
         .buttons-container {
@@ -70,6 +71,17 @@ const CookieBanner = ({ dispatch }) => {
           align-items: center;
           justify-content: center;
           padding: 0 1rem;
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_small}) {
+          .cookie-consent-container {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .buttons-container {
+            padding-top: 1rem;
+          }
         }
       `}</style>
     </div>
