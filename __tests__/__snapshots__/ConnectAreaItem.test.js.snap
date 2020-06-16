@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConnectAreaItem/> matches snapshot 1`] = `
+<li
+  className="jsx-2134147660 connectArea__item"
+>
+  <p
+    className="jsx-2134147660 connectArea__cta"
+  >
+    <span
+      className="jsx-2134147660"
+    >
+      Title
+    </span>
+     
+    <span
+      className="jsx-2134147660 connectArea__arrow"
+    >
+      :
+    </span>
+  </p>
+  Child
+  <JSXStyle
+    dynamic={
+      Array [
+        "56.25em",
+        "44em",
+      ]
+    }
+    id="1202760200"
+  >
+    .connectArea__item.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.connectArea__cta.__jsx-style-dynamic-selector{display:inline-block;width:11rem;font-weight:bold;}@media only screen and (max-width:56.25em){.connectArea__item.__jsx-style-dynamic-selector{margin:10px 0 18px 0;width:100%;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;}.connectArea__cta.__jsx-style-dynamic-selector{width:unset;}}@media only screen and (max-width:44em){}
+  </JSXStyle>
+</li>
+`;
+
+exports[`<ConnectAreaItem/> updates when props changes 1`] = `
+<li
+  className="jsx-2134147660 connectArea__item"
+>
+  <p
+    className="jsx-2134147660 connectArea__cta"
+  >
+    <span
+      className="jsx-2134147660"
+    >
+      Title
+    </span>
+     
+    <span
+      className="jsx-2134147660 connectArea__arrow"
+    >
+      :
+    </span>
+  </p>
+  Child
+  <JSXStyle
+    dynamic={
+      Array [
+        "56.25em",
+        "44em",
+      ]
+    }
+    id="1202760200"
+  >
+    .connectArea__item.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.connectArea__cta.__jsx-style-dynamic-selector{display:inline-block;width:11rem;font-weight:bold;}@media only screen and (max-width:56.25em){.connectArea__item.__jsx-style-dynamic-selector{margin:10px 0 18px 0;width:100%;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;}.connectArea__cta.__jsx-style-dynamic-selector{width:unset;}}@media only screen and (max-width:44em){}
+  </JSXStyle>
+</li>
+`;
+
+exports[`<ConnectAreaItem/> updates when props changes 2`] = `
+<li
+  className="jsx-2134147660 connectArea__item"
+>
+  <p
+    className="jsx-2134147660 connectArea__cta"
+  >
+    <span
+      className="jsx-2134147660"
+    >
+      new title
+    </span>
+     
+    <span
+      className="jsx-2134147660 connectArea__arrow"
+    >
+      :
+    </span>
+  </p>
+  Child
+  <JSXStyle
+    dynamic={
+      Array [
+        "56.25em",
+        "44em",
+      ]
+    }
+    id="1202760200"
+  >
+    .connectArea__item.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.connectArea__cta.__jsx-style-dynamic-selector{display:inline-block;width:11rem;font-weight:bold;}@media only screen and (max-width:56.25em){.connectArea__item.__jsx-style-dynamic-selector{margin:10px 0 18px 0;width:100%;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;}.connectArea__cta.__jsx-style-dynamic-selector{width:unset;}}@media only screen and (max-width:44em){}
+  </JSXStyle>
+</li>
+`;

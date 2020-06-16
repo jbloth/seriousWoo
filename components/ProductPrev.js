@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { colors, breakPoints } from '../styles/theme';
-import AddToCartButton from './AddToCartButton';
 
 const ProductPrev = ({ product, category, className }) => {
   const router = useRouter();
@@ -40,7 +39,7 @@ const ProductPrev = ({ product, category, className }) => {
           }
 
           .product-img {
-            height: 26rem;
+            height: 22rem;
             width: 22rem;
             background-size: cover;
             background-position: center;

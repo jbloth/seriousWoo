@@ -110,21 +110,32 @@ const CookieSettingsModal = ({ active, closeModal, client }) => {
           justify-content: space-between;
         }
 
+        @media only screen and (max-width: ${breakPoints.bp_md}) {
+          .buttons-container {
+            width: 50%;
+          }
+        }
+
         @media only screen and (max-width: ${breakPoints.bp_small}) {
           .cookie-settings-modal {
             width: 50rem;
+          }
+
+          .buttons-container {
+            width: 60%;
           }
         }
 
         @media only screen and (max-width: ${breakPoints.bp_smallest}) {
           .cookie-settings-modal {
             width: 100%;
+            top: 5%;
           }
         }
 
         @media only screen and (max-width: ${breakPoints.bp_tiny}) {
           .buttons-container {
-            width: 100%;
+            width: 80%;
           }
 
           .button-wrapper {

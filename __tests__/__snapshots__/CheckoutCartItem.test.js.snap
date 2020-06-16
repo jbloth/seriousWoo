@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CheckoutCartItem/> matches snapshot 1`] = `
+<div
+  className="jsx-3212271742 cart-item"
+>
+  <div
+    className="jsx-3212271742 img"
+    style={
+      Object {
+        "backgroundImage": "url('/images/salmon.png')",
+      }
+    }
+  />
+  <div
+    className="jsx-3212271742 info"
+  >
+    <div
+      className="jsx-3212271742 row"
+    >
+      <div
+        className="jsx-3212271742 description"
+      >
+        <span
+          className="jsx-3212271742 name"
+        >
+          Nice Shirt
+        </span>
+        <span
+          className="jsx-3212271742 size"
+        >
+          M
+        </span>
+      </div>
+    </div>
+    <div
+      className="jsx-3212271742 price-info"
+    >
+      <span
+        className="jsx-3212271742 price--single"
+      >
+        16.90€
+      </span>
+      <span
+        className="jsx-3212271742 quantity"
+      >
+        qty: 2
+      </span>
+      <span
+        className="jsx-3212271742 price--total"
+      >
+        33.80€
+      </span>
+    </div>
+  </div>
+  <JSXStyle
+    dynamic={
+      Array [
+        "213, 182, 228",
+        "23.75em",
+      ]
+    }
+    id="1944029843"
+  >
+    .cart-item.__jsx-style-dynamic-selector{width:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;border-bottom:1px solid rgb(213, 182, 228);padding:1.5rem 0;}.img.__jsx-style-dynamic-selector{width:80px;height:90px;background-size:cover;background-position:center;}.info.__jsx-style-dynamic-selector{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;padding-left:2rem;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.row.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.name.__jsx-style-dynamic-selector{font-size:2rem;}.size.__jsx-style-dynamic-selector{margin-left:2rem;}.price-info.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.price--total.__jsx-style-dynamic-selector{font-size:1.8rem;font-weight:bold;}@media only screen and (max-width:23.75em){.info.__jsx-style-dynamic-selector{padding-left:1rem;}.price-info.__jsx-style-dynamic-selector{font-size:1.4rem;}.price--total.__jsx-style-dynamic-selector{font-size:1.4rem;}}
+  </JSXStyle>
+</div>
+`;

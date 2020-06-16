@@ -59,7 +59,7 @@ export const CookieConsentProvider = (props) => {
 
   // Update the cookie when consentState changes
   useEffect(() => {
-    Cookies.set(COOKIE_NAME, consentState, { expires: 7 });
+    Cookies.set(COOKIE_NAME, JSON.stringify(consentState), { expires: 7 });
   }, [consentState]);
 
   return (
