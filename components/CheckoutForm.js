@@ -11,10 +11,13 @@ import CHECKOUT_MUTATION from '../mutations/checkout';
 import CheckoutFormInputs from './CheckoutFormInputs';
 import CartOverview from './CartOverview';
 import PaymentSelector from './PaymentSelector';
+import ShippingSelector from './ShippingSelector';
 import Button from './Button';
 import OrderSuccess from './OrderSuccess';
 
 const CheckoutForm = ({ userData }) => {
+  const { cart, setCart } = useContext(AppContext);
+
   // Default form contents
   let initialBilling = {
     firstName: '',
@@ -45,6 +48,7 @@ const CheckoutForm = ({ userData }) => {
     createAccount: false,
     paymentMethod: '',
     shipToDifferentAddress: false,
+    shippingMethod: cart?.chosenShippingMethod ? cart.chosenShippingMethod : '',
     errors: null,
   };
 
@@ -81,7 +85,6 @@ const CheckoutForm = ({ userData }) => {
     };
   }
 
-  const { cart, setCart } = useContext(AppContext);
   const [billingAddress, setBillingAddress] = useState(initialBilling);
   const [shippingAddress, setShippingAddress] = useState(initialShipping);
   const [orderSettings, setOrderSettings] = useState(initialOrderSettings);
@@ -121,9 +124,9 @@ const CheckoutForm = ({ userData }) => {
     onCompleted: () => {
       // Update cart in the localStorage.
       const updatedCart = getFormattedCart(data);
-
       // Update cart in context
       setCart(updatedCart);
+      setOrderSettings({ ...orderSettings, shippingMethod: updatedCart.chosenShippingMethod });
     },
   });
 
@@ -137,13 +140,12 @@ const CheckoutForm = ({ userData }) => {
     },
     onCompleted: () => {
       refetch();
-
-      // delete cart
     },
     onError: (error) => {
-      if (error) {
+      if (error.graphQLErrors && error.graphQLErrors.length > 0) {
         setRequestError(error.graphQLErrors[0].message);
       }
+      console.log(error);
     },
   });
 
@@ -237,11 +239,46 @@ const CheckoutForm = ({ userData }) => {
             )}
           </div>
           <div className="cart-and-payment">
-            <div className="cart-overview">
+            <div className="cart-overview form-section">
               <h2>Your Cart</h2>
               <CartOverview cart={cart} />
             </div>
-            <div className="payment-methods">
+
+            <div className="shipping-container form-section">
+              <h3>Shipping</h3>
+              {cart.availableShippingMethods &&
+                cart.availableShippingMethods.map((shipment, idx) => {
+                  return (
+                    <div className="package-details" key={idx}>
+                      <h5>Available rates:</h5>
+                      <ShippingSelector
+                        rates={shipment.rates}
+                        refetch={refetch}
+                        initialShippingId={cart.chosenShippingMethod}
+                      />
+                    </div>
+                  );
+                })}
+            </div>
+
+            <div className="totals-container form-section">
+              <h3>Total</h3>
+              <div className="totals"></div>
+              <p className="totals-line">
+                <span className="totals-line-text">Subtotal:</span>
+                <span className="totals-line-price">{cart.subtotal}</span>
+              </p>
+              <p className="totals-line">
+                <span className="totals-line-text">Shipping:</span>
+                <span className="totals-line-price">{cart.shippingTotal}</span>
+              </p>
+              <p className="total">
+                <span className="total-text">Total:</span>
+                <span className="total-price">{cart.total}</span>
+              </p>
+            </div>
+
+            <div className="payment-methods-container form-section">
               <h3>Payment</h3>
               <PaymentSelector input={orderSettings} handleOnChange={handleChange_orderSettings} />
               {orderSettings.errors && orderSettings.errors.paymentMethod && (
@@ -292,6 +329,10 @@ const CheckoutForm = ({ userData }) => {
           flex-direction: column;
         }
 
+        .form-section {
+          margin-bottom: 2rem;
+        }
+
         .checkbox {
           margin-right: 5px;
           width: 15px;
@@ -303,6 +344,33 @@ const CheckoutForm = ({ userData }) => {
         .submit-wrap {
           align-self: flex-end;
           margin: 2rem 0;
+        }
+
+        .totals-line {
+          text-align: right;
+          font-size: 1.8rem;
+        }
+
+        .total {
+          text-align: right;
+          font-size: 2.4rem;
+          font-weight: bold;
+          border-top: 1px solid rgb(${colors.violet});
+          border-bottom: 1px solid rgb(${colors.violet});
+          margin-top: 0.5rem;
+        }
+
+        .total-text,
+        .totals-line-text {
+          color: rgb(${colors.orange});
+        }
+
+        .total-price,
+        .totals-line-price {
+          display: inline-block;
+          color: rgb(${colors.textblue});
+          margin-left: 2rem;
+          min-width: 11rem;
         }
 
         .error-msg {

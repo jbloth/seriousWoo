@@ -8,68 +8,9 @@ const UPDATE_CART = gql`
     updateItemQuantities(input: $input) {
       items {
         key
-        product {
-          id
-          productId
-          name
-          type
-          onSale
-          slug
-          image {
-            id
-            sourceUrl
-            altText
-          }
-        }
-        variation {
-          id
-          variationId
-          name
-          type
-          onSale
-          price
-          regularPrice
-          salePrice
-          image {
-            id
-            sourceUrl
-            altText
-          }
-          attributes {
-            nodes {
-              id
-              attributeId
-              name
-              value
-            }
-          }
-        }
         quantity
         total
         subtotal
-        subtotalTax
-      }
-      removed {
-        key
-        product {
-          id
-          productId
-        }
-        variation {
-          id
-          variationId
-        }
-      }
-      updated {
-        key
-        product {
-          id
-          productId
-        }
-        variation {
-          id
-          variationId
-        }
       }
     }
   }
