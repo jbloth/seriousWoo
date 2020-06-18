@@ -16,7 +16,7 @@ const getSizesFromVariations = (variations) => {
   variations.nodes.forEach((variationNode) => {
     if (variationNode.attributes) {
       variationNode.attributes.nodes.forEach((atrribNode) => {
-        if (atrribNode.name === 'pa_size') {
+        if (atrribNode.name === 'pa_size' || atrribNode.name === 'size') {
           sizes.push({
             name: atrribNode.value,
             id: variationNode.variationId,

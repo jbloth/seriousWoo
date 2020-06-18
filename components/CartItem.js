@@ -13,8 +13,7 @@ const CartItem = ({ product, refetch }) => {
   const { cart } = useContext(AppContext);
   const [requestError, setRequestError] = useState(null);
 
-  const { image, name, price, qty, totalPrice, size } = product; // TODO: size
-
+  const { image, name, price, qty, totalPrice, size } = product;
   const imgUrl = image.sourceUrl;
 
   const [
@@ -25,9 +24,10 @@ const CartItem = ({ product, refetch }) => {
       refetch();
     },
     onError: (error) => {
-      if (error) {
+      if (error.graphQLErrors && error.graphQLErrors.length > 0) {
         setRequestError(error.graphQLErrors[0].message);
       }
+      console.log(error);
     },
   });
 
