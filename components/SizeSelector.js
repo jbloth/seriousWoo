@@ -34,7 +34,7 @@ const SizeSelector = ({ sizes, onSelect }) => {
       <style jsx>{`
         .select-wrapper {
           position: relative;
-          width: 6rem;
+          min-width: 6rem;
         }
 
         select {
@@ -48,8 +48,9 @@ const SizeSelector = ({ sizes, onSelect }) => {
           background-color: rgb(${colors.bg});
           color: rgb(${colors.orange});
           border: 2px solid rgb(${colors.orange});
-          width: 6rem;
+          min-width: 6rem;
           border-radius: 0;
+          padding-right: 2rem;
         }
 
         select::-ms-expand {

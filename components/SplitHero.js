@@ -5,6 +5,10 @@ const SplitHero = ({ imgUrl, children }) => {
     <div className="hero l-wrapper">
       <div style={{ backgroundImage: `url('${imgUrl}')` }} className="hero__img">
         <div className="hero__text">{children}</div>
+        <div className="photo-credit">
+          Photo from <a href="https://unsplash.com/photos/PDxIL5Jbqew">Tarutoa</a> on
+          <a href="https://unsplash.com/"> Unsplash</a>
+        </div>
       </div>
 
       <div className="hero__greeting">{children}</div>
@@ -27,6 +31,17 @@ const SplitHero = ({ imgUrl, children }) => {
           background-position: center;
           height: auto;
           background-color: rgb(${colors.violet});
+        }
+
+        .photo-credit {
+          color: rgb(${colors.bg});
+          font-size: 1.2rem;
+          text-align: right;
+          margin-right: 1rem;
+        }
+
+        .photo-credit a {
+          color: rgb(${colors.violet});
         }
 
         .hero__text {

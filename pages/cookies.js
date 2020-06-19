@@ -42,6 +42,11 @@ const CookieNote = () => {
               This cookie will be deleted after seven days.
             </li>
             <li>
+              showDemoMsg: This cookie makes sure you only get to see the popup, that informs you of
+              the demo-nature of this site, when you first visit the page. It keeps the popup from
+              re-opening after a site refresh. This cookie will be deleted after seven days.
+            </li>
+            <li>
               woo-session: Enables us to keep the contents your cart persistent when you refresh or
               leave and revisit the page. This cookie will be deleted after two days.
             </li>
@@ -85,8 +90,9 @@ const CookieNote = () => {
             contact us.
           </p>
           <p>Email: info@serious-salmon.com</p>
-          <p>Address: Serious Salmon</p>
-          <p>Juliane Blothner</p>
+          <p>Address: </p>
+          <p>Serious Salmon</p>
+          <p>c/o Juliane Blothner</p>
           <p>Pettenkofer Str. 2</p>
           <p>50823 Köln</p>
           <p>Germany</p>

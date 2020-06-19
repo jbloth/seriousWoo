@@ -1,29 +1,11 @@
 import { useQuery } from '@apollo/react-hooks';
 
-// import client from '../../components/ApolloClient';
-import GET_CATEGORY from '../../queries/get-category';
 import GET_CATEGORY_PAGINATION from '../../queries/get-category-pagination';
 import { breakPoints } from '../../styles/theme';
 import ProductGallery from '../../components/ProductGallery';
 import ShopHeader from '../../components/ShopHeader';
 import ShopSidebar from '../../components/ShopSidebar';
 import Button from '../../components/Button';
-
-// // Get an array of all product tags in this category
-// const getTags = (products) => {
-//   return products.reduce(
-//     (tags, product) => {
-//       const productTags = product.productTags.nodes;
-//       productTags.forEach((tag) => {
-//         if (!tags.includes(tag.name)) {
-//           tags.push(tag.name);
-//         }
-//       });
-//       return tags;
-//     },
-//     ['All']
-//   );
-// };
 
 // Get an array of all product tags in this category
 const getTags = (products) => {
@@ -43,7 +25,6 @@ const getTags = (products) => {
 
 // const Category = ({ products, categoryName }) => {
 const Category = ({ query }) => {
-  //----- //
   const id = query.category;
   let variables = {
     id,
@@ -95,10 +76,6 @@ const Category = ({ query }) => {
                   ],
                 },
               },
-              // edges: uniqBy(
-              //   [...prev.products.edges, ...fetchMoreResult.products.edges],
-              //   'cursor'
-              // ),
             };
             console.log('next:');
             console.log(next);
@@ -112,7 +89,6 @@ const Category = ({ query }) => {
 
   const products = data.productCategory?.products?.edges ? data.productCategory.products.edges : [];
   const categoryName = data.productCategory?.name ? data.productCategory.name : 'All';
-  //----- //
 
   const productTags = getTags(products);
 
@@ -189,20 +165,5 @@ const Category = ({ query }) => {
     </React.Fragment>
   );
 };
-
-// Category.getInitialProps = async function (context) {
-//   const id = context.query.category;
-//   const client = context.apolloClient;
-
-//   const res = await client.query({
-//     query: GET_CATEGORY,
-//     variables: { id },
-//   });
-
-//   return {
-//     categoryName: res.data.productCategory.name,
-//     products: res.data.productCategory.products.nodes,
-//   };
-// };
 
 export default Category;

@@ -296,6 +296,7 @@ const EditAddressModal = ({ id, initialData, active, closeModal }) => {
         @media only screen and (max-width: ${breakPoints.bp_smallest}) {
           .edit-user-modal {
             width: 100%;
+            top: 10%;
           }
         }
 
