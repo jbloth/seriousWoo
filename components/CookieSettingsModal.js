@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { withApollo } from 'react-apollo'; // To reset Apollo cache on logout
+import Link from 'next/link';
 
 import auth from '../lib/auth';
 import { CookieConsentContext } from '../components/context/CookieConsentContext';
@@ -19,9 +20,15 @@ const CookieSettingsModal = ({ active, closeModal, client }) => {
         <h2>Cookie Settings</h2>
         <p>
           Here you can accept or decline cookies on our website. If you decide to decline all
-          cookies, there will still be one cookie that remembers your decision. Also, if cookies are
-          disabled, login is no longer possible. If your are logged in, you will be logged out
-          immediately.
+          cookies, there will still be a few essential cookies, like the one that remembers your
+          decision regarding cookies. Also, if cookies are disabled, login is no longer possible. If
+          your are logged in, you will be logged out immediately.
+        </p>
+        <p>
+          To learn more about how this site uses cookies, please visit our{' '}
+          <Link href="/cookies">
+            <a>cookie statement.</a>
+          </Link>
         </p>
 
         <div className="row">
@@ -71,7 +78,7 @@ const CookieSettingsModal = ({ active, closeModal, client }) => {
 
         .cookie-settings-modal {
           position: relative;
-          top: 25%;
+          top: 15%;
           margin: 0 auto;
           width: 60rem;
           background-color: rgb(${colors.lighterblue});
@@ -94,6 +101,7 @@ const CookieSettingsModal = ({ active, closeModal, client }) => {
 
         p {
           color: rgb(${colors.textblue});
+          margin-bottom: 2rem;
         }
 
         .row {

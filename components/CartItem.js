@@ -13,7 +13,7 @@ const CartItem = ({ product, refetch }) => {
   const { cart } = useContext(AppContext);
   const [requestError, setRequestError] = useState(null);
 
-  const { image, name, price, qty, totalPrice, size } = product;
+  const { image, name, price, subtotal, qty, totalPrice, size } = product;
   const imgUrl = image.sourceUrl;
 
   const [
@@ -94,13 +94,13 @@ const CartItem = ({ product, refetch }) => {
             </div>
           </div>
           <div className="price-info">
-            <span className="price--single">{price}</span>
+            <span className="price--single">{subtotal}</span>
             <QuantityControl
               quantity={qty}
               onDecrease={() => decreaseQuantity(product.cartKey, cart.products)}
               onIncrease={() => increaseQuantity(product.cartKey, cart.products)}
             />
-            <span className="price--total">{totalPrice} $</span>
+            <span className="price--total">{totalPrice}</span>
           </div>
           {requestError && <div className="errorMsg">{'Error: ' + requestError} </div>}
         </div>

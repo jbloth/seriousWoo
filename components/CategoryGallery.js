@@ -9,18 +9,24 @@ const CategoryGallery = () => {
       imgUrl: '/images/sharon-garcia-QxLY0sKCDmo-unsplash 1.png',
       id: 1,
       linkUrl: 'shop/kids',
+      photographerUrl: 'https://unsplash.com/photos/QxLY0sKCDmo',
+      photographerName: 'Sharon Garcia',
     },
     {
       title: 'WOMENS',
       imgUrl: '/images/sule-makaroglu-iz7PNf7Daoc-unsplash 1.png',
       id: 2,
       linkUrl: 'shop/womens',
+      photographerUrl: 'https://unsplash.com/@sulemakaroglu',
+      photographerName: 'ŞULE MAKAROĞLU',
     },
     {
       title: 'MENS',
       imgUrl: '/images/dylan-sauerwein-5oog6pFHD_s-unsplash 1.png',
       id: 3,
       linkUrl: 'shop/mens',
+      photographerUrl: 'https://unsplash.com/@rawdyl',
+      photographerName: 'Dylan Sauerwein',
     },
   ];
 
@@ -36,6 +42,10 @@ const CategoryGallery = () => {
               className="catImg"
             >
               <p className="catImg__overlay">{category.title}</p>
+            </div>
+            <div className="photo-credit">
+              Photo from <a href={category.photographerUrl}>{category.photographerName}</a> on
+              <a href="https://unsplash.com/"> Unsplash</a>
             </div>
           </a>
         </Link>
@@ -53,6 +63,7 @@ const CategoryGallery = () => {
           z-index: 10;
 
           display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
 
@@ -77,6 +88,17 @@ const CategoryGallery = () => {
         .catImg:hover {
           cursor: pointer;
           color: rgb(${colors.violet});
+        }
+
+        .photo-credit {
+          align-self: flex-end;
+          color: rgb(${colors.textblue});
+          font-size: 1.2rem;
+          text-align: right;
+        }
+
+        .photo-credit a {
+          color: rgb(${colors.orange});
         }
 
         @media only screen and (max-width: ${breakPoints.bp_md}) {

@@ -23,6 +23,11 @@ const About = () => {
             </p>
             <br />
             <p>Yep, that's the whole truth. Look closely an you can see him wag his tail.</p>
+            <br />
+            <p>
+              Photo by <a href="https://unsplash.com/@marcute">Marco Xu</a> on{' '}
+              <a href="https://unsplash.com">Unsplash</a>
+            </p>
           </div>
         </div>
         <div className="dog-wrap">
@@ -130,6 +135,25 @@ const About = () => {
           .dog-wrap {
             position: unset;
             padding-top: 4rem;
+          }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiny}) {
+          .about-content {
+            padding: 0;
+          }
+
+          .img-frame {
+            width: 80vw;
+            height: 75vw;
+          }
+
+          .about-info {
+            width: 100%;
+          }
+
+          .dog-img {
+            width: 48vw;
           }
         }
       `}</style>

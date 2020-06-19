@@ -204,6 +204,7 @@ const EditUserModal = ({ id, initialData, active, closeModal }) => {
         @media only screen and (max-width: ${breakPoints.bp_small}) {
           .edit-user-modal {
             width: 50rem;
+            top: 10%;
           }
         }
 

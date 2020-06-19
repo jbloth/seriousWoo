@@ -1,4 +1,20 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, createContext } from 'react';
+import Cookies from 'js-cookie';
+
+import clientConfig from '../../clientConfig';
+
+function getCookie() {
+  let demoMsgCookie = undefined;
+  if (process.browser) {
+    demoMsgCookie = Cookies.get(clientConfig.demoMsgCookieName);
+    demoMsgCookie = demoMsgCookie && demoMsgCookie.length ? JSON.parse(demoMsgCookie) : undefined;
+  }
+
+  return demoMsgCookie;
+}
+
+const cookie = getCookie();
+let initialCookieValue = cookie !== undefined ? cookie : true;
 
 export const AppContext = createContext();
 
@@ -27,6 +43,16 @@ export const AppProvider = (props) => {
     setSearchOpen(!searchOpen);
   };
 
+  // ------- Demo Msg Open State ------- //
+  const [demoMsgOpen, setDemoMsgOpen] = useState(initialCookieValue);
+
+  const closeDemoMsg = () => {
+    Cookies.set(clientConfig.demoMsgCookieName, false, {
+      expires: 7,
+    });
+    setDemoMsgOpen(false);
+  };
+
   // ------- Selected Tag ------- //
   const [selectedTag, setSelectedTag] = useState(null);
 
@@ -43,6 +69,8 @@ export const AppProvider = (props) => {
         toggleSearchOpen,
         cartOpen,
         toggleCartOpen,
+        demoMsgOpen,
+        closeDemoMsg,
       }}
     >
       {props.children}
