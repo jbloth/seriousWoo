@@ -61,8 +61,10 @@ const OrderOverview = ({ order }) => {
                 {products.map((item, idx) => {
                   return (
                     <tr key={idx} className="product">
-                      <td className="product-detail product-name">{item.product.name}</td>
-                      <td className="product-detail"> {item.product.price}</td>
+                      <td className="product-detail product-name">
+                        {item.product ? item.product.name : 'N/A'}
+                      </td>
+                      <td className="product-detail"> {item.total}</td>
                       <td className="product-detail">{item.quantity}</td>
                       <td className="product-detail">€{item.subtotal}</td>
                     </tr>
