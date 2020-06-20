@@ -27,6 +27,7 @@ const ProductPrev = ({ product, category, className }) => {
           .productPrev {
             /* border: 4px solid transparent; */
             margin: 1rem;
+            max-width: 22rem;
           }
 
           .productPrev--borders {
@@ -79,9 +80,14 @@ const ProductPrev = ({ product, category, className }) => {
 
           .title {
             font-weight: bold;
+            text-align: center;
           }
 
           @media only screen and (max-width: ${breakPoints.bp_small}) {
+            .productPrev {
+              max-width: unset;
+            }
+
             .product-img {
               height: 40rem;
               width: 36rem;

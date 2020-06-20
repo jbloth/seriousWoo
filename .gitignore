@@ -1,8 +1,6 @@
 # images
 assets/
-public/images/
-public/fonts/
-
+public/
 
 # next.js build output
 .next
