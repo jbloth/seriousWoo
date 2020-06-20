@@ -32,23 +32,25 @@ const CategoryGallery = () => {
 
   return (
     <div className="categoryGallery l-wrapper">
-      {categories.map((category) => (
-        <Link key={category.id} href={`/${category.linkUrl}`}>
-          <a className="catImg-container">
-            <div
-              style={{
-                backgroundImage: `url('${category.imgUrl}')`,
-              }}
-              className="catImg"
-            >
-              <p className="catImg__overlay">{category.title}</p>
-            </div>
-            <div className="photo-credit">
-              Photo from <a href={category.photographerUrl}>{category.photographerName}</a> on
-              <a href="https://unsplash.com/"> Unsplash</a>
-            </div>
-          </a>
-        </Link>
+      {categories.map((category, idx) => (
+        <div key={idx} className="category-container">
+          <Link key={category.id} href={`/${category.linkUrl}`}>
+            <a className="catImg-container">
+              <div
+                style={{
+                  backgroundImage: `url('${category.imgUrl}')`,
+                }}
+                className="catImg"
+              >
+                <p className="catImg__overlay">{category.title}</p>
+              </div>
+            </a>
+          </Link>
+          <div className="photo-credit">
+            Photo from <a href={category.photographerUrl}>{category.photographerName}</a> on
+            <a href="https://unsplash.com/"> Unsplash</a>
+          </div>
+        </div>
       ))}
 
       <style jsx>{`
@@ -57,6 +59,13 @@ const CategoryGallery = () => {
           justify-content: space-between;
           align-items: center;
           width: 1000px;
+        }
+
+        .category-container {
+          min-width: 250px;
+          width: 32%;
+          height: 400px;
+          margin: 0 2rem;
         }
 
         .catImg {
@@ -78,12 +87,12 @@ const CategoryGallery = () => {
           color: rgb(${colors.bg});
         }
 
-        .catImg-container {
+        /*.catImg-container {
           min-width: 250px;
           width: 32%;
           margin: 0 2rem;
           height: 400px;
-        }
+        } */
 
         .catImg:hover {
           cursor: pointer;
@@ -106,7 +115,7 @@ const CategoryGallery = () => {
             flex-direction: column;
           }
 
-          .catImg-container {
+          .category-container {
             width: 100%;
             height: 600px;
             margin: 2rem 0;
@@ -118,13 +127,13 @@ const CategoryGallery = () => {
             flex-direction: column;
           }
 
-          .catImg-container {
+          .category-container {
             height: 500px;
           }
         }
 
         @media only screen and (max-width: ${breakPoints.bp_smallest}) {
-          .catImg-container {
+          .category-container {
             height: 400px;
           }
         }
