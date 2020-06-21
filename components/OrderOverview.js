@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState } from 'react';
 import { colors, breakPoints } from '../styles/theme';
 import ArrowIcon from './ArrowIcon';
 

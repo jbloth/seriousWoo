@@ -1,6 +1,8 @@
 import { colors, breakPoints } from '../styles/theme';
 import LoginForm from '../components/LoginForm';
 
+import withApollo from '../lib/withApollo_globalTokens';
+
 const Login = () => {
   return (
     <section className="login-page section">
@@ -48,4 +50,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withApollo(Login);

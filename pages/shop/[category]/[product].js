@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import xss from 'xss';
+import { useRouter } from 'next/router';
 
+import withApollo from '../../../lib/withApollo_globalTokens';
 import { colors, breakPoints } from '../../../styles/theme';
 import GET_PRODUCT from '../../../queries/get-product';
 import ShopHeader from '../../../components/ShopHeader';
@@ -29,12 +31,30 @@ const getSizesFromVariations = (variations) => {
   return sizes;
 };
 
-const Product = ({ productSlug, categorySlug }) => {
+const Product = () => {
+  const router = useRouter();
+  const categorySlug = router.query.category;
+  const productSlug = router.query.product;
+
+  // Have to put this here because hook cannot be placed below return statement (?)
+  const [selectedSize, setSelectedSize] = useState(null);
+  // const setSize = (size) => setSelectedSize(size); // will be handed down to SizeSelector
+
   // Get product from backend
   const id = parseInt(productSlug.split('-').pop());
   const { loading, error, data } = useQuery(GET_PRODUCT, {
     variables: { id: id },
   });
+
+  // Set default sizes and default size once we have product data
+  let sizes = [];
+  useEffect(() => {
+    if (data && data.product && data.product.variations) {
+      sizes = getSizesFromVariations(variations);
+      const defaultSize = sizes.length ? sizes[0].id : null;
+      setSelectedSize(defaultSize);
+    }
+  }, [data]);
 
   if (loading) return <p>Loading...</p>;
   if (error) {
@@ -45,16 +65,20 @@ const Product = ({ productSlug, categorySlug }) => {
   // Pull stuff from product
   const { name, price, description, image, variations } = data.product;
   const imgUrl = image.sourceUrl;
-  const descriptionPure = xss(description);
+  var options = {};
+  // const descriptionPure = xss(description, options);
+
+  const descriptionPure = xss(description, {
+    onIgnoreTagAttr: function (tag, name, value, isWhiteAttr) {
+      if (name === 'class' && value === 'table-responsive dynamic') {
+        // escape its value using built-in escapeAttrValue function
+        return name + '="' + xss.escapeAttrValue(value) + '"';
+      }
+    },
+  });
 
   // Pull available sizes from product
-  let sizes = [];
   if (variations) sizes = getSizesFromVariations(variations);
-
-  const defaultSize = sizes.length ? sizes[0].id : null;
-  const [selectedSize, setSelectedSize] = useState(defaultSize);
-
-  const setSize = (size) => setSelectedSize(size); // will be handed down to SizeSelector
 
   return (
     <React.Fragment>
@@ -76,7 +100,7 @@ const Product = ({ productSlug, categorySlug }) => {
             {sizes.length ? (
               <div className="size-select-wrapper">
                 <label className="selector-label">Size: </label>
-                <SizeSelector sizes={sizes} onSelect={(size) => setSize(size)} />
+                <SizeSelector sizes={sizes} onSelect={(size) => setSelectedSize(size)} />
               </div>
             ) : (
               <span className="oneSize-msg">One Size</span>
@@ -193,11 +217,4 @@ const Product = ({ productSlug, categorySlug }) => {
   );
 };
 
-Product.getInitialProps = async ({ query }) => {
-  return {
-    productSlug: query.product,
-    categorySlug: query.category,
-  };
-};
-
-export default Product;
+export default withApollo(Product);

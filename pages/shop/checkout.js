@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 
+import withApollo from '../../lib/withApollo_globalTokens';
 import { colors, breakPoints } from '../../styles/theme';
 import auth from '../../lib/auth';
 import GET_USER_DATA from '../../queries/get-user-data';
@@ -55,4 +56,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default withApollo(Checkout);

@@ -1,5 +1,7 @@
 import { useQuery } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
 
+import withApollo from '../../lib/withApollo_globalTokens';
 import GET_CATEGORY_PAGINATION from '../../queries/get-category-pagination';
 import { breakPoints } from '../../styles/theme';
 import ProductGallery from '../../components/ProductGallery';
@@ -23,9 +25,10 @@ const getTags = (products) => {
   );
 };
 
-// const Category = ({ products, categoryName }) => {
-const Category = ({ query }) => {
-  const id = query.category;
+const Category = () => {
+  const router = useRouter();
+  const id = router.query.category;
+
   let variables = {
     id,
     first: 50,
@@ -130,7 +133,7 @@ const Category = ({ query }) => {
         }
 
         .product-gallery-wrapper {
-          padding: 8rem 8rem 6rem 4rem;
+          padding: 6rem 8rem 6rem 4rem;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -166,4 +169,4 @@ const Category = ({ query }) => {
   );
 };
 
-export default Category;
+export default withApollo(Category);

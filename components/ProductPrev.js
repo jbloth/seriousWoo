@@ -26,7 +26,7 @@ const ProductPrev = ({ product, category, className }) => {
         {`
           .productPrev {
             /* border: 4px solid transparent; */
-            margin: 1rem;
+            margin: 2rem;
             max-width: 22rem;
           }
 
@@ -70,12 +70,16 @@ const ProductPrev = ({ product, category, className }) => {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-
+            justify-content: flex-start;
+            height: 8rem;
             margin: 1rem 0;
 
             font-size: 1.6rem;
             color: rgb(${colors.orange});
+          }
+
+          .productPrev--borders .info {
+            padding: 0 1rem;
           }
 
           .title {

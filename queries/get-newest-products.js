@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 const GET_NEWEST_PRODUCTS = gql`
   query newestProducts($number: Int) {
-    products(last: $number) {
+    products(first: $number) {
       nodes {
         id
         name
