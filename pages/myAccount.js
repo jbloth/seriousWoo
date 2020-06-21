@@ -341,4 +341,4 @@ myAccount.getInitialProps = async (ctx) => {
   return { token };
 };
 
-export default withApollo(myAccount);
+export default withApollo(reactWithApollo(myAccount));
