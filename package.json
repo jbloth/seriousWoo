@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect' next",
+    "dev": "next",
     "build": "npm run build-fragment && next build",
     "start": "next start",
     "test": "NODE_ENV=test jest --watch",

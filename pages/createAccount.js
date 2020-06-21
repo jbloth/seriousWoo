@@ -1,5 +1,5 @@
 import { colors } from '../styles/theme';
-import SigninForm from '../components/SigninForm';
+import SigninForm from '../components/SignInForm';
 
 const CreateAccount = () => {
   return (
