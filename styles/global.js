@@ -148,4 +148,9 @@ export default css.global`
       display: none;
     }
   }
+
+  // ---- size chart ---- //
+  .table-responsive td {
+    padding: 0 0.5rem;
+  }
 `;

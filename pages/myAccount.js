@@ -3,8 +3,9 @@ import { useQuery } from '@apollo/react-hooks';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
 import cookies from 'next-cookies';
-import { withApollo } from 'react-apollo';
+import { withApollo as reactWithApollo } from 'react-apollo';
 
+import withApollo from '../lib/withApollo_globalTokens';
 import { colors, breakPoints } from '../styles/theme';
 import GET_USER_DATA from '../queries/get-user-data';
 import { countryCodeToName } from '../lib/functions';

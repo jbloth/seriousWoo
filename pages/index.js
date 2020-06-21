@@ -1,10 +1,32 @@
 import { colors, breakPoints } from '../styles/theme';
 
-import GET_NEWEST_PRODUCTS from '../queries/get-newest-products';
+import clientConfig from '../clientConfig';
 import BgShape from '../components/BgShape';
 import SplitHero from '../components/SplitHero';
 import CategoryGallery from '../components/CategoryGallery';
 import ProductGallery from '../components/ProductGallery';
+
+const GET_NEWEST_PRODUCTS = `
+  query newestProducts($number: Int) {
+    products(first: $number) {
+      nodes {
+        id
+        name
+        productId
+        slug
+        image {
+          id
+          sourceUrl
+        }
+        ... on VariableProduct {
+          id
+          name
+          price
+        }
+      }
+    }
+  }
+`;
 
 const Index = ({ newestProducts }) => {
   return (
@@ -18,7 +40,6 @@ const Index = ({ newestProducts }) => {
         <SplitHero imgUrl={'/images/tarutoa-QIymolbz7G0-unsplash 1.png'}>
           <p>This is</p>
           <p>serious!</p>
-          {/* <p>Serious Sally!</p> */}
         </SplitHero>
       </section>
 
@@ -252,18 +273,28 @@ const Index = ({ newestProducts }) => {
   );
 };
 
-Index.getInitialProps = async function (context) {
+export async function getStaticProps(context) {
   const number = 4;
-  const client = context.apolloClient;
-
-  const res = await client.query({
-    query: GET_NEWEST_PRODUCTS,
-    variables: { number: number },
+  const headers = { 'Content-Type': 'application/json' };
+  const res = await fetch(clientConfig.graphqlUrl, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      query: GET_NEWEST_PRODUCTS,
+      variables: { number: number },
+    }),
   });
 
-  return {
-    newestProducts: res.data.products.nodes,
-  };
-};
+  const json = await res.json();
+  if (json.errors) {
+    console.error(json.errors);
+    throw new Error('Failed to fetch API');
+  }
 
+  return {
+    props: { newestProducts: json.data.products.nodes, preview: false },
+  };
+}
+
+// export default withApollo(Index);
 export default Index;

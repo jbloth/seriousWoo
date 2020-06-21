@@ -38,6 +38,7 @@ const GET_PRODUCT = gql`
         price
       }
       image {
+        id
         sourceUrl
         title
         srcSet
