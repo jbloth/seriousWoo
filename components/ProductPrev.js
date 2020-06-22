@@ -13,7 +13,11 @@ const ProductPrev = ({ product, category, className }) => {
 
   return (
     <div className={`productPrev ${extraClass}`}>
-      <Link as={`/shop/${categorySlug}/${slug}-${productId}`} href={'/[shop]/[category]/[product]'}>
+      <Link
+        as={`/shop/${categorySlug}/${slug}-${productId}`}
+        href={'/[shop]/[category]/[product]'}
+        prefetch={false}
+      >
         <a>
           <div className="product-img" style={{ backgroundImage: `url('${imgUrl}')` }}></div>
         </a>

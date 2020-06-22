@@ -85,7 +85,12 @@ const Header = () => {
                   data.productCategories.nodes.map(({ id, name, slug }) => {
                     if (slug === 'uncategorized' || slug === 'all') return ''; // Exclude "uncategorized" and "all" category
                     return (
-                      <Link as={`/shop/${slug}`} href={'/shop/[category]'} key={id}>
+                      <Link
+                        href={'/shop/[category]'}
+                        as={`/shop/${slug}`}
+                        key={id}
+                        prefetch={false}
+                      >
                         <a className="nav-dropdown-link">{name}</a>
                       </Link>
                     );
