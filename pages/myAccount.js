@@ -5,7 +5,6 @@ import Cookies from 'js-cookie';
 import cookies from 'next-cookies';
 import { withApollo as reactWithApollo } from 'react-apollo';
 
-import withApollo from '../lib/withApollo_globalTokens';
 import { colors, breakPoints } from '../styles/theme';
 import GET_USER_DATA from '../queries/get-user-data';
 import { countryCodeToName } from '../lib/functions';
@@ -27,8 +26,6 @@ const myAccount = ({ client }) => {
    logs out from another component (E.g. if cookies are disabled, the user gets
    logged out automatically)
    */
-  // let initialToken = auth.getAuthToken();
-  // const [token, setToken] = useState(initialToken);
   useEffect(() => {
     const tokenSubscription = auth.authTokenObservable.subscribe({
       next: (newToken) => {
@@ -341,4 +338,4 @@ myAccount.getInitialProps = async (ctx) => {
   return { token };
 };
 
-export default withApollo(reactWithApollo(myAccount));
+export default reactWithApollo(myAccount);

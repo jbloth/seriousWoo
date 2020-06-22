@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import xss from 'xss';
-import { useRouter } from 'next/router';
 
-import withApollo from '../../../lib/withApollo_globalTokens';
+// import withApollo from '../../../lib/withApollo_globalTokens';
 import { colors, breakPoints } from '../../../styles/theme';
 import GET_PRODUCT from '../../../queries/get-product';
 import ShopHeader from '../../../components/ShopHeader';
@@ -31,11 +30,7 @@ const getSizesFromVariations = (variations) => {
   return sizes;
 };
 
-const Product = () => {
-  const router = useRouter();
-  const categorySlug = router.query.category;
-  const productSlug = router.query.product;
-
+const Product = ({ categorySlug, productSlug }) => {
   // Have to put this here because hook cannot be placed below return statement (?)
   const [selectedSize, setSelectedSize] = useState(null);
   // const setSize = (size) => setSelectedSize(size); // will be handed down to SizeSelector
@@ -217,4 +212,10 @@ const Product = () => {
   );
 };
 
-export default withApollo(Product);
+Product.getInitialProps = async ({ query }) => {
+  const categorySlug = query.category;
+  const productSlug = query.product;
+  return { categorySlug, productSlug };
+};
+
+export default Product;
