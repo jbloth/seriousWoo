@@ -31,7 +31,7 @@ const About = () => {
           </div>
         </div>
         <div className="dog-wrap">
-          <img className="dog-img" src="/images/bullmastiff.png" alt="salmon" />
+          <img className="dog-img" src="/images/bullmastiff.png" alt="bullmastiff" />
         </div>
       </div>
 

@@ -1,6 +1,6 @@
-import { colors, breakPoints } from '../styles/theme';
 import fetch from 'node-fetch';
 
+import { colors, breakPoints } from '../styles/theme';
 import clientConfig from '../clientConfig';
 import BgShape from '../components/BgShape';
 import SplitHero from '../components/SplitHero';

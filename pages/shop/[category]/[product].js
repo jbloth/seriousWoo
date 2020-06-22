@@ -1,12 +1,86 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import xss from 'xss';
+// import fetch from 'node-fetch';
 
 import { colors, breakPoints } from '../../../styles/theme';
+// import clientConfig from '../../../clientConfig';
 import GET_PRODUCT from '../../../queries/get-product';
 import ShopHeader from '../../../components/ShopHeader';
 import AddToCartButton from '../../../components/AddToCartButton';
 import SizeSelector from '../../../components/SizeSelector';
+
+/*
+const GET_NEWEST_PRODUCTS = `
+  query newestProducts($number: Int) {
+    products(first: $number) {
+      nodes {
+        id
+        name
+        productId
+        slug
+        image {
+          id
+          sourceUrl
+        }
+        ... on VariableProduct {
+          id
+          name
+          price
+        }
+      }
+    }
+  }
+`;
+*/
+
+/*
+const GET_PRODUCT = `query Product($id: ID!) {
+  product(id: $id, idType: DATABASE_ID) {
+    id
+    name
+    slug
+    description
+    productId
+    type
+    ... on VariableProduct {
+      id
+      price
+      name
+      variations {
+        nodes {
+          id
+          variationId
+          name
+          attributes {
+            nodes {
+              attributeId
+              id
+              name
+              value
+            }
+          }
+        }
+      }
+    }
+    ... on SimpleProduct {
+      id
+      price
+    }
+    ... on ExternalProduct {
+      id
+      price
+    }
+    image {
+      id
+      sourceUrl
+      title
+      srcSet
+      uri
+    }
+  }
+}`;
+*/
 
 // Get size variations names and ids from product variations
 const getSizesFromVariations = (variations) => {
@@ -36,6 +110,7 @@ const Product = ({ categorySlug, productSlug }) => {
 
   // Get product from backend
   const id = parseInt(productSlug.split('-').pop());
+
   const { loading, error, data } = useQuery(GET_PRODUCT, {
     variables: { id: id },
   });
@@ -73,6 +148,26 @@ const Product = ({ categorySlug, productSlug }) => {
 
   // Pull available sizes from product
   if (variations) sizes = getSizesFromVariations(variations);
+
+  // const Product = ({ product, categorySlug }) => {
+  //   // Pull stuff from product
+  //   const { name, price, description, image, variations } = product;
+  //   const imgUrl = image.sourceUrl;
+  //   const sizes = getSizesFromVariations(variations);
+  //   const defaultSize = sizes.length ? sizes[0].id : null;
+
+  //   // Have to put this here because hook cannot be placed below return statement (?)
+  //   const [selectedSize, setSelectedSize] = useState(defaultSize);
+
+  //   var options = {};
+  //   const descriptionPure = xss(description, {
+  //     onIgnoreTagAttr: function (tag, name, value) {
+  //       if (name === 'class' && value === 'table-responsive dynamic') {
+  //         // escape its value using built-in escapeAttrValue function
+  //         return name + '="' + xss.escapeAttrValue(value) + '"';
+  //       }
+  //     },
+  //   });
 
   return (
     <React.Fragment>
@@ -216,5 +311,66 @@ Product.getInitialProps = async ({ query }) => {
   const productSlug = query.product;
   return { categorySlug, productSlug };
 };
+
+// export async function getStaticPaths() {
+//   const headers = { 'Content-Type': 'application/json' };
+//   const res = await fetch(clientConfig.graphqlUrl, {
+//     method: 'POST',
+//     headers,
+//     body: JSON.stringify({
+//       query: GET_NEWEST_PRODUCTS,
+//       variables: { number: 2 },
+//     }),
+//   });
+
+//   const json = await res.json();
+//   if (json.errors) {
+//     console.error(json.errors);
+//     throw new Error('Failed to fetch API');
+//   }
+
+//   let paths = [];
+//   if (json.data?.products?.nodes && json.data.products.nodes.length) {
+//     paths = json.data.products.nodes.map((node) => {
+//       const productSlug = `${node.slug}-${node.productId}`;
+//       return `/shop/all/${productSlug}`;
+//     });
+//   }
+
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// }
+
+// export async function getStaticProps({ params }) {
+//   console.log('getStaticProps');
+//   console.log(params);
+//   const id = parseInt(params.product.split('-').pop());
+
+//   const headers = { 'Content-Type': 'application/json' };
+//   const res = await fetch(clientConfig.graphqlUrl, {
+//     method: 'POST',
+//     headers,
+//     body: JSON.stringify({
+//       query: GET_PRODUCT,
+//       variables: { id },
+//     }),
+//   });
+
+//   const json = await res.json();
+//   if (json.errors) {
+//     console.error(json.errors);
+//     throw new Error('Failed to fetch API');
+//   }
+
+//   return {
+//     props: {
+//       product: json.data.product,
+//       categorySlug: params.category,
+//       productSlug: params.product,
+//     },
+//   };
+// }
 
 export default Product;
