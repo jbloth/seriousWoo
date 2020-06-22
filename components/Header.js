@@ -90,18 +90,6 @@ const Header = () => {
                       </Link>
                     );
                   })}
-                {/* <Link href="/shop/kids">
-                  <a className="nav-dropdown-link">Kids</a>
-                </Link>
-                <Link href="/shop/womens">
-                  <a className="nav-dropdown-link">Womens</a>
-                </Link>
-                <Link href="/shop/mens">
-                  <a className="nav-dropdown-link">Mens</a>
-                </Link>
-                <Link href="/shop/accessories">
-                  <a className="nav-dropdown-link">Accessories</a>
-                </Link> */}
               </div>
             </li>
 

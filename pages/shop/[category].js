@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 
-import withApollo from '../../lib/withApollo_globalTokens';
+// import withApollo from '../../lib/withApollo_globalTokens';
 import GET_CATEGORY_PAGINATION from '../../queries/get-category-pagination';
 import { breakPoints } from '../../styles/theme';
 import ProductGallery from '../../components/ProductGallery';
@@ -169,4 +169,4 @@ const Category = () => {
   );
 };
 
-export default withApollo(Category);
+export default Category;
