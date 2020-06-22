@@ -19,7 +19,7 @@ const MobileMenuShopCategories = ({ title, toggleMenuOpen, items }) => {
         {items.map(({ id, name, slug }) => {
           if (slug === 'uncategorized') return ''; // Exclude "uncategorized" category
           return (
-            <Link as={`/shop/${slug}`} href={'/[shop]/[category]'} key={id}>
+            <Link as={`/shop/${slug}`} href={'/shop/[category]'} key={id}>
               <a className="item" onClick={toggleMenuOpen}>
                 {name}
               </a>
