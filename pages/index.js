@@ -1,4 +1,5 @@
 import { colors, breakPoints } from '../styles/theme';
+import fetch from 'node-fetch';
 
 import clientConfig from '../clientConfig';
 import BgShape from '../components/BgShape';
