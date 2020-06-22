@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+// import { useQuery } from '@apollo/react-hooks';
 import Link from 'next/link';
 
 import { AppContext } from '../components/context/AppContext';
-import GET_CATEGORY_KEYS from '../queries/get-category-keys';
+// import GET_CATEGORY_KEYS from '../queries/get-category-keys';
 import { colors, fonts, breakPoints } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
 import MobileMenuShopCategories from './MobileMenuShopCategories';
@@ -11,13 +11,20 @@ import MobileMenuItem from './MobileMenuItem';
 
 const MobileMenu = ({ token }) => {
   const { mobMenuOpen, toggleMenuOpen, toggleSearchOpen } = useContext(AppContext);
-  const { loading, error, data } = useQuery(GET_CATEGORY_KEYS);
+  // const { loading, error, data } = useQuery(GET_CATEGORY_KEYS);
 
   const infoSubMenuContents = [
     { name: 'shipping', url: '/shipping' },
     { name: 'privacy note', url: '/privacy' },
     { name: 'cookie note', url: '/cookies' },
     { name: 'imprint', url: '/imprint' },
+  ];
+
+  const shopSubMenuContents = [
+    { name: 'kids', url: '/shop/kids' },
+    { name: 'womens', url: '/shop/womens' },
+    { name: 'mens', url: '/shop/mens' },
+    { name: 'accessories', url: '/shop/accessories' },
   ];
 
   return (
@@ -44,14 +51,11 @@ const MobileMenu = ({ token }) => {
           </li>
 
           <li className="nav-item">
-            {loading && <p>...</p>}
-            {!loading && !error && (
-              <MobileMenuShopCategories
-                title="Shop"
-                toggleMenuOpen={toggleMenuOpen}
-                items={data.productCategories.nodes}
-              />
-            )}
+            <MobileMenuItem
+              title="Shop"
+              toggleMenuOpen={toggleMenuOpen}
+              items={shopSubMenuContents}
+            />
           </li>
 
           <li className="nav-item">

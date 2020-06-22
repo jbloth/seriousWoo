@@ -3,12 +3,12 @@ import Router from 'next/router';
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import { useContext, useState, useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+// import { useQuery } from '@apollo/react-hooks';
 
 import { AppContext } from '../components/context/AppContext';
 import { colors, fonts, breakPoints } from '../styles/theme';
 import auth from '../lib/auth';
-import GET_CATEGORY_KEYS from '../queries/get-category-keys';
+// import GET_CATEGORY_KEYS from '../queries/get-category-keys';
 import CartModal from './CartModal';
 import SearchModal from './SearchModal';
 import MobileMenu from './MobileMenu';
@@ -30,8 +30,6 @@ Router.onRouteChangeError = () => {
 };
 
 const Header = () => {
-  const { loading, error, data } = useQuery(GET_CATEGORY_KEYS);
-  const hasData = data && data.productCategories && data.productCategories.nodes;
   const router = useRouter();
 
   // Get toggle-cart-open mutation and number of cart items (for display in cart icon)
@@ -80,17 +78,7 @@ const Header = () => {
                 <a className="nav-link">Shop</a>
               </Link>
               <div className="nav__dropdown-content dropdown-content">
-                {loading && <div className="nav-dropdown-link">loading...</div>}
-                {hasData &&
-                  data.productCategories.nodes.map(({ id, name, slug }) => {
-                    if (slug === 'uncategorized' || slug === 'all') return ''; // Exclude "uncategorized" and "all" category
-                    return (
-                      <Link as={`/shop/${slug}`} href={'/[shop]/[category]'} key={id}>
-                        <a className="nav-dropdown-link">{name}</a>
-                      </Link>
-                    );
-                  })}
-                {/* <Link href="/shop/kids">
+                <Link href="/shop/kids">
                   <a className="nav-dropdown-link">Kids</a>
                 </Link>
                 <Link href="/shop/womens">
@@ -101,7 +89,7 @@ const Header = () => {
                 </Link>
                 <Link href="/shop/accessories">
                   <a className="nav-dropdown-link">Accessories</a>
-                </Link> */}
+                </Link>
               </div>
             </li>
 

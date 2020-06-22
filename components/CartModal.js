@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import Link from 'next/link';
-import { useQuery } from '@apollo/react-hooks';
+// import { useQuery } from '@apollo/react-hooks';
 
-import GET_CART from '../queries/get-cart';
+// import GET_CART from '../queries/get-cart';
 // import UPDATE_CART from '../mutations/update-cart';
 import { AppContext } from '../components/context/AppContext';
-import { getFormattedCart } from '../lib/functions';
+// import { getFormattedCart } from '../lib/functions';
 import { fonts, colors, breakPoints } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
 import CartItem from './CartItem';
@@ -14,21 +14,24 @@ const CartModal = () => {
   const { cart, setCart, cartOpen, toggleCartOpen } = useContext(AppContext);
   const hidden = !cartOpen;
 
-  // Get Cart Data.
-  const { loading, error, data, refetch } = useQuery(GET_CART, {
-    notifyOnNetworkStatusChange: true,
-    ssr: false,
-    onCompleted: () => {
-      // Update cart in the localStorage.
-      const updatedCart = getFormattedCart(data);
+  const loading = false;
+  const refetch = () => {};
 
-      // Update cart in context
-      setCart(updatedCart);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
+  // // Get Cart Data.
+  // const { loading, error, data, refetch } = useQuery(GET_CART, {
+  //   notifyOnNetworkStatusChange: true,
+  //   ssr: false,
+  //   onCompleted: () => {
+  //     // Update cart in the localStorage.
+  //     const updatedCart = getFormattedCart(data);
+
+  //     // Update cart in context
+  //     setCart(updatedCart);
+  //   },
+  //   onError: (error) => {
+  //     console.log(error);
+  //   },
+  // });
 
   const cartItems = cart !== null ? cart.products : [];
   return (
