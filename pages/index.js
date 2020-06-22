@@ -296,5 +296,4 @@ export async function getStaticProps(context) {
   };
 }
 
-// export default withApollo(Index);
 export default Index;

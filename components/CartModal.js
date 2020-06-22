@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
 
 import GET_CART from '../queries/get-cart';
-// import UPDATE_CART from '../mutations/update-cart';
 import { AppContext } from '../components/context/AppContext';
 import { getFormattedCart } from '../lib/functions';
 import { fonts, colors, breakPoints } from '../styles/theme';

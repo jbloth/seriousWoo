@@ -1,7 +1,7 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 
-import { useApollo } from '../lib/withApollo_globalTokens';
+import { useApollo } from '../lib/withApollo';
 
 import { AppProvider } from '../components/context/AppContext'; // state (using context)
 import { CookieConsentProvider } from '../components/context/CookieConsentContext'; // cookie consent state

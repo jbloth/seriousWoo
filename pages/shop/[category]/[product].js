@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import xss from 'xss';
 
-// import withApollo from '../../../lib/withApollo_globalTokens';
 import { colors, breakPoints } from '../../../styles/theme';
 import GET_PRODUCT from '../../../queries/get-product';
 import ShopHeader from '../../../components/ShopHeader';
