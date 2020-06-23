@@ -34,7 +34,7 @@ const CategoryGallery = () => {
     <div className="categoryGallery l-wrapper">
       {categories.map((category, idx) => (
         <div key={idx} className="category-container">
-          <Link key={category.id} href={`/${category.linkUrl}`}>
+          <Link key={category.id} href="/shop/[category]" as={`/shop/${category.linkUrl}`}>
             <a className="catImg-container">
               <div
                 style={{

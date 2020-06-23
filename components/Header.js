@@ -76,7 +76,7 @@ const Header = () => {
             </li>
 
             <li className="nav-item dropdown">
-              <Link href="/shop/all">
+              <Link href={'/shop/[category]'} as={`/shop/all`}>
                 <a className="nav-link">Shop</a>
               </Link>
               <div className="nav__dropdown-content dropdown-content">
@@ -85,12 +85,7 @@ const Header = () => {
                   data.productCategories.nodes.map(({ id, name, slug }) => {
                     if (slug === 'uncategorized' || slug === 'all') return ''; // Exclude "uncategorized" and "all" category
                     return (
-                      <Link
-                        href={'/shop/[category]'}
-                        as={`/shop/${slug}`}
-                        key={id}
-                        prefetch={false}
-                      >
+                      <Link href={'/shop/[category]'} as={`/shop/${slug}`} key={id}>
                         <a className="nav-dropdown-link">{name}</a>
                       </Link>
                     );
