@@ -35,7 +35,7 @@ const CategoryGallery = () => {
       {categories.map((category, idx) => (
         <div key={idx} className="category-container">
           <Link key={category.id} href="/shop/[category]" as={category.linkUrl}>
-            <a className="catImg-container">
+            <a>
               <div
                 style={{
                   backgroundImage: `url('${category.imgUrl}')`,
@@ -86,13 +86,6 @@ const CategoryGallery = () => {
           font-size: 6rem;
           color: rgb(${colors.bg});
         }
-
-        /*.catImg-container {
-          min-width: 250px;
-          width: 32%;
-          margin: 0 2rem;
-          height: 400px;
-        } */
 
         .catImg:hover {
           cursor: pointer;

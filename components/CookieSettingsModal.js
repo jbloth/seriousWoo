@@ -27,7 +27,7 @@ const CookieSettingsModal = ({ active, closeModal, client }) => {
         <p>
           To learn more about how this site uses cookies, please visit our{' '}
           <Link href="/cookies">
-            <a>cookie statement.</a>
+            <a onClick={closeModal}>cookie statement.</a>
           </Link>
         </p>
 
@@ -78,6 +78,8 @@ const CookieSettingsModal = ({ active, closeModal, client }) => {
 
         .cookie-settings-modal {
           position: relative;
+          max-height: 100vh;
+          overflow-y: auto;
           top: 15%;
           margin: 0 auto;
           width: 60rem;
@@ -146,11 +148,11 @@ const CookieSettingsModal = ({ active, closeModal, client }) => {
             width: 80%;
           }
 
-          .button-wrapper {
+          .button-wrap {
             margin: 0 1rem 0 0;
           }
 
-          .button-wrapper:last-of-type {
+          .button-wrap:last-of-type {
             margin: 0 0 0 1rem;
           }
         }

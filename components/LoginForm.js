@@ -7,7 +7,6 @@ import Cookies from 'js-cookie';
 import validateAndSanitizeLoginInput from '../lib/validateAndSanitizeLoginInput';
 import { CookieConsentContext } from '../components/context/CookieConsentContext';
 import clientConfig from '../clientConfig';
-// import { loginUser } from '../lib/auth';
 import auth from '../lib/auth';
 import { breakPoints } from '../styles/theme';
 import TextInput from '../components/TextInput';

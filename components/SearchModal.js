@@ -17,7 +17,7 @@ const SearchModal = () => {
 
   return (
     <div className={`search-container ${!searchOpen ? '' : 'search-container--active'}`}>
-      <div className="icon-wrapper close-icon">
+      <div className="close-icon">
         <CloseIcon onClick={toggleSearchOpen}></CloseIcon>
       </div>
 

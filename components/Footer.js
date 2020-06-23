@@ -2,8 +2,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import { colors, breakPoints } from '../styles/theme';
-import IconPinterest from '../assets/pinterest-square.svg';
-import IconInstagram from '../assets/instagram.svg';
 import FooterMenu from './FooterMenu';
 import ConnectAreaItem from './ConnectAreaItem';
 import TextInput from './TextInput';
@@ -189,11 +187,6 @@ const Footer = () => {
           height: auto;
         }
 
-        /* .social-logo-wrapper {
-          display: flex;
-          justify-content: center;
-        }*/
-
         .social-logo {
           width: 3rem;
           height: auto;
@@ -247,6 +240,10 @@ const Footer = () => {
         }
 
         @media only screen and (max-width: ${breakPoints.bp_tiny}) {
+          .footer-wrapper {
+            padding: 0;
+          }
+
           .newsletter-signup {
             flex-direction: column;
             line-height: 3;

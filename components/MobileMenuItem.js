@@ -29,6 +29,11 @@ const MobileMenuItem = ({ title, toggleMenuOpen, items }) => {
       </div>
 
       <style jsx>{`
+        .title {
+          font-family: ${fonts.text};
+          font-size: 4.2rem;
+        }
+
         .sub-menu {
           display: none;
           border-top: 1px solid rgb(${colors.darkpink});
@@ -38,11 +43,6 @@ const MobileMenuItem = ({ title, toggleMenuOpen, items }) => {
         .item {
           color: rgb(${colors.darkpink});
           line-height: 2.8;
-        }
-
-        .title {
-          font-family: ${fonts.text};
-          font-size: 4.2rem;
         }
 
         .sub-menu--active {

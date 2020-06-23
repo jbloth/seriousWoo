@@ -252,11 +252,6 @@ const EditAddressModal = ({ id, initialData, active, closeModal }) => {
           color: rgb(${colors.orange});
         }
 
-        .textInput-wrap,
-        .buttons-container {
-          margin-top: 3rem;
-        }
-
         .row {
           width: 100%;
           display: flex;
@@ -273,6 +268,7 @@ const EditAddressModal = ({ id, initialData, active, closeModal }) => {
         }
 
         .buttons-container {
+          margin-top: 3rem;
           width: 80%;
           display: flex;
           justify-content: space-between;

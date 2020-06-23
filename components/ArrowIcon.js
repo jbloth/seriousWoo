@@ -1,5 +1,3 @@
-import ArrowRight from '../assets/arrow-right.svg';
-
 const ArrowIcon = ({ color, open, width }) => {
   return (
     <div className={`icon-wrapper arrow-icon ${open ? 'arrow-open' : ''}`}>

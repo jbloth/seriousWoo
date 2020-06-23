@@ -13,7 +13,7 @@ const CartItem = ({ product, refetch }) => {
   const { cart } = useContext(AppContext);
   const [requestError, setRequestError] = useState(null);
 
-  const { image, name, price, subtotal, qty, totalPrice, size } = product;
+  const { image, name, subtotal, qty, totalPrice, size } = product;
   const imgUrl = image.sourceUrl;
 
   const [
@@ -158,13 +158,6 @@ const CartItem = ({ product, refetch }) => {
 
         .name {
           font-size: 2rem;
-        }
-
-        .qty-control {
-          background-color: white;
-          display: flex;
-          width: 120px;
-          height: 40px;
         }
 
         .price-info {

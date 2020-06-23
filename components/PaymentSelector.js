@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
 
-// import Error from './Error';
 import GET_PAYMENT_METHODS from '../queries/get-payment-methods';
 import { colors } from '../styles/theme';
 import InfoIcon from '../assets/info.svg';

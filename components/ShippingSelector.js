@@ -1,13 +1,11 @@
 import { useMutation } from '@apollo/react-hooks';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import { AppContext } from '../components/context/AppContext';
 import { colors } from '../styles/theme';
 
 import SET_SHIPPING_METHOD from '../mutations/set-shipping-method';
 
 const ShippingSelector = ({ rates, refetch, initialShippingId }) => {
-  const { cart, setCart } = useContext(AppContext);
   const [requestError, setRequestError] = useState(null);
 
   const [setShippingMethod, { data, loading, error: setSHippingError }] = useMutation(

@@ -19,7 +19,7 @@ const SearchResults = ({ searchTerm }) => {
   if (!data.products.nodes.length) return <p>No matching products found.</p>;
 
   return (
-    <div className="search-results">
+    <div>
       <h2 className="results-header">Products</h2>
       <div className="products">
         {data.products.nodes.map((node) => {
@@ -54,18 +54,7 @@ const SearchResults = ({ searchTerm }) => {
           padding: 4rem;
         }
 
-        .product {
-          width: 20rem;
-          display: flex;
-          justify-content: space-between;
-          padding: 1rem;
-          margin: 1rem;
-        }
-
         .product-prev-wrap {
-           {
-            /* border: 1px solid indianred; */
-          }
           margin: 1rem;
         }
 

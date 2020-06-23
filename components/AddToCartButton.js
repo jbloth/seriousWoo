@@ -19,7 +19,7 @@ const AddToCartButton = ({ product, children, selectedVariation }) => {
 
   if (selectedVariation) productQtyInput.variationId = parseInt(selectedVariation);
 
-  const { addProductToCart, cart, setCart } = useContext(AppContext);
+  const { setCart } = useContext(AppContext);
   const [requestError, setRequestError] = useState(null);
 
   // Get Cart Data.
