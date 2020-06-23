@@ -21,7 +21,7 @@ const ShopHeader = ({ selectedCategory }) => {
         {mainCategories.map(({ id, name, slug }) => {
           if (slug === 'uncategorized') return ''; // Exclude "uncategorized" category
           return (
-            <Link as={`/shop/${slug}`} href={'/[shop]/[category]'} key={id}>
+            <Link href={'/shop/[category]'} as={`/shop/${slug}`} key={id}>
               <a
                 className={`item ${slug === selectedCategory.toLowerCase() ? 'item--active' : ''}`}
               >
