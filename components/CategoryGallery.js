@@ -8,7 +8,7 @@ const CategoryGallery = () => {
       title: 'KIDS',
       imgUrl: '/images/sharon-garcia-QxLY0sKCDmo-unsplash 1.png',
       id: 1,
-      linkUrl: 'shop/kids',
+      linkUrl: '/shop/kids',
       photographerUrl: 'https://unsplash.com/photos/QxLY0sKCDmo',
       photographerName: 'Sharon Garcia',
     },
@@ -16,7 +16,7 @@ const CategoryGallery = () => {
       title: 'WOMENS',
       imgUrl: '/images/sule-makaroglu-iz7PNf7Daoc-unsplash 1.png',
       id: 2,
-      linkUrl: 'shop/womens',
+      linkUrl: '/shop/womens',
       photographerUrl: 'https://unsplash.com/@sulemakaroglu',
       photographerName: 'ŞULE MAKAROĞLU',
     },
@@ -24,7 +24,7 @@ const CategoryGallery = () => {
       title: 'MENS',
       imgUrl: '/images/dylan-sauerwein-5oog6pFHD_s-unsplash 1.png',
       id: 3,
-      linkUrl: 'shop/mens',
+      linkUrl: '/shop/mens',
       photographerUrl: 'https://unsplash.com/@rawdyl',
       photographerName: 'Dylan Sauerwein',
     },
@@ -34,7 +34,7 @@ const CategoryGallery = () => {
     <div className="categoryGallery l-wrapper">
       {categories.map((category, idx) => (
         <div key={idx} className="category-container">
-          <Link key={category.id} href="/shop/[category]" as={`/shop/${category.linkUrl}`}>
+          <Link key={category.id} href="/shop/[category]" as={category.linkUrl}>
             <a className="catImg-container">
               <div
                 style={{
