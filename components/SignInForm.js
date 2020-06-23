@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Router from 'next/router';
 
-import { isEmpty } from '../lib/functions';
-import { isUserValidated } from '../lib/auth';
 import { breakPoints } from '../styles/theme';
 import clientConfig from '../clientConfig';
 import TextInput from '../components/TextInput';

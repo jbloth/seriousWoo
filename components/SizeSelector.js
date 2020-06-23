@@ -12,7 +12,7 @@ const SizeSelector = ({ sizes, onSelect }) => {
 
   return (
     <div className="select-wrapper">
-      <select className="size-select" value={selectedSize} onChange={handleChange}>
+      <select value={selectedSize} onChange={handleChange}>
         {sizes.map((size) => (
           <option key={size.id} value={size.id}>
             {size.name}
