@@ -11,7 +11,7 @@ const ShopSidebar = ({ productTags }) => {
   const toggleCollapse = () => {
     setOpen(!open);
   };
-  // TODO: key in ul aus id statt name?
+
   return (
     <nav className="shopSidebar">
       <div className="title-container collapseTrigger" onClick={(e) => toggleCollapse(e)}>
