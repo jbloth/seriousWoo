@@ -51,11 +51,6 @@ const CookieBanner = ({ dispatch }) => {
           align-items: baseline;
         }
 
-        .cookie-claim {
-          margin-right: 2rem;
-          color: rgb(${colors.orange});
-        }
-
         .cookie-statement-msg {
           font-size: 1.4rem;
           text-align: justify;

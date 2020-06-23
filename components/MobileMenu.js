@@ -29,7 +29,7 @@ const MobileMenu = ({ token }) => {
         <ul className="nav-list">
           <li className="nav-item">
             <Link href="/">
-              <a onClick={toggleMenuOpen} className="nav-link">
+              <a onClick={toggleMenuOpen}>
                 <h1 className="title">Home</h1>
               </a>
             </Link>
@@ -37,7 +37,7 @@ const MobileMenu = ({ token }) => {
 
           <li className="nav-item">
             <Link href="/about">
-              <a onClick={toggleMenuOpen} className="nav-link">
+              <a onClick={toggleMenuOpen}>
                 <h1 className="title">About</h1>
               </a>
             </Link>
@@ -56,7 +56,7 @@ const MobileMenu = ({ token }) => {
 
           <li className="nav-item">
             <Link href={token ? '/myAccount' : '/login'}>
-              <a onClick={toggleMenuOpen} className="nav-link">
+              <a onClick={toggleMenuOpen}>
                 <h1 className="title">{token ? 'Account' : 'Login'}</h1>
               </a>
             </Link>
@@ -77,7 +77,6 @@ const MobileMenu = ({ token }) => {
                 toggleMenuOpen();
                 toggleSearchOpen();
               }}
-              className="nav-link"
             >
               <h1 className="title">Search</h1>
             </div>

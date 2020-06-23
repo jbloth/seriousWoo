@@ -20,10 +20,6 @@ const ScrollToTopButton = () => {
     }
   };
 
-  //   if (process.browser) {
-  //     window.addEventListener('scroll', checkScrollTop);
-  //   }
-
   useEffect(() => {
     window.addEventListener('scroll', checkScrollTop);
     return () => window.removeEventListener('scroll', checkScrollTop);
@@ -59,8 +55,6 @@ const ScrollToTopButton = () => {
           width: 4rem;
           height: 4rem;
           padding: 0.4rem;
-          /* display: flex;
-          align-items: center; */
           fill: rgb(${colors.bg});
         }
       `}</style>

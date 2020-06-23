@@ -10,7 +10,7 @@ const QuantityControl = ({ quantity, onDecrease, onIncrease }) => {
   };
 
   return (
-    <div className="cart-item__quantity quantity-control">
+    <div className="quantity-control">
       <div onClick={handleDecrease} className="qc-child decrease">
         -
       </div>

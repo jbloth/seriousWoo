@@ -25,7 +25,6 @@ const ProductPrev = ({ product, category, className }) => {
       <style jsx>
         {`
           .productPrev {
-            /* border: 4px solid transparent; */
             margin: 2rem;
             max-width: 22rem;
           }
@@ -52,18 +51,8 @@ const ProductPrev = ({ product, category, className }) => {
           .product-img:hover {
           }
 
-          .product-img:hover .button-wrapper {
-            display: flex;
-          }
-
           .productPrev--borders .product-img {
             border-bottom: 1px solid rgb(${colors.orange});
-          }
-
-          .button-wrapper {
-            background-color: rgba(rgb(${colors.orange}) ;, 0.8);
-            font-size: 1.4rem;
-            display: none;
           }
 
           .info {

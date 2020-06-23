@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from 'react';
-// import Cookies from 'js-cookie';
 
 import globalStyles from '../styles/global.js';
 import { CookieConsentContext } from './context/CookieConsentContext';

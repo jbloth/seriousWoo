@@ -58,7 +58,6 @@ const DemoMsgModal = () => {
           overflow-y: auto;
           background-color: rgb(${colors.lighterblue});
           padding: 6rem;
-          overflow-y: auto;
         }
 
         .close-icon {
