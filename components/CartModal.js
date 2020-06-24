@@ -55,9 +55,9 @@ const CartModal = () => {
               <span className="subtotal-price">{cart.subtotal}</span>
             </div>
             <Link href="/shop/checkout">
-              <button className="btn checkout-btn" onClick={toggleCartOpen}>
+              <a className="btn checkout-btn" onClick={toggleCartOpen}>
                 GO TO CHECKOUT
-              </button>
+              </a>
             </Link>
           </div>
         ) : (
