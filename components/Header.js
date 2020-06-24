@@ -104,7 +104,6 @@ const Header = () => {
         <div className="logo">
           <Link href="/">
             <a className="logo__img">
-              {' '}
               <Logo />
             </a>
           </Link>

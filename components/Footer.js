@@ -95,7 +95,7 @@ const Footer = () => {
 
           <ConnectAreaItem title="Follow">
             <div className="social-icons-container">
-              <Link href="">
+              <Link href="/">
                 <a className="connect-icon">
                   <img
                     className="social-logo"
@@ -105,7 +105,7 @@ const Footer = () => {
                 </a>
               </Link>
 
-              <Link href="">
+              <Link href="/">
                 <a className="connect-icon">
                   <img
                     className="social-logo"
