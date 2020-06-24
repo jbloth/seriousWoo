@@ -29,7 +29,7 @@ const Footer = () => {
           </li>
 
           <li>
-            <Link href="/shop/all">
+            <Link href={'/shop/[category]'} as={`/shop/all`}>
               <a>shop</a>
             </Link>
           </li>

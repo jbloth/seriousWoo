@@ -1,9 +1,11 @@
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
+import { useContext, useEffect } from 'react';
 
 // import withApollo from '../../lib/withApollo_globalTokens';
 import GET_CATEGORY_PAGINATION from '../../queries/get-category-pagination';
 import { breakPoints } from '../../styles/theme';
+import { AppContext } from '../../components/context/AppContext';
 import ProductGallery from '../../components/ProductGallery';
 import ShopHeader from '../../components/ShopHeader';
 import ShopSidebar from '../../components/ShopSidebar';
@@ -26,6 +28,17 @@ const getTags = (products) => {
 };
 
 const Category = () => {
+  const { selectedTag, setSelectedTag } = useContext(AppContext);
+
+  /* Set selected tag to "All" if the category has no product with the currently
+  selected tag */
+  let productTags = ['All'];
+  useEffect(() => {
+    if (!productTags.includes(selectedTag)) {
+      setSelectedTag('All');
+    }
+  }, [productTags]);
+
   const router = useRouter();
   const id = router.query.category;
 
@@ -93,7 +106,7 @@ const Category = () => {
   const products = data.productCategory?.products?.edges ? data.productCategory.products.edges : [];
   const categoryName = data.productCategory?.name ? data.productCategory.name : 'All';
 
-  const productTags = getTags(products);
+  productTags = getTags(products);
 
   return (
     <React.Fragment>
