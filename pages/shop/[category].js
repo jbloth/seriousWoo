@@ -10,6 +10,7 @@ import ProductGallery from '../../components/ProductGallery';
 import ShopHeader from '../../components/ShopHeader';
 import ShopSidebar from '../../components/ShopSidebar';
 import Button from '../../components/Button';
+import Loading from '../../components/Loading';
 
 // Get an array of all product tags in this category
 const getTags = (products) => {
@@ -46,10 +47,25 @@ const Category = () => {
     id,
     first: 50,
   };
+
   const { data, loading, error, fetchMore } = useQuery(GET_CATEGORY_PAGINATION, { variables });
 
   if (loading) {
-    return <div className="loading-msg">Loading...</div>;
+    return (
+      <div className="shop-main">
+        <Loading width={200} />
+
+        <style jsx>{`
+          .shop-main {
+            display: flex;
+            width: 100%;
+            min-height: 300px;
+            align-items: center;
+            justify-content: center;
+          }
+        `}</style>
+      </div>
+    );
   }
   if (error) {
     return <div>{error.message}</div>;
