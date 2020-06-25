@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { v4 } from 'uuid';
 
 import UPDATE_CART from '../mutations/update-cart';
 import { getUpdatedItems } from '../lib/functions';
@@ -40,7 +39,7 @@ const CartItem = ({ product, refetch }) => {
       updateCart({
         variables: {
           input: {
-            clientMutationId: v4(),
+            clientMutationId: 'whatever',
             items: updatedItems,
           },
         },

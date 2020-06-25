@@ -22,12 +22,12 @@ const SearchResults = ({ searchTerm }) => {
     <div>
       <h2 className="results-header">Products</h2>
       <div className="products">
-        {data.products.nodes.map((node) => {
+        {data.products.nodes.map((node, idx) => {
           const { id, productCategories } = node;
           const category = productCategories.nodes[0].slug;
 
           return (
-            <div className="product-prev-wrap" onClick={toggleSearchOpen}>
+            <div className="product-prev-wrap" onClick={toggleSearchOpen} key={idx}>
               <ProductPrev
                 key={id}
                 className="productPrev--borders"

@@ -9,8 +9,8 @@ const transporter = nodemailer.createTransport({
   host: 'smtp.mail.me.com',
   service: 'iCloud',
   auth: {
-    user: serverRuntimeConfig.MAIL_ADDRESS,
-    pass: serverRuntimeConfig.MAIL_PW,
+    user: process.env.MAIL_ADDRESS,
+    pass: process.env.MAIL_PW,
   },
 });
 
@@ -61,7 +61,7 @@ export default async (req, res) => {
 const mailer = ({ senderMail, name, html, text, recipientMail }) => {
   const from = name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`;
   const message = {
-    from: `"Nodemailer" <${serverRuntimeConfig.MAIL_ADDRESS}>`,
+    from: `"Nodemailer" <${process.env.MAIL_ADDRESS}>`,
     to: `${recipientMail}`,
     subject: `New message from ${from}`,
     text,
