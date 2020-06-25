@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import validateAndSanitizeContactFormInput from '../lib/validateAndSanitizeContactFormInput';
 import { sendContactMail } from './networking/mail-api';
@@ -19,12 +20,17 @@ const ContactForm = () => {
     mainError: null,
   };
   const [formData, setFormData] = useState(initialState);
+  const [captchaValue, setCaptchaValue] = useState(null);
   const [receivedMsg, setReceivedMsg] = useState(null);
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const handleChange = (event) => {
     const newState = { ...formData, [event.target.name]: event.target.value };
     setFormData(newState);
+  };
+
+  const onCaptchaChange = (value) => {
+    setCaptchaValue(value);
   };
 
   const submitForm = async (e) => {
@@ -35,6 +41,12 @@ const ContactForm = () => {
     // Validate and sanitize input
     if (!consent) {
       setFormData({ ...formData, errors: { consent: 'Your consent is required.' } });
+      setButtonDisabled(false);
+      return;
+    }
+
+    if (!captchaValue) {
+      setFormData({ ...formData, errors: { captcha: 'Please verify your humanness.' } });
       setButtonDisabled(false);
       return;
     }
@@ -112,6 +124,16 @@ const ContactForm = () => {
               />
             </div>
 
+            <div className="captcha-wrap">
+              <ReCAPTCHA
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                onChange={onCaptchaChange}
+              />
+              {formData.errors && formData.errors.captcha && (
+                <div className="error-msg">{formData.errors.captcha}</div>
+              )}
+            </div>
+
             <div className="consent-checkbox-wrap">
               <input
                 onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
@@ -170,7 +192,8 @@ const ContactForm = () => {
 
         .textInput-wrap,
         .textArea-wrap,
-        .submit-wrap {
+        .submit-wrap,
+        .captcha-wrap {
           flex-grow: 1;
           margin-top: 3rem;
         }

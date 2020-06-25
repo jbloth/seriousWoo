@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react';
-import { v4 } from 'uuid';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import { AppContext } from './context/AppContext';
@@ -12,7 +11,7 @@ import Button from './Button';
 
 const AddToCartButton = ({ product, children, selectedVariation }) => {
   const productQtyInput = {
-    clientMutationId: v4(), // Generate a unique id.
+    clientMutationId: 'bobbel', // Generate a unique id.
     quantity: 1,
     productId: product.productId,
   };
