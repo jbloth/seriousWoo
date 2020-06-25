@@ -33,7 +33,9 @@ const ProductGallery = ({ products }) => {
       <style jsx>
         {`
           .productGallery {
-            margin-top: 2rem;
+             {
+              /* margin-top: 2rem; */
+            }
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;

@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 
 import { colors } from '../styles/theme';
 
@@ -13,9 +14,17 @@ const PrivacyNote = () => {
         <h1>Privacy Policy</h1>
         <div className="privacy-content">
           <h2>Who we are</h2>
-          <p>Controller of you personal data on this website is:</p>
-          <p>TODO</p>
-          <p>Our website address is: http://seriouswoo.local.</p>
+          <p>
+            The party re­spons­ible for this web­site (the "con­trol­ler") for pur­poses of data
+            pro­tec­tion law is:
+          </p>
+          <br />
+          <p>Juliane Blothner</p>
+          <p>Pettenkofer Str. 2</p>
+          <p>50823 Köln</p>
+          <p>Germany</p>
+          <br />
+          <p>Our website address is: TODO</p>
 
           <h2>Collection of non-personal data</h2>
           <p>
@@ -45,7 +54,7 @@ const PrivacyNote = () => {
           <p>
             If you contact us using the contact form, we will collect your name and e-mail address
             (and any additional data you may provide us with) to be able to respond to your
-            questions. We
+            questions.
           </p>
 
           <h4>Newsletter Sign Up</h4>
@@ -68,6 +77,14 @@ const PrivacyNote = () => {
             demonstrate the functionality of this website, not to collect user data. Orders made
             through this website (and all related data) will be deleted from the server on a regular
             basis (at least every 3 months).
+          </p>
+
+          <h2>Cookies</h2>
+          <p>
+            To learn how this site uses cookies, please visit our{' '}
+            <Link href="/cookies">
+              <a>cookie statement.</a>
+            </Link>
           </p>
 
           <h2>How we use your data</h2>
@@ -94,7 +111,10 @@ const PrivacyNote = () => {
           <p>Our server is located in Frankfurt, Germany.</p>
 
           <h2>How do we protect your data?</h2>
-          <p></p>
+          <p>
+            We take the protection of your personal data seriously. We use SSL encryption to protect
+            of the transmission of confidential content.
+          </p>
 
           <h2>How we may share your data</h2>
           <p>We do not share information with third parties.</p>
@@ -111,7 +131,7 @@ const PrivacyNote = () => {
             If you make a request, we have one month to respond to you. If you would like to
             exercise any of these rights, please contact us at our email:
           </p>
-          <p>TODO: email here</p>
+          <p>info@serious-salmon.com</p>
 
           <h2>Privacy policies of other websites</h2>
           <p>

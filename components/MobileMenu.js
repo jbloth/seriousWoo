@@ -17,7 +17,7 @@ const MobileMenu = ({ token }) => {
     { name: 'shipping', url: '/shipping' },
     { name: 'privacy note', url: '/privacy' },
     { name: 'cookie note', url: '/cookies' },
-    { name: 'imprint', url: '/imprint' },
+    { name: 'legal notice', url: '/legal' },
   ];
 
   return (
