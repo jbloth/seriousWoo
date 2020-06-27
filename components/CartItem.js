@@ -192,12 +192,12 @@ const CartItem = ({ product, refetch }) => {
 
           .img-row {
             width: 100%;
-            height: 220px;
+            height: 180px;
           }
 
           .img {
-            width: 50%;
-            height: 220px;
+            width: 180px;
+            height: 180px;
           }
 
           .tiny-only {
@@ -218,6 +218,17 @@ const CartItem = ({ product, refetch }) => {
 
           .info {
             padding-left: 0;
+          }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          .img-row {
+            height: 120px;
+          }
+
+          .img {
+            width: 120px;
+            height: 120px;
           }
         }
       `}</style>

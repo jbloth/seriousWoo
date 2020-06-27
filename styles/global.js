@@ -127,6 +127,12 @@ export default css.global`
     }
   }
 
+  @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+    .section {
+      padding: 3rem;
+    }
+  }
+
   .l-wrapper {
     max-width: 1100px;
   }

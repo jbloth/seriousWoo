@@ -3,7 +3,7 @@ import Link from 'next/link';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import validateAndSanitizeContactFormInput from '../lib/validateAndSanitizeContactFormInput';
-import { sendContactMail } from './networking/mail-api';
+// import { sendContactMail } from './networking/mail-api';
 import { colors, breakPoints } from '../styles/theme';
 
 import TextInput from './TextInput';
@@ -19,14 +19,50 @@ const ContactForm = () => {
     errors: null,
     mainError: null,
   };
+
   const [formData, setFormData] = useState(initialState);
   const [captchaValue, setCaptchaValue] = useState(null);
   const [receivedMsg, setReceivedMsg] = useState(null);
+  const [status, setStatus] = useState({
+    submitted: false,
+    submitting: false,
+    info: { error: false, msg: null },
+  });
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const handleChange = (event) => {
     const newState = { ...formData, [event.target.name]: event.target.value };
     setFormData(newState);
+    setStatus({
+      submitted: false,
+      submitting: false,
+      info: { error: false, msg: null },
+    });
+  };
+
+  const handleResponse = (status, msg) => {
+    if (status === 200) {
+      setStatus({
+        submitted: true,
+        submitting: false,
+        info: { error: false, msg: msg },
+      });
+      setFormData(initialState);
+      setReceivedMsg("Thanks! We'll get back to you.");
+      setButtonDisabled(false);
+    } else {
+      console.log(msg);
+      setStatus({
+        info: { error: true, msg: msg },
+      });
+      setFormData({
+        ...formData,
+        // mainError: 'Could not send message. Sorry. ' + msg,
+        mainError: 'Could not send message. Sorry.',
+        errors: null,
+      });
+      setButtonDisabled(false);
+    }
   };
 
   const onCaptchaChange = (value) => {
@@ -35,10 +71,11 @@ const ContactForm = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
+    setStatus((prevStatus) => ({ ...prevStatus, submitting: true }));
     setButtonDisabled(true);
-    const { name, email, content, consent } = formData;
 
     // Validate and sanitize input
+    const { name, email, content, consent } = formData;
     if (!consent) {
       setFormData({ ...formData, errors: { consent: 'Your consent is required.' } });
       setButtonDisabled(false);
@@ -59,21 +96,32 @@ const ContactForm = () => {
     }
 
     // send email
-    const res = await sendContactMail(name, email, content);
+    const inputs = { name, email, content };
+    const res = await fetch('/api/sendMail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    });
+    const text = await res.text();
+    handleResponse(res.status, text);
 
-    if (res.status < 300) {
-      setFormData(initialState);
-      setReceivedMsg("Thanks! We'll get back to you.");
-      setButtonDisabled(false);
-    } else {
-      console.log(res);
-      setFormData({
-        ...formData,
-        mainError: 'Could not send message. Sorry. ' + res,
-        errors: null,
-      });
-      setButtonDisabled(false);
-    }
+    // const res = await sendContactMail(name, email, content);
+
+    // if (res.status < 300) {
+    //   setFormData(initialState);
+    //   setReceivedMsg("Thanks! We'll get back to you.");
+    //   setButtonDisabled(false);
+    // } else {
+    //   console.log(res);
+    //   setFormData({
+    //     ...formData,
+    //     mainError: 'Could not send message. Sorry. ' + res,
+    //     errors: null,
+    //   });
+    //   setButtonDisabled(false);
+    // }
   };
 
   return (
@@ -236,6 +284,12 @@ const ContactForm = () => {
 
           .margin-right {
             margin-right: 0;
+          }
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          .contact-form-container {
+            width: 100%;
           }
         }
       `}</style>

@@ -1,3 +1,5 @@
+import { colors, breakPoints } from '../styles/theme';
+
 const QuantityControl = ({ quantity, onDecrease, onIncrease }) => {
   const handleDecrease = (e) => {
     e.stopPropagation();
@@ -37,6 +39,13 @@ const QuantityControl = ({ quantity, onDecrease, onIncrease }) => {
         .decrease,
         .increase {
           cursor: pointer;
+        }
+
+        @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          .quantity-control {
+            width: 100px;
+            height: 30px;
+          }
         }
       `}</style>
     </div>
