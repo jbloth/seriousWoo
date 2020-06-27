@@ -13,7 +13,8 @@ const Button = ({ extraClass, children, ...otherProps }) => (
           background-color: rgb(${colors.orange});
           color: rgb(${colors.bg});
           border: 2px solid transparent;
-          width: max-content;
+          width: auto;
+          white-space: nowrap;
 
           text-align: center;
           padding: 0 12px;

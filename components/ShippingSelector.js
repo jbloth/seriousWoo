@@ -63,6 +63,7 @@ const ShippingSelector = ({ rates, refetch, initialShippingId }) => {
           return (
             <div key={idx} className="rate-details">
               <input
+                id={rate.label}
                 onChange={onChange}
                 value={rate.id}
                 className="radio-btn"
@@ -71,7 +72,9 @@ const ShippingSelector = ({ rates, refetch, initialShippingId }) => {
                 defaultChecked={rate.id === minRate.id ? 'checked' : false}
               />
               <p>
-                <span className="rate-label">{rate.label}:</span>{' '}
+                <span for={rate.label} className="rate-label">
+                  {rate.label}:
+                </span>{' '}
                 <span className="rate-price">&euro;{rate.cost.replace('.', ',')}</span>
               </p>
             </div>

@@ -225,8 +225,6 @@ const CheckoutForm = ({ userData }) => {
 
             {orderSettings.shipToDifferentAddress && (
               <>
-                <br />
-                <br />
                 <h2>Shipping Adress</h2>
                 <CheckoutFormInputs
                   inputs={shippingAddress}
@@ -331,6 +329,10 @@ const CheckoutForm = ({ userData }) => {
 
         .form-section {
           margin-bottom: 2rem;
+        }
+
+        .checkbox-label {
+          margin-bottom: 3rem;
         }
 
         .checkbox {
