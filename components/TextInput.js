@@ -6,7 +6,7 @@ const TextInput = ({ extraClass, label, error, ...otherProps }) => (
 
     {label && (
       <label
-        for={otherProps.id ? otherProps.id : ''}
+        htmlFor={otherProps.id ? otherProps.id : ''}
         className={`${otherProps.value && otherProps.value.length ? 'shrink' : ''} label`}
       >
         {label + (otherProps.required ? ' (required)' : '')}

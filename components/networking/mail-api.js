@@ -14,7 +14,7 @@ export const sendContactMail = async (name, senderMail, content) => {
   try {
     const res = await axios({
       method: 'post',
-      url: '/api/contact',
+      url: '/api/contactmail',
       headers: {
         'Content-Type': 'application/json',
       },
