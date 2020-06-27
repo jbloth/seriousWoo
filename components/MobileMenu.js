@@ -98,7 +98,7 @@ const MobileMenu = ({ token }) => {
           background-color: rgb(${colors.lighterblue});
           z-index: 1400;
           padding: 10rem 6rem;
-          transform: translateX(-100%);
+          transform: translateX(-120%);
           transition: transform 0.5s ease-in;
           display: flex;
           align-items: center;

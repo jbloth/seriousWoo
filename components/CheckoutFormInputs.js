@@ -35,6 +35,7 @@ const CheckoutFormInputs = ({
         <div className="textInput-wrap margin-right">
           <TextInput
             name="firstName"
+            id="firstName"
             type="text"
             label="First Name"
             required={require}
@@ -48,6 +49,7 @@ const CheckoutFormInputs = ({
         <div className="textInput-wrap">
           <TextInput
             name="lastName"
+            id="lastName"
             type="text"
             label="Last Name"
             required={require}
@@ -62,6 +64,7 @@ const CheckoutFormInputs = ({
       <div className="textInput-wrap">
         <TextInput
           name="address1"
+          id="address1"
           type="text"
           label="Address 1"
           required={require}
@@ -75,6 +78,7 @@ const CheckoutFormInputs = ({
       <div className="textInput-wrap">
         <TextInput
           name="address2"
+          id="address2"
           type="text"
           label="Address 2"
           required={false}
@@ -89,6 +93,7 @@ const CheckoutFormInputs = ({
         <div className="textInput-wrap margin-right">
           <TextInput
             name="postcode"
+            id="postcode"
             type="text"
             label="Post Code"
             required={require}
@@ -102,6 +107,7 @@ const CheckoutFormInputs = ({
         <div className="textInput-wrap">
           <TextInput
             name="city"
+            id="city"
             type="text"
             label="City"
             required={require}
@@ -119,6 +125,7 @@ const CheckoutFormInputs = ({
         ) : (
           <CountrySelector
             extraClass={texInputExtraClass ? texInputExtraClass : null}
+            id="Country"
             value={inputs.country}
             onSelect={handleChange}
             label={'Country'}
@@ -132,6 +139,7 @@ const CheckoutFormInputs = ({
           <div className="textInput-wrap margin-right">
             <TextInput
               name="email"
+              id="email"
               type="email"
               label="Email"
               required={require}
@@ -145,6 +153,7 @@ const CheckoutFormInputs = ({
           <div className="textInput-wrap">
             <TextInput
               name="phone"
+              id="phone"
               type="text"
               label="Phone Number"
               required={false}
@@ -162,6 +171,7 @@ const CheckoutFormInputs = ({
           <TextArea
             rows="4"
             name="orderNotes"
+            id="orderNotes"
             label="Notes"
             required={false}
             value={inputs.orderNotes}

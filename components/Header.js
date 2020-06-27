@@ -13,8 +13,8 @@ import CartModal from './CartModal';
 import SearchModal from './SearchModal';
 import MobileMenu from './MobileMenu';
 import Logo from '../assets/seriousLogo_09.svg';
-import CartIcon from '../assets/shopping-cart.svg';
-import SearchIcon from '../assets/forschung.svg';
+import CartIcon from '../assets/cart.svg';
+import SearchIcon from '../assets/search.svg';
 import AccountIcon from '../assets/account.svg';
 
 Router.onRouteChangeStart = () => {
@@ -162,16 +162,20 @@ const Header = () => {
             <li className="nav-item">
               <div className="nav-link cartIcon-wrapper" onClick={toggleCartOpen}>
                 <CartIcon />
-                <span className="cart-item-count">{itemCount}</span>
+                <div className="cart-item-count">
+                  <span className="cart-item-count-text">{itemCount}</span>
+                </div>
               </div>
             </li>
           </ul>
         </nav>
 
         <div className="mob-cart item-mobile">
-          <div className="nav-link cartIcon-wrapper" onClick={toggleCartOpen}>
+          <div className="nav-link cartIcon-mobile-wrapper" onClick={toggleCartOpen}>
             <CartIcon id="cart-icon-mobile" />
-            <span className="cart-item-count">{itemCount}</span>
+            <div className="cart-item-count cart-item-count-mobile">
+              <span className="cart-item-count-text">{itemCount}</span>
+            </div>
           </div>
         </div>
 
@@ -268,45 +272,57 @@ const Header = () => {
 
         // ---- Search Icon ---- //
         .searchIcon-wrapper {
-          width: 2.5rem;
+          width: 2.8rem;
           height: auto;
-          padding-top: 0.2rem;
         }
 
         // ---- Account Icon ---- //
         .account-icon-wrapper {
           width: 2.8rem;
           height: auto;
-          padding-top: 0.2rem;
         }
 
         // ---- Cart Icon ---- //
         .cartIcon-wrapper {
+          width: 2.8rem;
+          height: auto;          
           position: relative;
-          font-size: 1.6rem;
         }
 
-        div :global(#cart-icon-mobile) {
-          transform: scale(1.3);
+        .cartIcon-mobile-wrapper {
+          width: 3.6rem;
+          height: 3.6rem;          
+          position: relative;
         }
 
         .cart-item-count {
+          font-family: ${fonts.text};
           position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 2rem;
+          height: 2rem;
+          background-color: rgb(${colors.lightblue});
+          border-radius: 50%;
           font-size: 1rem;
-          left: 50%;
-          top: 15%;
+          right: -10%;
+          top: -10%;
           color: rgb(${colors.bg});
         }
 
-        .mob-cart .cart-item-count {
-          top: 8%;
+        .cart-item-count-mobile {
+          width: 2.2rem;
+          height: 2.2rem;
+          font-size: 1.2rem;
+          right: -20%;
         }
 
         // ---- burger ---- //
-        .burger {
-          // z-index: 1500;
-          // transition: all 0.5s ease;
-        }
+        /*.burger {
+           z-index: 1500;
+          transition: all 0.5s ease;
+        }*/
 
         .burger__line {
           width: 30px;
@@ -319,7 +335,7 @@ const Header = () => {
         // ---- mobile only ---- //
         .item-mobile {
           display: none;
-          width: 25px;
+          /*width: 25px;*/
           cursor: pointer;
         }
 
