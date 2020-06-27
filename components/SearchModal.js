@@ -4,7 +4,7 @@ import { AppContext } from '../components/context/AppContext';
 import { colors, breakPoints } from '../styles/theme';
 import CloseIcon from '../assets/icon-close_211652.svg';
 import TextInput from './TextInput';
-import SearchIcon from '../assets/forschung.svg';
+import SearchIcon from '../assets/search.svg';
 import SearchResults from './SearchResults';
 
 const SearchModal = () => {

@@ -132,7 +132,6 @@ export default css.global`
   }
 
   // ------ state ------ //
-  // TODO: Does this belong here?
   .dropdown:hover .dropdown-content {
     display: flex;
     flex-direction: column;
