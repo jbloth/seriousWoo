@@ -24,7 +24,7 @@ const PrivacyNote = () => {
           <p>{noGithub.city}</p>
           <p>Germany</p>
           <br />
-          <p>Our website address is: TODO</p>
+          <p>Our website address is: https://next.serious-salmon.com/</p>
 
           <h2>Collection of non-personal data</h2>
           <p>

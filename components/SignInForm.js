@@ -24,7 +24,6 @@ const REGISTER_USER = gql`
 `;
 
 const SigninForm = () => {
-  // TODO: evtl redirect zu myaccount
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
