@@ -3,7 +3,6 @@ import Link from 'next/link';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import validateAndSanitizeContactFormInput from '../lib/validateAndSanitizeContactFormInput';
-// import { sendContactMail } from './networking/mail-api';
 import { colors, breakPoints } from '../styles/theme';
 
 import TextInput from './TextInput';
@@ -14,7 +13,7 @@ const ContactForm = () => {
   const initialState = {
     name: '',
     email: '',
-    content: '',
+    message: '',
     consent: false,
     errors: null,
     mainError: null,
@@ -57,7 +56,6 @@ const ContactForm = () => {
       });
       setFormData({
         ...formData,
-        // mainError: 'Could not send message. Sorry. ' + msg,
         mainError: 'Could not send message. Sorry.',
         errors: null,
       });
@@ -75,7 +73,7 @@ const ContactForm = () => {
     setButtonDisabled(true);
 
     // Validate and sanitize input
-    const { name, email, content, consent } = formData;
+    const { name, email, message, consent } = formData;
     if (!consent) {
       setFormData({ ...formData, errors: { consent: 'Your consent is required.' } });
       setButtonDisabled(false);
@@ -94,9 +92,8 @@ const ContactForm = () => {
       setButtonDisabled(false);
       return;
     }
-
     // send email
-    const inputs = { name, email, content };
+    const inputs = { name, email, message };
     const res = await fetch('/api/sendMail', {
       method: 'POST',
       headers: {
@@ -105,23 +102,8 @@ const ContactForm = () => {
       body: JSON.stringify(inputs),
     });
     const text = await res.text();
+
     handleResponse(res.status, text);
-
-    // const res = await sendContactMail(name, email, content);
-
-    // if (res.status < 300) {
-    //   setFormData(initialState);
-    //   setReceivedMsg("Thanks! We'll get back to you.");
-    //   setButtonDisabled(false);
-    // } else {
-    //   console.log(res);
-    //   setFormData({
-    //     ...formData,
-    //     mainError: 'Could not send message. Sorry. ' + res,
-    //     errors: null,
-    //   });
-    //   setButtonDisabled(false);
-    // }
   };
 
   return (
@@ -162,13 +144,13 @@ const ContactForm = () => {
             <div className="textArea-wrap">
               <TextArea
                 rows="6"
-                name="content"
+                name="message"
                 label="What's on your mind?"
                 required={false}
-                value={formData.content}
+                value={formData.message}
                 onChange={handleChange}
                 extraClass={'textInput--bottomOnly'}
-                error={formData.errors && formData.errors.content ? formData.errors.content : null}
+                error={formData.errors && formData.errors.msg ? formData.errors.msg : null}
               />
             </div>
 

@@ -4,13 +4,12 @@ export default async (req, res) => {
   sgMail.setApiKey(process.env.SENDGRID_KEY);
 
   const { name, email, message } = req.body;
-
   const content = {
     to: process.env.NEXT_PUBLIC_RECIPIENT_MAIL,
-    from: email,
+    from: process.env.SENDER_MAIL_ADDRESS,
     subject: `New Message From - ${name} (${email})`,
-    text: message,
-    html: `<p>${message}</p>`,
+    text: `Name: ${name}, Email: ${email}\nMessage: ${message}`,
+    html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
   };
 
   try {
