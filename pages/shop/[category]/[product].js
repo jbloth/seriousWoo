@@ -197,7 +197,18 @@ const Product = ({ categorySlug, productSlug }) => {
               }
 
               .button-wrapper {
-                margin-left: 4rem;
+                margin-left: 2rem;
+              }
+            }
+
+            @media only screen and (max-width: ${breakPoints.bp_smallest}) {
+              .buttonArea {
+                flex-direction: column;
+                align-items: flex-end;
+              }
+
+              .size-select-wrapper {
+                margin-bottom: 3rem;
               }
             }
 
@@ -212,15 +223,6 @@ const Product = ({ categorySlug, productSlug }) => {
 
               .info-container {
                 padding: 3rem;
-              }
-
-              .buttonArea {
-                flex-direction: column;
-                align-items: flex-end;
-              }
-
-              .size-select-wrapper {
-                margin-bottom: 3rem;
               }
             }
           `}

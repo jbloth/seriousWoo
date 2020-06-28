@@ -117,7 +117,7 @@ const CartItem = ({ product, refetch }) => {
         }
 
         .img-row {
-          width: 24%;
+          width: 120px;
           height: 120px;
           display: flex;
           justify-content: space-between;

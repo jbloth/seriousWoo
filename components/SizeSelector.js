@@ -72,13 +72,13 @@ const SizeSelector = ({ sizes, onSelect }) => {
 
         @media only screen and (max-width: ${breakPoints.bp_md}) {
           .select-wrapper {
-            width: 7rem;
+            min-width: 7rem;
           }
 
           select {
             height: 4rem;
             font-size: 1.8rem;
-            width: 7rem;
+            min-width: 7rem;
           }
 
           .icon-wrapper {

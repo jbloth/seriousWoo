@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -10,8 +10,22 @@ import CloseIcon from '../assets/icon-close_211652.svg';
 import CartItem from './CartItem';
 
 const CartModal = () => {
+  const node = useRef();
   const { cart, setCart, cartOpen, toggleCartOpen } = useContext(AppContext);
   const hidden = !cartOpen;
+
+  // Add event listener that closes modal if the user clicks outside.
+  useEffect(() => {
+    if (cartOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [cartOpen]);
 
   // Get Cart Data.
   const { loading, error, data, refetch } = useQuery(GET_CART, {
@@ -29,9 +43,19 @@ const CartModal = () => {
     },
   });
 
+  // Close modal if user clicks outside
+  const handleClickOutside = (e) => {
+    if (node.current.contains(e.target)) {
+      // inside click
+      return;
+    }
+    // outside click
+    toggleCartOpen();
+  };
+
   const cartItems = cart !== null ? cart.products : [];
   return (
-    <div className={`cart-container ${hidden ? '' : 'cart-container--active'}`}>
+    <div ref={node} className={`cart-container ${hidden ? '' : 'cart-container--active'}`}>
       <div className="icon-wrapper close-icon">
         <CloseIcon onClick={toggleCartOpen}></CloseIcon>
       </div>
