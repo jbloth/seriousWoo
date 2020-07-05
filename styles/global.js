@@ -148,17 +148,6 @@ export default css.global`
     flex: 1 0 auto;
   }
 
-  /* .dropdown:hover .dropdown-content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .dropdown-content {
-    display: none;
-    position: absolute;
-  }
-  */
-
   @media only screen and (max-width: ${breakPoints.bp_md}) {
     .hideOnMobile {
       display: none;

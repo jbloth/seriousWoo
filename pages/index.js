@@ -15,6 +15,11 @@ const GET_NEWEST_PRODUCTS = `
         name
         productId
         slug
+        productTags {
+          nodes {
+            name
+          }
+        }
         image {
           id
           sourceUrl

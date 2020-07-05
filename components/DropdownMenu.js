@@ -21,18 +21,15 @@ const DropdownMenu = ({ children, trigger, rightMargin, leftMargin }) => {
   // On desktop we the menu opens and closes with hover state, so no event handlers
   // are needed.
   const onEnter = () => {
-    console.log('onEnter');
     setOpen(true);
   };
 
   const onLeave = () => {
-    console.log('onLeave');
     setOpen(false);
   };
 
   // For touchscreen-devices
   const onTouch = (e) => {
-    console.log('onTouch');
     if (open) {
       closeDropdown();
     } else {
