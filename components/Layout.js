@@ -35,21 +35,23 @@ const Layout = (props) => {
   }, [demoMsgOpen]);
 
   return (
-    <div className="site-container">
+    <>
       <Meta />
       {bannerOpen && <CookieBanner dispatch={dispatchCookieConsent} />}
       {demoBannerOpen && <DemoMsgModal />}
-      <Header />
-      <div className="site-main">
-        {props.children}
-        <ScrollToTopButton />
-      </div>
+      <div className="site-container">
+        <Header />
+        <div className="site-main">
+          {props.children}
+          <ScrollToTopButton />
+        </div>
 
-      <Footer />
-      <style jsx global>
-        {globalStyles}
-      </style>
-    </div>
+        <Footer />
+        <style jsx global>
+          {globalStyles}
+        </style>
+      </div>
+    </>
   );
 };
 
