@@ -16,6 +16,7 @@ import Logo from '../assets/seriousLogo_09.svg';
 import CartIcon from '../assets/cart.svg';
 import SearchIcon from '../assets/search.svg';
 import AccountIcon from '../assets/account.svg';
+import DropdownMenu from './DropdownMenu';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -60,6 +61,7 @@ const Header = () => {
 
   return (
     <header className="header section">
+      {/* Mobile Menu Trigger */}
       <div className="header-inner">
         <div className="burger item-mobile" onClick={toggleMenuOpen}>
           <div className="burger__line line-1"></div>
@@ -67,6 +69,7 @@ const Header = () => {
           <div className="burger__line line-3"></div>
         </div>
 
+        {/* ---- Left-of-Logo Menu ---- */}
         <nav className="nav nav--left">
           <ul className="nav__list nav__list--left">
             <li className="nav-item">
@@ -75,10 +78,18 @@ const Header = () => {
               </Link>
             </li>
 
-            <li className="nav-item dropdown">
-              <Link href={'/shop/[category]'} as={`/shop/all`}>
-                <a className="nav-link">Shop</a>
-              </Link>
+            {/*  Shop dropdown menu  */}
+            <DropdownMenu
+              rightMargin
+              // JSX to be passed to DropdownMenu-Component that will trigger menu-open. Cannot use
+              // props.children because that contains the dropdown-content.
+              trigger={
+                <Link href={'/shop/[category]'} as={`/shop/all`}>
+                  <a className="nav-link">Shop</a>
+                </Link>
+              }
+            >
+              {/* The content of the dropdown menu is accessible via props.children */}
               <div className="nav__dropdown-content dropdown-content">
                 {loading && <div className="nav-dropdown-link">loading...</div>}
                 {hasData &&
@@ -91,7 +102,7 @@ const Header = () => {
                     );
                   })}
               </div>
-            </li>
+            </DropdownMenu>
 
             <li className="nav-item">
               <Link href="/about">
@@ -101,6 +112,7 @@ const Header = () => {
           </ul>
         </nav>
 
+        {/* ----- Logo ----- */}
         <div className="logo">
           <Link href="/">
             <a className="logo__img">
@@ -109,11 +121,16 @@ const Header = () => {
           </Link>
         </div>
 
+        {/* ----- Right-of-Logo Menu ----- */}
+        {/*  Accont/Login dropdown menu  */}
         <nav className="nav nav--right">
           <ul className="nav__list nav__list--right">
-            <li className="nav-item dropdown">
-              {token ? (
-                <div>
+            {token ? ( // Show account-icon if user is logged in, login-link otherwise
+              <DropdownMenu
+                leftMargin
+                // JSX to be passed to DropdownMenu-Component that will trigger menu-open. Cannot use
+                // props.children because that contains the dropdown-content.
+                trigger={
                   <Link href="/myAccount">
                     <a className="nav-link">
                       <div className="account-icon-wrapper">
@@ -121,44 +138,54 @@ const Header = () => {
                       </div>
                     </a>
                   </Link>
-                  <div className="nav__dropdown-content dropdown-content">
-                    <Link href="/myAccount">
-                      <a className="nav-dropdown-link">My Account</a>
-                    </Link>
-                    <div
-                      className="nav-dropdown-link"
-                      onClick={() => {
-                        auth.logoutUser();
-                        if (router.pathname === '/myAccount') {
-                          Router.push('/login');
-                        }
-                      }}
-                    >
-                      Logout
-                    </div>
+                }
+              >
+                {/* The content of the dropdown menu is accessible via props.children */}
+                <div className="nav__dropdown-content dropdown-content">
+                  <Link href="/myAccount">
+                    <a className="nav-dropdown-link">My Account</a>
+                  </Link>
+                  <div
+                    className="nav-dropdown-link"
+                    onClick={() => {
+                      auth.logoutUser();
+                      if (router.pathname === '/myAccount') {
+                        Router.push('/login');
+                      }
+                    }}
+                  >
+                    Logout
                   </div>
                 </div>
-              ) : (
-                <div>
+              </DropdownMenu>
+            ) : (
+              <DropdownMenu
+                leftMargin
+                trigger={
                   <Link href="/login">
                     <a className="nav-link">Login</a>
                   </Link>
-                  <div className="nav__dropdown-content dropdown-content">
-                    <Link href="/login">
-                      <a className="nav-dropdown-link">Login</a>
-                    </Link>
-                    <Link href="/createAccount">
-                      <a className="nav-dropdown-link">Create Account</a>
-                    </Link>
-                  </div>
+                }
+              >
+                <div className="nav__dropdown-content dropdown-content">
+                  <Link href="/login">
+                    <a className="nav-dropdown-link">Login</a>
+                  </Link>
+                  <Link href="/createAccount">
+                    <a className="nav-dropdown-link">Create Account</a>
+                  </Link>
                 </div>
-              )}
-            </li>
+              </DropdownMenu>
+            )}
+
+            {/*  Search Trigger  */}
             <li className="nav-item">
               <div className="nav-link searchIcon-wrapper" onClick={toggleSearchOpen}>
                 <SearchIcon />
               </div>
             </li>
+
+            {/*  Cart Modal Trigger  */}
             <li className="nav-item">
               <div className="nav-link cartIcon-wrapper" onClick={toggleCartOpen}>
                 <CartIcon />
@@ -170,6 +197,7 @@ const Header = () => {
           </ul>
         </nav>
 
+        {/*  Mobile Cart Trigger  */}
         <div className="mob-cart item-mobile">
           <div className="nav-link cartIcon-mobile-wrapper" onClick={toggleCartOpen}>
             <CartIcon id="cart-icon-mobile" />
@@ -179,6 +207,7 @@ const Header = () => {
           </div>
         </div>
 
+        {/*  Lots of Modals  */}
         <MobileMenu token={token} />
         <SearchModal />
         <CartModal />
@@ -269,6 +298,15 @@ const Header = () => {
         .nav-dropdown-link &:hover {
           color: rgb(${colors.lightBlue});
         }
+
+        /* ------ */
+        .dropdown-content {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+        }
+        /* ------ */
+
 
         // ---- Search Icon ---- //
         .searchIcon-wrapper {

@@ -40,8 +40,11 @@ const Layout = (props) => {
       {bannerOpen && <CookieBanner dispatch={dispatchCookieConsent} />}
       {demoBannerOpen && <DemoMsgModal />}
       <Header />
-      {props.children}
-      <ScrollToTopButton />
+      <div className="site-main">
+        {props.children}
+        <ScrollToTopButton />
+      </div>
+
       <Footer />
       <style jsx global>
         {globalStyles}

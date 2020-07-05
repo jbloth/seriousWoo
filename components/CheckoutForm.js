@@ -7,6 +7,7 @@ import { getFormattedCart, createCheckoutMutationInput } from '../lib/functions'
 import validateAndSanitizeOrder from '../lib/validateAndSanitizeOrder';
 import validateAndSanitizeOrderShipping from '../lib/validateAndSanitizeOrderShipping';
 import GET_CART from '../queries/get-cart';
+import EMPTY_CART from '../mutations/empty-cart';
 import CHECKOUT_MUTATION from '../mutations/checkout';
 import CheckoutFormInputs from './CheckoutFormInputs';
 import CartOverview from './CartOverview';
@@ -114,6 +115,7 @@ const CheckoutForm = ({ userData }) => {
     if (null !== orderData) {
       // Call the checkout mutation when the value for orderData changes/updates.
       checkout();
+      emptyCart();
     }
   }, [orderData]);
 
@@ -145,6 +147,18 @@ const CheckoutForm = ({ userData }) => {
       if (error.graphQLErrors && error.graphQLErrors.length > 0) {
         setRequestError(error.graphQLErrors[0].message);
       }
+      console.log(error);
+    },
+  });
+
+  const [
+    emptyCart,
+    { data: emptyCartResponse, loading: emptyCartLoading, error: emptyCartError },
+  ] = useMutation(EMPTY_CART, {
+    onCompleted: () => {
+      refetch();
+    },
+    onError: (error) => {
       console.log(error);
     },
   });
