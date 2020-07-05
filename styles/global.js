@@ -138,7 +138,17 @@ export default css.global`
   }
 
   // ------ state ------ //
-  .dropdown:hover .dropdown-content {
+  .site-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .site-main {
+    flex: 1 0 auto;
+  }
+
+  /* .dropdown:hover .dropdown-content {
     display: flex;
     flex-direction: column;
   }
@@ -147,6 +157,7 @@ export default css.global`
     display: none;
     position: absolute;
   }
+  */
 
   @media only screen and (max-width: ${breakPoints.bp_md}) {
     .hideOnMobile {

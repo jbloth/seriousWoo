@@ -30,6 +30,16 @@ const Checkout = () => {
         related data) will not be fullfilled and deleted on a regular basis. For paypal payments, we
         use a paypal sandbox which means that no money will be transferred.
       </p>
+      <div className="sandbox-info">
+        <p>You can use the following credentials for the paypal sandbox:</p>
+        <p>
+          <strong>Email:</strong> giffgaff@personal.example.com
+        </p>
+        <p>
+          <strong>Password:</strong> JgBo3&6P
+        </p>
+      </div>
+
       <CheckoutForm userData={userData} />
       <style jsx>{`
         .checkout-page {
@@ -39,6 +49,12 @@ const Checkout = () => {
         .no-fullfill-msg {
           padding: 1rem 4rem;
           text-align: justify;
+        }
+
+        .sandbox-info {
+          padding: 1rem 4rem;
+          align-self: flex-start;
+          text-align: left;
         }
 
         h1 {

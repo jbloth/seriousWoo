@@ -141,6 +141,7 @@ const Footer = () => {
           background-color: rgb(${colors.lightyellow});
           padding: 7rem 6rem 1rem 6rem;
           flex-direction: column;
+          flex-shrink: 0;
         }
 
         .footer-wrapper {
