@@ -1,7 +1,20 @@
 import { useState, useEffect } from 'react';
 
 import { colors } from '../styles/theme';
-import ArrowUp from '../assets/arrow-up.svg';
+// import ArrowUp from '../assets/arrow-up.svg';
+
+const ArrowUp = (props) => (
+  <svg
+    viewBox="0 0 50 50"
+    fillRule="evenodd"
+    clipRule="evenodd"
+    strokeLinejoin="round"
+    strokeMiterlimit={2}
+    {...props}
+  >
+    <path d="M22.781 17.449l-6.212 9.914-3.862-2.42 8.432-13.455L25 5.082l3.861 6.406 8.432 13.455-3.862 2.42-6.212-9.914v27.469h-4.438V17.449z" />
+  </svg>
+);
 
 const ScrollToTopButton = () => {
   const [visible, setVisible] = useState(false);

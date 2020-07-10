@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 import { colors, breakPoints } from '../styles/theme';
 import clientConfig from '../clientConfig';
-import BgShape from '../components/BgShape';
+import BgShape from '../components/graphics/BgShape';
 import SplitHero from '../components/SplitHero';
 import CategoryGallery from '../components/CategoryGallery';
 import ProductGallery from '../components/ProductGallery';

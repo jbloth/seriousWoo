@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 
 import validateAndSanitizeEditAddressInput from '../lib/validateAndSanitizeEditAddressInput';
 import UPDATE_CUSTOMER from '../mutations/update-customer';
-import CloseIcon from '../assets/icon-close_211652.svg';
+import CloseIcon from './graphics/CloseIcon';
 import { colors, breakPoints } from '../styles/theme';
 import CheckoutFormInputs from './CheckoutFormInputs';
 import Button from './Button';
@@ -131,7 +131,7 @@ const EditAddressModal = ({ id, initialData, active, closeModal }) => {
   return (
     <div className={`background-modal ${active ? 'background-modal--active' : ''}`}>
       <div className="edit-user-modal">
-        <div className="icon-wrapper close-icon">
+        <div className="icon-wrapper close-icon" aria-label="Close">
           <CloseIcon onClick={closeModal} />
         </div>
         <div className="forms-container">

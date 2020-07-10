@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 
 import { AppContext } from '../components/context/AppContext';
 import { colors, breakPoints } from '../styles/theme';
-import ArrowIcon from './ArrowIcon';
+import ArrowIcon from './graphics/ArrowIcon';
 
 const ShopSidebar = ({ productTags }) => {
   const [open, setOpen] = useState(false);
@@ -14,7 +14,11 @@ const ShopSidebar = ({ productTags }) => {
 
   return (
     <nav className="shopSidebar">
-      <div className="title-container collapseTrigger" onClick={(e) => toggleCollapse(e)}>
+      <div
+        className="title-container collapseTrigger"
+        onClick={(e) => toggleCollapse(e)}
+        aria-label="expand/collapse"
+      >
         <div className="arrow-wrapper">
           <ArrowIcon color={colors.darkpink} width={24} open={open} />
         </div>

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import { AppContext } from '../components/context/AppContext';
-import CloseIcon from '../assets/icon-close_211652.svg';
+import CloseIcon from './graphics/CloseIcon';
 import { colors, breakPoints } from '../styles/theme';
 import Button from './Button';
 
@@ -11,7 +11,7 @@ const DemoMsgModal = () => {
   return (
     <div className="background-modal">
       <div className="demo-msg-modal">
-        <div className="icon-wrapper close-icon">
+        <div className="icon-wrapper close-icon" aria-label="Close">
           <CloseIcon onClick={closeDemoMsg} />
         </div>
         <h2>This is just a demo</h2>

@@ -6,8 +6,24 @@ import { getUpdatedItems } from '../lib/functions';
 import { AppContext } from '../components/context/AppContext';
 import QuantityControl from './QuantityControl';
 import { colors, breakPoints } from '../styles/theme';
-import CloseIcon from '../assets/close-wt-circle.svg';
+// import CloseIcon from '../assets/close-wt-circle.svg';
 
+const CloseIcon = (props) => (
+  <svg
+    viewBox="0 0 50 50"
+    fillRule="evenodd"
+    clipRule="evenodd"
+    strokeLinejoin="round"
+    strokeMiterlimit={2}
+    aria-labelledby="closeCircleTitle"
+    {...props}
+  >
+    <title id="closeCircleTitle">Close</title>
+    <path d="M25.107 4.207c11.456 0 20.757 9.301 20.757 20.757 0 11.456-9.301 20.757-20.757 20.757-11.457 0-20.757-9.301-20.757-20.757 0-11.456 9.3-20.757 20.757-20.757zm0 3.354c9.605 0 17.403 7.798 17.403 17.403 0 9.605-7.798 17.404-17.403 17.404-9.606 0-17.404-7.799-17.404-17.404S15.501 7.561 25.107 7.561z" />
+    <path d="M33.601 14.19l-19.47 19.47 2.149 2.15 19.47-19.47-2.149-2.15z" />
+    <path d="M35.869 33.66l-19.47-19.47-2.149 2.15 19.47 19.47 2.149-2.15z" />
+  </svg>
+);
 const CartItem = ({ product, refetch }) => {
   const { cart } = useContext(AppContext);
   const [requestError, setRequestError] = useState(null);
@@ -73,6 +89,7 @@ const CartItem = ({ product, refetch }) => {
         <div
           className="remove-icon tiny-only"
           onClick={(e) => handleRemoveProductClick(e, product.cartKey, cart.products)}
+          aria-label="Close"
         >
           <CloseIcon />
         </div>
@@ -88,6 +105,7 @@ const CartItem = ({ product, refetch }) => {
             <div
               className="remove-icon non-tiny"
               onClick={(e) => handleRemoveProductClick(e, product.cartKey, cart.products)}
+              aria-label="Close"
             >
               <CloseIcon />
             </div>

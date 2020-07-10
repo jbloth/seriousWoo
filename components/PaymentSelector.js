@@ -2,7 +2,22 @@ import { useQuery } from '@apollo/react-hooks';
 
 import GET_PAYMENT_METHODS from '../queries/get-payment-methods';
 import { colors } from '../styles/theme';
-import InfoIcon from '../assets/info.svg';
+// import InfoIcon from '../assets/info.svg';
+
+const InfoIcon = (props) => (
+  <svg
+    viewBox="0 0 50 50"
+    fillRule="evenodd"
+    clipRule="evenodd"
+    strokeLinejoin="round"
+    strokeMiterlimit={2}
+    {...props}
+  >
+    <path d="M25 0c13.798 0 25 11.202 25 25S38.798 50 25 50 0 38.798 0 25 11.202 0 25 0zm0 5c11.038 0 20 8.962 20 20s-8.962 20-20 20S5 36.038 5 25 13.962 5 25 5z" />
+    <path d="M21.5 18H28.5V42H21.5z" />
+    <circle cx={25} cy={11.5} r={4} />
+  </svg>
+);
 
 const PaymentSelector = ({ input, handleOnChange }) => {
   const { loading, error, data } = useQuery(GET_PAYMENT_METHODS);

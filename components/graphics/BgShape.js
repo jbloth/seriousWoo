@@ -4,12 +4,14 @@ const BgShape = ({ version, fillColor, extraClass }) => {
       return (
         <>
           <svg
+            role="img"
             className={`bg-shape ${extraClass}`}
             width="665"
             height="523"
             viewBox="0 0 665 523"
             fill={fillColor ? `rgb(${fillColor})` : 'none'}
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <path
               opacity="1"
@@ -27,12 +29,14 @@ const BgShape = ({ version, fillColor, extraClass }) => {
       return (
         <>
           <svg
+            role="img"
             className={`bg-shape ${extraClass}`}
             width="741"
             height="741"
             viewBox="0 0 741 741"
             fill={fillColor ? `rgb(${fillColor})` : 'none'}
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <path
               opacity="1"
@@ -50,12 +54,14 @@ const BgShape = ({ version, fillColor, extraClass }) => {
       return (
         <>
           <svg
+            role="img"
             className={`bg-shape ${extraClass}`}
             width="740"
             height="762"
             viewBox="0 0 540 562"
             fill={fillColor ? `rgb(${fillColor})` : 'none'}
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <path
               opacity="1"

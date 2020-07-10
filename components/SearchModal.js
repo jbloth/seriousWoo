@@ -2,9 +2,9 @@ import { useState, useContext } from 'react';
 
 import { AppContext } from '../components/context/AppContext';
 import { colors, breakPoints } from '../styles/theme';
-import CloseIcon from '../assets/icon-close_211652.svg';
+import CloseIcon from './graphics/CloseIcon';
 import TextInput from './TextInput';
-import SearchIcon from '../assets/search.svg';
+import SearchIcon from './graphics/SearchIcon';
 import SearchResults from './SearchResults';
 
 const SearchModal = () => {
@@ -17,8 +17,8 @@ const SearchModal = () => {
 
   return (
     <div className={`search-container ${!searchOpen ? '' : 'search-container--active'}`}>
-      <div className="close-icon">
-        <CloseIcon onClick={toggleSearchOpen}></CloseIcon>
+      <div className="close-icon" aria-label="Close">
+        <CloseIcon onClick={toggleSearchOpen} />
       </div>
 
       <div className="input-wrapper">
@@ -30,7 +30,7 @@ const SearchModal = () => {
           onChange={handleChange}
           placeholder="Yes, please?"
         />
-        <div className="search-icon-wrapper">
+        <div className="search-icon-wrapper" aria-label="Search">
           <SearchIcon />
         </div>
       </div>
