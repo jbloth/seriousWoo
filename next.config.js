@@ -1,6 +1,7 @@
+const withOptimizedImages = require('next-optimized-images');
 require('dotenv').config();
 
-module.exports = {
+module.exports = withOptimizedImages({
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -12,4 +13,4 @@ module.exports = {
 
     return config;
   },
-};
+});

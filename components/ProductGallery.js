@@ -9,7 +9,7 @@ const productHasTag = (productTags, selectedTag) => {
   return result.length > 0;
 };
 
-const ProductGallery = ({ products }) => {
+const ProductGallery = ({ products, isIndex }) => {
   const { selectedTag } = useContext(AppContext);
 
   return (
@@ -20,6 +20,7 @@ const ProductGallery = ({ products }) => {
             product = product.node;
           }
           if (
+            isIndex ||
             !selectedTag ||
             selectedTag === 'All' ||
             productHasTag(product.productTags.nodes, selectedTag)

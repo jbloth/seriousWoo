@@ -10,6 +10,7 @@ const Meta = () => (
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <title>Serious Salmon</title>
+    <meta name="Description" content="Garments as solemn as a salmon."></meta>
   </Head>
 );
 
