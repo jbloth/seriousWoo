@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 import validateAndSanitizeEditUserInput from '../lib/validateAndSanitizeEditUserInput';
 import UPDATE_USER from '../mutations/update-user';
-import CloseIcon from '../assets/icon-close_211652.svg';
+import CloseIcon from './graphics/CloseIcon';
 import { colors, breakPoints } from '../styles/theme';
 import TextInput from './TextInput';
 import Button from './Button';
@@ -62,7 +62,7 @@ const EditUserModal = ({ id, initialData, active, closeModal }) => {
   return (
     <div className={`background-modal ${active ? 'background-modal--active' : ''}`}>
       <div className="edit-user-modal">
-        <div className="icon-wrapper close-icon">
+        <div className="icon-wrapper close-icon" aria-label="Close">
           <CloseIcon onClick={closeModal} />
         </div>
         <h2>Edit your profile</h2>

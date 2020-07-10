@@ -6,7 +6,7 @@ import GET_CART from '../queries/get-cart';
 import { AppContext } from '../components/context/AppContext';
 import { getFormattedCart } from '../lib/functions';
 import { fonts, colors, breakPoints } from '../styles/theme';
-import CloseIcon from '../assets/icon-close_211652.svg';
+import CloseIcon from './graphics/CloseIcon';
 import CartItem from './CartItem';
 
 const CartModal = () => {
@@ -56,8 +56,8 @@ const CartModal = () => {
   const cartItems = cart !== null ? cart.products : [];
   return (
     <div ref={node} className={`cart-container ${hidden ? '' : 'cart-container--active'}`}>
-      <div className="icon-wrapper close-icon">
-        <CloseIcon onClick={toggleCartOpen}></CloseIcon>
+      <div className="icon-wrapper close-icon" aria-label="Close">
+        <CloseIcon onClick={toggleCartOpen} />
       </div>
       <div className="cart">
         <h1 className="header">Cart</h1>

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import auth from '../lib/auth';
 import { CookieConsentContext } from '../components/context/CookieConsentContext';
-import CloseIcon from '../assets/icon-close_211652.svg';
+import CloseIcon from './graphics/CloseIcon';
 import { colors, breakPoints } from '../styles/theme';
 import Button from './Button';
 
@@ -14,7 +14,7 @@ const CookieSettingsModal = ({ active, closeModal, client }) => {
   return (
     <div className={`background-modal ${active ? 'background-modal--active' : ''}`}>
       <div className="cookie-settings-modal">
-        <div className="icon-wrapper close-icon">
+        <div className="icon-wrapper close-icon" aria-label="Close">
           <CloseIcon onClick={closeModal} />
         </div>
         <h2>Cookie Settings</h2>

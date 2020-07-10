@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { colors, breakPoints } from '../styles/theme';
-import ArrowIcon from './ArrowIcon';
+import ArrowIcon from './graphics/ArrowIcon';
 
 const OrderOverview = ({ order }) => {
   const [open, setOpen] = useState(false);
@@ -28,7 +28,7 @@ const OrderOverview = ({ order }) => {
           <div className="order-heading-item">{date}</div>
           <div className="order-heading-item">{order.total}</div>
         </div>
-        <div className="arrow-wrapper">
+        <div className="arrow-wrapper" aria-label="expand/collapse">
           <ArrowIcon color={colors.darkpink} width={24} open={open} />
         </div>
       </div>

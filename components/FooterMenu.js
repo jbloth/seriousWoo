@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ArrowIcon from './ArrowIcon';
+import ArrowIcon from './graphics/ArrowIcon';
 import { colors, breakPoints, fonts } from '../styles/theme';
 
 const FooterMenu = ({ title, children, isConnectArea }) => {
@@ -11,7 +11,11 @@ const FooterMenu = ({ title, children, isConnectArea }) => {
 
   return (
     <nav className={`footer-menu ${isConnectArea ? 'connect-menu' : ''}`}>
-      <div className="title-container collapseTrigger" onClick={toggleCollapse}>
+      <div
+        className="title-container collapseTrigger"
+        onClick={toggleCollapse}
+        aria-label="expand/collapse"
+      >
         <div className="arrow-wrapper" aria-hidden="true">
           <ArrowIcon color={colors.orange} width={20} open={open} />
         </div>
