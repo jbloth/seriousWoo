@@ -71,7 +71,7 @@ const Index = ({ newestProducts }) => {
       <section className="newIn section">
         <div className="productGallery-container">
           <h1 className="galleryTitle">New In</h1>
-          <ProductGallery products={newestProducts} />
+          <ProductGallery products={newestProducts} isIndex />
         </div>
       </section>
 

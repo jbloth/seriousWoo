@@ -119,6 +119,7 @@ const ContactForm = () => {
               <div className="textInput-wrap margin-right">
                 <TextInput
                   name="name"
+                  id="Name"
                   type="text"
                   label="Name"
                   required={true}
@@ -131,6 +132,7 @@ const ContactForm = () => {
               <div className="textInput-wrap">
                 <TextInput
                   name="email"
+                  id="email"
                   type="email"
                   label="Email"
                   required={true}
