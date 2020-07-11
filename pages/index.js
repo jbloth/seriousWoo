@@ -47,7 +47,7 @@ const Index = ({ newestProducts }) => {
             <img className="salmon-img" alt="salmon" src={require('../assets/images/salmon.png')} />
           </picture>
         </div>
-        <SplitHero imgUrl={'/images/tarutoa-QIymolbz7G0-unsplash 1.png'}>
+        <SplitHero>
           <p>This is</p>
           <p>serious!</p>
         </SplitHero>
