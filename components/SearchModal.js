@@ -23,6 +23,8 @@ const SearchModal = () => {
 
       <div className="input-wrapper">
         <TextInput
+          id="search-input"
+          aria-label="Search input"
           extraClass="textInput--large"
           name="searchterm"
           type="text"

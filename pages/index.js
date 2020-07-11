@@ -41,7 +41,11 @@ const Index = ({ newestProducts }) => {
         <BgShape version={1} extraClass="bg-shape-01" />
         <BgShape version={2} extraClass="bg-shape-02" />
         <div className="salmon-wrap">
-          <img className="salmon-img" src="/images/salmon.png" alt="salmon" />
+          <picture>
+            <source srcSet={require('../assets/images/salmon.png?webp')} type="image/webp" />
+            <source srcSet={require('../assets/images/salmon.png')} type="image/png" />
+            <img className="salmon-img" alt="salmon" src={require('../assets/images/salmon.png')} />
+          </picture>
         </div>
         <SplitHero imgUrl={'/images/tarutoa-QIymolbz7G0-unsplash 1.png'}>
           <p>This is</p>
