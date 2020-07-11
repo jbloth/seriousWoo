@@ -98,7 +98,11 @@ const Product = ({ categorySlug, productSlug }) => {
       <ShopHeader selectedCategory={categorySlug} />
       <div className="product">
         <div className="image-container">
-          <div className="product-image" style={{ backgroundImage: `url('${imgUrl}')` }}></div>
+          <div
+            aria-label="Product Image"
+            className="product-image"
+            style={{ backgroundImage: `url('${imgUrl}')` }}
+          ></div>
         </div>
         <div className="info-container">
           <h1>{name}</h1>

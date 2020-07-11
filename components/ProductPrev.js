@@ -14,8 +14,12 @@ const ProductPrev = ({ product, category, className }) => {
   return (
     <div className={`productPrev ${extraClass}`}>
       <Link href={'/shop/[category]/[product]'} as={`/shop/${categorySlug}/${slug}-${productId}`}>
-        <a>
-          <div className="product-img" style={{ backgroundImage: `url('${imgUrl}')` }}></div>
+        <a aria-label="go to product">
+          <div
+            className="product-img"
+            style={{ backgroundImage: `url('${imgUrl}')` }}
+            aria-label="product image"
+          ></div>
         </a>
       </Link>
       <div className="info">

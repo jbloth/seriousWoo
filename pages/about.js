@@ -1,5 +1,5 @@
 import { colors, breakPoints } from '../styles/theme';
-import BgShape from '../components/BgShape';
+import BgShape from '../components/graphics/BgShape';
 
 const About = () => {
   return (
@@ -9,7 +9,25 @@ const About = () => {
       <div className="about-content">
         <div className="about-images">
           <div className="img-frame">
-            <img className="about-img" src={'/images/marco-xu-H1hdzdv7Jnw-unsplash 1.png'} />
+            <picture>
+              <source
+                srcSet={require('../assets/images/marco-xu-H1hdzdv7Jnw-unsplash 1.png?webp')}
+                type="image/webp"
+              />
+              <source
+                srcSet={require('../assets/images/marco-xu-H1hdzdv7Jnw-unsplash 1.png')}
+                type="image/png"
+              />
+              <img
+                className="about-img"
+                alt="young lady wearing our shirt"
+                src={require('../assets/images/marco-xu-H1hdzdv7Jnw-unsplash 1.png')}
+              />
+            </picture>
+            {/* <img
+              className="about-img"
+              src={require('../assets/images/marco-xu-H1hdzdv7Jnw-unsplash 1.png?webp')}
+            /> */}
           </div>
         </div>
         <div className="about-info">
@@ -31,7 +49,20 @@ const About = () => {
           </div>
         </div>
         <div className="dog-wrap">
-          <img className="dog-img" src="/images/bullmastiff.png" alt="bullmastiff" />
+          <picture>
+            <source srcSet={require('../assets/images/bullmastiff.png?webp')} type="image/webp" />
+            <source srcSet={require('../assets/images/bullmastiff.png')} type="image/png" />
+            <img
+              className="dog-img"
+              alt="bullmastiff"
+              src={require('../assets/images/bullmastiff.png')}
+            />
+          </picture>
+          {/* <img
+            className="dog-img"
+            src={require('../assets/images/bullmastiff.png?webp')}
+            alt="bullmastiff"
+          /> */}
         </div>
       </div>
 

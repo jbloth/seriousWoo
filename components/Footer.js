@@ -70,6 +70,7 @@ const Footer = () => {
               <div className="connect-input-wrap">
                 <TextInput
                   onFocus={() => setNewsletterMsgOpen(true)}
+                  aria-label="Newsletter signup input"
                   extraClass="newsletter-input"
                   type="email"
                   placeholder="email"
@@ -96,22 +97,42 @@ const Footer = () => {
           <ConnectAreaItem title="Follow">
             <div className="social-icons-container">
               <Link href="/">
-                <a className="connect-icon">
-                  <img
-                    className="social-logo"
-                    src="/images/IG_Glyph_Fill_50x50.png"
-                    alt="instagram-icon"
-                  />
+                <a className="connect-icon" aria-label="Our Instagram">
+                  <picture>
+                    <source
+                      srcSet={require('../assets/images/IG_Glyph_Fill_50x50.png?webp')}
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet={require('../assets/images/IG_Glyph_Fill_50x50.png')}
+                      type="image/png"
+                    />
+                    <img
+                      className="social-logo"
+                      src={require('../assets/images/IG_Glyph_Fill_50x50.png')}
+                      alt="instagram-icon"
+                    />
+                  </picture>
                 </a>
               </Link>
 
               <Link href="/">
-                <a className="connect-icon">
-                  <img
-                    className="social-logo"
-                    src="/images/badgeRGB-244px.png"
-                    alt="pinterest-icon"
-                  />
+                <a className="connect-icon" aria-label="Our Pinterest">
+                  <picture>
+                    <source
+                      srcSet={require('../assets/images/badgeRGB-244px.png?webp')}
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet={require('../assets/images/badgeRGB-244px.png')}
+                      type="image/png"
+                    />
+                    <img
+                      className="social-logo"
+                      src={require('../assets/images/badgeRGB-244px.png')}
+                      alt="instagram-icon"
+                    />
+                  </picture>
                 </a>
               </Link>
             </div>
