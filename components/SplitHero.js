@@ -1,10 +1,24 @@
 import { colors, fonts, breakPoints } from '../styles/theme';
 
-const SplitHero = ({ imgUrl, children }) => {
+const SplitHero = ({ children }) => {
   return (
     <div className="hero l-wrapper">
-      <div style={{ backgroundImage: `url('${imgUrl}')` }} className="hero__img">
-        <div className="hero__text">{children}</div>
+      <div className="heroImg-container">
+        <picture>
+          <source
+            srcSet={require('../assets/images/tarutoa-QIymolbz7G0-unsplash 1.png?webp')}
+            type="image/webp"
+          />
+          <source
+            srcSet={require('../assets/images/tarutoa-QIymolbz7G0-unsplash 1.png')}
+            type="image/png"
+          />
+          <img
+            className="heroImg"
+            alt="Young woman wearing T-Shirt"
+            src={require('../assets/images/tarutoa-QIymolbz7G0-unsplash 1.png')}
+          />
+        </picture>
         <div className="photo-credit">
           Photo from <a href="https://unsplash.com/photos/PDxIL5Jbqew">Tarutoa</a> on
           <a href="https://unsplash.com/"> Unsplash</a>
@@ -24,44 +38,32 @@ const SplitHero = ({ imgUrl, children }) => {
           justify-content: center;
         }
 
-        .hero__img {
+        .heroImg-container {
           width: 50%;
           flex-grow: 1;
+          position: relative;
+        }
+
+        .heroImg {
+          width: 100%;
+          flex-grow: 1;
+          object-fit: cover;
           background-size: cover;
           background-position: center;
-          height: auto;
+          height: 100%;
           background-color: rgb(${colors.violet});
         }
 
         .photo-credit {
+          position: absolute;
+          top: 8px;
+          right: 8px;
           color: rgb(${colors.bg});
           font-size: 1.2rem;
-          text-align: right;
-          margin-right: 1rem;
         }
 
         .photo-credit a {
           color: rgb(${colors.violet});
-        }
-
-        .hero__text {
-          padding: 10rem 6rem;
-          font-size: 6rem;
-          display: none;
-          background-color: rgb(${colors.lightyellow});
-          border-radius: 50%;
-          line-height: 1;
-          font-family: ${fonts.text};
-
-          font-weight: normal;
-          color: rgb(${colors.orange});
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          position: absolute;
-          top: 55%;
-          left: -40px;
-          z-index: 100;
         }
 
         .hero__greeting {
