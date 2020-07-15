@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import { colors } from '../styles/theme';
+import noGithub from '../noGithub';
 
 const PrivacyNote = () => {
   return (
@@ -19,9 +20,9 @@ const PrivacyNote = () => {
             pro­tec­tion law is:
           </p>
           <br />
-          <p>Juliane Blothner</p>
-          <p>Pettenkofer Str. 2</p>
-          <p>50823 Köln</p>
+          <p>{noGithub.name}</p>
+          <p>{noGithub.street}</p>
+          <p>{noGithub.city}</p>
           <p>Germany</p>
           <br />
           <p>Our website address is: https://next.serious-salmon.com/</p>
@@ -131,7 +132,7 @@ const PrivacyNote = () => {
             If you make a request, we have one month to respond to you. If you would like to
             exercise any of these rights, please contact us at our email:
           </p>
-          <p>info@serious-salmon.com</p>
+          <p>{noGithub.email}</p>
 
           <h2>Privacy policies of other websites</h2>
           <p>
@@ -146,12 +147,14 @@ const PrivacyNote = () => {
             or you would like to exercise one of your data protection rights, please do not hesitate
             to contact us.
           </p>
-          <p>Email: info@serious-salmon.com</p>
+          <br />
+          <p>Email: {noGithub.email}</p>
+          <br />
           <p>Address: </p>
           <p>Serious Salmon</p>
-          <p>c/o Juliane Blothner</p>
-          <p>Pettenkofer Str. 2</p>
-          <p>50823 Köln</p>
+          <p>c/o {noGithub.name}</p>
+          <p>{noGithub.street}</p>
+          <p>{noGithub.city}</p>
           <p>Germany</p>
         </div>
 

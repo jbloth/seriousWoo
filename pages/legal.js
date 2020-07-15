@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
 import { colors } from '../styles/theme';
+import noGithub from '../noGithub';
 
 const Legal = () => {
   return (
@@ -15,14 +16,14 @@ const Legal = () => {
           <h2>Resposible for content/ Verantwortlich für den Inhalt gemäß § 5 TMG:</h2>
 
           <h4>Address: </h4>
-          <p>Juliane Blothner</p>
-          <p>Pettenkofer Str. 2</p>
-          <p>50823 Köln</p>
+          <p>{noGithub.name}</p>
+          <p>{noGithub.street}</p>
+          <p>{noGithub.city}</p>
           <p>Germany</p>
 
           <h2>Contact:</h2>
-          <p>Email: info@serious-salmon.com</p>
-          <p>Phone: +49 17696041817</p>
+          <p>Email: {noGithub.email}</p>
+          <p>Phone: {noGithub.phone}</p>
 
           <h2>Online dispute resolution</h2>
           <p>
