@@ -1,5 +1,5 @@
-#Serious Salmon
-##Ecommerce site made with next.js
+# Serious Salmon
+## Ecommerce site made with next.js
 
 Connects to a headless wordpress using:
 
