@@ -6,19 +6,20 @@ const SplitHero = ({ children }) => {
       <div className="heroImg-container">
         <picture>
           <source
-            srcSet={require('../assets/images/tarutoa-QIymolbz7G0-unsplash 1.png?webp')}
+            srcSet={require('../assets/images/tarutoa-QIymolbz7G0-unsplash.png?webp')}
             type="image/webp"
           />
           <source
-            srcSet={require('../assets/images/tarutoa-QIymolbz7G0-unsplash 1.png')}
+            srcSet={require('../assets/images/tarutoa-QIymolbz7G0-unsplash.png')}
             type="image/png"
           />
           <img
             className="heroImg"
             alt="Young woman wearing T-Shirt"
-            src={require('../assets/images/tarutoa-QIymolbz7G0-unsplash 1.png')}
+            src={require('../assets/images/tarutoa-QIymolbz7G0-unsplash.png')}
           />
         </picture>
+        <div className="hero__text">{children}</div>
         <div className="photo-credit">
           Photo from <a href="https://unsplash.com/photos/PDxIL5Jbqew">Tarutoa</a> on
           <a href="https://unsplash.com/"> Unsplash</a>
@@ -66,6 +67,25 @@ const SplitHero = ({ children }) => {
           color: rgb(${colors.violet});
         }
 
+        .hero__text {
+          padding: 10rem 6rem;
+          font-size: 6rem;
+          display: none;
+          background-color: rgb(${colors.lightyellow});
+          border-radius: 50%;
+          line-height: 1;
+          font-family: ${fonts.text};
+          font-weight: normal;
+          color: rgb(${colors.orange});
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 55%;
+          left: -40px;
+          z-index: 50;
+        }
+
         .hero__greeting {
           font-family: ${fonts.heading};
           font-size: 6rem;
@@ -99,7 +119,7 @@ const SplitHero = ({ children }) => {
             align-items: center;
           }
 
-          .hero__img {
+          .heroImg-container {
             width: 100%;
             max-height: 700px;
             height: 100vw;

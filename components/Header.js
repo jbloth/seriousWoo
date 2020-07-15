@@ -115,7 +115,7 @@ const Header = () => {
     <header className="header section">
       {/* Mobile Menu Trigger */}
       <div className="header-inner">
-        <div className="burger item-mobile" onClick={toggleMenuOpen}>
+        <div className="burger item-mobile" onClick={toggleMenuOpen} aria-haspopup="true">
           <div className="burger__line line-1"></div>
           <div className="burger__line line-2"></div>
           <div className="burger__line line-3"></div>
@@ -137,7 +137,9 @@ const Header = () => {
               // props.children because that contains the dropdown-content.
               trigger={
                 <Link href={'/shop/[category]'} as={`/shop/all`}>
-                  <a className="nav-link">Shop</a>
+                  <a className="nav-link" aria-haspopup="true">
+                    Shop
+                  </a>
                 </Link>
               }
             >
@@ -184,7 +186,7 @@ const Header = () => {
                 // props.children because that contains the dropdown-content.
                 trigger={
                   <Link href="/myAccount">
-                    <a className="nav-link">
+                    <a className="nav-link" aria-haspopup="true">
                       <div className="account-icon-wrapper" aria-label="Account">
                         <AccountIcon />
                       </div>
