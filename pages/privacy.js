@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import { colors } from '../styles/theme';
+import noGithub from '../noGithub';
 
 const PrivacyNote = () => {
   return (
@@ -146,7 +147,9 @@ const PrivacyNote = () => {
             or you would like to exercise one of your data protection rights, please do not hesitate
             to contact us.
           </p>
+          <br />
           <p>Email: {noGithub.email}</p>
+          <br />
           <p>Address: </p>
           <p>Serious Salmon</p>
           <p>c/o {noGithub.name}</p>

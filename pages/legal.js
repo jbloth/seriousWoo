@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
 import { colors } from '../styles/theme';
+import noGithub from '../noGithub';
 
 const Legal = () => {
   return (

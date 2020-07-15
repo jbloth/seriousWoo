@@ -30,4 +30,5 @@ dist/
 .build/
 
 wooConfig.js
+noGithub.js
 .vercel
