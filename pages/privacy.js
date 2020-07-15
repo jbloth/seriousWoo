@@ -43,11 +43,11 @@ const PrivacyNote = () => {
 
           <h2>What personal data do we collect and how do we collect it?</h2>
           <p>
-            You directly provide Our Company with most of the data we collect. We collect data and
+            You directly provide our company with most of the data we collect. We collect data and
             process data when you:
           </p>
           <ul className="privacy-ul">
-            <li>Fill out and submit a contact from</li>
+            <li>Fill out and submit a contact form</li>
             <li>Fill out and submit a form to place an order (chekout form)</li>
           </ul>
 
@@ -103,13 +103,10 @@ const PrivacyNote = () => {
             regular basis, at least every 3 months.
           </p>
           <p>
-            Data submitted through the contact form will emailed directly to us and not stored in
+            Data submitted through the contact form will be emailed directly to us and not stored in
             the database. Emails generated through this process will be stored as long as it is
             necessary to process your request and deleted afterwards.
           </p>
-
-          <h2>Where do we store your data?</h2>
-          <p>Our server is located in Frankfurt, Germany.</p>
 
           <h2>How do we protect your data?</h2>
           <p>
@@ -118,7 +115,7 @@ const PrivacyNote = () => {
           </p>
 
           <h2>How we may share your data</h2>
-          <p>We do not share information with third parties.</p>
+          <p>We do not share your information with third parties.</p>
 
           <h2>What rights you have over your data</h2>
           <p>
@@ -143,9 +140,9 @@ const PrivacyNote = () => {
 
           <h2>How to contact us</h2>
           <p>
-            If you have any questions about Our Company’s privacy policy, the data we hold on you,
-            or you would like to exercise one of your data protection rights, please do not hesitate
-            to contact us.
+            If you have any questions about our privacy policy, the data we hold on you, or you
+            would like to exercise one of your data protection rights, please do not hesitate to
+            contact us.
           </p>
           <br />
           <p>Email: {noGithub.email}</p>
