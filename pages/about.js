@@ -11,22 +11,22 @@ const About = () => {
           <div className="img-frame">
             <picture>
               <source
-                srcSet={require('../assets/images/marco-xu-H1hdzdv7Jnw-unsplash 1.png?webp')}
+                srcSet={require('../assets/images/marco-xu-H1hdzdv7Jnw-unsplash.png?webp')}
                 type="image/webp"
               />
               <source
-                srcSet={require('../assets/images/marco-xu-H1hdzdv7Jnw-unsplash 1.png')}
+                srcSet={require('../assets/images/marco-xu-H1hdzdv7Jnw-unsplash.png')}
                 type="image/png"
               />
               <img
                 className="about-img"
                 alt="young lady wearing our shirt"
-                src={require('../assets/images/marco-xu-H1hdzdv7Jnw-unsplash 1.png')}
+                src={require('../assets/images/marco-xu-H1hdzdv7Jnw-unsplash.png')}
               />
             </picture>
             {/* <img
               className="about-img"
-              src={require('../assets/images/marco-xu-H1hdzdv7Jnw-unsplash 1.png?webp')}
+              src={require('../assets/images/marco-xu-H1hdzdv7Jnw-unsplash.png?webp')}
             /> */}
           </div>
         </div>

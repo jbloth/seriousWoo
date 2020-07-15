@@ -6,7 +6,7 @@ const CategoryGallery = () => {
   const categories = [
     {
       title: 'KIDS',
-      imgUrl: '/images/sharon-garcia-QxLY0sKCDmo-unsplash 1.png',
+      imgUrl: '/images/sharon-garcia-QxLY0sKCDmo-unsplash.png',
       id: 1,
       linkUrl: '/shop/kids',
       photographerUrl: 'https://unsplash.com/photos/QxLY0sKCDmo',
@@ -14,7 +14,7 @@ const CategoryGallery = () => {
     },
     {
       title: 'WOMENS',
-      imgUrl: '/images/sule-makaroglu-iz7PNf7Daoc-unsplash 1.png',
+      imgUrl: '/images/sule-makaroglu-iz7PNf7Daoc-unsplash.png',
       id: 2,
       linkUrl: '/shop/womens',
       photographerUrl: 'https://unsplash.com/@sulemakaroglu',
@@ -22,7 +22,7 @@ const CategoryGallery = () => {
     },
     {
       title: 'MENS',
-      imgUrl: '/images/dylan-sauerwein-5oog6pFHD_s-unsplash 1.png',
+      imgUrl: '/images/dylan-sauerwein-5oog6pFHD_s-unsplash.png',
       id: 3,
       linkUrl: '/shop/mens',
       photographerUrl: 'https://unsplash.com/@rawdyl',
