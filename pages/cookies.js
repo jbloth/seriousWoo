@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
 import { colors } from '../styles/theme';
+import noGithub from '../noGithub';
 
 const CookieNote = () => {
   return (
@@ -89,12 +90,14 @@ const CookieNote = () => {
             you would like to exercise one of your data protection rights, please do not hesitate to
             contact us.
           </p>
-          <p>Email: info@serious-salmon.com</p>
+          <br />
+          <p>Email: {noGithub.email}</p>
+          <br />
           <p>Address: </p>
           <p>Serious Salmon</p>
-          <p>c/o Juliane Blothner</p>
-          <p>Pettenkofer Str. 2</p>
-          <p>50823 Köln</p>
+          <p>c/o {noGithub.name}</p>
+          <p>{noGithub.street}</p>
+          <p>{noGithub.city}</p>
           <p>Germany</p>
         </div>
 
