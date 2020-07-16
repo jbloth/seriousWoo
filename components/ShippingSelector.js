@@ -71,12 +71,10 @@ const ShippingSelector = ({ rates, refetch, initialShippingId }) => {
                 type="radio"
                 defaultChecked={rate.id === minRate.id ? 'checked' : false}
               />
-              <p>
-                <span for={rate.label} className="rate-label">
-                  {rate.label}:
-                </span>{' '}
+              <label htmlFor={rate.label} className="rate-label">
+                {rate.label}:{' '}
                 <span className="rate-price">&euro;{rate.cost.replace('.', ',')}</span>
-              </p>
+              </label>
             </div>
           );
         })

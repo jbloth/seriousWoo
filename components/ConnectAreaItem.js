@@ -4,7 +4,8 @@ const ConnectAreaItem = ({ children, title }) => {
   return (
     <li className="connectArea__item">
       <p className="connectArea__cta">
-        <span>{title}</span> <span className="connectArea__arrow">:</span>
+        <span>{title}:</span>
+        {/* <span className="connectArea__arrow">:</span> */}
       </p>
       {children}
 

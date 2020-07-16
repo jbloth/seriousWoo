@@ -19,6 +19,7 @@ const ProductPrev = ({ product, category, className }) => {
             className="product-img"
             style={{ backgroundImage: `url('${imgUrl}')` }}
             aria-label="product image"
+            role="img"
           ></div>
         </a>
       </Link>

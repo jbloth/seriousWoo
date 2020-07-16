@@ -9,7 +9,7 @@ import { colors, breakPoints } from '../styles/theme';
 import CheckoutFormInputs from './CheckoutFormInputs';
 import Button from './Button';
 
-const EditAddressModal = ({ id, initialData, active, closeModal }) => {
+const EditAddressModal = ({ id, initialData, closeModal }) => {
   const billingAddress = initialData && initialData.billing ? initialData.billing : null;
   const shippingAddress = initialData && initialData.shipping ? initialData.shipping : null;
 
@@ -129,7 +129,7 @@ const EditAddressModal = ({ id, initialData, active, closeModal }) => {
   };
 
   return (
-    <div className={`background-modal ${active ? 'background-modal--active' : ''}`}>
+    <div className="background-modal background-modal--active">
       <div className="edit-user-modal">
         <div className="icon-wrapper close-icon" aria-label="Close">
           <CloseIcon onClick={closeModal} />

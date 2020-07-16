@@ -76,6 +76,15 @@ const CheckoutCartItem = ({ product }) => {
         }
 
         @media only screen and (max-width: ${breakPoints.bp_tiniest}) {
+          .cart-item {
+            flex-direction: column;
+          }
+
+          .img {
+            width: 100px;
+            height: 100px;
+          }
+
           .info {
             padding-left: 1rem;
           }

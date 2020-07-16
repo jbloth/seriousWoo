@@ -27,7 +27,7 @@ const GET_CATEGORY_PAGINATION = gql`
             }
             image {
               id
-              sourceUrl
+              sourceUrl(size: SHOP_SINGLE)
               title
             }
             ... on VariableProduct {

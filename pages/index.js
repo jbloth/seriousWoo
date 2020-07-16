@@ -22,7 +22,7 @@ const GET_NEWEST_PRODUCTS = `
         }
         image {
           id
-          sourceUrl
+          sourceUrl(size: SHOP_SINGLE)
         }
         ... on VariableProduct {
           id

@@ -91,12 +91,13 @@ const myAccount = ({ client }) => {
                 </div>
               </div>
 
-              <EditUserModal
-                id={id}
-                initialData={user}
-                active={editUserModalActive}
-                closeModal={() => setEditUserModalActive(false)}
-              />
+              {editUserModalActive && (
+                <EditUserModal
+                  id={id}
+                  initialData={user}
+                  closeModal={() => setEditUserModalActive(false)}
+                />
+              )}
             </div>
           ) : (
             <p>No information available</p>
@@ -202,12 +203,14 @@ const myAccount = ({ client }) => {
             </div>
           </div>
 
-          <EditAddressModal
-            id={id}
-            initialData={customer}
-            active={editAddressModalActive}
-            closeModal={() => setEditAddressModalActive(false)}
-          />
+          {editAddressModalActive && (
+            <EditAddressModal
+              id={id}
+              initialData={customer}
+              active={editAddressModalActive}
+              closeModal={() => setEditAddressModalActive(false)}
+            />
+          )}
         </div>
 
         <div className="tab" name="Orders">

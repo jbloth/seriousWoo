@@ -8,7 +8,7 @@ import { colors, breakPoints } from '../styles/theme';
 import TextInput from './TextInput';
 import Button from './Button';
 
-const EditUserModal = ({ id, initialData, active, closeModal }) => {
+const EditUserModal = ({ id, initialData, closeModal }) => {
   const initialState = {
     firstName: initialData.firstName ? initialData.firstName : '',
     lastName: initialData.lastName ? initialData.lastName : '',
@@ -60,7 +60,7 @@ const EditUserModal = ({ id, initialData, active, closeModal }) => {
   };
 
   return (
-    <div className={`background-modal ${active ? 'background-modal--active' : ''}`}>
+    <div className="background-modal background-modal">
       <div className="edit-user-modal">
         <div className="icon-wrapper close-icon" aria-label="Close">
           <CloseIcon onClick={closeModal} />
@@ -147,7 +147,7 @@ const EditUserModal = ({ id, initialData, active, closeModal }) => {
           background-color: rgba(${colors.bg}, 0.6);
         }
 
-        .background-modal--active {
+        .background-modal {
           display: block;
           z-index: 100;
         }

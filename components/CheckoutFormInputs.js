@@ -1,3 +1,5 @@
+import { useUID } from 'react-uid';
+
 import { colors, breakPoints } from '../styles/theme';
 import { countryCodeToName } from '../lib/functions';
 import TextInput from './TextInput';
@@ -19,6 +21,10 @@ const CheckoutFormInputs = ({
   dontRequire = false,
   passiveMode = false,
 }) => {
+  // We usually have two instances of this component on one page (shipping & billing),
+  // but we need unique ids to match labels and text inputs, so we append this to the ids.
+  const uid = useUID();
+
   // For the EditAddressModal component we don't want to require any field, so we set the dontRequire
   // parameter to true. For convience, we invert the valuer here.
   const require = !dontRequire;
@@ -35,7 +41,7 @@ const CheckoutFormInputs = ({
         <div className="textInput-wrap margin-right">
           <TextInput
             name="firstName"
-            id="firstName"
+            id={'firstName' + uid}
             type="text"
             label="First Name"
             required={require}
@@ -49,7 +55,7 @@ const CheckoutFormInputs = ({
         <div className="textInput-wrap">
           <TextInput
             name="lastName"
-            id="lastName"
+            id={'lastName' + uid}
             type="text"
             label="Last Name"
             required={require}
@@ -64,7 +70,7 @@ const CheckoutFormInputs = ({
       <div className="textInput-wrap">
         <TextInput
           name="address1"
-          id="address1"
+          id={'address1' + uid}
           type="text"
           label="Address 1"
           required={require}
@@ -78,7 +84,7 @@ const CheckoutFormInputs = ({
       <div className="textInput-wrap">
         <TextInput
           name="address2"
-          id="address2"
+          id={'address2' + uid}
           type="text"
           label="Address 2"
           required={false}
@@ -93,7 +99,7 @@ const CheckoutFormInputs = ({
         <div className="textInput-wrap margin-right">
           <TextInput
             name="postcode"
-            id="postcode"
+            id={'postcode' + uid}
             type="text"
             label="Post Code"
             required={require}
@@ -107,7 +113,7 @@ const CheckoutFormInputs = ({
         <div className="textInput-wrap">
           <TextInput
             name="city"
-            id="city"
+            id={'city' + uid}
             type="text"
             label="City"
             required={require}
@@ -125,7 +131,7 @@ const CheckoutFormInputs = ({
         ) : (
           <CountrySelector
             extraClass={texInputExtraClass ? texInputExtraClass : null}
-            id="Country"
+            id={'Country' + uid}
             value={inputs.country}
             onSelect={handleChange}
             label={'Country'}
@@ -139,7 +145,7 @@ const CheckoutFormInputs = ({
           <div className="textInput-wrap margin-right">
             <TextInput
               name="email"
-              id="email"
+              id={'email' + uid}
               type="email"
               label="Email"
               required={require}
@@ -153,7 +159,7 @@ const CheckoutFormInputs = ({
           <div className="textInput-wrap">
             <TextInput
               name="phone"
-              id="phone"
+              id={'phone' + uid}
               type="text"
               label="Phone Number"
               required={false}
@@ -171,7 +177,7 @@ const CheckoutFormInputs = ({
           <TextArea
             rows="4"
             name="orderNotes"
-            id="orderNotes"
+            id={'orderNotes' + uid}
             label="Notes"
             required={false}
             value={inputs.orderNotes}

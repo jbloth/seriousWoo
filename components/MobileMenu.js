@@ -78,13 +78,20 @@ const MobileMenu = ({ token }) => {
           <li className="nav-item">
             <div
               onClick={() => {
-                console.log('click');
                 toggleMenuOpen();
                 toggleSearchOpen();
               }}
             >
               <h1 className="title">Search</h1>
             </div>
+          </li>
+
+          <li className="nav-item">
+            <Link href="/contact">
+              <a onClick={toggleMenuOpen}>
+                <h1 className="title">Contact</h1>
+              </a>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -128,6 +135,7 @@ const MobileMenu = ({ token }) => {
           width: 80%;
           position: fixed;
           top: 20%;
+          margin-bottom: 4rem;
         }
 
         .nav-list {

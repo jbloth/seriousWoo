@@ -84,7 +84,7 @@ const FooterMenu = ({ title, children, isConnectArea }) => {
 
           .footer-items {
             font-size: 2rem;
-            line-height: 4;
+            /* line-height: 4; */
           }
         }
 

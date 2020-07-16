@@ -181,9 +181,6 @@ const Footer = () => {
           margin: 0 0 0 10px;
           flex-grow: 0.4;
           align-self: flex-end;
-          /*display: flex;
-          align-items: center;
-          justify-content: center; */
         }
 
         a {
@@ -196,6 +193,7 @@ const Footer = () => {
 
         .social-icons-container {
           display: flex;
+          line-height: 1;
           padding: 2rem 0;
         }
 
@@ -239,6 +237,7 @@ const Footer = () => {
           .footer-wrapper {
             padding: 0 6rem;
             flex-direction: column;
+            align-items: center;
           }
 
           .social-logo {

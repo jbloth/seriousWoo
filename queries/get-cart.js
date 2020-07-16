@@ -15,7 +15,7 @@ const GET_CART = gql`
             slug
             image {
               id
-              sourceUrl
+              sourceUrl(size: MEDIUM)
               altText
               title
             }

@@ -52,7 +52,7 @@ const Checkout = () => {
         }
 
         .sandbox-info {
-          padding: 1rem 4rem;
+          padding: 1rem 4rem 4rem 4rem;
           align-self: flex-start;
           text-align: left;
         }
