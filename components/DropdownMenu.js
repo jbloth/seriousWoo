@@ -4,8 +4,9 @@ import { fonts } from '../styles/theme';
 
 const DropdownMenu = ({ children, trigger, rightMargin, leftMargin }) => {
   const [open, setOpen] = useState(false);
+  let [timeoutId, settimeoutId] = useState(null);
 
-  // When openeing the menu on touch devices we set an event listener to the
+  // When opening the menu on touch devices we set an event listener to the
   // document that closes it on click
   const openDropdown = () => {
     setOpen(true);
@@ -17,7 +18,7 @@ const DropdownMenu = ({ children, trigger, rightMargin, leftMargin }) => {
     document.removeEventListener('click', () => setOpen(false));
   };
 
-  // On desktop we the menu opens and closes with hover state, so no event handlers
+  // On desktop the menu opens and closes with hover state, so no event handlers
   // are needed.
   const onEnter = () => {
     setOpen(true);
@@ -28,12 +29,25 @@ const DropdownMenu = ({ children, trigger, rightMargin, leftMargin }) => {
   };
 
   // For touchscreen-devices
-  const onTouch = (e) => {
+  const onTouch = () => {
     if (open) {
       closeDropdown();
     } else {
       openDropdown();
     }
+  };
+
+  const onBlurHandler = () => {
+    let newTimeout = setTimeout(() => {
+      setOpen(false);
+	});
+	settimeoutId(newTimeout);
+  };
+
+  // If a child receives focus, do not close the popover.
+  const onFocusHandler = () => {
+	setOpen(true);
+    clearTimeout(timeoutId);
   };
 
   return (
@@ -42,6 +56,8 @@ const DropdownMenu = ({ children, trigger, rightMargin, leftMargin }) => {
         leftMargin ? ' left-margin' : ''
       }`}
       onMouseLeave={onLeave}
+	  onFocus={onFocusHandler}
+      onBlur={onBlurHandler}
     >
       <div onMouseEnter={onEnter} onTouchStart={onTouch} onTouchEnd={(e) => e.preventDefault()}>
         {trigger}
@@ -49,7 +65,7 @@ const DropdownMenu = ({ children, trigger, rightMargin, leftMargin }) => {
       {open && children}
 
       <style jsx>{`
-        /* Style whatever my be passed as trigger. Children are styled in parent component: */
+        /* Style whatever is passed as trigger. Children are styled in parent component: */
         .nav-item {
           font-family: ${fonts.heading};
         }
