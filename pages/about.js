@@ -36,7 +36,7 @@ const About = () => {
           <div className="about-text">
             <p>
               Welcome to this little planet on the interverse. Ever feel like life has mistaken you
-              for a punching ball? Yeah, so do we. Let us warm you weary heart a bit by telling you
+              for a punching ball? Yeah, so do we. Let us warm your weary heart a bit by telling you
               this: Life is in fact a giant (but cute) young bullmastiff who just wants to play.
             </p>
             <br />

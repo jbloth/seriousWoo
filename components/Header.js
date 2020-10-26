@@ -12,10 +12,7 @@ import GET_CATEGORY_KEYS from '../queries/get-category-keys';
 import CartModal from './CartModal';
 import SearchModal from './SearchModal';
 import MobileMenu from './MobileMenu';
-// import Logo from '../assets/seriousLogo_09.svg';
-// import CartIcon from '../assets/cart.svg';
 import SearchIcon from './graphics/SearchIcon.js';
-// import AccountIcon from '../assets/account.svg';
 import DropdownMenu from './DropdownMenu';
 
 const Logo = (props) => (
@@ -88,10 +85,17 @@ const Header = () => {
   const router = useRouter();
 
   // Get toggle-cart-open mutation and number of cart items (for display in cart icon)
-  const { toggleCartOpen, cart, toggleMenuOpen, toggleSearchOpen } = useContext(AppContext);
+  const {
+    cartOpen,
+    toggleCartOpen,
+    cart,
+    mobMenuOpen,
+    toggleMenuOpen,
+    searchOpen,
+    toggleSearchOpen,
+  } = useContext(AppContext);
 
   // Get auth token (to decide wether to render link to login or account page)
-  // let initialToken = auth.getAuthToken();
   // Use null as initial state so that inital render has the same content on server and client
   const [token, setToken] = useState(null);
 
@@ -234,23 +238,29 @@ const Header = () => {
 
             {/*  Search Trigger  */}
             <li className="nav-item">
-              <div
+              <button
                 className="nav-link searchIcon-wrapper"
                 onClick={toggleSearchOpen}
                 aria-label="Search"
+                aria-haspopup="true"
               >
                 <SearchIcon />
-              </div>
+              </button>
             </li>
 
             {/*  Cart Modal Trigger  */}
             <li className="nav-item">
-              <div className="nav-link cartIcon-wrapper" onClick={toggleCartOpen} aria-label="Cart">
+              <button
+                className="nav-link cartIcon-wrapper"
+                onClick={toggleCartOpen}
+                aria-label="Cart"
+                aria-haspopup="true"
+              >
                 <CartIcon />
                 <div className="cart-item-count">
                   <span className="cart-item-count-text">{itemCount}</span>
                 </div>
-              </div>
+              </button>
             </li>
           </ul>
         </nav>
@@ -266,13 +276,13 @@ const Header = () => {
         </div>
 
         {/*  Lots of Modals  */}
-        <MobileMenu token={token} />
-        <SearchModal />
+        {mobMenuOpen && <MobileMenu token={token} />}
+        {searchOpen && <SearchModal />}
         <CartModal />
       </div>
 
       <style jsx>{`
-        // ---- wrapper ---- //
+        /* ---- wrapper ---- */
         .header {
           flex-direction: column;
           padding: 2rem 0 0 0;
@@ -289,7 +299,7 @@ const Header = () => {
           max-width: 1500px;
         }
 
-        // ---- logo ---- //
+        /* ---- logo ---- */
         .logo {
           display: flex;
           justify-content: center;
@@ -300,7 +310,7 @@ const Header = () => {
           width: 300px;
         }
 
-        // ---- navigation ---- //
+        /* ---- navigation ---- */
         .nav {
           width: 20vw;
           min-width: 220px;
@@ -322,10 +332,12 @@ const Header = () => {
 
         .nav__list--right {
           justify-content: flex-end;
+          align-items: center;
         }
 
         .nav__list--left {
           justify-content: flex-start;
+          align-items: center;
         }
 
         .nav-item {
@@ -357,28 +369,26 @@ const Header = () => {
           color: rgb(${colors.lightBlue});
         }
 
-        /* ------ */
         .dropdown-content {
           display: flex;
           flex-direction: column;
           position: absolute;
         }
-        /* ------ */
 
 
-        // ---- Search Icon ---- //
+        /* ---- Search Icon ---- */
         .searchIcon-wrapper {
           width: 2.8rem;
           height: auto;
         }
 
-        // ---- Account Icon ---- //
+        /* ---- Account Icon ---- */
         .account-icon-wrapper {
           width: 2.8rem;
           height: auto;
         }
 
-        // ---- Cart Icon ---- //
+        /* ---- Cart Icon ---- */
         .cartIcon-wrapper {
           width: 2.8rem;
           height: auto;          
@@ -414,7 +424,7 @@ const Header = () => {
           right: -20%;
         }
 
-        // ---- burger ---- //
+        /* ---- burger ---- */
         /*.burger {
            z-index: 1500;
           transition: all 0.5s ease;
@@ -428,7 +438,7 @@ const Header = () => {
           // transition: all 0.5s ease;
         }
 
-        // ---- mobile only ---- //
+        /* ---- mobile only ---- //
         .item-mobile {
           display: none;
           /*width: 25px;*/
@@ -439,7 +449,7 @@ const Header = () => {
           color: $color-orange;
         }
 
-        // ---- media queries ---- //
+        /* ---- media queries ---- //
         @media only screen and (max-width: ${breakPoints.bp_md}) {
           .header-inner {
             width: 70%;

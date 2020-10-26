@@ -35,7 +35,11 @@ const Footer = () => {
           </li>
 
           <li>
-            <span className="clickable" onClick={() => setCookieSettingsOpen(true)}>
+            <span role="button" className="clickable" tabIndex="0" 
+				onClick={() => setCookieSettingsOpen(true)}
+				onKeyPress={(e) => {
+					if (e.key === 'Enter') setCookieSettingsOpen(true);
+					}}>
               cookie settings
             </span>
           </li>

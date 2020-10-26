@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { AppContext } from '../components/context/AppContext';
 import CloseIcon from './graphics/CloseIcon';
@@ -8,9 +8,22 @@ import Button from './Button';
 const DemoMsgModal = () => {
   const { closeDemoMsg } = useContext(AppContext);
 
+	// Add Listener to close modal when "ESC" key is pressed
+    useEffect(() => {
+		function keyListener(e) {
+			if (e.keyCode === 27) {
+				closeDemoMsg();
+			}
+		}
+		
+	    document.addEventListener("keydown", keyListener);
+		return () => document.removeEventListener("keydown", keyListener);
+	});
+
+	
   return (
     <div className="background-modal">
-      <div className="demo-msg-modal">
+      <div className="demo-msg-modal" role="dialog" aria-modal="true">
         <div className="icon-wrapper close-icon" aria-label="Close">
           <CloseIcon onClick={closeDemoMsg} />
         </div>
@@ -30,7 +43,7 @@ const DemoMsgModal = () => {
 
         <div className="row">
           <div className="button-wrapper">
-            <Button onClick={closeDemoMsg} extraClass="btn--big">
+            <Button onClick={closeDemoMsg} tabIndex="5" extraClass="btn--big">
               OK
             </Button>
           </div>

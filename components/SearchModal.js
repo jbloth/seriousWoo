@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import { AppContext } from '../components/context/AppContext';
 import { colors, breakPoints } from '../styles/theme';
@@ -9,7 +9,19 @@ import SearchResults from './SearchResults';
 
 const SearchModal = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const { searchOpen, toggleSearchOpen } = useContext(AppContext);
+  const { searchOpen, setSearchOpen, toggleSearchOpen } = useContext(AppContext);
+
+  // Add Listener to close modal when "ESC" key is pressed
+  useEffect(() => {
+    function keyListener(e) {
+      if (e.keyCode === 27) {
+        setSearchOpen(false);
+      }
+    }
+
+    document.addEventListener('keydown', keyListener);
+    return () => document.removeEventListener('keydown', keyListener);
+  });
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
