@@ -4,7 +4,7 @@ import { fonts } from '../styles/theme';
 
 const DropdownMenu = ({ children, trigger, rightMargin, leftMargin }) => {
   const [open, setOpen] = useState(false);
-//   const [timeoutId, settimeoutId] = useState(null);
+  let [timeoutId, settimeoutId] = useState(null);
 
   // When opening the menu on touch devices we set an event listener to the
   // document that closes it on click
@@ -37,16 +37,18 @@ const DropdownMenu = ({ children, trigger, rightMargin, leftMargin }) => {
     }
   };
 
-//   const onBlurHandler = () => {
-//     timeOutId = setTimeout(() => {
-//       setOpen(true);
-//     });
-//   };
+  const onBlurHandler = () => {
+    let newTimeout = setTimeout(() => {
+      setOpen(false);
+	});
+	settimeoutId(newTimeout);
+  };
 
-//   // If a child receives focus, do not close the popover.
-//   const onFocusHandler = () => {
-//     clearTimeout(timeOutId);
-//   };
+  // If a child receives focus, do not close the popover.
+  const onFocusHandler = () => {
+	setOpen(true);
+    clearTimeout(timeoutId);
+  };
 
   return (
     <li
@@ -54,8 +56,8 @@ const DropdownMenu = ({ children, trigger, rightMargin, leftMargin }) => {
         leftMargin ? ' left-margin' : ''
       }`}
       onMouseLeave={onLeave}
-      {/* onFocus={onFocusHandler}
-      onBlur={onBlurHandler} */}
+	  onFocus={onFocusHandler}
+      onBlur={onBlurHandler}
     >
       <div onMouseEnter={onEnter} onTouchStart={onTouch} onTouchEnd={(e) => e.preventDefault()}>
         {trigger}
@@ -63,7 +65,7 @@ const DropdownMenu = ({ children, trigger, rightMargin, leftMargin }) => {
       {open && children}
 
       <style jsx>{`
-        /* Style whatever may be passed as trigger. Children are styled in parent component: */
+        /* Style whatever is passed as trigger. Children are styled in parent component: */
         .nav-item {
           font-family: ${fonts.heading};
         }

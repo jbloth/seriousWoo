@@ -8,19 +8,18 @@ import Button from './Button';
 const DemoMsgModal = () => {
   const { closeDemoMsg } = useContext(AppContext);
 
-	// Add Listener to close modal when "ESC" key is pressed
-    useEffect(() => {
-		function keyListener(e) {
-			if (e.keyCode === 27) {
-				closeDemoMsg();
-			}
-		}
-		
-	    document.addEventListener("keydown", keyListener);
-		return () => document.removeEventListener("keydown", keyListener);
-	});
+  // Add Listener to close modal when "ESC" key is pressed
+  useEffect(() => {
+    function keyListener(e) {
+      if (e.keyCode === 27) {
+        closeDemoMsg();
+      }
+    }
 
-	
+    document.addEventListener('keydown', keyListener);
+    return () => document.removeEventListener('keydown', keyListener);
+  }, []);
+
   return (
     <div className="background-modal">
       <div className="demo-msg-modal" role="dialog" aria-modal="true">

@@ -21,7 +21,7 @@ const SearchModal = () => {
 
     document.addEventListener('keydown', keyListener);
     return () => document.removeEventListener('keydown', keyListener);
-  });
+  }, []);
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);

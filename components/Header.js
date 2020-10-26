@@ -254,7 +254,7 @@ const Header = () => {
                 className="nav-link cartIcon-wrapper"
                 onClick={toggleCartOpen}
                 aria-label="Cart"
-                aria-haspopup="true"
+				aria-haspopup="true"
               >
                 <CartIcon />
                 <div className="cart-item-count">
@@ -375,7 +375,6 @@ const Header = () => {
           position: absolute;
         }
 
-
         /* ---- Search Icon ---- */
         .searchIcon-wrapper {
           width: 2.8rem;
@@ -435,10 +434,10 @@ const Header = () => {
           height: 4px;
           margin: 6px;
           background-color: rgb(${colors.orange});
-          // transition: all 0.5s ease;
+          /* transition: all 0.5s ease; */
         }
 
-        /* ---- mobile only ---- //
+        /* ---- mobile only ---- */
         .item-mobile {
           display: none;
           /*width: 25px;*/
@@ -449,7 +448,7 @@ const Header = () => {
           color: $color-orange;
         }
 
-        /* ---- media queries ---- //
+        /* ---- media queries ---- */
         @media only screen and (max-width: ${breakPoints.bp_md}) {
           .header-inner {
             width: 70%;

@@ -14,7 +14,7 @@ const CartModal = () => {
   const { cart, setCart, cartOpen, setCartOpen, toggleCartOpen } = useContext(AppContext);
   const hidden = !cartOpen;
 
-    // Add Listener to close modal when "ESC" key is pressed
+  // Add Listener to close modal when "ESC" key is pressed
   useEffect(() => {
     function keyListener(e) {
       if (e.keyCode === 27) {
@@ -24,7 +24,7 @@ const CartModal = () => {
 
     document.addEventListener('keydown', keyListener);
     return () => document.removeEventListener('keydown', keyListener);
-  });
+  }, []);
 
   // Add event listener that closes modal if the user clicks outside.
   useEffect(() => {

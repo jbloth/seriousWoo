@@ -2,20 +2,20 @@ import css from 'styled-jsx/css';
 import { colors, fonts, breakPoints } from './theme';
 
 export default css.global`
+  /* ---- Fonts ---- */
 
-/* ---- Fonts ---- */
   /* monda-700 - latin */
   @font-face {
     font-family: 'Monda';
     font-style: bold;
     font-weight: 700;
-    src: url('/fonts/monda-v9-latin-700.eot'); /* IE9 Compat Modes */
+    src: url('/fonts/monda-v9-latin-700.eot');
     src: local('Monda Bold'), local('Monda-Bold'),
       url('/fonts/monda-v9-latin-700.eot?#iefix') format('embedded-opentype'),
-      /* IE6-IE8 */ url('/fonts/monda-v9-latin-700.woff2') format('woff2'),
-      /* Super Modern Browsers */ url('/fonts/monda-v9-latin-700.woff') format('woff'),
-      /* Modern Browsers */ url('/fonts/monda-v9-latin-700.ttf') format('truetype'),
-      /* Safari, Android, iOS */ url('/fonts/monda-v9-latin-700.svg#Monda') format('svg'); /* Legacy iOS */
+      url('/fonts/monda-v9-latin-700.woff2') format('woff2'),
+      url('/fonts/monda-v9-latin-700.woff') format('woff'),
+      url('/fonts/monda-v9-latin-700.ttf') format('truetype'),
+      url('/fonts/monda-v9-latin-700.svg#Monda') format('svg'); /* Legacy iOS */
   }
 
   /* monda-regular - latin */
@@ -23,13 +23,13 @@ export default css.global`
     font-family: 'Monda';
     font-style: normal;
     font-weight: 400;
-    src: url('/fonts/monda-v9-latin-regular.eot'); /* IE9 Compat Modes */
+    src: url('/fonts/monda-v9-latin-regular.eot');
     src: local('Monda Regular'), local('Monda-Regular'),
       url('/fonts/monda-v9-latin-regular.eot?#iefix') format('embedded-opentype'),
-      /* IE6-IE8 */ url('/fonts/monda-v9-latin-regular.woff2') format('woff2'),
-      /* Super Modern Browsers */ url('/fonts/monda-v9-latin-regular.woff') format('woff'),
-      /* Modern Browsers */ url('/fonts/monda-v9-latin-regular.ttf') format('truetype'),
-      /* Safari, Android, iOS */ url('/fonts/monda-v9-latin-regular.svg#Monda') format('svg'); /* Legacy iOS */
+      url('/fonts/monda-v9-latin-regular.woff2') format('woff2'),
+      url('/fonts/monda-v9-latin-regular.woff') format('woff'),
+      url('/fonts/monda-v9-latin-regular.ttf') format('truetype'),
+      url('/fonts/monda-v9-latin-regular.svg#Monda') format('svg'); /* Legacy iOS */
   }
 
   /* mirza-regular - latin */
@@ -43,7 +43,7 @@ export default css.global`
       url('/fonts/mirza-v7-latin-regular.woff2') format('woff2'),
       url('/fonts/mirza-v7-latin-regular.woff') format('woff'),
       url('/fonts/mirza-v7-latin-regular.ttf') format('truetype'),
-      url('/fonts/mirza-v7-latin-regular.svg#Mirza') format('svg');
+      url('/fonts/mirza-v7-latin-regular.svg#Mirza') format('svg'); /* Legacy iOS */
   }
 
   /* mirza-700 - latin */
@@ -57,10 +57,8 @@ export default css.global`
       url('/fonts/mirza-v7-latin-700.woff2') format('woff2'),
       url('/fonts/mirza-v7-latin-700.woff') format('woff'),
       url('/fonts/mirza-v7-latin-700.ttf') format('truetype'),
-      url('/fonts/mirza-v7-latin-700.svg#Mirza') format('svg');
+      url('/fonts/mirza-v7-latin-700.svg#Mirza') format('svg'); /* Legacy iOS */
   }
-
-
 
   /* ---- Reset and Base ---- */
   *,
@@ -120,10 +118,11 @@ export default css.global`
   }
 
   button {
-	appearance: none;
-	border: 0;
-	background: transparent;
-   }
+    appearance: none;
+    border: 0;
+    background: transparent;
+  }
+  
   /* ---- wrapper & utility classes ---- */
   .section {
     display: flex;

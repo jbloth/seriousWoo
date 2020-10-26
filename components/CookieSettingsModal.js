@@ -11,18 +11,18 @@ import Button from './Button';
 const CookieSettingsModal = ({ active, closeModal, client }) => {
   const { consentState, dispatchCookieConsent } = useContext(CookieConsentContext);
 
-  	// Add Listener to close modal when "ESC" key is pressed
-    useEffect(() => {
-		function keyListener(e) {
-			if (e.keyCode === 27) {
-				closeModal();
-			}
-		}
-		
-	    document.addEventListener("keydown", keyListener);
-		return () => document.removeEventListener("keydown", keyListener);
-	});
+  // Add Listener to close modal when "ESC" key is pressed
+  useEffect(() => {
+    function keyListener(e) {
+      if (e.keyCode === 27) {
+        closeModal();
+      }
+    }
 
+    document.addEventListener('keydown', keyListener);
+    return () => document.removeEventListener('keydown', keyListener);
+  }, []);
+  
   return (
     <div className={`background-modal ${active ? 'background-modal--active' : ''}`}>
       <div className="cookie-settings-modal">
